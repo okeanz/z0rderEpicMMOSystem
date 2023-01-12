@@ -1,7 +1,7 @@
 # Description:
 This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.5.4
 
-![https://i.imgur.com/5Tzgs0R.png](https://i.imgur.com/5Tzgs0R.png)
+![https://wackymole.com/hosts/mainimage.png](https://wackymole.com/hosts/mainimage.png)
 
 Features:
  - Shared group XP. Outside of groups all XP awards go to the character who struck the last blow.
@@ -11,7 +11,7 @@ Features:
  - Compatible with [ItemRequiresSkillLevel](https://valheim.thunderstore.io/package/Detalhes/ItemRequiresSkillLevel/) mod. Equipment can be limited by level or attribute.
  - Compatible with [KGMarketplace mod](https://valheim.thunderstore.io/package/KGvalheim/Marketplace_And_Server_NPCs_Revamped/). Experience rewards can be added: (EpicMMO_Exp:250) Quests can be limited by level (EpicMMO_Level: text, 20)
  
- ![https://i.imgur.com/lkCcVOo.png](https://i.imgur.com/lkCcVOo.png)
+ ![https://wackymole.com/hosts/2nd%20image.png](https://wackymole.com/hosts/2nd%20image.png)
 
 <details><summary>Attributes</summary>
 
@@ -30,9 +30,8 @@ Features:
 MMO-like friends list. -Groups MOD Group to earn XP, download requires Group mod for each client https://valheim.thunderstore.io/package/Smoothbrain/Groups/
 
 Click the plus button at the bottom of the friends bar. Enter the name of the character you wish to add, starting with a capital letter.
-   ![https://i.imgur.com/rC8RDYe.png](https://i.imgur.com/rC8RDYe.png)
+   ![https://wackymole.com/hosts/3rd%20image.png](https://wackymole.com/hosts/3rd%20image.png)
 The player will receive a friend request. Once accepted, the character will appear in your friends list. Group invites can be sent from the friends list. 
-   ![https://i.imgur.com/W460hdu.png](https://i.imgur.com/W460hdu.png)
 
 # Warning: 
 - If you accept a friend request while the player who sent it is not logged in with the character, you will not be added to their friends list and they will need to resend the friend request.
@@ -43,7 +42,7 @@ The player will receive a friend request. Once accepted, the character will appe
 <details><summary>Creature level control</summary>
 
 This mod assigns levels to all in-game monsters.
-![https://i.imgur.com/IySsj3j.png](https://i.imgur.com/IySsj3j.png)
+![https://wackymole.com/hosts/creaturecontrol.png](https://wackymole.com/hosts/creaturecontrol.png)
 
 Mobs (names) from other mods are included:
 
@@ -88,7 +87,7 @@ The mod looks for your reset currency first and then ResetTrophies. Only consume
 </details>
 
 <details><summary>UI</summary>
-	<img src="https://wackymole.com/hosts/MMO_UI.png" width="700"/>
+	![https://wackymole.com/hosts/CenterBar.png](https://wackymole.com/hosts/CenterBar.png)
 
 	1HudPanelPosition: Main UI Panel Draggable, default color set by HudBackgroundCol, Type "none" to make it disappear
 
@@ -110,7 +109,7 @@ The mod looks for your reset currency first and then ResetTrophies. Only consume
 
 	DisabledHealthIcons: This disables the red Health Icon that is normal present under vanilla health bar
 
-	
+	![https://wackymole.com/hosts/Attributes.png](https://wackymole.com/hosts/Attributes.png)
 
 </details> 
 

@@ -221,7 +221,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         string hud = "4.Hud--------------------";
         oldExpBar = config(hud, "eXP Bar Only", false, "Use eXP Bar only (need restart, not server sync) Does not move or scale", false);
         showMaxHp = config(hud, "ShowMaxHp", true, "Show max hp (100 / 100)", false);
-        HudBarScale = config(hud, "ScaleforMoveableBar", .90f, "Scale for ExpBar whichis moveable", false);
+        HudBarScale = config(hud, "ScaleforMoveableBar", .90f, "Scale for ExpBar which is moveable", false);
         HudExpBackgroundCol = config(hud, "HudBackgroundCol", "#2F1600", "Background color in Hex, set to 'none' to make transparent", false);
         HudPanelPosition = config(hud, "1HudPanelPosition", new Vector2(0, 0), "Position of the HUD panel (x,y)", false);
         ExpPanelPosition = config(hud, "2ExpPanelPosition", new Vector2(0, 0), "Position of the Exp panel (x,y)", false);
