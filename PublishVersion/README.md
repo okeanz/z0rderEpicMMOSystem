@@ -89,7 +89,7 @@ The mod looks for your reset currency first and then ResetTrophies. Only consume
 
 <details><summary>UI</summary>
 
-	![https://wackymole.com/hosts/CenterBar.png](https://wackymole.com/hosts/CenterBar.png)
+![https://wackymole.com/hosts/CenterBar.png](https://wackymole.com/hosts/CenterBar.png)
 
 	1HudPanelPosition: Main UI Panel Draggable, default color set by HudBackgroundCol, Type "none" to make it disappear
 
