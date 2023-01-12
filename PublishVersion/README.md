@@ -42,6 +42,7 @@ The player will receive a friend request. Once accepted, the character will appe
 <details><summary>Creature level control</summary>
 
 This mod assigns levels to all in-game monsters.
+
 ![https://wackymole.com/hosts/creaturecontrol.png](https://wackymole.com/hosts/creaturecontrol.png)
 
 Mobs (names) from other mods are included:
@@ -87,6 +88,7 @@ The mod looks for your reset currency first and then ResetTrophies. Only consume
 </details>
 
 <details><summary>UI</summary>
+
 	![https://wackymole.com/hosts/CenterBar.png](https://wackymole.com/hosts/CenterBar.png)
 
 	1HudPanelPosition: Main UI Panel Draggable, default color set by HudBackgroundCol, Type "none" to make it disappear
