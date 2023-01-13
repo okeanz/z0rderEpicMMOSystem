@@ -53,6 +53,10 @@ Monsters that are 1 level higher than the character + MaxLevelRange will curve X
 
 With defaults, starting exp req is 500 with a 1.04 multiplayer.  So first 5 levels of experience required will be: level 1 is 500, 2 is 1020, 3 is 1560, 4 is 2122, 5 is 2707
 
+levelexpforeachlevel disabled means that the levels will not add 500 each time: level 1 is 520, 2 is 541, 3 is 562, 4 is 585, 5 is 608. The jsons will all have to be reworked if this is disabled
+
+![https://wackymole.com/hosts/epicmmolevelcalcs.png](https://wackymole.com/hosts/epicmmolevelcalcs.png)
+
 With Low_damage_level- Damage dealt to a higher level monster will be reduced by the difference in levels. E.g. (Character level 20/ Monster level 50 = 0.4. Damage dealt will be 0.4% of normal damage) 
 damageFactor = (float)(playerLevel + LowDamageConfig)/ monsterLevel; You can configure LowDamageConfig to adjust damage scaling up or down. Damage Factor will not go above 1 or below .1f
 
