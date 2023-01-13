@@ -17,9 +17,9 @@ Features:
 
 	Strength: Physical Damage increase, Carry Weight Increase, Stamina Regeneration
 
-	Agility: Attack Stamina Consumption decrease, Stamina increase, Stamina consumption (running, jumping) decreased, Eitr Max Increase
+	Agility: Attack Stamina Consumption decrease, Stamina increase, Stamina consumption (running, jumping) decreased,
 
-	Intellect: Elemental Damage increase, Elemental Armor increase, Eitr regen increases
+	Intellect: Elemental Damage increase, Elemental Armor increase, Eitr regen increases,  Eitr Increase
 
 	Endurance: Physical Armor increase, HP increase, Health Regeneration
 
