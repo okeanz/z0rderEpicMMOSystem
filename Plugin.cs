@@ -201,9 +201,9 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         string creatureLevelControl = "2.Creature level control";
         mentor = config(creatureLevelControl, "Mentor", true, "Give full eXP for low level members in Groups");
         enabledLevelControl = config(creatureLevelControl, "Enabled_creature_level", true, "Enable creature Level control - Disable this to remove levels, but still get eXP gain");
-        removeDropMax = config(creatureLevelControl, "Remove_creature_drop_max", true, "Monsters after death do not give items if their level is higher than player level + MaxLevel");
+        removeDropMax = config(creatureLevelControl, "Remove_creature_drop_max", false, "Monsters after death do not give items if their level is higher than player level + MaxLevel");
         removeDropMin = config(creatureLevelControl, "Remove_creature_drop_min", false, "Monsters after death do not give items if their level is lower than player level - MinLevel");
-        removeBossDropMax = config(creatureLevelControl, "Remove_boss_drop_max", true, "Bosses after death do not give items if their level is higher than player level + MaxLevel");
+        removeBossDropMax = config(creatureLevelControl, "Remove_boss_drop_max", false, "Bosses after death do not give items if their level is higher than player level + MaxLevel");
         removeBossDropMin = config(creatureLevelControl, "Remove_boss_drop_min", false, "Bosses after death do not give items if their level is lower than player level - Minlevel");
         curveExp = config(creatureLevelControl, "Curve_creature_exp", true, "Monsters after death will give less exp if player is outside Max or Min Level Range");
         curveBossExp = config(creatureLevelControl, "Curve_Boss_exp", true, "Bosses after death will give less exp if player is outside Max or Min Level Range");
