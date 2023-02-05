@@ -259,6 +259,8 @@ public static class DataMonsters
             int minLevelExp = LevelSystem.Instance.getLevel() - EpicMMOSystem.minLevelExp.Value;
             int monsterLevel = getLevel(c.gameObject.name) + c.m_level - 1;
             GameObject component = ___m_huds[c].m_gui.transform.Find("Name").gameObject;
+            var textspace = component.GetComponent<Text>().text;
+            component.GetComponent<Text>().text = " "+ textspace + " "; // add some spacing for single letter names
             GameObject levelName = Object.Instantiate(component, component.transform);
             levelName.GetComponent<RectTransform>().anchoredPosition = EpicMMOSystem.MobLevelPosition.Value;
             if (c.m_boss)
