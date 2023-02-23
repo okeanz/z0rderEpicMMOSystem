@@ -105,6 +105,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     public static ConfigEntry<int> lowDamageExtraConfig;
     public static ConfigEntry<int> maxLevelExp;
     public static ConfigEntry<int> minLevelExp;
+    public static ConfigEntry<string> MobLVLChars;
 
     //Reset attributes items
     public static ConfigEntry<String> prefabNameCoins;
@@ -213,6 +214,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         maxLevelExp = config(creatureLevelControl, "MaxLevelRange", 10, "Character level + MaxLevelRange is less than the level of the monster, then you will not receive experience. Уровень персонажа + MaxLevelRange меньше уровня монстра, то вы не будете получать опыт");
         MobLevelPosition = config(creatureLevelControl, "LevelBar Position", new Vector2(40, -30), "LevelBar Position for regular mobs - synced");
         BossLevelPosition = config(creatureLevelControl, "Boss LevelBar Position", new Vector2(0, 30), "LevelBar Position for Boss Bars - synced");
+        MobLVLChars = config(creatureLevelControl, "Mob Level UI String", "[@]", "[@] uses @ for moblevel, must include '@', but you coudl do 'Level @' or something similar");
 
         string resetAttributesItems = "3.Reset attributes items";
         prefabNameCoins = config(resetAttributesItems, "prefabName", "Coins", "Name prefab item");

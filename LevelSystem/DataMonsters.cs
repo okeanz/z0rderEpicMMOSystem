@@ -10,10 +10,13 @@ using System.Threading;
 using BepInEx;
 using fastJSON;
 using HarmonyLib;
+using Steamworks;
 using UnityEngine;
 using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
+using Text = UnityEngine.UI.Text;
 
 namespace EpicMMOSystem;
 
@@ -259,16 +262,19 @@ public static class DataMonsters
             int minLevelExp = LevelSystem.Instance.getLevel() - EpicMMOSystem.minLevelExp.Value;
             int monsterLevel = getLevel(c.gameObject.name) + c.m_level - 1;
             GameObject component = ___m_huds[c].m_gui.transform.Find("Name").gameObject;
-            var textspace = component.GetComponent<Text>().text;
-            component.GetComponent<Text>().text = " "+ textspace + " "; // add some spacing for single letter names
+            //var textspace = component.GetComponent<Text>().text;
+            //component.GetComponent<Text>().text = " "+ textspace + " "; // add some spacing for single letter names
             GameObject levelName = Object.Instantiate(component, component.transform);
             levelName.GetComponent<RectTransform>().anchoredPosition = EpicMMOSystem.MobLevelPosition.Value;
             if (c.m_boss)
             {
                 levelName.GetComponent<RectTransform>().anchoredPosition = EpicMMOSystem.BossLevelPosition.Value;
             }
-            
-            levelName.GetComponent<Text>().text = $"[{monsterLevel}]";
+            string stringtolvl = EpicMMOSystem.MobLVLChars.Value;
+            string moblvlstring = monsterLevel.ToString();
+            stringtolvl = stringtolvl.Replace("@", moblvlstring); // not sure how fast this is
+
+            levelName.GetComponent<Text>().text = stringtolvl;
             Color color = monsterLevel > maxLevelExp ? Color.red : Color.white;
             if (monsterLevel < minLevelExp) color = Color.cyan;
             component.GetComponent<Text>().color = color;
