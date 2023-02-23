@@ -28,6 +28,10 @@ public class Localization
         {
             SpanLocalization();
         }
+        else if (currentLanguage == "German")
+        {
+            GermanLocalization();
+        }
         else
         {
             var fileName = $"{EpicMMOSystem.language.Value}_emmosLocalization.txt";
@@ -109,6 +113,7 @@ public class Localization
         _dictionary.Add("$damage", "Урон");
         _dictionary.Add("$armor", "Защита");
         _dictionary.Add("$survival", "Выживание");
+
         _dictionary.Add("$regen_eitr", "регенерация Eitr");
         _dictionary.Add("$stamina_reg", "Регенерация выносливости"); 
         _dictionary.Add("$add_eitr", "Повышение Eitr");
@@ -162,6 +167,7 @@ public class Localization
         _dictionary.Add("$damage", "Damage");
         _dictionary.Add("$armor", "Armor");
         _dictionary.Add("$survival", "Survival");
+
         _dictionary.Add("$regen_eitr", "Eitr regeneration");
         _dictionary.Add("$stamina_reg", "Stamina regeneration");
         _dictionary.Add("$add_eitr", "Eitr Increase");
@@ -216,6 +222,7 @@ public class Localization
         _dictionary.Add("$damage", "Daño");
         _dictionary.Add("$armor", "Armadura");
         _dictionary.Add("$survival", "Surpervivencia");
+
         _dictionary.Add("$regen_eitr", "regeneración de eitr");
         _dictionary.Add("$stamina_reg", "regeneración de resistencia");
         _dictionary.Add("$add_eitr", "Aumento de EIT");
@@ -235,6 +242,62 @@ public class Localization
         //Terminal
         _dictionary.Add("$terminal_set_level", "Eres nivel {0}");
         _dictionary.Add("$terminal_reset_points", "Tus puntos de atributos han sido reiniciados");
+    }
+
+    private void GermanLocalization()
+    {
+
+        _dictionary.Add("$attributes", "Eigenschaften");
+        _dictionary.Add("$parameter_strength", "Stärke");
+        _dictionary.Add("$parameter_agility", "Beweglichkeit");
+        _dictionary.Add("$parameter_intellect", "Intelligenz");
+        _dictionary.Add("$parameter_body", "Ausdauer");
+        _dictionary.Add("$free_points", "Verfügbare Punkte");
+        _dictionary.Add("$level", "Level");
+        _dictionary.Add("$lvl", "Lvl.");
+        _dictionary.Add("$exp", "Erfahrung");
+        _dictionary.Add("$cancel", "Zurück");
+        _dictionary.Add("$apply", "übernehmen");
+        _dictionary.Add("$reset_parameters", "Punkte zurücksetzen");
+        _dictionary.Add("$no", "Nein");
+        _dictionary.Add("$yes", "Ja");
+        _dictionary.Add("$get_exp", "Erfahrung erhalten");
+        _dictionary.Add("$reset_point_text", "Möchtest du wirklich alle Punkte Löschen? {0} {1}?");
+
+        _dictionary.Add("$physic_damage", "Körperlicher Schaden");
+        _dictionary.Add("$add_weight", "Gewicht tragen");
+        _dictionary.Add("$speed_attack", "Ausdauerverbrauch angreifen");
+        _dictionary.Add("$reduced_stamina", "Ausdauerverbrauch (running, jumping)");
+        _dictionary.Add("$magic_damage", "Elementarschaden");
+        _dictionary.Add("$magic_armor", " Elementarschaden Rüstung");
+        _dictionary.Add("$add_hp", "Gesundheitssteigerung");
+        _dictionary.Add("$add_stamina", "Ausdauer erhöt um");
+        _dictionary.Add("$physic_armor", "Physische Rüstung");
+        _dictionary.Add("$reduced_stamina_block", "Ausdauerverbrauch blockieren");
+        _dictionary.Add("$regen_hp", "Heilung");
+        _dictionary.Add("$damage", "Schaden");
+        _dictionary.Add("$armor", "Rüstung");
+        _dictionary.Add("$survival", "überleben");
+
+        _dictionary.Add("$regen_eitr", "Eitr-Regeneration");
+        _dictionary.Add("$stamina_reg", "Regeneration der Ausdauer");
+        _dictionary.Add("$add_eitr", "Eitr erhöhen");
+
+        _dictionary.Add("$notify", "<color=#00E6FF>Alarm");
+        _dictionary.Add("$friends_list", "Freundesliste");
+        _dictionary.Add("$send", "Senden");
+        _dictionary.Add("$invited", "Einladungen");
+        _dictionary.Add("$friends", "Freunde");
+        _dictionary.Add("$online", "Online");
+        _dictionary.Add("$offline", "Offline");
+        _dictionary.Add("$not_found", "Spieler {0} nicht gefunden.");
+        _dictionary.Add("$send_invite", "Eine Freundschaftsanfrage wurde an den Spieler gesendet {0}.");
+        _dictionary.Add("$get_invite", "erhielt eine Freundschaftsanfrage von {0}.");
+        _dictionary.Add("$accept_invite", "Spieler {0}, hat die Freundschaftsanfrage bestätigt.");
+        _dictionary.Add("$cancel_invite", "Spieler {0}, hat die Freundschaftsanfrage abgelehnt.");
+        _dictionary.Add("$terminal_set_level", "Du hast {0} level");
+        _dictionary.Add("$terminal_reset_points", "Deine Attributspunkte wurden zurückgesetzt");
+
     }
 
     public string this[string key]

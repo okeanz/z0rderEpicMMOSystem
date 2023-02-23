@@ -164,7 +164,7 @@ public partial class MyUI
         //Description strength
         physicDamageText.text = $"{localization["$physic_damage"]}: +{LevelSystem.Instance.getAddPhysicDamage()}%";
         addWeightText.text = $"{localization["$add_weight"]}: +{LevelSystem.Instance.getAddWeight()}";
-        staminaRegen.text = $"{localization["$stamina_reg"]}: +{LevelSystem.Instance.getStaminaRegen()}";
+        staminaRegen.text = $"{localization["$stamina_reg"]}: +{LevelSystem.Instance.getStaminaRegen()}%";
 
         //Description agility
         speedAttackText.text = $"{localization["$speed_attack"]}: -{LevelSystem.Instance.getAddStaminaAttack()}%";
