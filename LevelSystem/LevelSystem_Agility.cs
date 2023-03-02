@@ -40,7 +40,7 @@ public partial class LevelSystem
     {
         public static void Postfix(ref float drain)
         {
-            var multi = Instance.getStaminaReduction() / 100 + 1;
+            var multi = 1 - Instance.getStaminaReduction() / 100;
             drain *= multi;
         }
     }
@@ -50,7 +50,7 @@ public partial class LevelSystem
     {
         public static void Postfix( ref float staminaUse)
         {
-            var multi = Instance.getStaminaReduction() / 100 + 1;
+            var multi = 1 - Instance.getStaminaReduction() / 100 ;
             staminaUse *= multi;
         }
     }
