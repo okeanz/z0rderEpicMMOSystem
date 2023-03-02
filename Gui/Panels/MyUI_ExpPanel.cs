@@ -50,11 +50,18 @@ public partial class MyUI
 
     public static void updateExpBar()
     {
-        
-        
+        if (DisableExpBar)
+        {
+            Exp.gameObject.SetActive(false);
+
+        }
+
         var level = LevelSystem.Instance.getLevel();
         var exp = LevelSystem.Instance.getCurrentExp();
         var need = LevelSystem.Instance.getNeedExp();
+        if (DisableExpBar)
+            return;
+
         string expPersent = ((float)exp / need * 100).ToString("0.00");
         eLevelText.text = $"{localization["$lvl"]} {level}";
         eExpText.text = $"{expPersent.Replace(',','.')} %";
@@ -79,6 +86,8 @@ public partial class MyUI
         eLevelText = expPanel.Find("Container/Exp/Lvl").GetComponent<Text>();
         eExpText = expPanel.Find("Container/Exp/Exp").GetComponent<Text>();
         Exp = expPanel.Find("Container/Exp");
+        
+  
 
         //expPanel.Find("Conteiner/Exp/Lvl").localPosition += new Vector3(0, 30, 0);This is bottom right xp bar not monster
         eBarImage = expPanel.Find("Container/Exp/Bar/Fill").GetComponent<Image>();
@@ -88,7 +97,7 @@ public partial class MyUI
         hpImage = hpFill.GetComponent<Image>();
         hpFillColor = hpImage.color;
         hp = expPanel.Find("Container/Hp");
-
+        
 
 
         staminaText = expPanel.Find("Container/Stamina/Text").GetComponent<Text>();
@@ -96,7 +105,7 @@ public partial class MyUI
         staminaImage = staminaBarFill.GetComponent<Image>();
         staminaBarColor = staminaImage.color;
         stamina = expPanel.Find("Container/Stamina");
-
+        
 
         EitrTran = expPanel.Find("Container/Eitr");
         EitrGameObj = expPanel.Find("Container/Eitr").gameObject;
@@ -104,6 +113,7 @@ public partial class MyUI
         EitrFill = expPanel.Find("Container/Eitr/Bar/Fill");
         EitrImage = EitrFill.GetComponent<Image>();
         EitrBarColor = EitrImage.color;
+        
     }
 
     [HarmonyPatch(typeof(Hud), nameof(Hud.Awake))]
@@ -155,6 +165,14 @@ public partial class MyUI
                 return true;
             }
             if (DisableHPBar)
+                hp.gameObject.SetActive(false);
+
+            if (DisableExpBar)
+               Exp.gameObject.SetActive(false); // because doesn't autoupdate unless xp change
+
+            
+
+            if (DisableHPBar)
                 return true;
 
 
@@ -192,6 +210,9 @@ public partial class MyUI
                 return true;
             }
             if (DisableStaminaBar)
+                stamina.gameObject.SetActive(false);
+
+            if (DisableStaminaBar)
                 return true;
             
             var current = player.GetStamina();
@@ -221,6 +242,9 @@ public partial class MyUI
             {
                 return true;
             }
+
+            if (DisableEitrBar)
+                EitrGameObj.SetActive(false);
             if (DisableEitrBar)
                 return true;
 

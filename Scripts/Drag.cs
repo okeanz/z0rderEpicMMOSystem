@@ -79,8 +79,18 @@ public class DragWindowCntrl : MonoBehaviour, IBeginDragHandler, IDragHandler// 
     
     public void OnEndDrag(PointerEventData eventData)
     {
-        //EpicMMOSystem.SaveWindowPositions(_window.gameObject, false);
-    }
+        /*
+                var go = _window.gameObject;
+                switch (go.name)
+            {
+                case "EpicHudPanel":
+                    rectTransform.anchoredPosition = EpicMMOSystem.HudPanelPosition.Value;
+                    break;
+
+            }
+        */
+                //EpicMMOSystem.SaveWindowPositions(_window.gameObject, false);
+        }
 /*
     public void OnScroll(PointerEventData eventData)
     {

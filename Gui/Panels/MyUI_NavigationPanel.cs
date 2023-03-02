@@ -19,6 +19,7 @@ public partial class MyUI
         buttonLevelSystem = navigationPanel.transform.Find("Buttons/ButtonLevelSystem");
         buttonLevelSystem.GetComponent<Button>().onClick.AddListener(ClickButtonLevelSystem);
         DragWindowCntrl.ApplyDragWindowCntrl(navigationPanel);
+        //DragControl.Apply
 
         buttonFriendsList = navigationPanel.transform.Find("Buttons/ButtonFriends");
         buttonFriendsList.GetComponent<Button>().onClick.AddListener(ClickButtonFriendsList);
