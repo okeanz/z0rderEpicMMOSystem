@@ -1,5 +1,5 @@
 # Description:
-This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.5.7
+This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.5.8
 
 ![https://wackymole.com/hosts/mainimage.png](https://wackymole.com/hosts/mainimage.png)
 
@@ -45,9 +45,9 @@ This mod assigns levels to all in-game monsters.
 
 ![https://wackymole.com/hosts/creaturecontrol.png](https://wackymole.com/hosts/creaturecontrol.png)
 
-Mobs (names) from other mods are included:
+Mobs (names, levels, exp) from other mods are included:
 
-Fantasy-Creatures, AirAnimals, Defaults, DoOrDieMonsters, LandAnimals, MonsterlabZ, Outsiders, SeaAnimals
+Fantasy-Creatures, AirAnimals, Defaults, DoOrDieMonsters, LandAnimals, MonsterlabZ, Outsiders, SeaAnimals, Monstrum (beta - a paid only mod)
 
 Monsters that are 1 level higher than the character + MaxLevelRange will curve XP.
 
@@ -69,7 +69,7 @@ A file listing all monsters and their levels is located in config/EpicMMOSystem/
 
 A file called Version.txt is created in the folder. It contains the mod version that was used to create it. Replace it with "NO" to stop it from overwritting on a future update.
 
-Latest Update for Jsons config is 1.5.4 (Number will be updated when Jsons recieve an update)
+Latest Update for Jsons config is <b> 1.5.8 </b>(Number will be updated when Jsons recieve an update)
 
 Please note:
 When upgrading the mod to a newer version, new fields in the settings file will be created automatically. You will have to manually re-edit these values if you have changed them.
@@ -152,6 +152,7 @@ Original Creator: LambaSun or my [mod branch](https://discord.com/channels/82657
 
 | Version | Changes                                                                                                                                                                                                                                                                                                                                |
 |----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.5.8  | - Update for single char word languages - horizonal overflow <br/> MonsterDB update and added mob levels for Monstrum(beta)
 | 1.5.7  | - Fix for stamina consumption for running and jumping. Was increasing instead of decreasing, credits for discovery.  Moissonneur and Kevin
 | 1.5.6  | - Added German Localization <br /> Changed defaults to not take any drops away, no matter the level. - Blax complained enough - <br /> Stamina Regen is a percentage <br /> Added MOB UI string for wacky fun, aka single char word languages <br /> Update ItemManager <br /> Added ability to set "none" on color for all hud elements to make them go away, should live update. Might have relaunch to get them to come back| 1.5.5  | - Update readme to talk about "FirstLevelExperience used on each level" - Added an excel image for XP comparisons between modes - Most people should NOT disable this, makes balancing completely different.
 | 1.5.4: | - Updated to allow level and reset commands for Spaced Names. <br/>Updated Jsons, Added extra text file for people who don't read readme or version changes... you know who you are.... <br/> Added abilty for EpicMMO to recalculate maxlvls on serversync updates. I still don't recommend live updating with this mod, but less bugs now. <br/> Serious discussion: It appears if you ever changed expierence values(rateExp,expForLvlMonster, etc) after players started playing, things could get wonky unless you reset them(even after game restarts). I added a TotalExp tracker, but it won't be useful unless you restart all your players back to 0. I have added another command to Terminal recalc, but it will reset players levels to 0 if not a new charc on this update.  <br/> Added MobLevelPosition and BossLevelPosition for server admins to config mob bar placement. </br> Fixed lowDamageExtraConfig, small oversight <br/> Added ResetTrophy item for people to add to droplists <br/> Added EitrIncrease to Intellegence - More OP 

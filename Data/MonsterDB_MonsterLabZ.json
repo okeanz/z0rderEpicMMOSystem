@@ -43,9 +43,9 @@
   },
   {
     "name": "BrownSpider",
-    "minExp": 90,
-    "maxExp": 160,
-    "level": 18
+    "minExp": 200,
+    "maxExp": 250,
+    "level": 32
   },
   {
     "name": "ForestSpider",
@@ -93,7 +93,7 @@
     "name": "ML_DraugrShip",
     "minExp": 500,
     "maxExp": 800,
-    "level": 33
+    "level": 32
   },
   {
     "name": "ML_GoblinShip",
@@ -109,15 +109,9 @@
   },
   {
     "name": "MolluscanLand",
-    "minExp": 320,
-    "maxExp": 380,
-    "level": 25
-  },
-  {
-    "name": "ObsidianGolem",
-    "minExp": 600,
-    "maxExp": 850,
-    "level": 49
+    "minExp": 150,
+    "maxExp": 200,
+    "level": 20
   },
   {
     "name": "Surtling_Spawn",
@@ -141,13 +135,13 @@
     "name": "DwarfGoblinShaman",
     "minExp": 500,
     "maxExp": 600,
-    "level": 53
+    "level": 52
   },
   {
     "name": "ML_GoblinLox",
     "minExp": 600,
     "maxExp": 900,
-    "level": 58
+    "level": 53
   },
   {
     "name": "NormalGhostWarrior",
@@ -160,12 +154,6 @@
     "minExp": 140,
     "maxExp": 200,
     "level": 18
-  },
-  {
-    "name": "FireSkeletonWarrior",
-    "minExp": 120,
-    "maxExp": 180,
-    "level": 21
   },
   {
     "name": "IceSkeletonWarrior",
@@ -183,7 +171,7 @@
     "name": "PoisonSkeletonWarrior",
     "minExp": 210,
     "maxExp": 250,
-    "level": 24
+    "level": 20
   },
   {
     "name": "MLNPC_Svartalfar0",
@@ -192,28 +180,52 @@
     "level": 33
   },
   {
+    "name": "Spiderboss_Egg",
+    "minExp": 100,
+    "maxExp": 150,
+    "level": 28
+  },
+  {
+    "name": "Spider_Hatchling",
+    "minExp": 300,
+    "maxExp": 350,
+    "level": 20
+  },
+  {
     "name": "WraithWarrior",
     "minExp": 300,
     "maxExp": 350,
     "level": 31
   },
   {
+    "name": "ML_JellyFish0",
+    "minExp": 300,
+    "maxExp": 350,
+    "level": 30
+  },
+  {
     "name": "DeepSea_Serpent",
     "minExp": 400,
     "maxExp": 600,
-    "level": 35
+    "level": 31
+  },
+  {
+    "name": "DeepSea_Serpent_Flying",
+    "minExp": 600,
+    "maxExp": 800,
+    "level": 33
   },
   {
     "name": "Spider_Boss",
-    "minExp": 1300,
-    "maxExp": 1600,
-    "level": 70
+    "minExp": 1100,
+    "maxExp": 1300,
+    "level": 40
   },
   {
     "name": "IceGolem",
-    "minExp": 1700,
-    "maxExp": 2000,
-    "level": 72
+    "minExp": 3600,
+    "maxExp": 4800,
+    "level": 65
   },
   {
     "name": "TrollGiant",
@@ -225,30 +237,66 @@
     "name": "FireGolem",
     "minExp": 2000,
     "maxExp": 2400,
-    "level": 75
+    "level": 72
   },
   {
-    "name": "Succubus",
-    "minExp": 200,
-    "maxExp": 350,
-    "level": 30
+    "name": "ML_LavaRoot",
+    "minExp": 600,
+    "maxExp": 900,
+    "level": 70
   },
   {
-    "name": "Succubus_Queen1",
-    "minExp": 400,
-    "maxExp": 550,
-    "level": 40
+    "name": "FireSkeletonWarrior",
+    "minExp": 900,
+    "maxExp": 1100,
+    "level": 70
+  },
+  {
+    "name": "FireSkeletonWarriorNoFx",
+    "minExp": 900,
+    "maxExp": 1100,
+    "level": 70
+  },
+  {
+    "name": "AshHatchling",
+    "minExp": 900,
+    "maxExp": 1100,
+    "level": 70
+  },
+  {
+    "name": "ObsidianGolem",
+    "minExp": 2000,
+    "maxExp": 2400,
+    "level": 70
+  },
+  {
+    "name": "ML_AshHuldraQueen1",
+    "minExp": 900,
+    "maxExp": 1100,
+    "level": 71
+  },
+  {
+    "name": "ML_AshHuldraQueen2",
+    "minExp": 1100,
+    "maxExp": 1300,
+    "level": 72
+  },
+  {
+    "name": "ML_AshHuldraQueen3",
+    "minExp": 1300,
+    "maxExp": 1500,
+    "level": 73
   },
   {
     "name": "Surtr",
-    "minExp": 3200,
-    "maxExp": 3700,
-    "level": 85
+    "minExp": 3600,
+    "maxExp": 4800,
+    "level": 74
   },
   {
     "name": "NightmareDragon",
-    "minExp": 3000,
-    "maxExp": 3500,
-    "level": 81
+    "minExp": 3600,
+    "maxExp": 4800,
+    "level": 74
   }
 ]

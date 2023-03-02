@@ -99,31 +99,31 @@
     "name": "Draugr_Ranged",
     "minExp": 180,
     "maxExp": 220,
-    "level": 32
+    "level": 31
   },
   {
     "name": "Surtling",
     "minExp": 100,
     "maxExp": 130,
-    "level": 28
+    "level": 30
   },
   {
     "name": "Draugr_Elite",
     "minExp": 300,
     "maxExp": 500,
-    "level": 35
+    "level": 34
   },
   {
     "name": "BlobElite",
     "minExp": 180,
     "maxExp": 250,
-    "level": 32
+    "level": 33
   },
   {
     "name": "Abomination",
     "minExp": 400,
     "maxExp": 600,
-    "level": 40
+    "level": 35
   },
   {
     "name": "Bat",
@@ -135,25 +135,25 @@
     "name": "Wolf",
     "minExp": 250,
     "maxExp": 350,
-    "level": 40
+    "level": 41
   },
   {
     "name": "Fenring",
     "minExp": 300,
     "maxExp": 400,
-    "level": 45
+    "level": 43
   },
   {
     "name": "Cultist",
     "minExp": 300,
     "maxExp": 400,
-    "level": 43
+    "level": 44
   },
   {
     "name": "Ulv",
     "minExp": 300,
     "maxExp": 400,
-    "level": 43
+    "level": 42
   },
   {
     "name": "Hatchling",
@@ -177,13 +177,13 @@
     "name": "BlobTar",
     "minExp": 350,
     "maxExp": 450,
-    "level": 50
+    "level": 51
   },
   {
     "name": "Goblin",
     "minExp": 350,
     "maxExp": 450,
-    "level": 50
+    "level": 51
   },
   {
     "name": "GoblinArcher",
@@ -207,13 +207,13 @@
     "name": "GoblinBrute",
     "minExp": 450,
     "maxExp": 650,
-    "level": 57
+    "level": 54
   },
   {
     "name": "GoblinShaman",
     "minExp": 300,
     "maxExp": 400,
-    "level": 54
+    "level": 53
   },
   {
     "name": "Seeker",
@@ -237,7 +237,7 @@
     "name": "Gjall",
     "minExp": 1000,
     "maxExp": 1800,
-    "level": 66
+    "level": 63
   },
   {
     "name": "Tick",
@@ -264,12 +264,6 @@
     "level": 3
   },
   {
-    "name": "SeekerQueen",
-    "minExp": 3200,
-    "maxExp": 4500,
-    "level": 69
-  },
-  {
     "name": "Eikthyr",
     "minExp": 150,
     "maxExp": 200,
@@ -279,24 +273,30 @@
     "name": "gd_king",
     "minExp": 300,
     "maxExp": 500,
-    "level": 29
+    "level": 26
   },
   {
     "name": "Bonemass",
     "minExp": 700,
     "maxExp": 900,
-    "level": 39
+    "level": 36
   },
   {
     "name": "Dragon",
     "minExp": 1000,
     "maxExp": 1400,
-    "level": 49
+    "level": 46
   },
   {
     "name": "GoblinKing",
     "minExp": 1500,
     "maxExp": 3000,
-    "level": 59
+    "level": 56
+  },
+  {
+    "name": "SeekerQueen",
+    "minExp": 3200,
+    "maxExp": 4500,
+    "level": 66
   }
 ]

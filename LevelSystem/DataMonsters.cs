@@ -102,6 +102,7 @@ public static class DataMonsters
         var json6 = "MonsterDB_Outsiders.json";
         var json7 = "MonsterDB_DoorDieMonsters.json";
         var json8 = "MonsterDB_MajesticChickens.json";
+        var json9 = "MonsterDB-Monstrum.json";
 
         if (!Directory.Exists(folderpath)){
             Directory.CreateDirectory(folderpath);
@@ -121,8 +122,10 @@ public static class DataMonsters
                 cleartowrite = true;
             if (filev == "1.5.3")
                 cleartowrite = true;
-
             if (filev == "1.5.4")
+                cleartowrite = true;
+
+            if (filev == "1.5.8") // last version to get a DB update
                 cleartowrite = false;
 
             if (filev == "NO" || filev == "no" || filev == "No" || filev == "STOP" || filev == "stop" || filev == "Stop")
@@ -134,7 +137,7 @@ public static class DataMonsters
         if (cleartowrite)
         {
             //list.Clear();
-            File.WriteAllText(versionpath, "1.5.4"); // Write Version file
+            File.WriteAllText(versionpath, "1.5.8"); // Write Version file, don't auto update
 
             File.WriteAllText(warningtext, "Erase numbers in Version.txt and write NO or stop in file. This should stop DB json files from updating on an update");
 
@@ -155,6 +158,8 @@ public static class DataMonsters
             File.WriteAllText(Path.Combine(folderpath, json7), getDefaultJsonMonster(json7));
 
             File.WriteAllText(Path.Combine(folderpath, json8), getDefaultJsonMonster(json8));
+
+            File.WriteAllText(Path.Combine(folderpath, json9), getDefaultJsonMonster(json9));
 
 
             if (EpicMMOSystem.extraDebug.Value)
@@ -273,7 +278,7 @@ public static class DataMonsters
             string stringtolvl = EpicMMOSystem.MobLVLChars.Value;
             string moblvlstring = monsterLevel.ToString();
             stringtolvl = stringtolvl.Replace("@", moblvlstring); // not sure how fast this is
-
+            levelName.GetComponent<Text>().horizontalOverflow = UnityEngine.HorizontalWrapMode.Overflow;
             levelName.GetComponent<Text>().text = stringtolvl;
             Color color = monsterLevel > maxLevelExp ? Color.red : Color.white;
             if (monsterLevel < minLevelExp) color = Color.cyan;

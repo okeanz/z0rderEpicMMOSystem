@@ -1,0 +1,152 @@
+[
+  {
+    "name": "Fox_TW",
+    "minExp": 30,
+    "maxExp": 50,
+    "level": 7
+  },
+  {
+    "name": "Razorback_TW",
+    "minExp": 100,
+    "maxExp": 150,
+    "level": 13
+  },
+  {
+    "name": "BlackBear_TW",
+    "minExp": 100,
+    "maxExp": 200,
+    "level": 18
+  },
+  {
+    "name": "RottingElk_TW",
+    "minExp": 120,
+    "maxExp": 300,
+    "level": 21
+  },
+  {
+    "name": "GrizzlyBear_TW",
+    "minExp": 400,
+    "maxExp": 600,
+    "level": 42
+  },
+  {
+    "name": "ObsidianGolem_TW",
+    "minExp": 700,
+    "maxExp": 1300,
+    "level": 45
+  },
+  {
+    "name": "ArcticWolf_TW",
+    "minExp": 1500,
+    "maxExp": 2300,
+    "level": 71
+  },
+  {
+    "name": "ArcticBear_TW",
+    "minExp": 1800,
+    "maxExp": 2500,
+    "level": 73
+  },
+  {
+    "name": "ArcticSerpent_TW",
+    "minExp": 1400,
+    "maxExp": 2000,
+    "level": 70
+  },
+  {
+    "name": "ArcticMammoth_TW",
+    "minExp": 2500,
+    "maxExp": 3500,
+    "level": 74
+  },
+  {
+    "name": "ArcticDrake_TW",
+    "minExp": 1800,
+    "maxExp": 2800,
+    "level": 70
+  }, 
+  {
+    "name": "ArcticFenring_TW",
+    "minExp": 2000,
+    "maxExp": 3000,
+    "level": 71
+  },
+  {
+    "name": "ArcticCultist_TW",
+    "minExp": 2000,
+    "maxExp": 3000,
+    "level": 72
+  },
+  {
+    "name": "ArcticGolem_TW",
+    "minExp": 2500,
+    "maxExp": 3500,
+    "level": 73
+  },
+  {
+    "name": "JotunnBrute_TW",
+    "minExp": 8000,
+    "maxExp": 10000,
+    "level": 76
+  },
+  {
+    "name": "AshenWarg_TW",
+    "minExp": 3000,
+    "maxExp": 3600,
+    "level": 81
+  },
+  {
+    "name": "AshenCrab_TW",
+    "minExp": 2800,
+    "maxExp": 3400,
+    "level": 79
+  },
+  {
+    "name": "AshenScorpid_TW",
+    "minExp": 3100,
+    "maxExp": 3700,
+    "level": 80
+  },
+  {
+    "name": "AshenDimetrodon_TW",
+    "minExp": 4000,
+    "maxExp": 4800,
+    "level": 86
+  },
+  {
+    "name": "AshenDrake_TW",
+    "minExp": 3500,
+    "maxExp": 4300,
+    "level": 83
+  },
+  {
+    "name": "AshenImp_TW",
+    "minExp": 2500,
+    "maxExp": 3500,
+    "level": 78
+  },
+  {
+    "name": "AshenDemon_TW",
+    "minExp": 3800,
+    "maxExp": 4500,
+    "level": 86
+  },
+  {
+    "name": "AshenGolem_TW",
+    "minExp": 4500,
+    "maxExp": 5500,
+    "level": 87
+  },
+  {
+    "name": "AshenMinotaur_TW",
+    "minExp": 4000,
+    "maxExp": 5000,
+    "level": 87
+  },
+  {
+    "name": "BossSythrak_TW",
+    "minExp": 9000,
+    "maxExp": 12000,
+    "level": 85
+  }
+]
