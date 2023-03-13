@@ -1,5 +1,5 @@
 # Description:
-This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.5.8
+This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.5.9
 
 ![https://wackymole.com/hosts/mainimage.png](https://wackymole.com/hosts/mainimage.png)
 
@@ -152,6 +152,7 @@ Original Creator: LambaSun or my [mod branch](https://discord.com/channels/82657
 
 | Version | Changes                                                                                                                                                                                                                                                                                                                                |
 |----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.5.9  | - Update for 214.2
 | 1.5.8  | - Update for single char word languages - horizonal overflow <br/> MonsterDB update and added mob levels for Monstrum(beta)
 | 1.5.7  | - Fix for stamina consumption for running and jumping. Was increasing instead of decreasing, credits for discovery.  Moissonneur and Kevin
 | 1.5.6  | - Added German Localization <br /> Changed defaults to not take any drops away, no matter the level. - Blax complained enough - <br /> Stamina Regen is a percentage <br /> Added MOB UI string for wacky fun, aka single char word languages <br /> Update ItemManager <br /> Added ability to set "none" on color for all hud elements to make them go away, should live update. Might have relaunch to get them to come back| 1.5.5  | - Update readme to talk about "FirstLevelExperience used on each level" - Added an excel image for XP comparisons between modes - Most people should NOT disable this, makes balancing completely different.

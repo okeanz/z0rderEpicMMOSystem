@@ -33,20 +33,20 @@ public static class TerminalCommands
     private static void RPC_SetLevel(long sender, int level)
     {
         LevelSystem.Instance.terminalSetLevel(level);
-        Chat.instance.RPC_ChatMessage(200, Vector3.zero, 0, local["$notify"], String.Format(local["$terminal_set_level"], level), PrivilegeManager.GetNetworkUserId());
+        Chat.instance.RPC_ChatMessage(200, Vector3.zero, 0, UserInfo.GetLocalUser(), String.Format(local["$terminal_set_level"], level), PrivilegeManager.GetNetworkUserId());
     }
 
     private static void RPC_Recalc(long sender)
     {
         LevelSystem.Instance.recalcLevel();
-        Chat.instance.RPC_ChatMessage(200, Vector3.zero, 0, local["$notify"], "Recalc your Level", PrivilegeManager.GetNetworkUserId());
+        Chat.instance.RPC_ChatMessage(200, Vector3.zero, 0, UserInfo.GetLocalUser(), "Recalc your Level", PrivilegeManager.GetNetworkUserId());
     }
 
     //Сброс поинтов
     private static void RPC_ResetPoints(long sender)
     {
         LevelSystem.Instance.ResetAllParameter();
-        Chat.instance.RPC_ChatMessage(200, Vector3.zero, 0, local["$notify"], local["$terminal_reset_points"],PrivilegeManager.GetNetworkUserId());
+        Chat.instance.RPC_ChatMessage(200, Vector3.zero, 0, UserInfo.GetLocalUser(), local["$terminal_reset_points"],PrivilegeManager.GetNetworkUserId());
     }
     
     [HarmonyPatch(typeof(Terminal), nameof(Terminal.InitTerminal))]

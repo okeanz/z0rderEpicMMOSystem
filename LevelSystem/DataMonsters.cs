@@ -12,11 +12,12 @@ using fastJSON;
 using HarmonyLib;
 using Steamworks;
 using UnityEngine;
-using UnityEngine.UI;
+//using UnityEngine.UI;
 using static System.Net.Mime.MediaTypeNames;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
-using Text = UnityEngine.UI.Text;
+//using Text = UnityEngine.UI.Text;
+using TMPro;
 
 namespace EpicMMOSystem;
 
@@ -278,15 +279,16 @@ public static class DataMonsters
             string stringtolvl = EpicMMOSystem.MobLVLChars.Value;
             string moblvlstring = monsterLevel.ToString();
             stringtolvl = stringtolvl.Replace("@", moblvlstring); // not sure how fast this is
-            levelName.GetComponent<Text>().horizontalOverflow = UnityEngine.HorizontalWrapMode.Overflow;
-            levelName.GetComponent<Text>().text = stringtolvl;
+                                                                  // levelName.GetComponent<TextMeshProUGUI>().horizontalOverflow = UnityEngine.HorizontalWrapMode.Overflow; 
+            levelName.GetComponent<TextMeshProUGUI>().overflowMode = TextOverflowModes.Overflow;
+            levelName.GetComponent<TextMeshProUGUI>().text = stringtolvl;
             Color color = monsterLevel > maxLevelExp ? Color.red : Color.white;
             if (monsterLevel < minLevelExp) color = Color.cyan;
-            component.GetComponent<Text>().color = color;
-            levelName.GetComponent<Text>().color = color;
+            component.GetComponent<TextMeshProUGUI>().color = color;
+            levelName.GetComponent<TextMeshProUGUI>().color = color;
             if (___m_huds[c].m_gui.transform.Find("extraeffecttext"))
             {
-                ___m_huds[c].m_gui.transform.Find("extraeffecttext").GetComponent<Text>().color = color;
+                ___m_huds[c].m_gui.transform.Find("extraeffecttext").GetComponent<TextMeshProUGUI>().color = color;
             }
 
         }
@@ -317,16 +319,16 @@ public static class DataMonsters
                             GameObject component = keyValuePair.Value.m_gui.transform.Find("Name").gameObject;
                             transform = Object.Instantiate(component, component.transform).transform;
                             transform.GetComponent<RectTransform>().anchoredPosition = new Vector2(37, -30);
-                            transform.GetComponent<Text>().fontSize = 13;
-                            transform.GetComponent<Text>().text = $"[{monsterLevel}]";
+                            transform.GetComponent<TextMeshProUGUI>().fontSize = 13;
+                            transform.GetComponent<TextMeshProUGUI>().text = $"[{monsterLevel}]";
                         }
                         Color color = monsterLevel > maxLevelExp ? Color.red : Color.white;
                         if (monsterLevel < minLevelExp) color = Color.cyan;
-                        transform.GetComponent<Text>().color = color;
-                        keyValuePair.Value.m_gui.transform.Find("Name").GetComponent<Text>().color = color;
+                        transform.GetComponent<TextMeshProUGUI>().color = color;
+                        keyValuePair.Value.m_gui.transform.Find("Name").GetComponent<TextMeshProUGUI>().color = color;
                         if (keyValuePair.Value.m_gui.transform.Find("extraeffecttext"))
                         {
-                            keyValuePair.Value.m_gui.transform.Find("extraeffecttext").GetComponent<Text>().color = color;
+                            keyValuePair.Value.m_gui.transform.Find("extraeffecttext").GetComponent<TextMeshProUGUI>().color = color;
                         }
                     }
                 }
