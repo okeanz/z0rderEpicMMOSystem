@@ -18,6 +18,7 @@ using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 //using Text = UnityEngine.UI.Text;
 using TMPro;
+using UnityEngine.UI;
 
 namespace EpicMMOSystem;
 
@@ -281,6 +282,7 @@ public static class DataMonsters
             stringtolvl = stringtolvl.Replace("@", moblvlstring); // not sure how fast this is
                                                                   // levelName.GetComponent<TextMeshProUGUI>().horizontalOverflow = UnityEngine.HorizontalWrapMode.Overflow; 
             levelName.GetComponent<TextMeshProUGUI>().overflowMode = TextOverflowModes.Overflow;
+            levelName.AddComponent<ContentSizeFitter>().SetLayoutHorizontal();
             levelName.GetComponent<TextMeshProUGUI>().text = stringtolvl;
             Color color = monsterLevel > maxLevelExp ? Color.red : Color.white;
             if (monsterLevel < minLevelExp) color = Color.cyan;

@@ -219,7 +219,7 @@ public partial class LevelSystem
             var currentTrophy = Player.m_localPlayer.m_inventory.CountItems(TrophySharedname);
             if (currentTrophy > 0)
             {
-                Player.m_localPlayer.m_inventory.RemoveOneItem(TrophyName);
+                Player.m_localPlayer.m_inventory.RemoveItem(TrophySharedname, 1);
                 ResetAllParameter();
                 return;
             }

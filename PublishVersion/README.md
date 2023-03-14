@@ -1,5 +1,5 @@
 # Description:
-This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.5.9
+This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.6.0
 
 ![https://wackymole.com/hosts/mainimage.png](https://wackymole.com/hosts/mainimage.png)
 
@@ -152,6 +152,7 @@ Original Creator: LambaSun or my [mod branch](https://discord.com/channels/82657
 
 | Version | Changes                                                                                                                                                                                                                                                                                                                                |
 |----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.6.0  | - Fixed ResetTrophy not being consumed on use. Added Chinese Translation
 | 1.5.9  | - Update for 214.2
 | 1.5.8  | - Update for single char word languages - horizonal overflow <br/> MonsterDB update and added mob levels for Monstrum(beta)
 | 1.5.7  | - Fix for stamina consumption for running and jumping. Was increasing instead of decreasing, credits for discovery.  Moissonneur and Kevin
