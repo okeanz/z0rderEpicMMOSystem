@@ -21,6 +21,8 @@ namespace EpicMMOSystem;
 
 [BepInPlugin(ModGUID, ModName, ModVersion)]
 [BepInDependency("org.bepinex.plugins.groups", BepInDependency.DependencyFlags.SoftDependency)]
+[BepInDependency("org.bepinex.plugins.creaturelevelcontrol", BepInDependency.DependencyFlags.SoftDependency)] 
+
 public partial class EpicMMOSystem : BaseUnityPlugin
 {
     internal const string ModName = "EpicMMOSystem";
@@ -45,6 +47,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     private string folderpath = Path.Combine(Paths.ConfigPath, EpicMMOSystem.ModName);
 
     internal static EpicMMOSystem Instance;
+    public static bool CLLCLoaded = false;
 
     public static Localization localization;
     //Config
@@ -254,6 +257,10 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         itemassets();
         localization = new Localization();
         MyUI.Init();
+
+        if (Chainloader.PluginInfos.ContainsKey("org.bepinex.plugins.creaturelevelcontrol")){
+            CLLCLoaded = true;
+        }
     }
 
     private static void itemassets()

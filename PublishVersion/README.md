@@ -1,6 +1,8 @@
 # Description:
 This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.6.0
 
+Support me at https://www.buymeacoffee.com/WackyMole 
+
 ![https://wackymole.com/hosts/mainimage.png](https://wackymole.com/hosts/mainimage.png)
 
 Features:
@@ -54,6 +56,8 @@ Monsters that are 1 level higher than the character + MaxLevelRange will curve X
 With defaults, starting exp req is 500 with a 1.04 multiplayer.  So first 5 levels of experience required will be: level 1 is 500, 2 is 1020, 3 is 1560, 4 is 2122, 5 is 2707
 
 FirstLevelExperience used on each level: disabled means that the levels will not add 500 each time: level 1 is 520, 2 is 541, 3 is 562, 4 is 585, 5 is 608. The jsons will all have to be reworked if this is disabled
+
+Below is an image of 1.04 +500 and with FirstLevelExperience disabled, so no 500 added. The difference is a lot. Also 1.08 scaling is added just to show how it gets into the millions pretty quickly. 
 
 ![https://wackymole.com/hosts/epicmmolevelcalcs.png](https://wackymole.com/hosts/epicmmolevelcalcs.png)
 
@@ -152,7 +156,7 @@ Original Creator: LambaSun or my [mod branch](https://discord.com/channels/82657
 
 | Version | Changes                                                                                                                                                                                                                                                                                                                                |
 |----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1.6.0  | - Fixed ResetTrophy not being consumed on use. Added Chinese Translation
+| 1.6.0  | - Fixed ResetTrophy not being consumed on use.<br/> Added Chinese Translation <br/> Fixed some red errors with CLLC <br/> Included an excel file for comparison. 
 | 1.5.9  | - Update for 214.2
 | 1.5.8  | - Update for single char word languages - horizonal overflow <br/> MonsterDB update and added mob levels for Monstrum(beta)
 | 1.5.7  | - Fix for stamina consumption for running and jumping. Was increasing instead of decreasing, credits for discovery.  Moissonneur and Kevin

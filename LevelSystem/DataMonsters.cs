@@ -290,16 +290,22 @@ public static class DataMonsters
             levelName.GetComponent<TextMeshProUGUI>().color = color;
             if (___m_huds[c].m_gui.transform.Find("extraeffecttext"))
             {
-                ___m_huds[c].m_gui.transform.Find("extraeffecttext").GetComponent<TextMeshProUGUI>().color = color;
+                ___m_huds[c].m_gui.transform.Find("extraeffecttext").TryGetComponent<TextMeshProUGUI>(out var hi);
+                if (hi != null)
+                {
+                    hi.color = color;
+                }
             }
 
         }
         
         [HarmonyPatch(typeof(EnemyHud), nameof(EnemyHud.UpdateHuds))]
-        public static class StarVisibility
+        public static class StarVisibilityMMO
         {
             private static void Postfix(Dictionary<Character, EnemyHud.HudData> ___m_huds)
             {
+                if (___m_huds == null) return;
+                //if (EpicMMOSystem.CLLCLoaded) return;
                 if (!EpicMMOSystem.enabledLevelControl.Value) return;
                 foreach (KeyValuePair<Character, EnemyHud.HudData> keyValuePair in ___m_huds)
                 {
@@ -328,9 +334,13 @@ public static class DataMonsters
                         if (monsterLevel < minLevelExp) color = Color.cyan;
                         transform.GetComponent<TextMeshProUGUI>().color = color;
                         keyValuePair.Value.m_gui.transform.Find("Name").GetComponent<TextMeshProUGUI>().color = color;
-                        if (keyValuePair.Value.m_gui.transform.Find("extraeffecttext"))
+                       if (keyValuePair.Value.m_gui.transform.Find("extraeffecttext")) // for cllc extra components
                         {
-                            keyValuePair.Value.m_gui.transform.Find("extraeffecttext").GetComponent<TextMeshProUGUI>().color = color;
+                            keyValuePair.Value.m_gui.transform.Find("extraeffecttext").TryGetComponent<TextMeshProUGUI>(out var hi);
+                            if (hi != null) // null check if not set
+                            {
+                                hi.color = color;
+                            }
                         }
                     }
                 }
