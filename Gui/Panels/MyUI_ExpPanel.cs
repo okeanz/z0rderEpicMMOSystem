@@ -139,9 +139,10 @@ public partial class MyUI
 
             InitHudPanel();
 
-            __instance.m_healthPanel.Find("Health").gameObject.SetActive(false);
+            
             if (EpicMMOSystem.HealthIcons.Value)
             {
+                __instance.m_healthPanel.Find("Health").gameObject.SetActive(false);
                 __instance.m_healthPanel.Find("healthicon").gameObject.SetActive(false);
             }
            

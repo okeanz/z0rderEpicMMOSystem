@@ -241,7 +241,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         EitrPanelPosition = config(hud, "5EitrPanelPosition", new Vector2(0, 0), "Position of the Eitr panel (x,y)", false);
         EitrColor = config(hud, "5.1EitrColor", "#84257C", "Eitr color in Hex", false);
         EitrScale = config(hud, "5.2EitrScale", new Vector3(1, 1, 1), "Eitr Bar Scale factor", false);
-        HealthIcons = config(hud, "DisabledHealthIcons", true, "Default is true, this may cause issues with some mods");
+        HealthIcons = config(hud, "DisabledDefaultHealth", true, "Default is true, not synced", false);
 
 
         string optionalEffect = "5.Optional perk---------";
