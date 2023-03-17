@@ -311,6 +311,7 @@
     <Compile Include="color.cs" />
     <Compile Include="Data\Monster.cs" />
     <Compile Include="Data\MonsterOld.cs" />
+    <Compile Include="Gui\Util.cs" />
     <Compile Include="Scripts\Drag.cs" />
     <Compile Include="EpicMMOSystem_API.cs" />
     <Compile Include="FriendList\FriendsData.cs" />

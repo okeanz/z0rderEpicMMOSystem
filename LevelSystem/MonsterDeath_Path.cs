@@ -6,6 +6,7 @@ using UnityEngine;
 //using UnityEngine.UIElements;
 
 
+
 namespace EpicMMOSystem;
 
 public static class MonsterDeath_Path
@@ -57,7 +58,6 @@ public static class MonsterDeath_Path
             if (monsterLevel > maxRangeLevel && EpicMMOSystem.mentor.Value)
                 playerExp = exp; // give full *group exp with mentor mode
         }
-
 
 
         LevelSystem.Instance.AddExp(playerExp);
@@ -122,7 +122,7 @@ public static class MonsterDeath_Path
                 playerExp = Convert.ToInt32( exp / (minRangeLevel - monsterLevel));
             }
         }
-        
+
         LevelSystem.Instance.AddExp(playerExp);
         if (!Groups.API.IsLoaded()) return;
 

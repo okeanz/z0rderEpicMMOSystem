@@ -55,6 +55,7 @@ public partial class MyUI
         
         addFriendAlert = UI.transform.Find("Canvas/SendInvite").gameObject;
         textField = addFriendAlert.transform.Find("InputField").GetComponent<InputField>();
+        textField.transform.Find("Placeholder").GetComponent<Text>().text = ""; // for now
         addFriendAlert.transform.Find("Buttons/Send").GetComponent<Button>().onClick.AddListener(clickButtonSend);
         addFriendAlert.transform.Find("Buttons/Send/Text").GetComponent<Text>().text = localization["$send"];
         addFriendAlert.transform.Find("Buttons/Cancel").GetComponent<Button>().onClick.AddListener(clickButtonCancel);

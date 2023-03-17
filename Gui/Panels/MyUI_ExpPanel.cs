@@ -20,6 +20,8 @@ public partial class MyUI
     internal static Transform hpFill;
     internal static Color hpFillColor;
     internal static bool DisableHPBar = false;
+    internal static GameObject DHpBar ;
+    internal static GameObject IconHpBar;
 
     internal static Text staminaText;
     internal static Image staminaImage;
@@ -45,6 +47,7 @@ public partial class MyUI
     internal static bool firstload = false;
     internal static bool firstloadHP = false;
     internal static int frameCount = 0;
+    internal static int currentLVL = 1;
 
 
 
@@ -59,13 +62,14 @@ public partial class MyUI
         var level = LevelSystem.Instance.getLevel();
         var exp = LevelSystem.Instance.getCurrentExp();
         var need = LevelSystem.Instance.getNeedExp();
-        if (DisableExpBar)
+        if (DisableExpBar && !EpicMMOSystem.oldExpBar.Value)
             return;
 
         string expPersent = ((float)exp / need * 100).ToString("0.00");
         eLevelText.text = $"{localization["$lvl"]} {level}";
         eExpText.text = $"{expPersent.Replace(',','.')} %";
         eBarImage.fillAmount = (float)exp / need;
+        currentLVL = level;
 
     }
     internal static void InitHudPanel()
@@ -97,7 +101,7 @@ public partial class MyUI
         hpImage = hpFill.GetComponent<Image>();
         hpFillColor = hpImage.color;
         hp = expPanel.Find("Container/Hp");
-        
+
 
 
         staminaText = expPanel.Find("Container/Stamina/Text").GetComponent<Text>();
@@ -138,9 +142,12 @@ public partial class MyUI
             expPanelRoot.gameObject.SetActive(false);
 
             InitHudPanel();
+            DHpBar = __instance.m_healthPanel.Find("Health").gameObject;
+            IconHpBar = __instance.m_healthPanel.Find("healthicon").gameObject;
 
-            
-            if (EpicMMOSystem.HealthIcons.Value)
+
+
+            if (!EpicMMOSystem.oldExpBar.Value )
             {
                 __instance.m_healthPanel.Find("Health").gameObject.SetActive(false);
                 __instance.m_healthPanel.Find("healthicon").gameObject.SetActive(false);
@@ -163,15 +170,10 @@ public partial class MyUI
         {
             if (EpicMMOSystem.oldExpBar.Value)
             {
+                eLevelText.text = $"{localization["$lvl"]} {currentLVL}"; // wierd issue
                 return true;
             }
-            if (DisableHPBar)
-                hp.gameObject.SetActive(false);
 
-            if (DisableExpBar)
-               Exp.gameObject.SetActive(false); // because doesn't autoupdate unless xp change
-
-            
 
             if (DisableHPBar)
                 return true;
@@ -210,8 +212,8 @@ public partial class MyUI
             {
                 return true;
             }
-            if (DisableStaminaBar)
-                stamina.gameObject.SetActive(false);
+
+             
 
             if (DisableStaminaBar)
                 return true;

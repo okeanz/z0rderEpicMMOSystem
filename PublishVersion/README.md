@@ -1,5 +1,5 @@
 # Description:
-This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.6.0
+This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.6.1
 
 Support me at https://www.buymeacoffee.com/WackyMole 
 
@@ -107,6 +107,7 @@ The mod looks for your reset currency first and then ResetTrophies. Only consume
 	 Scale (x, y, z)- z does not matter. - float
 	 Color: #(6 digit Hex),  optional 7-8 Digit means alpha. #986100FF (FF -alpha of 1) or use without # red, cyan, blue, 
 	 darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta
+	 set color to none, to hide element
 
 	2ExpPanelPosition: Dragable EXP BAR
 		To enable ONLY EXP bar , enable eXP Bar Only and restart - not dragable in this mode
@@ -156,6 +157,7 @@ Original Creator: LambaSun or my [mod branch](https://discord.com/channels/82657
 
 | Version | Changes                                                                                                                                                                                                                                                                                                                                |
 |----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.6.1  | - eXP level fix<br/> HP/stamina, XP/eitr bar elements can be changed to "none" and update/disappear realtime<br/> Update Chinese <br/> Included color exp on mob death.
 | 1.6.0  | - Fixed ResetTrophy not being consumed on use.<br/> Added Chinese Translation <br/> Fixed some red errors with CLLC <br/> Included an excel file for comparison. 
 | 1.5.9  | - Update for 214.2
 | 1.5.8  | - Update for single char word languages - horizonal overflow <br/> MonsterDB update and added mob levels for Monstrum(beta)

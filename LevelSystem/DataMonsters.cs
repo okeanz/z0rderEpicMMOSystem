@@ -229,7 +229,7 @@ public static class DataMonsters
             ZRoutedRpc.instance.InvokeRoutedRPC(peer.m_uid, $"{EpicMMOSystem.ModName} SetMonsterDB", MonsterDBL); //sync list
         }
     }
-    
+
     // [HarmonyPatch(typeof(Character), nameof(Character.GetHoverName))]
     // [HarmonyPriority(Priority.First)]
     // public static class MonsterColorText
@@ -253,7 +253,10 @@ public static class DataMonsters
     //         }
     //     }
     // }
-    
+
+
+
+
     [HarmonyPatch(typeof(EnemyHud), nameof(EnemyHud.ShowHud))]
     [HarmonyPriority(1)] //almost last
     public static class MonsterColorTexts

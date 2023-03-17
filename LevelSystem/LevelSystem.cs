@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using BepInEx;
+using EpicMMOSystem.Gui;
 using HarmonyLib;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -261,6 +262,7 @@ public partial class LevelSystem
             MessageHud.MessageType.TopLeft, 
             $"{(EpicMMOSystem.localization["$get_exp"])}: {(int)giveExp}"
         );
+        Util.FloatingText($"{exp} exp");
     }
 
     public void AddLevel(int count)

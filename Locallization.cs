@@ -306,58 +306,58 @@ public class Localization
 
     private void ChineseLocalization()
     {
-        _dictionary.Add("$attributes", "属性");
-        _dictionary.Add("$parameter_strength", "力量");
-        _dictionary.Add("$parameter_agility", "敏捷");
-        _dictionary.Add("$parameter_intellect", "智力");
-        _dictionary.Add("$parameter_body", "耐力");
-        _dictionary.Add("$free_points", "可用属性点");
-        _dictionary.Add("$level", "Level");
-        _dictionary.Add("$lvl", "Lvl.");
-        _dictionary.Add("$exp", "经验");
-        _dictionary.Add("$cancel", "取消");
-        _dictionary.Add("$apply", "接受");
-        _dictionary.Add("$reset_parameters", "重置属性点");
-        _dictionary.Add("$no", "否");
-        _dictionary.Add("$yes", "是");
-        _dictionary.Add("$get_exp", "所需经验");
-        _dictionary.Add("$reset_point_text", "你真的想花费 {0} 金币重置你的 {1} 个属性加点吗? ");
-        //Parameter
-        _dictionary.Add("$physic_damage", "物理伤害");
-        _dictionary.Add("$add_weight", "承载重量");
-        _dictionary.Add("$speed_attack", "攻击耐力消耗");
-        _dictionary.Add("$reduced_stamina", "耐力消耗（跑步、跳跃）");
-        _dictionary.Add("$magic_damage", "元素伤害");
-        _dictionary.Add("$magic_armor", "元素抗性");
-        _dictionary.Add("$add_hp", "生命值增加");
-        _dictionary.Add("$add_stamina", "耐力增加");
-        _dictionary.Add("$physic_armor", "物理抗性");
-        _dictionary.Add("$reduced_stamina_block", "降低耐力消耗");
-        _dictionary.Add("$regen_hp", "生命值恢复");
-        _dictionary.Add("$damage", "战斗属性");
-        _dictionary.Add("$armor", "防御属性");
-        _dictionary.Add("$survival", "生存属性");
+            _dictionary.Add("$attributes", "属性");
+            _dictionary.Add("$parameter_strength", "力量");
+            _dictionary.Add("$parameter_agility", "敏捷");
+            _dictionary.Add("$parameter_intellect", "智力");
+            _dictionary.Add("$parameter_body", "耐力");
+            _dictionary.Add("$free_points", "可用属性点");
+            _dictionary.Add("$level", "等级");
+            _dictionary.Add("$lvl", "等级：");
+            _dictionary.Add("$exp", "经验");
+            _dictionary.Add("$cancel", "取消");
+            _dictionary.Add("$apply", "接受");
+            _dictionary.Add("$reset_parameters", "重置属性点");
+            _dictionary.Add("$no", "否");
+            _dictionary.Add("$yes", "是");
+            _dictionary.Add("$get_exp", "所需经验");
+            _dictionary.Add("$reset_point_text", "你是否想消耗 {0} {1} 重置你所有的属性点吗? ");
+            //Parameter
+            _dictionary.Add("$physic_damage", "物理伤害");
+            _dictionary.Add("$add_weight", "承载重量");
+            _dictionary.Add("$speed_attack", "攻击耐力消耗");
+            _dictionary.Add("$reduced_stamina", "耐力消耗（跑步、跳跃）");
+            _dictionary.Add("$magic_damage", "元素伤害");
+            _dictionary.Add("$magic_armor", "元素抗性");
+            _dictionary.Add("$add_hp", "生命值增加");
+            _dictionary.Add("$add_stamina", "耐力增加");
+            _dictionary.Add("$physic_armor", "物理抗性");
+            _dictionary.Add("$reduced_stamina_block", "降低耐力消耗");
+            _dictionary.Add("$regen_hp", "生命值恢复");
+            _dictionary.Add("$damage", "战斗属性");
+            _dictionary.Add("$armor", "防御属性");
+            _dictionary.Add("$survival", "生存属性");
 
-        _dictionary.Add("$regen_eitr", "埃达之力恢复");
-        _dictionary.Add("$stamina_reg", "耐力恢复");
-        _dictionary.Add("$add_eitr", "埃达之力增加");
-        //Friends list
-        _dictionary.Add("$notify", "<color=#00E6FF>通知</color>");
-        _dictionary.Add("$friends_list", "好友列表");
-        _dictionary.Add("$send", "发送");
-        _dictionary.Add("$invited", "邀请");
-        _dictionary.Add("$friends", "好友");
-        _dictionary.Add("$online", "在线");
-        _dictionary.Add("$offline", "离线");
-        _dictionary.Add("$not_found", "未找到 {0} 玩家！");
-        _dictionary.Add("$send_invite", "已向玩家 {0} 发送好友请求。");
-        _dictionary.Add("$get_invite", "收到来自 {0} 玩家的好友请求。");
-        _dictionary.Add("$accept_invite", "玩家 {0} , 已接受好友请求。");
-        _dictionary.Add("$cancel_invite", "玩家 {0} , 拒绝了好友请求。");
-        //Terminal
-        _dictionary.Add("$terminal_set_level", "您提升到了 {0} 级！");
-        _dictionary.Add("$terminal_reset_points", "您的属性已重置！");
-    }
+            _dictionary.Add("$regen_eitr", "埃达之力恢复");
+            _dictionary.Add("$stamina_reg", "耐力恢复");
+            _dictionary.Add("$add_eitr", "埃达之力增加");
+            //Friends list
+            _dictionary.Add("$notify", "<color=#00E6FF>通知</color>");
+            _dictionary.Add("$friends_list", "好友列表");
+            _dictionary.Add("$send", "发送");
+            _dictionary.Add("$invited", "邀请");
+            _dictionary.Add("$friends", "好友");
+            _dictionary.Add("$online", "在线");
+            _dictionary.Add("$offline", "离线");
+            _dictionary.Add("$not_found", "未找到 {0} 玩家！");
+            _dictionary.Add("$send_invite", "已向玩家 {0} 发送好友请求。");
+            _dictionary.Add("$get_invite", "收到来自 {0} 玩家的好友请求。");
+            _dictionary.Add("$accept_invite", "玩家 {0} , 已接受好友请求。");
+            _dictionary.Add("$cancel_invite", "玩家 {0} , 拒绝了好友请求。");
+            //Terminal
+            _dictionary.Add("$terminal_set_level", "您提升到了 {0} 级！");
+            _dictionary.Add("$terminal_reset_points", "您的属性已重置！");
+        }
 
     public string this[string key]
     {

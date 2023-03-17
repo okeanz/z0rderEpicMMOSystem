@@ -16,6 +16,7 @@ using fastJSON;
 using Groups;
 using UnityEngine.UI;
 using ItemManager;
+using System.Xml;
 
 namespace EpicMMOSystem;
 
@@ -26,7 +27,7 @@ namespace EpicMMOSystem;
 public partial class EpicMMOSystem : BaseUnityPlugin
 {
     internal const string ModName = "EpicMMOSystem";
-    internal const string ModVersion = "1.6.0";
+    internal const string ModVersion = "1.6.1";
     internal const string Author = "WackyMole";
     private const string ModGUID = Author + "." + ModName;
     private static string ConfigFileName = ModGUID + ".cfg";
@@ -109,6 +110,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     public static ConfigEntry<int> maxLevelExp;
     public static ConfigEntry<int> minLevelExp;
     public static ConfigEntry<string> MobLVLChars;
+    public static ConfigEntry<string> XPColor;
 
     //Reset attributes items
     public static ConfigEntry<String> prefabNameCoins;
@@ -121,6 +123,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     public static ConfigEntry<string> HudExpBackgroundCol;
     public static ConfigEntry<string> HudPostionCords;
     public static ConfigEntry<bool> HealthIcons;
+    
 
     // Position Saves
     internal static ConfigEntry<Vector2> HudPanelPosition = null!;
@@ -218,6 +221,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         MobLevelPosition = config(creatureLevelControl, "LevelBar Position", new Vector2(40, -30), "LevelBar Position for regular mobs - synced");
         BossLevelPosition = config(creatureLevelControl, "Boss LevelBar Position", new Vector2(0, 30), "LevelBar Position for Boss Bars - synced");
         MobLVLChars = config(creatureLevelControl, "Mob Level UI String", "[@]", "[@] uses @ for moblevel, must include '@', but you coudl do 'Level @' or something similar");
+        XPColor = config(creatureLevelControl, "XP death Color", "#fff708", "The Color of exp popup market on a mob death");
 
         string resetAttributesItems = "3.Reset attributes items";
         prefabNameCoins = config(resetAttributesItems, "prefabName", "Coins", "Name prefab item");
@@ -241,7 +245,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         EitrPanelPosition = config(hud, "5EitrPanelPosition", new Vector2(0, 0), "Position of the Eitr panel (x,y)", false);
         EitrColor = config(hud, "5.1EitrColor", "#84257C", "Eitr color in Hex", false);
         EitrScale = config(hud, "5.2EitrScale", new Vector3(1, 1, 1), "Eitr Bar Scale factor", false);
-        HealthIcons = config(hud, "DisabledDefaultHealth", true, "Default is true, not synced", false);
+       // HealthIcons = config(hud, "DisabledDefaultHealth", true, "Default is true, not synced", false);
 
 
         string optionalEffect = "5.Optional perk---------";
@@ -370,6 +374,13 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         MyUI.DisableStaminaBar = (StaminaColor.Value == "none");
         MyUI.DisableEitrBar = (EitrColor.Value == "none");
         MyUI.DisableExpBar = (ExpColor.Value == "none");
+
+
+        MyUI.hp.gameObject.SetActive(!MyUI.DisableHPBar);
+        MyUI.DHpBar.SetActive(MyUI.DisableHPBar);
+        MyUI.IconHpBar.SetActive(MyUI.DisableHPBar);
+        MyUI.Exp.gameObject.SetActive(!MyUI.DisableExpBar);
+        MyUI.stamina.gameObject.SetActive(!MyUI.DisableStaminaBar);
 
 
         if (ColorUtility.TryParseHtmlString(HpColor.Value, out tempC ))
