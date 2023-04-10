@@ -310,7 +310,7 @@ public class Localization
             _dictionary.Add("$parameter_strength", "力量");
             _dictionary.Add("$parameter_agility", "敏捷");
             _dictionary.Add("$parameter_intellect", "智力");
-            _dictionary.Add("$parameter_body", "耐力");
+            _dictionary.Add("$parameter_body", "体格");
             _dictionary.Add("$free_points", "可用属性点");
             _dictionary.Add("$level", "等级");
             _dictionary.Add("$lvl", "等级：");

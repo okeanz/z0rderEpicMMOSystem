@@ -48,6 +48,7 @@ public partial class MyUI
     internal static bool firstloadHP = false;
     internal static int frameCount = 0;
     internal static int currentLVL = 1;
+    internal static bool UIToggle = false;
 
 
 
@@ -92,7 +93,6 @@ public partial class MyUI
         Exp = expPanel.Find("Container/Exp");
         
   
-
         //expPanel.Find("Conteiner/Exp/Lvl").localPosition += new Vector3(0, 30, 0);This is bottom right xp bar not monster
         eBarImage = expPanel.Find("Container/Exp/Bar/Fill").GetComponent<Image>();
 
@@ -101,7 +101,6 @@ public partial class MyUI
         hpImage = hpFill.GetComponent<Image>();
         hpFillColor = hpImage.color;
         hp = expPanel.Find("Container/Hp");
-
 
 
         staminaText = expPanel.Find("Container/Stamina/Text").GetComponent<Text>();
@@ -119,6 +118,52 @@ public partial class MyUI
         EitrBarColor = EitrImage.color;
         
     }
+
+    /*
+     * private void SetVisible(bool visible)
+	{
+		if (visible != IsVisible())
+		{
+			if (visible)
+			{
+				m_rootObject.transform.localPosition = new Vector3(0f, 0f, 0f);
+			}
+			else
+			{
+				m_rootObject.transform.localPosition = new Vector3(10000f, 0f, 0f);
+    */
+
+    [HarmonyPatch(typeof(Hud), nameof(Hud.SetVisible))]
+    public static class Vis
+    {
+        static void Postfix(bool visible)
+        {
+            
+            if (visible && !UIToggle)
+            {
+                expPanelRoot.gameObject.SetActive(true);
+                UIToggle= true;
+
+                //EpicMMOSystem.Instance.ReadConfigValues();
+                DragControl.SaveWindowPositions(expPanel.gameObject, true);
+                DragControl.SaveWindowPositions(hp.gameObject, true);
+                DragControl.SaveWindowPositions(stamina.gameObject, true);
+
+
+            }
+            if (!visible && UIToggle)
+            {
+                expPanelRoot.gameObject.SetActive(false);
+               // EpicMMOSystem.print($"UPdate Vis not");
+                UIToggle = false;
+                //expPanelRoot.transform.localPosition = new Vector3(10000f, 0f, 0f);
+
+            }
+        }
+    }
+
+
+
 
     [HarmonyPatch(typeof(Hud), nameof(Hud.Awake))]
     public static class InstantiateExpPanel

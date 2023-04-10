@@ -1,5 +1,5 @@
 # Description:
-This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.6.1
+This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.6.2
 
 Support me at https://www.buymeacoffee.com/WackyMole 
 
@@ -49,7 +49,7 @@ This mod assigns levels to all in-game monsters.
 
 Mobs (names, levels, exp) from other mods are included:
 
-Fantasy-Creatures, AirAnimals, Defaults, DoOrDieMonsters, LandAnimals, MonsterlabZ, Outsiders, SeaAnimals, Monstrum (beta - a paid only mod)
+Fantasy-Creatures, AirAnimals, Defaults, DoOrDieMonsters, LandAnimals, MonsterlabZ, Outsiders, SeaAnimals, Monstrum (beta - a paid only mod), Krumpac Mods(free and paid)
 
 Monsters that are 1 level higher than the character + MaxLevelRange will curve XP.
 
@@ -73,7 +73,7 @@ A file listing all monsters and their levels is located in config/EpicMMOSystem/
 
 A file called Version.txt is created in the folder. It contains the mod version that was used to create it. Replace it with "NO" to stop it from overwritting on a future update.
 
-Latest Update for Jsons config is <b> 1.5.8 </b>(Number will be updated when Jsons recieve an update)
+Latest Update for Jsons config is <b> 1.6.2 </b>(Number will be updated when Jsons recieve an update)
 
 Please note:
 When upgrading the mod to a newer version, new fields in the settings file will be created automatically. You will have to manually re-edit these values if you have changed them.
@@ -108,9 +108,10 @@ The mod looks for your reset currency first and then ResetTrophies. Only consume
 	 Color: #(6 digit Hex),  optional 7-8 Digit means alpha. #986100FF (FF -alpha of 1) or use without # red, cyan, blue, 
 	 darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta
 	 set color to none, to hide element
+	 
+	 Can all be set to "none" to make individual elements disappear
 
-	2ExpPanelPosition: Dragable EXP BAR
-		To enable ONLY EXP bar , enable eXP Bar Only and restart - not dragable in this mode
+	2ExpPanelPosition: Dragable EXP BAR	
 
 	3StaminaPanelPosition: Dragable
 	
@@ -119,6 +120,8 @@ The mod looks for your reset currency first and then ResetTrophies. Only consume
 	5EitrPanelPosition: Dragable, will disappear and reappear when you have Eitr.
 
 	DisabledHealthIcons: This disables the red Health Icon that is normal present under vanilla health bar
+
+	To enable ONLY EXP bar , enable OldXPBar Bar Only and restart - not dragable in this mode, this is being slowly phased out. 
 
 	![https://wackymole.com/hosts/Attributes.png](https://wackymole.com/hosts/Attributes.png)
 
@@ -157,6 +160,7 @@ Original Creator: LambaSun or my [mod branch](https://discord.com/channels/82657
 
 | Version | Changes                                                                                                                                                                                                                                                                                                                                |
 |----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.6.2  | - Update Chinese <br/> Fixed UI so it can disappear with Ctrl-F3 <br/> Group EXP Range (GROUP MOD ONLY) - If killer didn't get xp, group won't get xp <br/> Added Player EXP Range, how far the player who killed a mob gets XP. <br/> Added the ability for tames to give their master EXP on kills <br/> Added Json for Krumpac mobs
 | 1.6.1  | - eXP level fix<br/> HP/stamina, XP/eitr bar elements can be changed to "none" and update/disappear realtime<br/> Update Chinese <br/> Included color exp on mob death.
 | 1.6.0  | - Fixed ResetTrophy not being consumed on use.<br/> Added Chinese Translation <br/> Fixed some red errors with CLLC <br/> Included an excel file for comparison. 
 | 1.5.9  | - Update for 214.2

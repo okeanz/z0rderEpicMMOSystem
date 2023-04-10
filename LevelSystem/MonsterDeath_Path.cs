@@ -29,7 +29,7 @@ public static class MonsterDeath_Path
         if (EpicMMOSystem.extraDebug.Value)
             EpicMMOSystem.MLLogger.LogInfo("Player was in group so applying exp from group kill");
 
-        if ((double)Vector3.Distance(position, Player.m_localPlayer.transform.position) >= 50f) return;
+        if ((double)Vector3.Distance(position, Player.m_localPlayer.transform.position) >= EpicMMOSystem.groupRange.Value) return;
 
         var playerExp = exp;
         var MobisBoss = false;
@@ -96,7 +96,7 @@ public static class MonsterDeath_Path
         }
         
         
-        if ((double)Vector3.Distance(position, Player.m_localPlayer.transform.position) >= 50f) return;
+        if ((double)Vector3.Distance(position, Player.m_localPlayer.transform.position) >= EpicMMOSystem.playerRange.Value) return;
 
         int expMonster = DataMonsters.getExp(monsterName);
         int maxExp = DataMonsters.getMaxExp(monsterName);
@@ -188,9 +188,10 @@ public static class MonsterDeath_Path
                 BossDropFlag = true; 
             }
             var attacker = hit.GetAttacker();
+            //attacker. faction check Guilds API
             if (attacker)
             {
-                if (attacker.IsPlayer())
+                if (attacker.IsPlayer() || attacker.IsTamed()) // simple, but will have to come back to this tamed check
                 {
                     CharacterLastDamageList[__instance] = sender;
                     if (EpicMMOSystem.enabledLevelControl.Value && (EpicMMOSystem.removeBossDropMax.Value || EpicMMOSystem.removeBossDropMin.Value) && BossDropFlag)// removeboss drop and is a boss
@@ -214,7 +215,6 @@ public static class MonsterDeath_Path
                                 EpicMMOSystem.MLLogger.LogInfo("Set ZDO epic playerLevel to 0");
                         }  
                     }
-                   
                 }
                 else
                 {

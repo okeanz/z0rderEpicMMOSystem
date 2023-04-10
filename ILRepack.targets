@@ -14,4 +14,7 @@
         </ItemGroup>
         <ILRepack Parallel="true" DebugInfo="true" Internalize="true" InputAssemblies="@(InputAssemblies)" OutputFile="$(TargetPath)" TargetKind="SameAsPrimaryAssembly" LibraryPath="$(OutputPath)" />
     </Target>
+	<Target Name="Release" AfterTargets="ILRepack" Condition=" '$(Configuration)' == 'Release'">
+		<Exec Command="copy /Y &quot;$(TargetDir)$(AssemblyName).dll&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\plugins\$(AssemblyName).dll&quot;" />
+	</Target>
 </Project>

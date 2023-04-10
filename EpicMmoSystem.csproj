@@ -372,6 +372,7 @@
     <EmbeddedResource Include="Data\MonsterDB_MajesticChickens.json" />
     <EmbeddedResource Include="asset\epicmmoitems" />
     <EmbeddedResource Include="Data\MonsterDB-Monstrum.json" />
+    <EmbeddedResource Include="Data\MonsterDB-Reforge_Krumpac.json" />
     <None Include="packages.config" />
     <EmbeddedResource Include="translations\Russian.yml" />
     <EmbeddedResource Include="translations\English.yml" />

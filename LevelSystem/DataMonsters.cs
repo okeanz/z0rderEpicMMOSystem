@@ -105,6 +105,7 @@ public static class DataMonsters
         var json7 = "MonsterDB_DoorDieMonsters.json";
         var json8 = "MonsterDB_MajesticChickens.json";
         var json9 = "MonsterDB-Monstrum.json";
+        var json10 = "MonsterDB-Reforge_Krumpac.json";
 
         if (!Directory.Exists(folderpath)){
             Directory.CreateDirectory(folderpath);
@@ -126,8 +127,11 @@ public static class DataMonsters
                 cleartowrite = true;
             if (filev == "1.5.4")
                 cleartowrite = true;
+            if (filev == "1.5.8")
+                cleartowrite = true;
 
-            if (filev == "1.5.8") // last version to get a DB update
+
+            if (filev == "1.6.2") // last version to get a DB update
                 cleartowrite = false;
 
             if (filev == "NO" || filev == "no" || filev == "No" || filev == "STOP" || filev == "stop" || filev == "Stop")
@@ -139,7 +143,7 @@ public static class DataMonsters
         if (cleartowrite)
         {
             //list.Clear();
-            File.WriteAllText(versionpath, "1.5.8"); // Write Version file, don't auto update
+            File.WriteAllText(versionpath, "1.6.2"); // Write Version file, don't auto update
 
             File.WriteAllText(warningtext, "Erase numbers in Version.txt and write NO or stop in file. This should stop DB json files from updating on an update");
 
@@ -162,6 +166,8 @@ public static class DataMonsters
             File.WriteAllText(Path.Combine(folderpath, json8), getDefaultJsonMonster(json8));
 
             File.WriteAllText(Path.Combine(folderpath, json9), getDefaultJsonMonster(json9));
+
+            File.WriteAllText(Path.Combine(folderpath, json10), getDefaultJsonMonster(json10));
 
 
             if (EpicMMOSystem.extraDebug.Value)
@@ -359,11 +365,23 @@ public static class DataMonsters
         public static void Postfix(CharacterDrop __instance, ref List<KeyValuePair<GameObject, int>> __result)
         {
             if (__instance.m_character.IsTamed()) return;
-            if (EpicMMOSystem.enabledLevelControl.Value && (EpicMMOSystem.removeDropMax.Value || EpicMMOSystem.removeDropMin.Value || EpicMMOSystem.removeBossDropMax.Value || EpicMMOSystem.removeBossDropMin.Value))
+            if (EpicMMOSystem.enabledLevelControl.Value && (EpicMMOSystem.removeDropMax.Value || EpicMMOSystem.removeDropMin.Value || EpicMMOSystem.removeBossDropMax.Value || EpicMMOSystem.removeBossDropMin.Value || EpicMMOSystem.removeAllDropsFromNonPlayerKills.Value))
             {
                 var playerLevel = __instance.m_character.m_nview.GetZDO().GetInt("epic playerLevel");
-                if (playerLevel == 0) return;
+                if (playerLevel == 0)
+                {
+                    if (EpicMMOSystem.removeAllDropsFromNonPlayerKills.Value)
+                    {
+                        if (contains(__instance.m_character.gameObject.name))
+                        {
+                            __result = new(); // no drops from charcter related objects
+                        }
+                    }
+                        
+                    return;
+                }
                 if (!contains(__instance.m_character.gameObject.name)) return;
+
                 var Regmob = true;
                 if (EpicMMOSystem.extraDebug.Value) 
                     EpicMMOSystem.MLLogger.LogInfo("Player level " +playerLevel);

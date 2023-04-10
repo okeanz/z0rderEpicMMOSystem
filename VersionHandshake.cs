@@ -19,6 +19,7 @@ namespace EpicMMOSystem
             ZPackage zpackage = new();
             zpackage.Write(EpicMMOSystem.ModVersion);
             peer.m_rpc.Invoke($"{EpicMMOSystem.ModName}_VersionCheck", zpackage);
+            EpicMMOSystem.MLLogger.LogInfo("Invoking version finish");
         }
     }
 

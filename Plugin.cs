@@ -27,7 +27,7 @@ namespace EpicMMOSystem;
 public partial class EpicMMOSystem : BaseUnityPlugin
 {
     internal const string ModName = "EpicMMOSystem";
-    internal const string ModVersion = "1.6.1";
+    internal const string ModVersion = "1.6.2";
     internal const string Author = "WackyMole";
     private const string ModGUID = Author + "." + ModName;
     private static string ConfigFileName = ModGUID + ".cfg";
@@ -65,6 +65,8 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     public static ConfigEntry<float> expForLvlMonster;
     public static ConfigEntry<float> rateExp;
     public static ConfigEntry<float> groupExp;
+    public static ConfigEntry<float> groupRange;
+    public static ConfigEntry<float> playerRange;
     public static ConfigEntry<bool> lossExp;
     public static ConfigEntry<float> minLossExp;
     public static ConfigEntry<float> maxLossExp;
@@ -111,6 +113,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     public static ConfigEntry<int> minLevelExp;
     public static ConfigEntry<string> MobLVLChars;
     public static ConfigEntry<string> XPColor;
+    public static ConfigEntry<bool> removeAllDropsFromNonPlayerKills;
 
     //Reset attributes items
     public static ConfigEntry<String> prefabNameCoins;
@@ -179,6 +182,9 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         lossExp = config(levelSystem, "LossExp", true, "Enabled exp loss");
         maxValueAttribute = config(levelSystem, "MaxValueAttribute", 200, "Maximum number of points you can put into one attribute");
         levelsForBinusFreePoint = config(levelSystem, "BonusLevelPoints", "5:5,10:5", "Added bonus point for level. Example(level:points): 5:10,15:20 add all 30 points ");
+        groupRange = config(levelSystem, "Group EXP Range", 70f, "The range at which people in a group (Group MOD ONLY) get XP, relative to player who killed mob - only works if the killer gets xp. - Default 70f, a large number like 999999999999f, will probably cover map");
+        playerRange = config(levelSystem, "Player EXP Range", 70f, "The range at which a player gets XP");
+
 
         #region ParameterCofig
         string levelSystemStrngth = "1.LevelSystem Strength--";
@@ -222,13 +228,14 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         BossLevelPosition = config(creatureLevelControl, "Boss LevelBar Position", new Vector2(0, 30), "LevelBar Position for Boss Bars - synced");
         MobLVLChars = config(creatureLevelControl, "Mob Level UI String", "[@]", "[@] uses @ for moblevel, must include '@', but you coudl do 'Level @' or something similar");
         XPColor = config(creatureLevelControl, "XP death Color", "#fff708", "The Color of exp popup market on a mob death");
+        removeAllDropsFromNonPlayerKills = config(creatureLevelControl, "RemoveAllDrops From NonPlayer Kills", false, "Remove all drops from mobs that were not killed by a player or tame -ie no drops from mobs attacking each other");
 
         string resetAttributesItems = "3.Reset attributes items";
         prefabNameCoins = config(resetAttributesItems, "prefabName", "Coins", "Name prefab item");
         viewTextCoins = config(resetAttributesItems, "viewText", "coins or 1 Reset Trophy", "Name item");
 
         string hud = "4.Hud--------------------";
-        oldExpBar = config(hud, "eXP Bar Only", false, "Use eXP Bar only (need restart, not server sync) Does not move or scale", false);
+        oldExpBar = config(hud, "OldXPBar", false, "Use the old eXP Bar only (need restart, not server sync) Does not move or scale - decrepitated UI", false);
         showMaxHp = config(hud, "ShowMaxHp", true, "Show max hp (100 / 100)", false);
         HudBarScale = config(hud, "ScaleforMoveableBar", .90f, "Scale for ExpBar which is moveable", false);
         HudExpBackgroundCol = config(hud, "HudBackgroundCol", "#2F1600", "Background color in Hex, set to 'none' to make transparent", false);
@@ -352,7 +359,9 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     }
 
 
-        private void ReadConfigValues(object sender, FileSystemEventArgs e)
+
+
+        internal void ReadConfigValues(object sender = null, FileSystemEventArgs e = null)
     {
         if (!File.Exists(ConfigFileFullPath)) return;
 
