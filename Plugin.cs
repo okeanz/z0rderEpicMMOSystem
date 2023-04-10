@@ -72,6 +72,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     public static ConfigEntry<float> maxLossExp;
     public static ConfigEntry<int> maxValueAttribute;
     public static ConfigEntry<string> levelsForBinusFreePoint;
+    public static ConfigEntry<bool> tamesGiveXP;
 
     #region Parameters
     //LevelSystem arg property <Strength>
@@ -184,6 +185,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         levelsForBinusFreePoint = config(levelSystem, "BonusLevelPoints", "5:5,10:5", "Added bonus point for level. Example(level:points): 5:10,15:20 add all 30 points ");
         groupRange = config(levelSystem, "Group EXP Range", 70f, "The range at which people in a group (Group MOD ONLY) get XP, relative to player who killed mob - only works if the killer gets xp. - Default 70f, a large number like 999999999999f, will probably cover map");
         playerRange = config(levelSystem, "Player EXP Range", 70f, "The range at which a player gets XP");
+        tamesGiveXP = config(levelSystem, "Tames give XP on Mob kill", true, "Your tames give players in range XP");
 
 
         #region ParameterCofig
@@ -228,7 +230,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         BossLevelPosition = config(creatureLevelControl, "Boss LevelBar Position", new Vector2(0, 30), "LevelBar Position for Boss Bars - synced");
         MobLVLChars = config(creatureLevelControl, "Mob Level UI String", "[@]", "[@] uses @ for moblevel, must include '@', but you coudl do 'Level @' or something similar");
         XPColor = config(creatureLevelControl, "XP death Color", "#fff708", "The Color of exp popup market on a mob death");
-        removeAllDropsFromNonPlayerKills = config(creatureLevelControl, "RemoveAllDrops From NonPlayer Kills", false, "Remove all drops from mobs that were not killed by a player or tame -ie no drops from mobs attacking each other");
+        removeAllDropsFromNonPlayerKills = config(creatureLevelControl, "RemoveAllDrops From NonPlayer Kills", true, "Remove all drops from mobs that were not killed by a player or tame -ie no drops from mobs attacking each other");
 
         string resetAttributesItems = "3.Reset attributes items";
         prefabNameCoins = config(resetAttributesItems, "prefabName", "Coins", "Name prefab item");

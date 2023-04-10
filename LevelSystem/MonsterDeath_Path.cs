@@ -151,7 +151,7 @@ public static class MonsterDeath_Path
     [HarmonyPatch(typeof(Character), nameof(Character.Damage))]
     public static class ModifierDamage
     {
-        public static void Prefix(Character __instance, HitData hit)
+        public static void Prefix(Character __instance, HitData hit) // maybe check for tames as well to prevent them from hurting high lvl
         {
             if (!EpicMMOSystem.enabledLevelControl.Value) return;
             //if (EpicMMOSystem.removeDrop.Value) hit.m_toolTier = LevelSystem.Instance.getLevel(); // using toolTier to pass the Lvl of player
@@ -191,7 +191,7 @@ public static class MonsterDeath_Path
             //attacker. faction check Guilds API
             if (attacker)
             {
-                if (attacker.IsPlayer() || attacker.IsTamed()) // simple, but will have to come back to this tamed check
+                if (attacker.IsPlayer() || attacker.IsTamed() && EpicMMOSystem.tamesGiveXP.Value) // simple, but will have to come back to this tamed check
                 {
                     CharacterLastDamageList[__instance] = sender;
                     if (EpicMMOSystem.enabledLevelControl.Value && (EpicMMOSystem.removeBossDropMax.Value || EpicMMOSystem.removeBossDropMin.Value) && BossDropFlag)// removeboss drop and is a boss
@@ -202,9 +202,13 @@ public static class MonsterDeath_Path
                     else if (EpicMMOSystem.enabledLevelControl.Value && (EpicMMOSystem.removeDropMax.Value || EpicMMOSystem.removeDropMin.Value) && !BossDropFlag) //remove mobdrop and is not a boss
                     {
                         __instance.m_nview.GetZDO().Set("epic playerLevel", -hit.m_toolTier); // reg mob check for lvl 
+                    }else if (EpicMMOSystem.enabledLevelControl.Value && EpicMMOSystem.removeAllDropsFromNonPlayerKills.Value && attacker.IsTamed())
+                    {
+                        __instance.m_nview.GetZDO().Set("epic playerLevel", -hit.m_toolTier); // reg mob check for lvl 
                     }
                     else /// No lvl check
                     {
+
                         if (EpicMMOSystem.extraDebug.Value) 
                             EpicMMOSystem.MLLogger.LogInfo("else ZDO epic playerLevel to 0");
 
