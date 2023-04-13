@@ -258,11 +258,17 @@ public partial class LevelSystem
         addTotalExp((int)giveExp);// add to total the exp used to go up levels, this will take a while for people to see benefit as before exp was lost and no way to recalc levels. 
         setCurrentExp(current);
         MyUI.updateExpBar();
-        Player.m_localPlayer.Message(
-            MessageHud.MessageType.TopLeft, 
-            $"{(EpicMMOSystem.localization["$get_exp"])}: {(int)giveExp}"
-        );
-        Util.FloatingText($"{exp} exp");
+        if (EpicMMOSystem.leftMessageXP.Value)
+        {
+            Player.m_localPlayer.Message(
+                MessageHud.MessageType.TopLeft,
+                $"{(EpicMMOSystem.localization["$get_exp"])}: {(int)giveExp}"
+            );
+        }
+        string stringtolvl = EpicMMOSystem.XPstring.Value;
+        stringtolvl = stringtolvl.Replace("@", exp.ToString());
+        //Util.FloatingText($"+{exp} XP");
+        Util.FloatingText($"{stringtolvl}");
     }
 
     public void AddLevel(int count)

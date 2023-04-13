@@ -39,6 +39,7 @@ namespace EpicMMOSystem.Gui
             if (ColorUtility.TryParseHtmlString(EpicMMOSystem.XPColor.Value, out tempC))
                 worldTextInstance.m_textField.color = tempC;
             worldTextInstance.m_textField.text = text;
+           // worldTextInstance.m_textField.font = new Font().
             worldTextInstance.m_timer = -1f;
 
             if (text2 != null)
