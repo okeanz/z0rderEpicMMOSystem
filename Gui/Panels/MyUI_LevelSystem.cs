@@ -115,11 +115,13 @@ public partial class MyUI
     private static void ClickCancel()
     {
         LevelSystem.Instance.cancelDepositPoints();
+        levelSystemPanel.SetActive(false);
     }
     
     private static void ClickApply()
     {
         LevelSystem.Instance.applyDepositPoints();
+        levelSystemPanel.SetActive(false);
     }
 
     private static void ResetParameters()

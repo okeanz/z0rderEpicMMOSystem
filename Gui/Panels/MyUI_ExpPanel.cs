@@ -139,7 +139,7 @@ public partial class MyUI
         static void Postfix(bool visible)
         {
             
-            if (visible && !UIToggle)
+            if (visible && !UIToggle && !EpicMMOSystem.oldExpBar.Value)
             {
                 expPanelRoot.gameObject.SetActive(true);
                 UIToggle= true;
@@ -151,7 +151,7 @@ public partial class MyUI
 
 
             }
-            if (!visible && UIToggle)
+            if (!visible && UIToggle && !EpicMMOSystem.oldExpBar.Value)
             {
                 expPanelRoot.gameObject.SetActive(false);
                // EpicMMOSystem.print($"UPdate Vis not");
