@@ -237,7 +237,14 @@ public partial class LevelSystem
 
     public void AddExp(int exp)
     {
-        if(exp < 1) return;
+        if(exp < 1)
+        {
+            if (exp == -2)
+            {
+                Util.FloatingText($"No XP for red/blue creatures :( ");
+            }
+            return;
+        }
         float rate = EpicMMOSystem.rateExp.Value;
         var giveExp = exp * (rate + singleRate);
         var current = getCurrentExp();

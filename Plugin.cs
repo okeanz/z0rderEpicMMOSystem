@@ -27,7 +27,7 @@ namespace EpicMMOSystem;
 public partial class EpicMMOSystem : BaseUnityPlugin
 {
     internal const string ModName = "EpicMMOSystem";
-    internal const string ModVersion = "1.6.3";
+    internal const string ModVersion = "1.6.5";
     internal const string Author = "WackyMole";
     private const string ModGUID = Author + "." + ModName;
     private static string ConfigFileName = ModGUID + ".cfg";
@@ -117,6 +117,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     public static ConfigEntry<string> MobLVLChars;
     public static ConfigEntry<string> XPColor;
     public static ConfigEntry<bool> removeAllDropsFromNonPlayerKills;
+    public static ConfigEntry<bool> noExpPastLVL;
 
     //Reset attributes items
     public static ConfigEntry<String> prefabNameCoins;
@@ -234,9 +235,8 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         MobLevelPosition = config(creatureLevelControl, "LevelBar Position", new Vector2(40, -30), "LevelBar Position for regular mobs - synced");
         BossLevelPosition = config(creatureLevelControl, "Boss LevelBar Position", new Vector2(0, 30), "LevelBar Position for Boss Bars - synced");
         MobLVLChars = config(creatureLevelControl, "Mob Level UI String", "[@]", "[@] uses @ for moblevel, must include '@', but you coudl do 'Level @' or something similar");
-        
-
-        removeAllDropsFromNonPlayerKills = config(creatureLevelControl, "RemoveAllDrops From NonPlayer Kills", false, "Remove all drops from mobs that were not killed by a player or tame -ie no drops from mobs attacking each other");
+        removeAllDropsFromNonPlayerKills = config(creatureLevelControl, "RemoveAllDrops From NonPlayer Kills", true, "Remove all drops from mobs that were not killed by a player or tame -ie no drops from mobs attacking each other");
+        noExpPastLVL = config(creatureLevelControl, "U Jerk, NoExpOn Red/Blue", false, "You are a jerk admin if you enable this, this removes all exp on creatures that are above level (RED) or Below (Blue)");
 
         string resetAttributesItems = "3.Reset attributes items";
         prefabNameCoins = config(resetAttributesItems, "prefabName", "Coins", "Name prefab item");

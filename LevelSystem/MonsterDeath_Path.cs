@@ -39,7 +39,7 @@ public static class MonsterDeath_Path
             monsterLevel = -1 * monsterLevel; // or -monsterLevel
         }
 
-        if (EpicMMOSystem.enabledLevelControl.Value && (EpicMMOSystem.curveExp.Value ||MobisBoss ))
+        if (EpicMMOSystem.enabledLevelControl.Value && (EpicMMOSystem.curveExp.Value || MobisBoss && EpicMMOSystem.curveBossExp.Value || EpicMMOSystem.noExpPastLVL.Value))
         {
             if (EpicMMOSystem.extraDebug.Value)
                 EpicMMOSystem.MLLogger.LogInfo("Checking player lvl for group exp");
@@ -47,12 +47,22 @@ public static class MonsterDeath_Path
             int maxRangeLevel = LevelSystem.Instance.getLevel() + EpicMMOSystem.maxLevelExp.Value;
             if (monsterLevel > maxRangeLevel)
             {
-                playerExp = Convert.ToInt32(exp / (monsterLevel - maxRangeLevel));
+                if (EpicMMOSystem.noExpPastLVL.Value)
+                    playerExp = 0; // no exp
+                else if (EpicMMOSystem.curveExp.Value)
+                    playerExp = Convert.ToInt32(exp / (monsterLevel - maxRangeLevel));
+                else if (MobisBoss && EpicMMOSystem.curveBossExp.Value)
+                    playerExp = Convert.ToInt32(exp / (monsterLevel - maxRangeLevel));
             }
             int minRangeLevel = LevelSystem.Instance.getLevel() - EpicMMOSystem.minLevelExp.Value;
             if (monsterLevel < minRangeLevel)
             {
-                playerExp = Convert.ToInt32(exp / (minRangeLevel - monsterLevel));
+                if (EpicMMOSystem.noExpPastLVL.Value)
+                    playerExp = 0; // no exp
+                else if (EpicMMOSystem.curveExp.Value)
+                    playerExp = Convert.ToInt32(exp / (minRangeLevel - monsterLevel));
+                else if (MobisBoss && EpicMMOSystem.curveBossExp.Value)
+                    playerExp = Convert.ToInt32(exp / (minRangeLevel - monsterLevel));
             }
 
             if (monsterLevel > maxRangeLevel && EpicMMOSystem.mentor.Value)
@@ -106,7 +116,7 @@ public static class MonsterDeath_Path
         var playerExp = exp;
 
 
-        if (EpicMMOSystem.enabledLevelControl.Value && (EpicMMOSystem.curveExp.Value || MobisBoss))
+        if (EpicMMOSystem.enabledLevelControl.Value && (EpicMMOSystem.curveExp.Value || MobisBoss && EpicMMOSystem.curveBossExp.Value || EpicMMOSystem.noExpPastLVL.Value))
         {
             if (EpicMMOSystem.extraDebug.Value) 
                 EpicMMOSystem.MLLogger.LogInfo("Checking player lvl");
@@ -114,12 +124,22 @@ public static class MonsterDeath_Path
             int maxRangeLevel = LevelSystem.Instance.getLevel() + EpicMMOSystem.maxLevelExp.Value;
             if (monsterLevel > maxRangeLevel)
             {
-                playerExp = Convert.ToInt32(exp / (monsterLevel - maxRangeLevel ));
+                if (EpicMMOSystem.noExpPastLVL.Value)
+                    playerExp = -2;// no exp
+                else if (EpicMMOSystem.curveExp.Value)
+                    playerExp = Convert.ToInt32(exp / (monsterLevel - maxRangeLevel));
+                else if (MobisBoss && EpicMMOSystem.curveBossExp.Value)
+                    playerExp = Convert.ToInt32(exp / (monsterLevel - maxRangeLevel));
             }
             int minRangeLevel = LevelSystem.Instance.getLevel() - EpicMMOSystem.minLevelExp.Value;
             if (monsterLevel < minRangeLevel)
             {
-                playerExp = Convert.ToInt32( exp / (minRangeLevel - monsterLevel));
+                if (EpicMMOSystem.noExpPastLVL.Value)
+                    playerExp = -2; // no exp
+                else if (EpicMMOSystem.curveExp.Value)
+                    playerExp = Convert.ToInt32( exp / (minRangeLevel - monsterLevel));
+                else if (MobisBoss && EpicMMOSystem.curveBossExp.Value)
+                    playerExp = Convert.ToInt32(exp / (minRangeLevel - monsterLevel));
             }
         }
 

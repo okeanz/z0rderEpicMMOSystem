@@ -1,5 +1,5 @@
 # Description:
-This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.6.4
+This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.6.5
 
 Support me at https://www.buymeacoffee.com/WackyMole 
 
@@ -49,7 +49,7 @@ This mod assigns levels to all in-game monsters.
 
 Mobs (names, levels, exp) from other mods are included:
 
-Fantasy-Creatures, AirAnimals, Defaults, DoOrDieMonsters, LandAnimals, MonsterlabZ, Outsiders, SeaAnimals, Monstrum (beta - a paid only mod), Krumpac Mods(free and paid)
+Fantasy-Creatures, AirAnimals, Defaults, DoOrDieMonsters, LandAnimals, MonsterlabZ, Outsiders, SeaAnimals, Monstrum (beta - a paid only mod), Krumpac Mods(free and paid), Teddy Bears
 
 Monsters that are 1 level higher than the character + MaxLevelRange will curve XP.
 
@@ -73,7 +73,7 @@ A file listing all monsters and their levels is located in config/EpicMMOSystem/
 
 A file called Version.txt is created in the folder. It contains the mod version that was used to create it. Replace it with "NO" to stop it from overwritting on a future update.
 
-Latest Update for Jsons config is <b> 1.6.3 </b>(Number will be updated when Jsons recieve an update)
+Latest Update for Jsons config is <b> 1.6.5 </b>(Number will be updated when Jsons recieve an update)
 
 Please note:
 When upgrading the mod to a newer version, new fields in the settings file will be created automatically. You will have to manually re-edit these values if you have changed them.
@@ -160,8 +160,9 @@ Original Creator: LambaSun or my [mod branch](https://discord.com/channels/82657
 
 | Version | Changes                                                                                                                                                                                                                                                                                                                                |
 |----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.6.5  | - TeddyBears json added <br/> removeAllDropsFromNonPlayerKills is true by default (If a Tree kills a mob, you won't get drop) <br /> Added 'U Jerk, NoExpOn Red/Blue' cfg option, for unfun times/admins. 
 | 1.6.4  | - Fixed 'RemoveAllDrops From NonPlayer Kills' for some configs
-| 1.6.3  | - Fixed OldExp Bar -  close or apply, now closes window. <br /> Update Outsider json
+| 1.6.3  | - Fixed OldExp Bar <br /> close or apply, now closes window. <br /> Update Outsider json
 | 1.6.2  | - Update Chinese <br/> Fixed UI so it can disappear with Ctrl-F3 <br/> Group EXP Range (GROUP MOD ONLY) - If killer didn't get xp, group won't get xp <br/> Added Player EXP Range, how far the player who killed a mob gets XP. <br/> Added the ability for tames to give their master EXP on kills <br/> Added Json for Krumpac mobs <br/> RemoveAllDrops From NonPlayer Kills config. - No more random creature drops - Not enabled by default </br> Added Config to remove alert on Left side for XP on mob death </br> Config for popup XP string
 | 1.6.1  | - eXP level fix<br/> HP/stamina, XP/eitr bar elements can be changed to "none" and update/disappear realtime<br/> Update Chinese <br/> Included color exp on mob death.
 | 1.6.0  | - Fixed ResetTrophy not being consumed on use.<br/> Added Chinese Translation <br/> Fixed some red errors with CLLC <br/> Included an excel file for comparison. 

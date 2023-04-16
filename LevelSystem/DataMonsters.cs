@@ -106,6 +106,7 @@ public static class DataMonsters
         var json8 = "MonsterDB_MajesticChickens.json";
         var json9 = "MonsterDB-Monstrum.json";
         var json10 = "MonsterDB-Reforge_Krumpac.json";
+        var json11 = "MonsterDB_TeddyBears.json";
 
         if (!Directory.Exists(folderpath)){
             Directory.CreateDirectory(folderpath);
@@ -131,9 +132,11 @@ public static class DataMonsters
                 cleartowrite = true;
             if (filev == "1.6.2")
                 cleartowrite = true;
+            if (filev == "1.6.3")
+                cleartowrite = true;
 
 
-            if (filev == "1.6.3") // last version to get a DB update
+            if (filev == "1.6.5") // last version to get a DB update
                 cleartowrite = false;
 
             if (filev == "NO" || filev == "no" || filev == "No" || filev == "STOP" || filev == "stop" || filev == "Stop")
@@ -145,7 +148,7 @@ public static class DataMonsters
         if (cleartowrite)
         {
             //list.Clear();
-            File.WriteAllText(versionpath, "1.6.3"); // Write Version file, don't auto update
+            File.WriteAllText(versionpath, "1.6.5"); // Write Version file, don't auto update
 
             File.WriteAllText(warningtext, "Erase numbers in Version.txt and write NO or stop in file. This should stop DB json files from updating on an update");
 
@@ -170,6 +173,8 @@ public static class DataMonsters
             File.WriteAllText(Path.Combine(folderpath, json9), getDefaultJsonMonster(json9));
 
             File.WriteAllText(Path.Combine(folderpath, json10), getDefaultJsonMonster(json10));
+            
+            File.WriteAllText(Path.Combine(folderpath, json11), getDefaultJsonMonster(json11));
 
 
             if (EpicMMOSystem.extraDebug.Value)
