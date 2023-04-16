@@ -159,6 +159,8 @@ public static class MonsterDeath_Path
             if (EpicMMOSystem.lowDamageLevel.Value)
             {
                 if (__instance.IsPlayer()) return;
+                if (__instance.IsTamed()) return;
+
                 if (!DataMonsters.contains(__instance.gameObject.name)) return;
                 int playerLevel = LevelSystem.Instance.getLevel();
                 int maxLevelExp = playerLevel + EpicMMOSystem.maxLevelExp.Value +EpicMMOSystem.lowDamageExtraConfig.Value;
@@ -225,12 +227,12 @@ public static class MonsterDeath_Path
                     if (!attacker.IsTamed())
                     {
                         CharacterLastDamageList[__instance] = 100;
-                        if (EpicMMOSystem.enabledLevelControl.Value && (EpicMMOSystem.removeBossDropMax.Value || EpicMMOSystem.removeBossDropMin.Value || EpicMMOSystem.removeDropMax.Value || EpicMMOSystem.removeDropMin.Value))
-                        {
+                        if (EpicMMOSystem.enabledLevelControl.Value && (EpicMMOSystem.removeBossDropMax.Value || EpicMMOSystem.removeBossDropMin.Value || EpicMMOSystem.removeDropMax.Value || EpicMMOSystem.removeDropMin.Value || EpicMMOSystem.removeAllDropsFromNonPlayerKills.Value))
+                        { 
                             //if (EpicMMOSystem.extraDebug.Value) 
                                // EpicMMOSystem.MLLogger.LogInfo("Player Hit");
 
-                            __instance.m_nview.GetZDO().Set("epic playerLevel", 0);
+                            __instance.m_nview.GetZDO().Set("epic playerLevel", 1000512);// only for removeAllDropsFromNonPlayerKills
                         }
                     }
                 }

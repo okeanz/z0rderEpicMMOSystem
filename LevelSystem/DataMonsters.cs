@@ -370,7 +370,8 @@ public static class DataMonsters
             if (EpicMMOSystem.enabledLevelControl.Value && (EpicMMOSystem.removeDropMax.Value || EpicMMOSystem.removeDropMin.Value || EpicMMOSystem.removeBossDropMax.Value || EpicMMOSystem.removeBossDropMin.Value || EpicMMOSystem.removeAllDropsFromNonPlayerKills.Value))
             {
                 var playerLevel = __instance.m_character.m_nview.GetZDO().GetInt("epic playerLevel");
-                if (playerLevel == 0)
+
+                if (playerLevel == 1000512)
                 {
                     if (EpicMMOSystem.removeAllDropsFromNonPlayerKills.Value)
                     {
@@ -379,7 +380,11 @@ public static class DataMonsters
                             __result = new(); // no drops from charcter related objects
                         }
                     }
-                        
+                    playerLevel = 0;
+                    
+                }
+                if (playerLevel == 0)
+                {                  
                     return;
                 }
                 if (!contains(__instance.m_character.gameObject.name)) return;
