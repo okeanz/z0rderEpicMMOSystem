@@ -374,6 +374,7 @@
     <EmbeddedResource Include="Data\MonsterDB-Monstrum.json" />
     <EmbeddedResource Include="Data\MonsterDB-Reforge_Krumpac.json" />
     <EmbeddedResource Include="Data\MonsterDB_TeddyBears.json" />
+    <EmbeddedResource Include="asset\orbs" />
     <None Include="packages.config" />
     <EmbeddedResource Include="translations\Russian.yml" />
     <EmbeddedResource Include="translations\English.yml" />

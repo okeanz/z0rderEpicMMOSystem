@@ -1,5 +1,5 @@
 # Description:
-This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.6.5
+This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.6.6
 
 Support me at https://www.buymeacoffee.com/WackyMole 
 
@@ -160,6 +160,7 @@ Original Creator: LambaSun or my [mod branch](https://discord.com/channels/82657
 
 | Version | Changes                                                                                                                                                                                                                                                                                                                                |
 |----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.6.6  | - More UI adjustments, - Scaling/Position on NavBar and PointHud,
 | 1.6.5  | - TeddyBears json added <br/> removeAllDropsFromNonPlayerKills is true by default (If a Tree kills a mob, you won't get drop) <br /> Added 'U Jerk, NoExpOn Red/Blue' cfg option, for unfun times/admins. 
 | 1.6.4  | - Fixed 'RemoveAllDrops From NonPlayer Kills' for some configs
 | 1.6.3  | - Fixed OldExp Bar <br /> close or apply, now closes window. <br /> Update Outsider json

@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using EpicMMOSystem.MonoScripts;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace EpicMMOSystem
 {
-public class DragControl : MonoBehaviour
-{
+public class DragControl : MonoBehaviour //IBeginDragHandler//, IDragHandler, IEndDragHandler
+    {
     private RectTransform window;
     //delta drag
     private Vector2 delta;
@@ -31,43 +32,53 @@ public class DragControl : MonoBehaviour
         SaveWindowPositions(gameObject, true);
         StopCoroutine(coroutine);
     }
-    internal static void RestoreWindow(GameObject go)
+    public static void ApplyDragWindowCntrl(GameObject go)
+    {
+        go.AddComponent<DragControl>();
+    }
+
+    internal static void RestoreWindow(GameObject go, bool checkfor0 = true)
     {
         
         var rectTransform = go.GetComponent<RectTransform>();
-       // EpicMMOSystem.MLLogger.LogInfo("Restore Window " + go.name + " " + rectTransform.anchoredPosition);
-            /*
-        rectTransform.anchoredPosition = go.name switch
-        {
-            "EpicHudPanel" => EpicMMOSystem.HudPanelPosition.Value,
-            "Exp" => EpicMMOSystem.ExpPanelPosition.Value,
-            "Hp" => EpicMMOSystem.HpPanelPosition.Value,
-            "Stamina" => EpicMMOSystem.StaminaPanelPosition.Value,
-            "Eitr" => EpicMMOSystem.EitrPanelPosition.Value,
-            _ => rectTransform.anchoredPosition
-        };
-            */
-            switch (go.name)
+            // EpicMMOSystem.MLLogger.LogInfo("Restore Window " + go.name + " " + rectTransform.anchoredPosition);
+
+            if (checkfor0)
             {
-                case "EpicHudPanel":
-                    rectTransform.anchoredPosition = EpicMMOSystem.HudPanelPosition.Value;
-                    break;
-                case "Exp":
-                    if (EpicMMOSystem.ExpPanelPosition.Value != new Vector2(0, 0) )
-                        rectTransform.anchoredPosition = EpicMMOSystem.ExpPanelPosition.Value;
-                    break;
-                case "Hp":
-                    if (EpicMMOSystem.HpPanelPosition.Value != new Vector2(0, 0))
-                        rectTransform.anchoredPosition = EpicMMOSystem.HpPanelPosition.Value;
-                    break;
-                case "Stamina":
-                    if (EpicMMOSystem.StaminaPanelPosition.Value != new Vector2(0, 0))
-                        rectTransform.anchoredPosition = EpicMMOSystem.StaminaPanelPosition.Value;
-                    break;
-                case "Eitr":
-                    if (EpicMMOSystem.EitrPanelPosition.Value != new Vector2(0, 0))
-                        rectTransform.anchoredPosition = EpicMMOSystem.EitrPanelPosition.Value;
-                    break;
+                switch (go.name)
+                {
+                    case "EpicHudPanel":
+                        rectTransform.anchoredPosition = EpicMMOSystem.HudPanelPosition.Value;
+                        break;
+                    case "Exp":
+                        if (EpicMMOSystem.ExpPanelPosition.Value != new Vector2(0, 0))
+                            rectTransform.anchoredPosition = EpicMMOSystem.ExpPanelPosition.Value;
+                        break;
+                    case "Hp":
+                        if (EpicMMOSystem.HpPanelPosition.Value != new Vector2(0, 0))
+                            rectTransform.anchoredPosition = EpicMMOSystem.HpPanelPosition.Value;
+                        break;
+                    case "Stamina":
+                        if (EpicMMOSystem.StaminaPanelPosition.Value != new Vector2(0, 0))
+                            rectTransform.anchoredPosition = EpicMMOSystem.StaminaPanelPosition.Value;
+                        break;
+                    case "Eitr":
+                        if (EpicMMOSystem.EitrPanelPosition.Value != new Vector2(0, 0))
+                            rectTransform.anchoredPosition = EpicMMOSystem.EitrPanelPosition.Value;
+                        break;
+                }
+            }else
+            {
+        
+                rectTransform.anchoredPosition = go.name switch
+                {
+                    "EpicHudPanel" => EpicMMOSystem.HudPanelPosition.Value,
+                    "Exp" => EpicMMOSystem.ExpPanelPosition.Value,
+                    "Hp" => EpicMMOSystem.HpPanelPosition.Value,
+                    "Stamina" => EpicMMOSystem.StaminaPanelPosition.Value,
+                    "Eitr" => EpicMMOSystem.EitrPanelPosition.Value,
+                    _ => rectTransform.anchoredPosition
+                };
             }
         }
         internal static void MoveEitr(GameObject go, int Extra)
@@ -81,8 +92,9 @@ public class DragControl : MonoBehaviour
     internal static void SaveWindowPositions(GameObject go, bool initialLoad)
         {
         var rectTransform = go.GetComponent<RectTransform>();
-        //EpicMMOSystem.MLLogger.LogInfo("Vector2 " + go.name + " " + rectTransform.anchoredPosition);
-        if (initialLoad)
+            //EpicMMOSystem.MLLogger.LogInfo("Vector2 " + go.name + " " + rectTransform.anchoredPosition);
+           // EpicMMOSystem.MLLogger.LogInfo("Vector3 " + go.name + " Changed to: " + rectTransform.anchoredPosition);
+            if (initialLoad)
         {
             /*
             rectTransform.anchoredPosition = go.name switch
@@ -118,7 +130,7 @@ public class DragControl : MonoBehaviour
                         rectTransform.anchoredPosition = EpicMMOSystem.EitrPanelPosition.Value;
                     break;
             }
-           // EpicMMOSystem.MLLogger.LogInfo("Vector3 " + go.name + " Changed to: " + rectTransform.anchoredPosition);
+          // EpicMMOSystem.MLLogger.LogInfo("Vector3 " + go.name + " Changed to: " + rectTransform.anchoredPosition);
         }
         else
         {
@@ -178,6 +190,11 @@ public class DragControl : MonoBehaviour
       public void OnEndDrag()
         {
            SaveWindowPositions(window.gameObject, false);
+        }
+
+        public void OnBeginDrag(PointerEventData eventData)
+        {
+            //throw new System.NotImplementedException();
         }
     }
 }

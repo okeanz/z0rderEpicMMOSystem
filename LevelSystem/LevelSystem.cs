@@ -207,6 +207,7 @@ public partial class LevelSystem
 
     public void ResetAllParameterPayment()
     {
+
         var text = EpicMMOSystem.prefabNameCoins.Value;
         var pref = ZNetScene.instance.GetPrefab(text);
         var name = pref.GetComponent<ItemDrop>().m_itemData.m_shared.m_name;

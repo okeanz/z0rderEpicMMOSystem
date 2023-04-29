@@ -1,3 +1,4 @@
+using EpicMMOSystem.MonoScripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,7 +9,8 @@ namespace EpicMMOSystem;
 
 public partial class MyUI
 {
-    private static GameObject levelSystemPanel;
+    internal static GameObject levelSystemPanel;
+    internal static GameObject levelSystemPanelRoot;
     //AlertsApplyReset
     private static GameObject alertResetPointPanel;
     private static Text alertResetPointText;
@@ -47,10 +49,14 @@ public partial class MyUI
     private static void InitLevelSystem()
     {
         levelSystemPanel = UI.transform.Find("Canvas/PointPanel").gameObject;
-        levelSystemPanel.transform.Find("Background").gameObject.AddComponent<DragMenu>().menu = levelSystemPanel.transform;
-        levelSystemPanel.transform.Find("Header").gameObject.AddComponent<DragMenu>().menu = levelSystemPanel.transform;
+        levelSystemPanelRoot = UI.transform.Find("Canvas").gameObject;
+        levelSystemPanelRoot.GetComponent<CanvasScaler>().scaleFactor = EpicMMOSystem.LevelHudGroupScale.Value;
+
+        //levelSystemPanel.transform.Find("Background").gameObject.AddComponent<DragMenu>().menu = levelSystemPanel.transform;
+        //levelSystemPanel.transform.Find("Header").gameObject.AddComponent<DragMenu>().menu = levelSystemPanel.transform;
         levelSystemPanel.transform.Find("Header/Text").GetComponent<Text>().text = localization["$attributes"];
-        
+        DragWindowCntrl.ApplyDragWindowCntrl(levelSystemPanel);
+
         //alertReset
         alertResetPointPanel = UI.transform.Find("Canvas/ApplyReset").gameObject;
         alertResetPointText = alertResetPointPanel.transform.Find("Text").GetComponent<Text>();

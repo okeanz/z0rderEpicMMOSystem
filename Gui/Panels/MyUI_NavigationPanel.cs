@@ -7,7 +7,7 @@ namespace EpicMMOSystem;
 
 public partial class MyUI
 {
-    private static GameObject navigationPanel;
+    internal static GameObject navigationPanel;
     private static Transform buttonLevelSystem;
     private static Transform buttonFriendsList;
     private static Transform buttonQuestPanel;

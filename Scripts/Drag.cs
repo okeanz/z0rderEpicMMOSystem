@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 namespace EpicMMOSystem.MonoScripts;
 
-public class DragWindowCntrl : MonoBehaviour, IBeginDragHandler, IDragHandler// IEndDragHandler, IScrollHandler
+public class DragWindowCntrl : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler //IScrollHandler
 {
     private float size;
 
@@ -46,6 +46,36 @@ public class DragWindowCntrl : MonoBehaviour, IBeginDragHandler, IDragHandler// 
     {
         size = _window.sizeDelta.x;
         _scale = _window.localScale.x;
+        //EpicMMOSystem.MLLogger.LogInfo("start");
+        RestoreWindow(_window.gameObject);
+    }
+    internal static void RestoreWindow(GameObject go, bool checkfor0 = true)
+    {
+
+        var rectTransform = go.GetComponent<RectTransform>();
+        // EpicMMOSystem.MLLogger.LogInfo("Restore Window " + go.name + " " + rectTransform.anchoredPosition);
+
+        if (checkfor0) { 
+            switch (go.name)
+            {
+                case "NavigatePanel":
+                    if (EpicMMOSystem.LevelNavPosition.Value != new Vector2(0, 0))
+                        rectTransform.anchoredPosition = EpicMMOSystem.LevelNavPosition.Value;
+                    break;
+                case "PointPanel":
+                    if (EpicMMOSystem.LevelPointPosition.Value != new Vector2(0, 0))
+                        rectTransform.anchoredPosition = EpicMMOSystem.LevelPointPosition.Value;
+                    break;
+            }
+        }else
+        {
+            rectTransform.anchoredPosition = go.name switch
+            {
+                "NavigatePanel" => EpicMMOSystem.LevelNavPosition.Value,
+                "PointPanel" => EpicMMOSystem.LevelPointPosition.Value,
+                _ => rectTransform.anchoredPosition
+            };
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -79,18 +109,25 @@ public class DragWindowCntrl : MonoBehaviour, IBeginDragHandler, IDragHandler// 
     
     public void OnEndDrag(PointerEventData eventData)
     {
-        /*
-                var go = _window.gameObject;
-                switch (go.name)
-            {
-                case "EpicHudPanel":
-                    rectTransform.anchoredPosition = EpicMMOSystem.HudPanelPosition.Value;
-                    break;
+   
+        var go = _window.gameObject;
+        var rectTransform = go.GetComponent<RectTransform>();
+        //EpicMMOSystem.MLLogger.LogInfo("Vector3 " + go.name + " Changed to: " + rectTransform.anchoredPosition);
+        switch (go.name)
+        {
+            case "NavigatePanel":
+                EpicMMOSystem.LevelNavPosition.Value = rectTransform.anchoredPosition;
+                break;
+            case "PointPanel":
+                EpicMMOSystem.LevelPointPosition.Value = rectTransform.anchoredPosition;
+                break;
 
-            }
-        */
-                //EpicMMOSystem.SaveWindowPositions(_window.gameObject, false);
-        }
+
+        }   
+
+    }
+       
+        //EpicMMOSystem.SaveWindowPositions(_window.gameObject, false);
 /*
     public void OnScroll(PointerEventData eventData)
     {
@@ -105,7 +142,7 @@ public class DragWindowCntrl : MonoBehaviour, IBeginDragHandler, IDragHandler// 
         }
     }
     */
-
+/*
     private void ApplyScale(float newScaleValue, Vector2 position)
     {
         float newScale = Mathf.Clamp(newScaleValue, minimumScale, maximumScale);
@@ -124,6 +161,7 @@ public class DragWindowCntrl : MonoBehaviour, IBeginDragHandler, IDragHandler// 
        // [8:22 PM]
         _window.localScale = new Vector3(_scale, _scale, _scale);
     }
+
 
     /// <summary>
     /// Since this is something I need to remember...
@@ -149,5 +187,6 @@ public class DragWindowCntrl : MonoBehaviour, IBeginDragHandler, IDragHandler// 
         // Set the pivot
         rectTransform.pivot = newPivot;
         rectTransform.localPosition += deltaPosition;
-    }
+    }*/
+
 }
