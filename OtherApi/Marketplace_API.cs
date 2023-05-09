@@ -1,126 +1,164 @@
 using System;
 using System.Reflection;
+using UnityEngine;
 
 namespace EpicMMOSystem.OtherApi;
 
+//if you want to use marketplace api just copy-paste this whole class into your code and use its methods
 public static class Marketplace_API
 {
-    private static Marketplace_API_State state = Marketplace_API_State.NotReady;
-    private enum Marketplace_API_State
+    private static readonly bool _IsInstalled;
+    private static readonly MethodInfo MI_IsPlayerInsideTerritory;
+    private static readonly MethodInfo MI_IsObjectInsideTerritoryWithFlag;
+    private static readonly MethodInfo MI_IsObjectInsideTerritoryWithFlag_Additional;
+    private static readonly MethodInfo MI_ResetTraderItems;
+
+    [Flags]
+    public enum TerritoryFlags
     {
-        NotReady,
-        NotInstalled,
-        Ready
+        None = 0,
+        PushAway = 1 << 0,
+        NoBuild = 1 << 1,
+        NoPickaxe = 1 << 2,
+        NoInteract = 1 << 3,
+        NoAttack = 1 << 4,
+        PvpOnly = 1 << 5,
+        PveOnly = 1 << 6,
+        PeriodicHeal = 1 << 7,
+        PeriodicDamage = 1 << 8,
+        IncreasedPlayerDamage = 1 << 9,
+        IncreasedMonsterDamage = 1 << 10,
+        NoMonsters = 1 << 11,
+        CustomEnvironment = 1 << 12,
+        MoveSpeedMultiplier = 1 << 13,
+        NoDeathPenalty = 1 << 14,
+        NoPortals = 1 << 15,
+        PeriodicHealALL = 1 << 16,
+        ForceGroundHeight = 1 << 17,
+        ForceBiome = 1 << 18,
+        AddGroundHeight = 1 << 19,
+        NoBuildDamage = 1 << 20,
+        MonstersAddStars = 1 << 21,
+        InfiniteFuel = 1 << 22,
+        NoInteractItems = 1 << 23,
+        NoInteractCraftingStation = 1 << 24,
+        NoInteractItemStands = 1 << 25,
+        NoInteractChests = 1 << 26,
+        NoInteractDoors = 1 << 27,
+        NoStructureSupport = 1 << 28,
+        NoInteractPortals = 1 << 29,
+        CustomPaint = 1 << 30,
+        LimitZoneHeight = 1 << 31,
     }
 
-    private static MethodInfo MI_OpenJournalButton;
-    private static MethodInfo MI_OpenMarketplace;
-    private static MethodInfo MI_OpenGambler;
-    private static MethodInfo MI_OpenTeleporter;
-    private static MethodInfo MI_OpenInfo;
-    private static MethodInfo MI_OpenFeedback;
-    private static MethodInfo MI_OpenBanker;
-    private static MethodInfo MI_OpenBuffer; 
-    private static MethodInfo MI_OpenQuest;
-    private static MethodInfo MI_OpenTrader;
-
-    public static bool IsInstalled()
+    [Flags]
+    public enum AdditionalTerritoryFlags
     {
-        Init();
-        return state is Marketplace_API_State.Ready;
+        None = 0,
+        NoItemLoss = 1 << 0,
+        SnowMask = 1 << 1,
+        NoMist = 1 << 2,
+        InfiniteEitr = 1 << 3,
+        InfiniteStamina = 1 << 4,
+        NoCreatureDrops = 1 << 5,
     }
 
-    public static void OpenJournalButton()
+    //uncomment that if you want to use HasFlagFast
+    /*
+    public static bool HasFlagFast(this TerritoryFlags flags, TerritoryFlags flag)
     {
-        Init();
-        if (MI_OpenJournalButton != null) MI_OpenJournalButton.Invoke(null, null);
+        return (flags & flag) != 0;
     }
-        
-    public static void OpenMarketplace()
+    public static bool HasFlagFast(this AdditionalTerritoryFlags flags, AdditionalTerritoryFlags flag)
     {
-        Init();
-        if (MI_OpenMarketplace != null) MI_OpenMarketplace.Invoke(null, null);
-    }
-        
-    public static void OpenFeedback()
+        return (flags & flag) != 0;
+    }*/
+
+    public static bool IsInstalled() => _IsInstalled;
+
+    public static bool IsPlayerInsideTerritory(out string name, out TerritoryFlags flags,
+        out AdditionalTerritoryFlags additionalFlags)
     {
-        Init();
-        if (MI_OpenFeedback != null) MI_OpenFeedback.Invoke(null, null);
-    }
-        
-    public static void OpenGambler(string profile)
-    {
-        Init();
-        if (MI_OpenGambler != null) MI_OpenGambler.Invoke(null, new object[]{profile});
-    }
-        
-    public static void OpenTeleporter(string profile)
-    {
-        Init();
-        if (MI_OpenTeleporter != null) MI_OpenTeleporter.Invoke(null, new object[]{profile});
-    }
-        
-    public static void OpenInfo(string profile, string npcName)
-    {
-        Init();
-        if (MI_OpenInfo != null) MI_OpenInfo.Invoke(null, new object[]{profile, npcName});
-    }
-        
-    public static void OpenBanker(string profile, string npcName)
-    {
-        Init();
-        if (MI_OpenBanker != null) MI_OpenBanker.Invoke(null, new object[]{profile, npcName});
-    }
-        
-    public static void OpenBuffer(string profile, string npcName)
-    {
-        Init();
-        if (MI_OpenBuffer != null) MI_OpenBuffer.Invoke(null, new object[]{profile, npcName});
-    }
-        
-    public static void OpenQuests(string profile, string npcName)
-    {
-        Init();
-        if (MI_OpenQuest != null) MI_OpenQuest.Invoke(null, new object[]{profile, npcName});
-    }
-        
-    public static void OpenTrader(string profile, string npcName)
-    {
-        Init();
-        if (MI_OpenTrader != null) MI_OpenTrader.Invoke(null, new object[]{profile, npcName});
+        flags = 0;
+        additionalFlags = 0;
+        name = "";
+        if (!_IsInstalled || MI_IsPlayerInsideTerritory == null)
+            return false;
+
+        object[] args = { "", 0, 0 };
+        bool result = (bool)MI_IsPlayerInsideTerritory.Invoke(null, args);
+        name = (string)args[0];
+        flags = (TerritoryFlags)args[1];
+        additionalFlags = (AdditionalTerritoryFlags)args[2];
+        return result;
     }
 
-    private static void Init()
+    public static bool IsObjectInsideTerritoryWithFlag(GameObject go, TerritoryFlags flag, out string name,
+        out TerritoryFlags flags, out AdditionalTerritoryFlags additionalFlags) =>
+        IsPointInsideTerritoryWithFlag(go.transform.position, flag, out name, out flags, out additionalFlags);
+
+    public static bool IsObjectInsideTerritoryWithFlag(GameObject go, AdditionalTerritoryFlags flag, out string name,
+        out TerritoryFlags flags, out AdditionalTerritoryFlags additionalFlags) =>
+        IsPointInsideTerritoryWithFlag(go.transform.position, flag, out name, out flags, out additionalFlags);
+
+    public static bool IsPointInsideTerritoryWithFlag(Vector3 pos, TerritoryFlags flag, out string name,
+        out TerritoryFlags flags, out AdditionalTerritoryFlags additionalFlags)
     {
-        if (state is Marketplace_API_State.Ready or Marketplace_API_State.NotInstalled) return;
-        if (Type.GetType("MarketplaceRevamp.MarketplaceAndServerNPCs, MarketplaceRevamp") == null)
+        name = "";
+        flags = 0;
+        additionalFlags = 0;
+        if (!_IsInstalled || MI_IsObjectInsideTerritoryWithFlag == null)
+            return false;
+
+        object[] args = { pos, (int)flag, "", 0, 0 };
+        bool result = (bool)MI_IsObjectInsideTerritoryWithFlag.Invoke(null, args);
+        name = (string)args[2];
+        flags = (TerritoryFlags)args[3];
+        additionalFlags = (AdditionalTerritoryFlags)args[4];
+        return result;
+    }
+
+    public static bool IsPointInsideTerritoryWithFlag(Vector3 pos, AdditionalTerritoryFlags flag, out string name,
+        out TerritoryFlags flags, out AdditionalTerritoryFlags additionalFlags)
+    {
+        name = "";
+        flags = 0;
+        additionalFlags = 0;
+        if (!_IsInstalled || MI_IsObjectInsideTerritoryWithFlag_Additional == null)
+            return false;
+
+        object[] args = { pos, (int)flag, "", 0, 0 };
+        bool result = (bool)MI_IsObjectInsideTerritoryWithFlag_Additional.Invoke(null, args);
+        name = (string)args[2];
+        flags = (TerritoryFlags)args[3];
+        additionalFlags = (AdditionalTerritoryFlags)args[4];
+        return result;
+    }
+
+    public static void ResetTraderItems()
+    {
+        if (!_IsInstalled || MI_ResetTraderItems == null)
+            return;
+        MI_ResetTraderItems.Invoke(null, null);
+    }
+
+    static Marketplace_API()
+    {
+        if (Type.GetType("API.ClientSide, kg.Marketplace") is not { } marketplaceAPI)
         {
-            state = Marketplace_API_State.NotInstalled;
+            _IsInstalled = false;
             return;
         }
 
-        state = Marketplace_API_State.Ready;
-        Type clientSide = Type.GetType("API.ClientSide, MarketplaceRevamp");
-        if (clientSide == null) return;
-        MI_OpenJournalButton = clientSide.GetMethod("QuestJournalButton",
+        _IsInstalled = true;
+        MI_IsPlayerInsideTerritory = marketplaceAPI.GetMethod("IsPlayerInsideTerritory",
             BindingFlags.Public | BindingFlags.Static);
-        MI_OpenMarketplace = clientSide.GetMethod("OpenMarketplace",
+        MI_IsObjectInsideTerritoryWithFlag = marketplaceAPI.GetMethod("IsObjectInsideTerritoryWithFlag",
             BindingFlags.Public | BindingFlags.Static);
-        MI_OpenGambler = clientSide.GetMethod("OpenGambler",
+        MI_IsObjectInsideTerritoryWithFlag_Additional = marketplaceAPI.GetMethod(
+            "IsObjectInsideTerritoryWithFlag_Additional",
             BindingFlags.Public | BindingFlags.Static);
-        MI_OpenTeleporter = clientSide.GetMethod("OpenTeleporter",
-            BindingFlags.Public | BindingFlags.Static);
-        MI_OpenInfo = clientSide.GetMethod("OpenFeedback",
-            BindingFlags.Public | BindingFlags.Static);
-        MI_OpenFeedback = clientSide.GetMethod("OpenInfo",
-        BindingFlags.Public | BindingFlags.Static);
-        MI_OpenBanker = clientSide.GetMethod("OpenBanker",
-            BindingFlags.Public | BindingFlags.Static);
-        MI_OpenBuffer = clientSide.GetMethod("OpenBuffer",
-            BindingFlags.Public | BindingFlags.Static);
-        MI_OpenQuest = clientSide.GetMethod("OpenQuests",
-            BindingFlags.Public | BindingFlags.Static);
-        MI_OpenTrader = clientSide.GetMethod("OpenTrader",
+        MI_ResetTraderItems = marketplaceAPI.GetMethod("ResetTraderItems",
             BindingFlags.Public | BindingFlags.Static);
     }
 }

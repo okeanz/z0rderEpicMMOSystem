@@ -65,7 +65,7 @@ public partial class MyUI
     
     private static void ClickQuestPanel()
     {
-        Marketplace_API.OpenJournalButton();
+       // Marketplace_API.OpenJournalButton();
     }
     
     private static void ClickProfessionsPanel()

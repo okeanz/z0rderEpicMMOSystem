@@ -18,6 +18,7 @@ using UnityEngine.UI;
 using ItemManager;
 using System.Xml;
 using EpicMMOSystem.MonoScripts;
+using EpicMMOSystem.OtherApi;
 
 namespace EpicMMOSystem;
 
@@ -327,6 +328,26 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         private static void Postfix()
         {
             NetisActive = true;
+        }
+    }
+
+
+    [HarmonyPatch(typeof(FejdStartup), "Start")]
+    static class FejdstartupWackyBlackPatch // Add your name/modname to this class method - should be unique
+    {
+        private static void Prefix()
+        {
+            if (FejdStartup.m_firstStartup)
+            {
+               //EpicMMOSystem.MLLogger.LogInfo($"Log Blacklist");
+                if (WackyDatabase_API.IsInstalled())
+                {
+                    // Add blacklist here
+                   // WackyDatabase_API.AddBlacklistClone("Stone");
+
+
+                }
+            }
         }
     }
 
