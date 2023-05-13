@@ -1,9 +1,11 @@
-using System;
+using JetBrains.Annotations;
 using System.Reflection;
+using System;
 using UnityEngine;
 
-namespace EpicMMOSystem.OtherApi;
+namespace API;
 
+[PublicAPI]
 //if you want to use marketplace api just copy-paste this whole class into your code and use its methods
 public static class Marketplace_API
 {
@@ -12,6 +14,8 @@ public static class Marketplace_API
     private static readonly MethodInfo MI_IsObjectInsideTerritoryWithFlag;
     private static readonly MethodInfo MI_IsObjectInsideTerritoryWithFlag_Additional;
     private static readonly MethodInfo MI_ResetTraderItems;
+    private static readonly MethodInfo MI_AddTraderItem;
+    private static readonly MethodInfo MI_OpenQuestJournal;
 
     [Flags]
     public enum TerritoryFlags
@@ -142,6 +146,13 @@ public static class Marketplace_API
         MI_ResetTraderItems.Invoke(null, null);
     }
 
+    public static void OpenQuestJournal()
+    {
+        if (!_IsInstalled || MI_OpenQuestJournal == null)
+            return;
+        MI_OpenQuestJournal.Invoke(null, null);
+    }
+
     static Marketplace_API()
     {
         if (Type.GetType("API.ClientSide, kg.Marketplace") is not { } marketplaceAPI)
@@ -159,6 +170,8 @@ public static class Marketplace_API
             "IsObjectInsideTerritoryWithFlag_Additional",
             BindingFlags.Public | BindingFlags.Static);
         MI_ResetTraderItems = marketplaceAPI.GetMethod("ResetTraderItems",
+            BindingFlags.Public | BindingFlags.Static);
+        MI_OpenQuestJournal = marketplaceAPI.GetMethod("OpenQuestJournal",
             BindingFlags.Public | BindingFlags.Static);
     }
 }

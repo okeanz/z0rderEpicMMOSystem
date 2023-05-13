@@ -103,13 +103,6 @@
 	},
 
 	{
-		"name": "LA_Capybara",
-		"minExp": 90,
-		"maxExp": 110,
-		"level": 10
-	},
-
-	{
 		"name": "LA_LittleCapy",
 		"minExp": 50,
 		"maxExp": 90,

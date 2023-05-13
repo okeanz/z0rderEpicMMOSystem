@@ -1,3 +1,4 @@
+using API;
 using EpicMMOSystem.MonoScripts;
 using EpicMMOSystem.OtherApi;
 using UnityEngine;
@@ -65,7 +66,7 @@ public partial class MyUI
     
     private static void ClickQuestPanel()
     {
-       // Marketplace_API.OpenJournalButton();
+        Marketplace_API.OpenQuestJournal();
     }
     
     private static void ClickProfessionsPanel()

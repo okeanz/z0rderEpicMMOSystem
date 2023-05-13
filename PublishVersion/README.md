@@ -1,5 +1,5 @@
 # Description:
-This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.6.6
+This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.6.7
 
 Support me at https://www.buymeacoffee.com/WackyMole 
 
@@ -73,7 +73,7 @@ A file listing all monsters and their levels is located in config/EpicMMOSystem/
 
 A file called Version.txt is created in the folder. It contains the mod version that was used to create it. Replace it with "NO" to stop it from overwritting on a future update.
 
-Latest Update for Jsons config is <b> 1.6.5 </b>(Number will be updated when Jsons recieve an update)
+Latest Update for Jsons config is <b> 1.6.7 </b>(Number will be updated when Jsons recieve an update)
 
 Please note:
 When upgrading the mod to a newer version, new fields in the settings file will be created automatically. You will have to manually re-edit these values if you have changed them.
@@ -160,6 +160,7 @@ Original Creator: LambaSun or my [mod branch](https://discord.com/channels/82657
 
 | Version | Changes                                                                                                                                                                                                                                                                                                                                |
 |----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.6.7  | - Updated KG Marketplace API <br/> Updated DoororDieMob and LandAnimals jsons thanks to DeeJay <br/> Fixed a bug with FloatText XP not being correct
 | 1.6.6  | - More UI adjustments, - Scaling/Position on NavBar and PointHud,
 | 1.6.5  | - TeddyBears json added <br/> removeAllDropsFromNonPlayerKills is true by default (If a Tree kills a mob, you won't get drop) <br /> Added 'U Jerk, NoExpOn Red/Blue' cfg option, for unfun times/admins. 
 | 1.6.4  | - Fixed 'RemoveAllDrops From NonPlayer Kills' for some configs

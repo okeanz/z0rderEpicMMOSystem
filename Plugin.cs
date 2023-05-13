@@ -29,7 +29,7 @@ namespace EpicMMOSystem;
 public partial class EpicMMOSystem : BaseUnityPlugin
 {
     internal const string ModName = "EpicMMOSystem";
-    internal const string ModVersion = "1.6.6";
+    internal const string ModVersion = "1.6.7";
     internal const string Author = "WackyMole";
     private const string ModGUID = Author + "." + ModName;
     private static string ConfigFileName = ModGUID + ".cfg";
@@ -308,6 +308,8 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         ResetTrophy.Description.English("A Trophy you can use to reset MMO points. Rare");
         ResetTrophy.ToggleConfigurationVisibility(Configurability.Drop);
         ResetTrophy.Snapshot();
+
+        
     }
     private void Start()
     {
@@ -331,25 +333,6 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         }
     }
 
-
-    [HarmonyPatch(typeof(FejdStartup), "Start")]
-    static class FejdstartupWackyBlackPatch // Add your name/modname to this class method - should be unique
-    {
-        private static void Prefix()
-        {
-            if (FejdStartup.m_firstStartup)
-            {
-               //EpicMMOSystem.MLLogger.LogInfo($"Log Blacklist");
-                if (WackyDatabase_API.IsInstalled())
-                {
-                    // Add blacklist here
-                   // WackyDatabase_API.AddBlacklistClone("Stone");
-
-
-                }
-            }
-        }
-    }
 
     private void SetupWatcher()
     { 

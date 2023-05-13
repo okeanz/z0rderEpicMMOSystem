@@ -274,7 +274,7 @@ public partial class LevelSystem
             );
         }
         string stringtolvl = EpicMMOSystem.XPstring.Value;
-        stringtolvl = stringtolvl.Replace("@", exp.ToString());
+        stringtolvl = stringtolvl.Replace("@", giveExp.ToString());
         //Util.FloatingText($"+{exp} XP");
         Util.FloatingText($"{stringtolvl}");
     }
