@@ -9,7 +9,7 @@ namespace EpicMMOSystem;
 public static partial class MyUI
 {
     private static GameObject UI;
-    private static Localization localization => EpicMMOSystem.localization;
+    private static Localizationold localization => EpicMMOSystem.localizationold;
     public static bool IsPanelVisible()
     {
         return UI && UI.activeSelf;

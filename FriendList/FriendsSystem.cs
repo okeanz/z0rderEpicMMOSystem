@@ -10,7 +10,7 @@ public static class FriendsSystem
     private static bool isServer => SystemInfo.graphicsDeviceType == GraphicsDeviceType.Null;
     private static string modName => EpicMMOSystem.ModName;
 
-    private static Localization local => EpicMMOSystem.localization;
+    private static Localizationold local => EpicMMOSystem.localizationold;
     public static void Init()
     {
         

@@ -283,7 +283,7 @@ public partial class LevelSystem
         {
             Player.m_localPlayer.Message(
                 MessageHud.MessageType.TopLeft,
-                $"{(EpicMMOSystem.localization["$get_exp"])}: {(int)giveExp}"
+                $"{(EpicMMOSystem.localizationold["$get_exp"])}: {(int)giveExp}"
             );
         }
         string stringtolvl = EpicMMOSystem.XPstring.Value;

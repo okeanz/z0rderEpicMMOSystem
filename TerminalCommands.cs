@@ -10,7 +10,7 @@ public static class TerminalCommands
 {
     private static bool isServer => SystemInfo.graphicsDeviceType == GraphicsDeviceType.Null;
     private static string modName => EpicMMOSystem.ModName;
-    private static Localization local => EpicMMOSystem.localization;
+    private static Localizationold local => EpicMMOSystem.localizationold;
     
     [HarmonyPatch(typeof(ZNetScene), nameof(ZNetScene.Awake))]
     private static class ZrouteMethodsServerFeedback

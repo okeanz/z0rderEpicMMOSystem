@@ -31,6 +31,8 @@ damage:  "Damage"
 armor:  "Armor"
 survival:  "Survival"
 StaminaRegeneration: "Stamina regeneration"
+$regen_eitr: "Eitr regeneration"
+$add_eitr: "Eitr Increase"
 
 
 notify:  "<color=#00E6FF>Alert</color>"
@@ -49,3 +51,12 @@ cancel_invite:  "Player {0}, canceled his friend request."
 
 terminal_set_level:  "You got {0} level"
 terminal_reset_points:  "Your attributes points have been reset"
+
+
+$mmoxpdrink3: "XP Potion Greater Wacky"
+$mmoxpdrink3_description: "While active, this potion grants you 100% increase to the XP gained"
+DrinkMed: "XP Potion Medium"
+DrinkMed_description: "While active, this potion grants you 60% increase to the XP gained"
+DrinkMinor: "XP Potion Minor"
+DrinkMinor_description: "While active, this potion grants you 30% increase to the XP gained"
+Ferm: "Magic Fermenter"

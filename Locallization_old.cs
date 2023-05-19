@@ -9,14 +9,14 @@ using UnityEngine;
 
 namespace EpicMMOSystem;
 
-public class Localization
+public class Localizationold
 {
     private string defaultFileName = "eng_emmosLocalization.txt";
     private Dictionary<string, string> _dictionary = new ();
 
-    public Localization()
+    public Localizationold()
     {
-        
+        /*
        Localizer.AddText("$attributes", "Attributes"); // add all the indiviudal in here and transfer for specific languagues.
        Localizer.AddText("$parameter_strength", "Strength");
        Localizer.AddText("$parameter_agility", "Agility");
@@ -68,9 +68,9 @@ public class Localization
         //Terminal
        Localizer.AddText("$terminal_set_level", "You got {0} level");
        Localizer.AddText("$terminal_reset_points", "Your attributes points have been reset");
+        */
     
-    /*
-
+    
     var currentLanguage = global::Localization.instance.GetSelectedLanguage();
     if (currentLanguage == "Russian")
     {
@@ -103,7 +103,7 @@ public class Localization
         }
         CreateLocalizationFile();
     }
-    */
+    
 }
 
     private void ReadLocalization(string path)
@@ -419,10 +419,10 @@ public class Localization
         {
             if (_dictionary.ContainsKey(key))
             {
-                return key;//_dictionary[key];
+                return _dictionary[key];
             }
-            // return "Missing language key";
-            return key;
+            return "Missing language key";
+            //return key;
         }
     }
 }

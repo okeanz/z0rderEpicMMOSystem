@@ -340,7 +340,7 @@
     <Compile Include="LevelSystem\LevelSystem_Body.cs" />
     <Compile Include="LevelSystem\LevelSystem_Intellect.cs" />
     <Compile Include="LevelSystem\LevelSystem_Strength.cs" />
-    <Compile Include="Locallization.cs" />
+    <Compile Include="Locallization_old.cs" />
     <Compile Include="OtherApi\Marketplace_API.cs" />
     <Compile Include="OtherApi\Professions_API.cs" />
     <Compile Include="OtherApi\DonatShop_API.cs" />
@@ -360,7 +360,9 @@
     <Content Include="Libs\fastJSON.dll" />
     <Content Include="Libs\GroupsAPI.dll" />
     <Content Include="Libs\ItemManager.dll" />
-    <Content Include="Libs\LocalizationManager.dll" />
+    <Content Include="Libs\LocalizationManager.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Libs\PieceManager.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -394,6 +396,7 @@
     <EmbeddedResource Include="translations\English.yml" />
     <EmbeddedResource Include="translations\Spanish.yml" />
     <EmbeddedResource Include="translations\German.yml" />
+    <EmbeddedResource Include="translations\Chinese.yml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Libs\publicized_assemblies\" />

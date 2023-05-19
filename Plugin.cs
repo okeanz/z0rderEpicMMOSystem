@@ -69,8 +69,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     internal static ItemDrop Mead3D = null;
 
 
-    public static Localization localization;
-    //Config
+    public static Localizationold localizationold;
     public static ConfigEntry<string> language;
     public static ConfigEntry<bool> extraDebug;
     //LevelSystem
@@ -194,65 +193,14 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     public static ConfigEntry<int> PotionSEtime;
 
 
-    internal static Localization english = null!;
-    internal static Localization russian = null!;
-    internal static Localization spanish = null!;
+    //internal static Localization english = null!;
+    //internal static Localization russian = null!;
+    //internal static Localization spanish = null!;
     public void Awake()
     {
         Localizer.Load();
         //english = new Localization();
 
-        Localizer.AddText("$attributes", "Attributes"); // add all the indiviudal in here and transfer for specific languagues.
-        Localizer.AddText("$parameter_strength", "Strength");
-        Localizer.AddText("$parameter_agility", "Agility");
-        Localizer.AddText("$parameter_intellect", "Intellect");
-        Localizer.AddText("$parameter_body", "Endurance");
-        Localizer.AddText("$free_points", "Available points");
-        Localizer.AddText("$level", "Level");
-        Localizer.AddText("$lvl", "Lvl.");
-        Localizer.AddText("$exp", "Experience");
-        Localizer.AddText("$cancel", "Cancel");
-        Localizer.AddText("$apply", "Accept");
-        Localizer.AddText("$reset_parameters", "Reset points");
-        Localizer.AddText("$no", "No");
-        Localizer.AddText("$yes", "Yes");
-        Localizer.AddText("$get_exp", "Experience received");
-        Localizer.AddText("$reset_point_text", "Do you really want to drop all the points for {0} {1}?");
-        //Parameter
-        Localizer.AddText("$physic_damage", "Physical Damage");
-        Localizer.AddText("$add_weight", "Carry weight");
-        Localizer.AddText("$speed_attack", "Attack stamina consumption");
-        Localizer.AddText("$reduced_stamina", "Stamina consumption (running, jumping)");
-        Localizer.AddText("$magic_damage", "Elemental damage");
-        Localizer.AddText("$magic_armor", "Elemental reduced");
-        Localizer.AddText("$add_hp", "Health increase");
-        Localizer.AddText("$add_stamina", "Stamina increase");
-        Localizer.AddText("$physic_armor", "Physical reduced");
-        Localizer.AddText("$reduced_stamina_block", "Block stamina consumption");
-        Localizer.AddText("$regen_hp", "Health regeneration");
-        Localizer.AddText("$damage", "Damage");
-        Localizer.AddText("$armor", "Armor");
-        Localizer.AddText("$survival", "Survival");
-
-        Localizer.AddText("$regen_eitr", "Eitr regeneration");
-        Localizer.AddText("$stamina_reg", "Stamina regeneration");
-        Localizer.AddText("$add_eitr", "Eitr Increase");
-        //Friends list
-        Localizer.AddText("$notify", "<color=#00E6FF>Alert</color>");
-        Localizer.AddText("$friends_list", "Friends list");
-        Localizer.AddText("$send", "Send");
-        Localizer.AddText("$invited", "Invitations");
-        Localizer.AddText("$friends", "Friends");
-        Localizer.AddText("$online", "Online");
-        Localizer.AddText("$offline", "Offline");
-        Localizer.AddText("$not_found", "Player {0} is not found.");
-        Localizer.AddText("$send_invite", "A friend request has been sent to player {0}.");
-        Localizer.AddText("$get_invite", "Received a friend request from {0}.");
-        Localizer.AddText("$accept_invite", "Player {0}, accepted the friend request.");
-        Localizer.AddText("$cancel_invite", "Player {0}, canceled his friend request.");
-        //Terminal
-        Localizer.AddText("$terminal_set_level", "You got {0} level");
-        Localizer.AddText("$terminal_reset_points", "Your attributes points have been reset");
 
 
         Instance = this;
@@ -385,7 +333,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         
         _asset = GetAssetBundle("epicasset");
         itemassets();
-        localization = new Localization();
+        localizationold = new Localizationold();
         MyUI.Init();
 
         if (Chainloader.PluginInfos.ContainsKey("org.bepinex.plugins.creaturelevelcontrol")){
@@ -397,7 +345,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     {
         Item DrinkMinor = new("mmo_xp", "mmo_xp_drink1", "asset");
         DrinkMinor.ToggleConfigurationVisibility(Configurability.Drop);
-        DrinkMinor.Name.English("XP Potion Minor");
+        DrinkMinor.Name.English("XP Potion Minor"); // I have no idea how to get the English.yml to work, it should, it's reading, but just doesn't want to do anything.
         DrinkMinor.Description.English("While active, this potion grants you 30% increase to the XP gained");
         Item DrinkMed = new("mmo_xp", "mmo_xp_drink2", "asset");
         DrinkMed.ToggleConfigurationVisibility(Configurability.Drop);
@@ -465,6 +413,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
 
 
         BuildPiece Ferm = new("mmo_xp", "mmo_fermenter", "asset");
+        Ferm.Name.English("Magic Fermenter");
         Ferm.Category.Add(BuildPieceCategory.Crafting);
         Ferm.Crafting.Set(PieceManager.CraftingTable.Forge);
         Ferm.Snapshot();
@@ -498,10 +447,6 @@ public partial class EpicMMOSystem : BaseUnityPlugin
             {
                 return;
             }
-            //StatusEffect Greater =__instance.GetStatusEffect("Potion_MMO_Greater");
-            //Greater.m_ttl = 600;
-
-            // CraftingStation cald = GameObject.Find("piece_cauldron").GetComponent<CraftingStation>();
 
             Mead1Alt = ScriptableObject.CreateInstance<Recipe>();
             Mead2Alt = ScriptableObject.CreateInstance<Recipe>();
@@ -523,7 +468,6 @@ public partial class EpicMMOSystem : BaseUnityPlugin
             Mead3Alt.m_craftingStation = cald;
 
             Mead1Alt.m_item = Mead1D;
-            // Mead1Alt.m_craftingStation = CraftingStation.;
             List<Piece.Requirement> reqs1 = new List<Piece.Requirement>();
             Piece.Requirement item1 = new Piece.Requirement
             {
@@ -545,8 +489,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
             __instance.m_recipes.Add(Mead1Alt);
 
 
-            Mead2Alt.m_item = Mead1D;
-            //Mead2Alt.m_craftingStation = cald;
+            Mead2Alt.m_item = Mead2D;
             List<Piece.Requirement> reqs2 = new List<Piece.Requirement>();
             Piece.Requirement item3 = new Piece.Requirement
             {
@@ -561,7 +504,6 @@ public partial class EpicMMOSystem : BaseUnityPlugin
             __instance.m_recipes.Add(Mead2Alt);
 
             Mead3Alt.m_item = Mead3D;
-            //Mead3Alt.m_craftingStation = cald;
             List<Piece.Requirement> reqs3 = new List<Piece.Requirement>();
             
             Piece.Requirement item4 = new Piece.Requirement
