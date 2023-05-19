@@ -199,8 +199,62 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     internal static Localization spanish = null!;
     public void Awake()
     {
-        // Localizer.Load(); - Doesn't seem to be working with yml
-        // Localizer.AddText("$attributes", "Attributes WM");
+        Localizer.Load();
+        //english = new Localization();
+
+        Localizer.AddText("$attributes", "Attributes"); // add all the indiviudal in here and transfer for specific languagues.
+        Localizer.AddText("$parameter_strength", "Strength");
+        Localizer.AddText("$parameter_agility", "Agility");
+        Localizer.AddText("$parameter_intellect", "Intellect");
+        Localizer.AddText("$parameter_body", "Endurance");
+        Localizer.AddText("$free_points", "Available points");
+        Localizer.AddText("$level", "Level");
+        Localizer.AddText("$lvl", "Lvl.");
+        Localizer.AddText("$exp", "Experience");
+        Localizer.AddText("$cancel", "Cancel");
+        Localizer.AddText("$apply", "Accept");
+        Localizer.AddText("$reset_parameters", "Reset points");
+        Localizer.AddText("$no", "No");
+        Localizer.AddText("$yes", "Yes");
+        Localizer.AddText("$get_exp", "Experience received");
+        Localizer.AddText("$reset_point_text", "Do you really want to drop all the points for {0} {1}?");
+        //Parameter
+        Localizer.AddText("$physic_damage", "Physical Damage");
+        Localizer.AddText("$add_weight", "Carry weight");
+        Localizer.AddText("$speed_attack", "Attack stamina consumption");
+        Localizer.AddText("$reduced_stamina", "Stamina consumption (running, jumping)");
+        Localizer.AddText("$magic_damage", "Elemental damage");
+        Localizer.AddText("$magic_armor", "Elemental reduced");
+        Localizer.AddText("$add_hp", "Health increase");
+        Localizer.AddText("$add_stamina", "Stamina increase");
+        Localizer.AddText("$physic_armor", "Physical reduced");
+        Localizer.AddText("$reduced_stamina_block", "Block stamina consumption");
+        Localizer.AddText("$regen_hp", "Health regeneration");
+        Localizer.AddText("$damage", "Damage");
+        Localizer.AddText("$armor", "Armor");
+        Localizer.AddText("$survival", "Survival");
+
+        Localizer.AddText("$regen_eitr", "Eitr regeneration");
+        Localizer.AddText("$stamina_reg", "Stamina regeneration");
+        Localizer.AddText("$add_eitr", "Eitr Increase");
+        //Friends list
+        Localizer.AddText("$notify", "<color=#00E6FF>Alert</color>");
+        Localizer.AddText("$friends_list", "Friends list");
+        Localizer.AddText("$send", "Send");
+        Localizer.AddText("$invited", "Invitations");
+        Localizer.AddText("$friends", "Friends");
+        Localizer.AddText("$online", "Online");
+        Localizer.AddText("$offline", "Offline");
+        Localizer.AddText("$not_found", "Player {0} is not found.");
+        Localizer.AddText("$send_invite", "A friend request has been sent to player {0}.");
+        Localizer.AddText("$get_invite", "Received a friend request from {0}.");
+        Localizer.AddText("$accept_invite", "Player {0}, accepted the friend request.");
+        Localizer.AddText("$cancel_invite", "Player {0}, canceled his friend request.");
+        //Terminal
+        Localizer.AddText("$terminal_set_level", "You got {0} level");
+        Localizer.AddText("$terminal_reset_points", "Your attributes points have been reset");
+
+
         Instance = this;
 
         string general = "0.General---------------";
@@ -343,10 +397,16 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     {
         Item DrinkMinor = new("mmo_xp", "mmo_xp_drink1", "asset");
         DrinkMinor.ToggleConfigurationVisibility(Configurability.Drop);
+        DrinkMinor.Name.English("XP Potion Minor");
+        DrinkMinor.Description.English("While active, this potion grants you 30% increase to the XP gained");
         Item DrinkMed = new("mmo_xp", "mmo_xp_drink2", "asset");
         DrinkMed.ToggleConfigurationVisibility(Configurability.Drop);
+        DrinkMed.Name.English("XP Potion Medium");
+        DrinkMed.Description.English("While active, this potion grants you 60% increase to the XP gained");
         Item DrinkGreater = new("mmo_xp", "mmo_xp_drink3", "asset");
         DrinkGreater.ToggleConfigurationVisibility(Configurability.Drop);
+        DrinkGreater.Name.English("XP Potion Greater");
+        DrinkGreater.Description.English("While active, this potion grants you 100% increase to the XP gained");
 
         Item Orb1 = new("mmo_xp", "mmo_orb1", "asset");
         Orb1.ToggleConfigurationVisibility(Configurability.Drop);
@@ -421,6 +481,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
 
         var paul = ItemManager.CraftingTable.Cauldron;
         //ItemManager.CraftingStationConfig.Equals(Mead3)
+
         
     }
     
