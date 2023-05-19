@@ -1,5 +1,41 @@
 [
 	{
+	        "name": "Butterfly1",
+	        "minExp": 80,
+	        "maxExp": 90,
+        	"level": 6
+	},
+	{
+	        "name": "Butterfly2",
+	        "minExp": 80,
+	        "maxExp": 90,
+        	"level": 6
+	},
+	{
+	        "name": "Butterfly3",
+	        "minExp": 80,
+	        "maxExp": 90,
+        	"level": 6
+	},
+	{
+	        "name": "Butterfly4",
+	        "minExp": 80,
+	        "maxExp": 90,
+        	"level": 6
+	},
+	{
+	        "name": "Butterfly5",
+	        "minExp": 80,
+	        "maxExp": 90,
+        	"level": 6
+	},
+	{
+	        "name": "Butterfly6",
+	        "minExp": 80,
+	        "maxExp": 90,
+        	"level": 6
+	},
+	{
 		"name": "HarpyEagle",
 		"minExp": 120,
 		"maxExp": 150,

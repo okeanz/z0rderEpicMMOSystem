@@ -246,8 +246,21 @@ public partial class LevelSystem
             }
             return;
         }
+       
         float rate = EpicMMOSystem.rateExp.Value;
         var giveExp = exp * (rate + singleRate);
+        if (Player.m_localPlayer.m_seman.GetStatusEffect("Potion_MMO_Greater") != null )
+        {
+            giveExp = EpicMMOSystem.XPforGreaterPotion.Value * giveExp;
+        }
+        else if ((Player.m_localPlayer.m_seman.GetStatusEffect("Potion_MMO_Medium") != null))
+        {
+            giveExp = EpicMMOSystem.XPforMediumPotion.Value * giveExp;
+        }
+        else if ((Player.m_localPlayer.m_seman.GetStatusEffect("Potion_MMO_Minor") != null))
+        {
+            giveExp = EpicMMOSystem.XPforMinorPotion.Value * giveExp;
+        }
         var current = getCurrentExp();
         var need = getNeedExp();
         current += (int)giveExp;

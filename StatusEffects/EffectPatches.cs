@@ -22,7 +22,6 @@ public static class EffectPatches
         //     ObjectDB.instance.m_items.Add(EpicMmoSystemPlugin.raidoPrefab);
         //     ObjectDB.instance.m_itemByHash[EpicMmoSystemPlugin.raidoPrefab.name.GetStableHashCode()] = EpicMmoSystemPlugin.raidoPrefab;
         // }
-
     }
 
     [HarmonyPatch(typeof(ObjectDB), "Awake")]
@@ -42,4 +41,43 @@ public static class EffectPatches
             AddMyStatusEffect(__instance);
         }
     }
+
+    [HarmonyPatch(typeof(Player), "ConsumeItem")]
+    public static class ConsumeMMOXP
+    {
+        public static void Prefix(ItemDrop.ItemData item)
+        {
+            if (Player.m_localPlayer.m_seman.GetStatusEffect("MMO_XP") == null)
+            {
+                GameObject found = null;
+                foreach (var GameItem in ObjectDB.instance.m_items) // much bad
+                {
+                    if (GameItem.GetComponent<ItemDrop>()?.m_itemData.m_shared.m_name == item.m_shared.m_name)
+                        found = GameItem;
+                }
+
+                switch (found.name)
+                {
+                    case "mmo_orb1":
+                        LevelSystem.Instance.AddExp(EpicMMOSystem.XPforOrb1.Value);  break;
+                    case "mmo_orb2":
+                        LevelSystem.Instance.AddExp(EpicMMOSystem.XPforOrb2.Value);  break;
+                    case "mmo_orb3":
+                        LevelSystem.Instance.AddExp(EpicMMOSystem.XPforOrb3.Value);  break;
+                    case "mmo_orb4":
+                        LevelSystem.Instance.AddExp(EpicMMOSystem.XPforOrb4.Value);  break;
+                    case "mmo_orb5":
+                        LevelSystem.Instance.AddExp(EpicMMOSystem.XPforOrb5.Value);  break;
+                    case "mmo_orb6":
+                        LevelSystem.Instance.AddExp(EpicMMOSystem.XPforOrb6.Value);  break;
+
+                    default: break;
+                }
+            }
+        }
+    }
+
+
+
+
 }

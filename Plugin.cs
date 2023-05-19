@@ -19,6 +19,10 @@ using ItemManager;
 using System.Xml;
 using EpicMMOSystem.MonoScripts;
 using EpicMMOSystem.OtherApi;
+using PieceManager;
+using System.Runtime.Remoting.Messaging;
+using StatusEffectManager;
+using System.Collections;
 
 namespace EpicMMOSystem;
 
@@ -51,6 +55,19 @@ public partial class EpicMMOSystem : BaseUnityPlugin
 
     internal static EpicMMOSystem Instance;
     public static bool CLLCLoaded = false;
+    public static CustomSE MMOXP = new CustomSE("MMO_XP");
+    //  public static CustomSE Potion_MMO_Greater = new CustomSE("Potion_MMO_Greater");
+    //public static CustomSE Potion_MMO_Minor = new CustomSE("Potion_MMO_Minor");
+    //public static CustomSE Potion_MMO_Medium = new CustomSE("Potion_MMO_Medium");
+
+    internal static Recipe Mead1Alt;
+    internal static Recipe Mead2Alt;
+    internal static Recipe Mead3Alt;
+
+    internal static ItemDrop Mead1D = null;
+    internal static ItemDrop Mead2D = null;
+    internal static ItemDrop Mead3D = null;
+
 
     public static Localization localization;
     //Config
@@ -161,6 +178,21 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     //Optional
     public static ConfigEntry<float> addDefaultHealth;
     public static ConfigEntry<float> addDefaultWeight;
+
+    // Orb and Potions
+    public static ConfigEntry<int> XPforOrb1;
+    public static ConfigEntry<int> XPforOrb2;
+    public static ConfigEntry<int> XPforOrb3;
+    public static ConfigEntry<int> XPforOrb4;
+    public static ConfigEntry<int> XPforOrb5;
+    public static ConfigEntry<int> XPforOrb6;
+
+    public static ConfigEntry<float> XPforMinorPotion;
+    public static ConfigEntry<float> XPforMediumPotion;
+    public static ConfigEntry<float> XPforGreaterPotion;
+    public static ConfigEntry<int> OrbSEtime;
+    public static ConfigEntry<int> PotionSEtime;
+
 
     internal static Localization english = null!;
     internal static Localization russian = null!;
@@ -277,7 +309,21 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         string optionalEffect = "5.Optional perk---------";
         addDefaultHealth = config(optionalEffect, "AddDefaultHealth", 0f, "Add health by default");
         addDefaultWeight = config(optionalEffect, "AddDefaultWeight", 0f, "Add weight by default");
-        
+
+        string OrbandPotion = "6.Orbs and Potions-------";
+        XPforOrb1 = config(OrbandPotion, "XP for Orb 1", 100, "Consuming Orb grants how much exp?");
+        XPforOrb2 = config(OrbandPotion, "XP for Orb 2", 200, "Consuming Orb grants how much exp?");
+        XPforOrb3 = config(OrbandPotion, "XP for Orb 3", 400, "Consuming Orb grants how much exp?");
+        XPforOrb4 = config(OrbandPotion, "XP for Orb 4", 800, "Consuming Orb grants how much exp?");
+        XPforOrb5 = config(OrbandPotion, "XP for Orb 5", 1500, "Consuming Orb grants how much exp?");
+        XPforOrb6 = config(OrbandPotion, "XP for Orb 6", 3000, "Consuming Orb grants how much exp?");
+        XPforMinorPotion = config(OrbandPotion, "Minor Potion", 1.3f, "XP Multiplier for XP Potion Minor");
+        XPforMediumPotion = config(OrbandPotion, "Medium Potion", 1.6f, "XP Multiplier for XP Potion Medium");
+        XPforGreaterPotion = config(OrbandPotion, "Greater Potion", 2.0f, "XP Multiplier for XP Potion Greater");
+        OrbSEtime = config(OrbandPotion, "Orb SE time", 10, "Orb Consumption SE Icon lasts for default 10 seconds");
+        PotionSEtime = config(OrbandPotion, "Potion SE time", 600, "Potion SE timer last for default of 10 minutes");
+
+
         _ = ConfigSync.AddLockingConfigEntry(_serverConfigLocked);
 
         Assembly assembly = Assembly.GetExecutingAssembly();
@@ -295,12 +341,76 @@ public partial class EpicMMOSystem : BaseUnityPlugin
 
     private static void itemassets()
     {
-        Item OrbTest = new("orbs", "magicorb2", "asset");
-        OrbTest.Name.English("orbtest");
-        OrbTest.Description.English("XP");
-        OrbTest.ToggleConfigurationVisibility(Configurability.Disabled);
-        OrbTest.Snapshot();
-    
+        Item DrinkMinor = new("mmo_xp", "mmo_xp_drink1", "asset");
+        DrinkMinor.ToggleConfigurationVisibility(Configurability.Drop);
+        Item DrinkMed = new("mmo_xp", "mmo_xp_drink2", "asset");
+        DrinkMed.ToggleConfigurationVisibility(Configurability.Drop);
+        Item DrinkGreater = new("mmo_xp", "mmo_xp_drink3", "asset");
+        DrinkGreater.ToggleConfigurationVisibility(Configurability.Drop);
+
+        Item Orb1 = new("mmo_xp", "mmo_orb1", "asset");
+        Orb1.ToggleConfigurationVisibility(Configurability.Drop);
+        Item Orb2 = new("mmo_xp", "mmo_orb2", "asset");
+        Orb2.ToggleConfigurationVisibility(Configurability.Drop);
+        Item Orb3 = new("mmo_xp", "mmo_orb3", "asset");
+        Orb3.ToggleConfigurationVisibility(Configurability.Drop);
+        Item Orb4 = new("mmo_xp", "mmo_orb4", "asset");
+        Orb4.ToggleConfigurationVisibility(Configurability.Drop);
+        Item Orb5 = new("mmo_xp", "mmo_orb5", "asset");
+        Orb5.ToggleConfigurationVisibility(Configurability.Drop);
+        Item Orb6 = new("mmo_xp", "mmo_orb6", "asset");
+        Orb6.ToggleConfigurationVisibility(Configurability.Drop);
+
+        Item Mead1 = new("mmo_xp", "mmo_mead_minor", "asset");
+        Mead1.ToggleConfigurationVisibility(Configurability.Recipe);
+        Item Mead2 = new("mmo_xp", "mmo_mead_med", "asset");
+        Mead2.ToggleConfigurationVisibility(Configurability.Recipe);
+        Item Mead3 = new("mmo_xp", "mmo_mead_greater", "asset");
+        Mead3.ToggleConfigurationVisibility (Configurability.Recipe);
+
+        Item Chunks = new("mmo_xp", "Mob_chunks", "asset");
+
+        Chunks.Snapshot();
+        Chunks.RequireOnlyOneIngredient = true;
+        Chunks.Crafting.Add(ItemManager.CraftingTable.Cauldron,1);
+        Chunks.RequiredItems.Add("TrophyBoar", 4);
+        Chunks.RequiredItems.Add("TrophyNeck", 4);
+        Chunks.RequiredItems.Add("TrophyDeer", 4);
+        Chunks.RequiredItems.Add("TrophyFrostTroll", 2);
+        Chunks.RequiredItems.Add("TrophyForestTroll", 2);
+        Chunks.RequiredItems.Add("TrophyEikthyr", 2);
+        Chunks.RequiredItems.Add("TrophyGreydwarfBrute", 2);
+        Chunks.RequiredItems.Add("TrophyGreydwarfShaman", 3);
+        Chunks.RequiredItems.Add("TrophyBlob", 3);
+        Chunks.RequiredItems.Add("TrophyGreydwarf", 4);
+        Chunks.RequiredItems.Add("TrophyDraugr", 3);
+        Chunks.RequiredItems.Add("TrophySkeleton", 4);
+        Chunks.RequiredItems.Add("TrophySerpent", 2);
+        Chunks.RequiredItems.Add("TrophyWolf", 4);
+
+
+        Mead1.Crafting.Add(ItemManager.CraftingTable.Cauldron, 1);
+        Mead1.RequiredItems.Add("Mob_chunks", 1);
+        Mead1.RequiredItems.Add("mmo_orb1", 2);
+        Mead2.Crafting.Add(ItemManager.CraftingTable.Cauldron, 1);
+        Mead2.RequiredItems.Add("Mob_chunks", 1);
+        Mead2.RequiredItems.Add("mmo_orb3", 2);
+        Mead3.Crafting.Add(ItemManager.CraftingTable.Cauldron, 1);
+        Mead3.RequiredItems.Add("Mob_chunks", 1);
+        Mead3.RequiredItems.Add("mmo_orb5", 2);
+
+        Mead1D = Mead1.Prefab.GetComponent<ItemDrop>();
+        Mead2D = Mead2.Prefab.GetComponent<ItemDrop>();
+        Mead3D = Mead3.Prefab.GetComponent<ItemDrop>();
+
+
+        BuildPiece Ferm = new("mmo_xp", "mmo_fermenter", "asset");
+        Ferm.Category.Add(BuildPieceCategory.Crafting);
+        Ferm.Crafting.Set(PieceManager.CraftingTable.Forge);
+        Ferm.Snapshot();
+        Ferm.RequiredItems.Add("FineWood", 30, true);
+        Ferm.RequiredItems.Add("Bronze", 5, true);
+        Ferm.RequiredItems.Add("Coins",200,true);
 
 
         Item ResetTrophy = new("epicmmoitems", "ResetTrophy", "asset");
@@ -309,8 +419,107 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         ResetTrophy.ToggleConfigurationVisibility(Configurability.Drop);
         ResetTrophy.Snapshot();
 
+        var paul = ItemManager.CraftingTable.Cauldron;
+        //ItemManager.CraftingStationConfig.Equals(Mead3)
         
     }
+    
+
+
+    [HarmonyPatch(typeof(ObjectDB), nameof(ObjectDB.Awake))]
+    internal static class DBPatMMO {
+        internal static void Postfix()
+        {
+            ObjectDB __instance = ObjectDB.m_instance;
+
+
+            if (__instance.GetItemPrefab("Wood") == null)
+            {
+                return;
+            }
+            //StatusEffect Greater =__instance.GetStatusEffect("Potion_MMO_Greater");
+            //Greater.m_ttl = 600;
+
+            // CraftingStation cald = GameObject.Find("piece_cauldron").GetComponent<CraftingStation>();
+
+            Mead1Alt = ScriptableObject.CreateInstance<Recipe>();
+            Mead2Alt = ScriptableObject.CreateInstance<Recipe>();
+            Mead3Alt = ScriptableObject.CreateInstance<Recipe>();
+            Mead1Alt.name = "MMO_Recipe_Mead1Alt";
+            Mead2Alt.name = "MMO_Recipe_Mead2Alt";
+            Mead3Alt.name = "MMO_Recipe_Mead3Alt";
+
+            var list = Resources.FindObjectsOfTypeAll<CraftingStation>();
+            CraftingStation cald = null;
+            foreach (var item in list)
+            {
+
+                if (item.name == "piece_cauldron")
+                    cald = item;
+            }
+            Mead1Alt.m_craftingStation = cald;
+            Mead2Alt.m_craftingStation = cald;
+            Mead3Alt.m_craftingStation = cald;
+
+            Mead1Alt.m_item = Mead1D;
+            // Mead1Alt.m_craftingStation = CraftingStation.;
+            List<Piece.Requirement> reqs1 = new List<Piece.Requirement>();
+            Piece.Requirement item1 = new Piece.Requirement
+            {
+                m_amount = 1,
+                m_recover = true,
+                m_resItem = __instance.GetItemPrefab("Mob_chunks").GetComponent<ItemDrop>(),
+            };
+            
+            Piece.Requirement item2 = new Piece.Requirement
+            {
+                m_amount = 1,
+                m_recover = true,
+                m_resItem = __instance.GetItemPrefab("mmo_orb2").GetComponent<ItemDrop>(),
+            };
+            reqs1.Add(item1);
+            reqs1.Add(item2);
+
+            Mead1Alt.m_resources = reqs1.ToArray();
+            __instance.m_recipes.Add(Mead1Alt);
+
+
+            Mead2Alt.m_item = Mead1D;
+            //Mead2Alt.m_craftingStation = cald;
+            List<Piece.Requirement> reqs2 = new List<Piece.Requirement>();
+            Piece.Requirement item3 = new Piece.Requirement
+            {
+                m_amount = 1,
+                m_recover = true,
+                m_resItem = __instance.GetItemPrefab("mmo_orb4").GetComponent<ItemDrop>(),
+            };
+            reqs2.Add(item1);
+            reqs2.Add(item3);
+
+            Mead2Alt.m_resources = reqs2.ToArray();
+            __instance.m_recipes.Add(Mead2Alt);
+
+            Mead3Alt.m_item = Mead3D;
+            //Mead3Alt.m_craftingStation = cald;
+            List<Piece.Requirement> reqs3 = new List<Piece.Requirement>();
+            
+            Piece.Requirement item4 = new Piece.Requirement
+            {
+                m_amount = 1,
+                m_recover = true,
+                m_resItem = __instance.GetItemPrefab("mmo_orb6").GetComponent<ItemDrop>(),
+            };
+            reqs3.Add(item1);
+            reqs3.Add(item4);
+
+            Mead3Alt.m_resources = reqs3.ToArray();
+            __instance.m_recipes.Add(Mead3Alt);
+           
+        }
+    }
+    
+    
+
     private void Start()
     {
         DataMonsters.Init();
@@ -435,6 +644,18 @@ public partial class EpicMMOSystem : BaseUnityPlugin
                 MyUI.eBarImage.color = tempC;
             else
                 MyUI.eBarImage.color = tempC * 2;
+        }
+
+        if (ObjectDB.m_instance != null)
+        {
+            var orb = ObjectDB.m_instance.GetStatusEffect("MMO_XP");
+            orb.m_ttl = OrbSEtime.Value;
+            var xpP1 = ObjectDB.m_instance.GetStatusEffect("Potion_MMO_Greater");
+            xpP1.m_ttl = PotionSEtime.Value;
+            var xpP2 = ObjectDB.m_instance.GetStatusEffect("Potion_MMO_Medium");
+            xpP2.m_ttl = PotionSEtime.Value;
+            var xpP3 = ObjectDB.m_instance.GetStatusEffect("Potion_MMO_Minor");
+            xpP3.m_ttl = PotionSEtime.Value;
         }
 
         //MyUI.hpImage.color = ColorUtil.GetColorFromHex(HpColor.Value); // maybe  destoryed and color is not beingupdate on static element?
