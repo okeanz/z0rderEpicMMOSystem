@@ -536,6 +536,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         Config.Save();
     }
 
+
     [HarmonyPatch(typeof(ZNetScene), nameof(ZNetScene.Awake))]
     private static class ZRouteAwake
     {
