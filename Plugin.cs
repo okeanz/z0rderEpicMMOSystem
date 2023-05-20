@@ -191,6 +191,8 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     public static ConfigEntry<float> XPforGreaterPotion;
     public static ConfigEntry<int> OrbSEtime;
     public static ConfigEntry<int> PotionSEtime;
+    public static ConfigEntry<float> OrbDropChance;
+    public static ConfigEntry<float> OrbDropChancefromBoss;
 
 
     //internal static Localization english = null!;
@@ -322,8 +324,11 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         XPforMinorPotion = config(OrbandPotion, "Minor Potion", 1.3f, "XP Multiplier for XP Potion Minor");
         XPforMediumPotion = config(OrbandPotion, "Medium Potion", 1.6f, "XP Multiplier for XP Potion Medium");
         XPforGreaterPotion = config(OrbandPotion, "Greater Potion", 2.0f, "XP Multiplier for XP Potion Greater");
-        OrbSEtime = config(OrbandPotion, "Orb SE time", 10, "Orb Consumption SE Icon lasts for default 10 seconds");
+        OrbSEtime = config(OrbandPotion, "Orb SE time", 10, "Orb Consumption SE Icon lasts for default 10 seconds - dont set to 0");
         PotionSEtime = config(OrbandPotion, "Potion SE time", 600, "Potion SE timer last for default of 10 minutes");
+        OrbDropChance = config(OrbandPotion, "Orb Drop Chance", 1f, "Chance for Magic Orb to drop from a monster - default 1%");
+        OrbDropChancefromBoss = config(OrbandPotion, "Ord Drop Boss", 100f, "Drop Chance for Orbs to drop from a boss - default 100%");
+
 
 
         _ = ConfigSync.AddLockingConfigEntry(_serverConfigLocked);
@@ -356,25 +361,15 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         DrinkGreater.Name.English("XP Potion Greater");
         DrinkGreater.Description.English("While active, this potion grants you 100% increase to the XP gained");
 
-        Item Orb1 = new("mmo_xp", "mmo_orb1", "asset");
-        Orb1.ToggleConfigurationVisibility(Configurability.Drop);
-        Item Orb2 = new("mmo_xp", "mmo_orb2", "asset");
-        Orb2.ToggleConfigurationVisibility(Configurability.Drop);
-        Item Orb3 = new("mmo_xp", "mmo_orb3", "asset");
-        Orb3.ToggleConfigurationVisibility(Configurability.Drop);
-        Item Orb4 = new("mmo_xp", "mmo_orb4", "asset");
-        Orb4.ToggleConfigurationVisibility(Configurability.Drop);
-        Item Orb5 = new("mmo_xp", "mmo_orb5", "asset");
-        Orb5.ToggleConfigurationVisibility(Configurability.Drop);
-        Item Orb6 = new("mmo_xp", "mmo_orb6", "asset");
-        Orb6.ToggleConfigurationVisibility(Configurability.Drop);
+
+        DataMonsters.InitItems(); // call for obs and add configs
 
         Item Mead1 = new("mmo_xp", "mmo_mead_minor", "asset");
-        Mead1.ToggleConfigurationVisibility(Configurability.Recipe);
+        Mead1.ToggleConfigurationVisibility(Configurability.Disabled);
         Item Mead2 = new("mmo_xp", "mmo_mead_med", "asset");
-        Mead2.ToggleConfigurationVisibility(Configurability.Recipe);
+        Mead2.ToggleConfigurationVisibility(Configurability.Disabled);
         Item Mead3 = new("mmo_xp", "mmo_mead_greater", "asset");
-        Mead3.ToggleConfigurationVisibility (Configurability.Recipe);
+        Mead3.ToggleConfigurationVisibility (Configurability.Disabled);
 
         Item Chunks = new("mmo_xp", "Mob_chunks", "asset");
 
@@ -416,10 +411,11 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         Ferm.Name.English("Magic Fermenter");
         Ferm.Category.Add(BuildPieceCategory.Crafting);
         Ferm.Crafting.Set(PieceManager.CraftingTable.Forge);
-        Ferm.Snapshot();
+        //Ferm.Snapshot();
         Ferm.RequiredItems.Add("FineWood", 30, true);
         Ferm.RequiredItems.Add("Bronze", 5, true);
         Ferm.RequiredItems.Add("Coins",200,true);
+        
 
 
         Item ResetTrophy = new("epicmmoitems", "ResetTrophy", "asset");

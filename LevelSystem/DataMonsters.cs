@@ -19,6 +19,8 @@ using Random = UnityEngine.Random;
 //using Text = UnityEngine.UI.Text;
 using TMPro;
 using UnityEngine.UI;
+using ItemManager;
+using UnityEngine.XR;
 
 namespace EpicMMOSystem;
 
@@ -28,6 +30,59 @@ public static class DataMonsters
     private static Dictionary<string, Monster> dictionary = new();
     private static string MonsterDB = "";
     public static List<string> MonsterDBL;
+    private static readonly Dictionary<Heightmap.Biome, GameObject> OrbsByBiomes = new(10);
+    public static readonly Dictionary<GameObject, int> MagicOrbDictionary = new Dictionary<GameObject, int>(10);// thx KG
+
+
+    public static void InitItems()
+    {// Visit  https://github.com/Wacky-Mole/MagicHeim/blob/master/MagicTomes.cs for more details
+
+        Item Orb1 = new("mmo_xp", "mmo_orb1", "asset");
+        Orb1.ToggleConfigurationVisibility(Configurability.Disabled);
+        Item Orb2 = new("mmo_xp", "mmo_orb2", "asset");
+        Orb2.ToggleConfigurationVisibility(Configurability.Disabled);
+        Item Orb3 = new("mmo_xp", "mmo_orb3", "asset");
+        Orb3.ToggleConfigurationVisibility(Configurability.Disabled);
+        Item Orb4 = new("mmo_xp", "mmo_orb4", "asset");
+        Orb4.ToggleConfigurationVisibility(Configurability.Disabled);
+        Item Orb5 = new("mmo_xp", "mmo_orb5", "asset");
+        Orb5.ToggleConfigurationVisibility(Configurability.Disabled);
+        Item Orb6 = new("mmo_xp", "mmo_orb6", "asset");
+        Orb6.ToggleConfigurationVisibility(Configurability.Disabled);
+
+        MagicOrbDictionary.Add(Orb1.Prefab, EpicMMOSystem.XPforOrb1.Value);
+        MagicOrbDictionary.Add(Orb2.Prefab, EpicMMOSystem.XPforOrb2.Value);
+        MagicOrbDictionary.Add(Orb3.Prefab, EpicMMOSystem.XPforOrb3.Value);
+        MagicOrbDictionary.Add(Orb4.Prefab, EpicMMOSystem.XPforOrb4.Value);
+        MagicOrbDictionary.Add(Orb5.Prefab, EpicMMOSystem.XPforOrb5.Value);
+        MagicOrbDictionary.Add(Orb6.Prefab, EpicMMOSystem.XPforOrb6.Value);
+        
+
+
+        OrbsByBiomes.Add(Heightmap.Biome.Meadows, Orb1.Prefab);
+        OrbsByBiomes.Add(Heightmap.Biome.BlackForest, Orb2.Prefab);
+        OrbsByBiomes.Add(Heightmap.Biome.Swamp, Orb3.Prefab);
+        OrbsByBiomes.Add(Heightmap.Biome.Mountain, Orb4.Prefab);
+        OrbsByBiomes.Add(Heightmap.Biome.Plains, Orb5.Prefab);
+        OrbsByBiomes.Add(Heightmap.Biome.DeepNorth, Orb6.Prefab);
+        OrbsByBiomes.Add(Heightmap.Biome.AshLands, Orb6.Prefab);
+        OrbsByBiomes.Add(Heightmap.Biome.Ocean, Orb3.Prefab);
+        OrbsByBiomes.Add(Heightmap.Biome.None, Orb2.Prefab);
+    }
+
+
+    [HarmonyPatch(typeof(ItemDrop.ItemData), nameof(ItemDrop.ItemData.GetTooltip), typeof(ItemDrop.ItemData),typeof(int),typeof(bool))]
+    public class GetTooltipPatch
+    {
+        public static void Postfix(ItemDrop.ItemData item, bool crafting, ref string __result)
+        {
+            if (crafting || item == null || !item.m_dropPrefab) return;
+            if (MagicOrbDictionary.TryGetValue(item.m_dropPrefab, out var expGain))
+            {
+                __result = __result + $"Right Mouse Button click to get <color=green>{expGain}</color> EXP";
+            }
+        }
+    }
 
     public static bool contains(string name)
     {
@@ -366,14 +421,42 @@ public static class DataMonsters
         }
     }
 
+
+
     [HarmonyPatch(typeof(CharacterDrop), nameof(CharacterDrop.GenerateDropList))]
     public static class MonsterDropGenerate
     {
         [HarmonyPriority(1)] // maybe stop epic loot? Last is 0, so 1 will be almost last for any other mod
 
+        static void DropItem(GameObject prefab, Vector3 centerPos, float dropArea)  // Thx KG
+        {
+            Quaternion rotation = Quaternion.Euler(0f, (float)UnityEngine.Random.Range(0, 360), 0f);
+            Vector3 b = UnityEngine.Random.insideUnitSphere * dropArea;
+            GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(prefab, centerPos + b, rotation);
+            Rigidbody component = gameObject.GetComponent<Rigidbody>();
+            if (component)
+            {
+                Vector3 insideUnitSphere = UnityEngine.Random.insideUnitSphere;
+                if (insideUnitSphere.y < 0f)
+                {
+                    insideUnitSphere.y = -insideUnitSphere.y;
+                }
+
+                component.AddForce(insideUnitSphere * 5f, ForceMode.VelocityChange);
+            }
+        }
+
         public static void Postfix(CharacterDrop __instance, ref List<KeyValuePair<GameObject, int>> __result)
         {
-            if (__instance.m_character.IsTamed()) return;
+            if (__instance.m_character.IsTamed() ) return;
+            Heightmap.Biome biome = EnvMan.instance.m_currentBiome;
+
+            float rand = Random.value;
+            var dropChance = __instance.m_character.IsBoss() ? EpicMMOSystem.OrbDropChancefromBoss.Value : EpicMMOSystem.OrbDropChance.Value;
+            var isBoss = __instance.m_character.IsBoss(); // could remove extra code
+
+
+
             if (EpicMMOSystem.enabledLevelControl.Value && (EpicMMOSystem.removeDropMax.Value || EpicMMOSystem.removeDropMin.Value || EpicMMOSystem.removeBossDropMax.Value || EpicMMOSystem.removeBossDropMin.Value || EpicMMOSystem.removeAllDropsFromNonPlayerKills.Value))
             {
                 var playerLevel = __instance.m_character.m_nview.GetZDO().GetInt("epic playerLevel");
@@ -388,37 +471,57 @@ public static class DataMonsters
                         }
                     }
                     playerLevel = 0;
-                    
                 }
-                if (playerLevel == 0)
-                {                  
-                    return;
-                }
-                if (!contains(__instance.m_character.gameObject.name)) return;
 
-                var Regmob = true;
-                if (EpicMMOSystem.extraDebug.Value) 
-                    EpicMMOSystem.MLLogger.LogInfo("Player level " +playerLevel);
-                if (playerLevel > 0) // postive so boss
-                {
-                    Regmob = false;
-                }else // reg mobs
-                {
-                    Regmob = true;
-                    playerLevel = -playerLevel;
-                }
-                int maxLevelExp = playerLevel + EpicMMOSystem.maxLevelExp.Value;
-                int minLevelExp = playerLevel - EpicMMOSystem.minLevelExp.Value;
-                int monsterLevel = getLevel(__instance.m_character.gameObject.name) + __instance.m_character.m_level - 1; // interesting that it's using m_char as well
-                if ((monsterLevel > maxLevelExp) && (EpicMMOSystem.removeBossDropMax.Value && !Regmob || EpicMMOSystem.removeDropMax.Value && Regmob))
-                {
-                    __result = new();
-                }
-                if ((monsterLevel < minLevelExp) && (EpicMMOSystem.removeBossDropMin.Value && !Regmob || EpicMMOSystem.removeDropMin.Value && Regmob))
-                {
-                    __result = new();
+                if (!contains(__instance.m_character.gameObject.name)) return;
+                if (playerLevel != 0)
+                {                
+                    // could just use isBoss above
+                    var Regmob = true;
+                    if (EpicMMOSystem.extraDebug.Value)
+                        EpicMMOSystem.MLLogger.LogInfo("Player level " + playerLevel);
+                    if (playerLevel > 0) // postive so boss
+                    {
+                        Regmob = false;
+                    }
+                    else // reg mobs
+                    {
+                        Regmob = true;
+                        playerLevel = -playerLevel;
+                    }
+
+                    int maxLevelExp = playerLevel + EpicMMOSystem.maxLevelExp.Value;
+                    int minLevelExp = playerLevel - EpicMMOSystem.minLevelExp.Value;
+                    int monsterLevel = getLevel(__instance.m_character.gameObject.name) + __instance.m_character.m_level - 1; // interesting that it's using m_char as well
+                    if ((monsterLevel > maxLevelExp) && (EpicMMOSystem.removeBossDropMax.Value && !Regmob || EpicMMOSystem.removeDropMax.Value && Regmob))
+                    {
+                        __result = new();
+                        return;
+                    }
+                    if ((monsterLevel < minLevelExp) && (EpicMMOSystem.removeBossDropMin.Value && !Regmob || EpicMMOSystem.removeDropMin.Value && Regmob))
+                    {
+                        __result = new();
+                        return;
+                    }
                 }
             }
+           // EpicMMOSystem.MLLogger.LogInfo("Hello GenList 4");
+            // clear to add Magic orbs now
+            if (OrbsByBiomes.TryGetValue(biome, out var orb) && rand <= dropChance / 100f)
+            {
+                if (isBoss)
+                {
+                    for (int i = 0; i < Random.Range(1, 4); i++) // random amount 1-4
+                    {
+                        DropItem(orb, __instance.transform.position + Vector3.up * 0.75f, 0.5f);
+                    }
+                }
+                else
+                {
+                    DropItem(orb, __instance.transform.position + Vector3.up * 0.75f, 0.5f);
+                }
+            }
+
         }
     }
 }

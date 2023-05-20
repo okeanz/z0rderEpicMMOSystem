@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using BepInEx.Configuration;
 using Groups;
 using HarmonyLib;
+using ItemManager;
 using UnityEngine;
 //using UnityEngine.UIElements;
 
@@ -12,7 +14,9 @@ namespace EpicMMOSystem;
 public static class MonsterDeath_Path
 {
     private static readonly Dictionary<Character, long> CharacterLastDamageList = new();
-    
+
+
+
     [HarmonyPatch(typeof(Game), nameof(Game.Start))]
     public static class RegisterRpc
     {
@@ -23,6 +27,7 @@ public static class MonsterDeath_Path
             ZRoutedRpc.instance.Register($"{EpicMMOSystem.ModName} AddGroupExp", new Action<long, int, Vector3, int>(RPC_AddGroupExp));
         }
     }
+
 
     public static void RPC_AddGroupExp(long sender, int exp, Vector3 position, int monsterLevel)
     {
