@@ -199,9 +199,7 @@ public class Localizationold
     {
         _dictionary.Add("$attributes", "Attributes");
         _dictionary.Add("$parameter_strength", "Strength");
-        _dictionary.Add("$parameter_agility", "Agility");
         _dictionary.Add("$parameter_intellect", "Intellect");
-        _dictionary.Add("$parameter_body", "Endurance");
         _dictionary.Add("$free_points", "Available points");
         _dictionary.Add("$level", "Level");
         _dictionary.Add("$lvl", "Lvl.");
@@ -230,14 +228,19 @@ public class Localizationold
         _dictionary.Add("$regen_eitr", "Eitr regeneration");
         _dictionary.Add("$stamina_reg", "Stamina regeneration");
         _dictionary.Add("$add_eitr", "Eitr Increase");
-        // new Params
-        _dictionary.Add("$specialother", "Special");//header
+        // new/changed Params 1.7.0
+        _dictionary.Add("$parameter_agility", "Dexterity");
+        _dictionary.Add("$parameter_body", "Endurance");
+        _dictionary.Add("$parameter_vigour", "Vigour");
+        _dictionary.Add("$parameter_special", "Specializing");
+        _dictionary.Add("$specialother", "Special");//divheader
         _dictionary.Add("$speed_attack", "Attack speed");
         _dictionary.Add("$attack_stamina", "Attack stamina consumption");
         _dictionary.Add("$crtcDmgMulti", "Crit Damage Multiplier");
-        _dictionary.Add("$mining_speed", "Mining Speed increase");
+        _dictionary.Add("$mining_speed", "Mining Damage increase");
         _dictionary.Add("$piece_health", "Piece Health increase");
-        _dictionary.Add("$tree_cutting", "Tree Cutting increase");
+        _dictionary.Add("$tree_cutting", "Tree Damage increase");
+        _dictionary.Add("$crit_chance", "Critical Chance increase");
 
         //Friends list
         _dictionary.Add("$notify", "<color=#00E6FF>Alert</color>");

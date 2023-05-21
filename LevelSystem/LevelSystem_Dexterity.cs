@@ -27,18 +27,24 @@ public partial class LevelSystem
 
 
 
-    // [HarmonyPatch(typeof(CharacterAnimEvent), "FixedUpdate")]
-    // private static class CharacterAnimEvent_Awake_Patch
-    // {
-    //     private static void Prefix(CharacterAnimEvent __instance)
-    //     {
-    //         //Криво работает с классами берса и лучника, ждем апи =_=. А еще ванпачмен
-    //         if (Player.m_localPlayer != __instance.m_character) return;
-    //         if (!__instance.m_character.InAttack()) return;
-    //         var speed = Instance.getAddSpeedAttack() / 100 + 1;
-    //         __instance.m_animator.speed = speed;
-    //     }
-    // }
+     [HarmonyPatch(typeof(CharacterAnimEvent), "FixedUpdate")]
+     private static class CharacterAnimEvent_Awake_Patch
+     {
+         private static void Prefix(CharacterAnimEvent __instance)
+         {
+             //Bows warning, can be OP easy regardless
+             if (Player.m_localPlayer != __instance.m_character) return;
+             if (!__instance.m_character.InAttack()) return;
+
+            Player localPlayer = Player.m_localPlayer;
+            GameObject val = localPlayer.GetCurrentWeapon()?.m_dropPrefab;
+            var skilltype = localPlayer.GetCurrentWeapon().m_shared.m_skillType;
+            //if (skilltype == Skills.SkillType.Bows) return; // no bows
+
+            var speed = Instance.getAddAttackSpeed() / 100 + 1;
+             __instance.m_animator.speed = speed;
+         }
+    }
 
 
     [HarmonyPatch(typeof(Attack), nameof(Attack.GetAttackStamina))]

@@ -15,3 +15,26 @@ public static class PlayerFVX
         vfx.localScale = new Vector3(0.01352632f, 0.01352632f, 0.01352632f);
     }
 }
+
+public class CritDmgVFX
+{
+
+    public void CriticalVFX(Vector3 position, float damage)
+    {
+        /*
+        if (EpicMMOSystem.criticalHitVFX.get_Value())
+        {
+            if (EpicMMOSystem.criticalHitShake.get_Value())
+            {
+                GameCamera.instance.AddShake(Player.m_localPlayer.transform.position, 10f, EpicMMOSystem.criticalHitShakeIntensity.get_Value(), continous: false);
+            }
+            Vector3 normalized = (GameCamera.instance.transform.position - position).normalized;
+            Vector3 position2 = position + Vector3.up * critTextOffsetY + normalized * critTextOffsetTowardsCam;
+            GameObject gameObject = UnityEngine.Object.Instantiate(criticalHitText, position2, Quaternion.identity);
+            gameObject.GetComponent<CritTextAnim>().SetText(damage, 1);
+            GameObject obj = UnityEngine.Object.Instantiate(criticalHitVFX, position, Quaternion.identity);
+            UnityEngine.Object.Destroy(obj, 4f);
+        }
+        */
+    }
+}

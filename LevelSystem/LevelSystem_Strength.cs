@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 using HarmonyLib;
+using UnityEngine;
 
 namespace EpicMMOSystem;
 
@@ -33,10 +34,17 @@ public partial class LevelSystem
     {
         var parameter = getParameter(Parameter.Strength);
         var multiplayer = EpicMMOSystem.critDmg.Value;
-        return parameter * multiplayer;
+        return (float)parameter * multiplayer + EpicMMOSystem.CriticalDefaultDamage.Value;
 
     }
 
+    public float getAddCriticalChance() // this in in special field, but its nice to see. 
+    {
+        var parameter = getParameter(Parameter.Special);
+        var multiplayer = EpicMMOSystem.critChance.Value ;
+        return (parameter * multiplayer) + EpicMMOSystem.CriticalStartChance.Value;
+
+    }
 
 
     [HarmonyPatch(typeof(ItemDrop.ItemData), nameof(ItemDrop.ItemData.GetDamage), typeof(int))]
@@ -93,6 +101,41 @@ public partial class LevelSystem
             }
         }
     }
+
+
+
+        [HarmonyPatch(typeof(Character), nameof(Character.ApplyDamage))] // Crit Dmg
+        public class AddCritDmg
+        {
+            static void Prefix(Character __instance, ref HitData hit)
+            {
+            if (__instance != null && hit.HaveAttacker() && __instance.m_faction != 0 && hit.GetAttacker().m_faction == Character.Faction.Players)
+            {
+                float num = UnityEngine.Random.Range(0f, 100f);
+                //EpicMMOSystem.MLLogger.LogInfo("RandChance Crit " +num + " needed "+ Instance.getAddCriticalChance());
+                if (num < Instance.getAddCriticalChance())
+                {
+                    float num2 = 1f + (Instance.getAddCriticalDmg() / 100f);
+                    hit.m_damage.m_blunt *= num2;
+                    hit.m_damage.m_slash *= num2;
+                    hit.m_damage.m_pierce *= num2;
+                    hit.m_damage.m_chop *= num2;
+                    hit.m_damage.m_pickaxe *= num2;
+                    hit.m_damage.m_fire *= num2;
+                    hit.m_damage.m_frost *= num2;
+                    hit.m_damage.m_lightning *= num2;
+                    hit.m_damage.m_poison *= num2;
+                    hit.m_damage.m_spirit *= num2;
+                    CritDmgVFX vfx = new CritDmgVFX();
+                    vfx.CriticalVFX(hit.m_point, hit.GetTotalDamage());
+                    EpicMMOSystem.MLLogger.LogWarning("You got a Critical Hit");
+                }
+            }
+        }
+    }
+
+
+
 
 
 }

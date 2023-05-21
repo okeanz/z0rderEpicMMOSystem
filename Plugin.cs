@@ -124,6 +124,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     public static ConfigEntry<float> magicArmor;
 
     //LevelSystem arg property <Specializing>
+    public static ConfigEntry<float> critChance;
     public static ConfigEntry<float> miningSpeed;
     public static ConfigEntry<float> constructionPieceHealth;
     public static ConfigEntry<float> treeCuttingSpeed;
@@ -189,6 +190,9 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     //Optional
     public static ConfigEntry<float> addDefaultHealth;
     public static ConfigEntry<float> addDefaultWeight;
+    public static ConfigEntry<float> CriticalStartChance;
+    public static ConfigEntry <float> CriticalDefaultDamage;
+    public static ConfigEntry<float> addDefaultEitr;
 
     // Orb and Potions
     public static ConfigEntry<int> XPforOrb1;
@@ -248,19 +252,19 @@ public partial class EpicMMOSystem : BaseUnityPlugin
 
 
         #region ParameterCofig
-        string levelSystemStrngth = "1.LevelSystem Strength--";
+        string levelSystemStrngth = "1.LevelSystem Strength-----";
         physicDamage = config(levelSystemStrngth, "PhysicDamage", 0.20f, "Damage multiplier per point.");
         addWeight = config(levelSystemStrngth, "AddWeight", 2f, "Adds carry weight per point. ");
         staminaBlock = config(levelSystemStrngth, "StaminaBlock", 0.2f, "Decrease stamina consumption per unit per point.");
-        critDmg = config(levelSystemStrngth, "CriticalDmg", 0.2f, "Amount of Critical Dmg done per point"); // look at
+        critDmg = config(levelSystemStrngth, "CriticalDmg", 1f, "Amount of Critical Dmg done per point"); // check
 
         string levelSystemAgility = "1.LevelSystem Dexterity---";
-        attackSpeed = config(levelSystemAgility, "AttackSpeed", 0.2f, "Swing your blade faster with every point - OP warning-");
+        attackSpeed = config(levelSystemAgility, "AttackSpeed", 0.2f, "Swing your blade faster with every point - OP warning-");  // skip bows
         attackStamina = config(levelSystemAgility, "StaminaAttack", 0.1f, "Reduces attack stamina consumption. ");
         staminaReduction = config(levelSystemAgility, "StaminaReduction", 0.15f, "Decrease stamina consumption for running, jumping for one point.");
         
 
-        string levelSystemIntellect = "1.LevelSystem Intellect-";
+        string levelSystemIntellect = "1.LevelSystem Intellect-----";
         magicDamage = config(levelSystemIntellect, "MagicAttack", 0.20f, "Increase magic attack per point.");      
         magicEitrRegen = config(levelSystemIntellect, "MagicEitrReg", 0.3f, "Increase magical Eitr Regeneration per point.");
         addEitr = config(levelSystemIntellect, "AddEitr", 0.3f, "Eitr Increase per point ONLY when player has above 1 base Eitr");
@@ -276,9 +280,10 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         magicArmor = config(levelSystemVigour, "MagicArmor", 0.1f, "Increase magical protection per point. ");
 
         string levelSystemSpecializing = "1.LevelSystem Specializing------";
+        critChance = config(levelSystemSpecializing, "Critical Chance", 0.1f, "Critical Chance, Starts with CriticalStartChance amount(0%), increment per point - default 0.1% ");
         miningSpeed = config(levelSystemSpecializing, "MiningSpeed", 1f, "Mining Dmg Multiplier per point"); //check
-        constructionPieceHealth = config(levelSystemSpecializing, "PieceHealth", 10f, "Increase max health of new pieces built per point"); // check
-        treeCuttingSpeed = config(levelSystemSpecializing, "TreeCuttingSpeed", 0.15f, "Increase tree cutting speed per point.");
+        constructionPieceHealth = config(levelSystemSpecializing, "PieceHealth", 5f, "Increase max health of new pieces built per point"); // check
+        treeCuttingSpeed = config(levelSystemSpecializing, "TreeCuttingSpeed", 1f, "Increase tree cutting speed per point.");
 
         #endregion
 
@@ -335,6 +340,9 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         string optionalEffect = "5.Optional perk---------";
         addDefaultHealth = config(optionalEffect, "AddDefaultHealth", 0f, "Add health by default");
         addDefaultWeight = config(optionalEffect, "AddDefaultWeight", 0f, "Add weight by default");
+        CriticalStartChance = config(optionalEffect, "CriticalStartChance", 0f, "Add Critical Chance by default");
+        CriticalDefaultDamage = config(optionalEffect, "DefaultCriticalDamage", 30f, "Add Critical Damage by default");
+        addDefaultEitr =config(optionalEffect, "addDefaultEitr", 0f, "Add Eitr by default");
 
         string OrbandPotion = "6.Orbs and Potions-------";
         XPforOrb1 = config(OrbandPotion, "XP for Orb 1", 100, "Consuming Orb grants how much exp?");
