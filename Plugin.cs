@@ -33,7 +33,7 @@ namespace EpicMMOSystem;
 public partial class EpicMMOSystem : BaseUnityPlugin
 {
     internal const string ModName = "EpicMMOSystem";
-    internal const string ModVersion = "1.6.7";
+    internal const string ModVersion = "1.7.0";
     internal const string Author = "WackyMole";
     private const string ModGUID = Author + "." + ModName;
     private static string ConfigFileName = ModGUID + ".cfg";
@@ -68,6 +68,8 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     internal static ItemDrop Mead2D = null;
     internal static ItemDrop Mead3D = null;
 
+    internal static int numofCats = 6;
+
 
     public static Localizationold localizationold;
     public static ConfigEntry<string> language;
@@ -98,24 +100,34 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     //LevelSystem arg property <Strength>
     public static ConfigEntry<float> physicDamage;
     public static ConfigEntry<float> addWeight;
-    public static ConfigEntry<float> staminaRegen;
+    public static ConfigEntry<float> staminaBlock;
+    public static ConfigEntry<float> critDmg;
 
-    //LevelSystem arg property <Agility>
-    public static ConfigEntry<float> speedAttack;
+    //LevelSystem arg property <Dexterity>
+    public static ConfigEntry<float> attackSpeed;
+    public static ConfigEntry<float> attackStamina;
     public static ConfigEntry<float> staminaReduction;
-    public static ConfigEntry<float> addStamina;
-    public static ConfigEntry<float> addEitr;
 
     //LevelSystem arg property <Intellect>
+    public static ConfigEntry<float> addEitr;
     public static ConfigEntry<float> magicDamage;
-    public static ConfigEntry<float> magicArmor;
-    public static ConfigEntry<float> MagicEitrRegen;
+    public static ConfigEntry<float> magicEitrRegen;
 
-    //LevelSystem arg property <Body>
-    public static ConfigEntry<float> addHp;
-    public static ConfigEntry<float> staminaBlock;
+    //LevelSystem arg property <Endurance>
+    public static ConfigEntry<float> addStamina;
+    public static ConfigEntry<float> staminaRegen;
     public static ConfigEntry<float> physicArmor;
+
+    //LevelSystem arg property <Vigour>
+    public static ConfigEntry<float> addHp;
     public static ConfigEntry<float> regenHp;
+    public static ConfigEntry<float> magicArmor;
+
+    //LevelSystem arg property <Specializing>
+    public static ConfigEntry<float> miningSpeed;
+    public static ConfigEntry<float> constructionPieceHealth;
+    public static ConfigEntry<float> treeCuttingSpeed;
+
     #endregion
 
 
@@ -237,27 +249,37 @@ public partial class EpicMMOSystem : BaseUnityPlugin
 
         #region ParameterCofig
         string levelSystemStrngth = "1.LevelSystem Strength--";
-        physicDamage = config(levelSystemStrngth, "PhysicDamage", 0.20f, "Damage multiplier per point. Умножитель урона за один поинт");
-        addWeight = config(levelSystemStrngth, "AddWeight", 2f, "Adds carry weight per point. Добавляет переносимый вес за один поинт");
-        staminaRegen = config(levelSystemStrngth, "StaminaReg", 0.4f, "Increase stamina regeneration per point.");
+        physicDamage = config(levelSystemStrngth, "PhysicDamage", 0.20f, "Damage multiplier per point.");
+        addWeight = config(levelSystemStrngth, "AddWeight", 2f, "Adds carry weight per point. ");
+        staminaBlock = config(levelSystemStrngth, "StaminaBlock", 0.2f, "Decrease stamina consumption per unit per point.");
+        critDmg = config(levelSystemStrngth, "CriticalDmg", 0.2f, "Amount of Critical Dmg done per point"); // look at
 
-        string levelSystemAgility = "1.LevelSystem Agility---";
-        speedAttack = config(levelSystemAgility, "StaminaAttack", 0.1f, "Reduces attack stamina consumption. Уменьшает потребление стамины на атаку");
-        staminaReduction = config(levelSystemAgility, "StaminaReduction", 0.15f, "Decrease stamina consumption for running, jumping for one point. Уменьшение расхода выносливости на бег, прыжок за один поинт");
-        addStamina = config(levelSystemAgility, "AddStamina", 1f, "One Point Stamina Increase. Увеличение  выносливости за один поинт");
+        string levelSystemAgility = "1.LevelSystem Dexterity---";
+        attackSpeed = config(levelSystemAgility, "AttackSpeed", 0.2f, "Swing your blade faster with every point - OP warning-");
+        attackStamina = config(levelSystemAgility, "StaminaAttack", 0.1f, "Reduces attack stamina consumption. ");
+        staminaReduction = config(levelSystemAgility, "StaminaReduction", 0.15f, "Decrease stamina consumption for running, jumping for one point.");
         
 
         string levelSystemIntellect = "1.LevelSystem Intellect-";
-        magicDamage = config(levelSystemIntellect, "MagicAttack", 0.20f, "Increase magic attack per point. Увеличение магической атаки за один поинт");
-        magicArmor = config(levelSystemIntellect, "MagicArmor", 0.1f, "Increase magical protection per point. Увеличение магической защиты за один поинт");
-        MagicEitrRegen = config(levelSystemIntellect, "MagicEitrReg", 0.3f, "Increase magical Eitr Regeneration per point. Увеличивает регенерацию магического Эйтра на единицу.");
+        magicDamage = config(levelSystemIntellect, "MagicAttack", 0.20f, "Increase magic attack per point.");      
+        magicEitrRegen = config(levelSystemIntellect, "MagicEitrReg", 0.3f, "Increase magical Eitr Regeneration per point.");
         addEitr = config(levelSystemIntellect, "AddEitr", 0.3f, "Eitr Increase per point ONLY when player has above 1 base Eitr");
 
-        string levelSystemBody = "1.LevelSystem Body------";
-        addHp = config(levelSystemBody, "AddHp", 1f, "One Point Health Increase. Увеличение здоровья за один поинт");
-        staminaBlock = config(levelSystemBody, "StaminaBlock", 0.2f, "Decrease stamina consumption per unit per point. Уменьшение расхода выносливости на блок за один поинт");
-        physicArmor = config(levelSystemBody, "PhysicArmor", 0.15f, "Increase in physical protection per point. Увеличение физической защиты за один поинт");
-        regenHp = config(levelSystemBody, "RegenHp", 0.1f, "Increase health regeneration per point. Увеличение регенерации здоровья за один поинт");
+        string levelSystemBody = "1.LevelSystem Endurance------";
+        addStamina = config(levelSystemBody, "AddStamina", 1f, "One Point Stamina Increase.");      
+        staminaRegen = config(levelSystemBody, "StaminaReg", 0.4f, "Increase stamina regeneration per point.");
+        physicArmor = config(levelSystemBody, "PhysicArmor", 0.15f, "Increase in physical protection per point.");
+
+        string levelSystemVigour = "1.LevelSystem Vigour------";
+        addHp = config(levelSystemVigour, "AddHp", 1f, "One Point Health Increase. ");
+        regenHp = config(levelSystemVigour, "RegenHp", 0.1f, "Increase health regeneration per point.");
+        magicArmor = config(levelSystemVigour, "MagicArmor", 0.1f, "Increase magical protection per point. ");
+
+        string levelSystemSpecializing = "1.LevelSystem Specializing------";
+        miningSpeed = config(levelSystemSpecializing, "MiningSpeed", 1f, "Mining Dmg Multiplier per point"); //check
+        constructionPieceHealth = config(levelSystemSpecializing, "PieceHealth", 10f, "Increase max health of new pieces built per point"); // check
+        treeCuttingSpeed = config(levelSystemSpecializing, "TreeCuttingSpeed", 0.15f, "Increase tree cutting speed per point.");
+
         #endregion
 
         string creatureLevelControl = "2.Creature level control";

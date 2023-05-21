@@ -320,6 +320,8 @@
     <Compile Include="Data\Monster.cs" />
     <Compile Include="Data\MonsterOld.cs" />
     <Compile Include="Gui\Util.cs" />
+    <Compile Include="LevelSystem\LevelSystem_Specializing.cs" />
+    <Compile Include="LevelSystem\LevelSystem_Vigour.cs" />
     <Compile Include="OtherApi\wackydb_api.cs" />
     <Compile Include="Scripts\Drag.cs" />
     <Compile Include="EpicMMOSystem_API.cs" />
@@ -336,8 +338,8 @@
     <Compile Include="LevelSystem\MonsterDeath_Path.cs" />
     <Compile Include="LevelSystem\PlayerFVX.cs" />
     <Compile Include="LevelSystem\LevelSystem.cs" />
-    <Compile Include="LevelSystem\LevelSystem_Agility.cs" />
-    <Compile Include="LevelSystem\LevelSystem_Body.cs" />
+    <Compile Include="LevelSystem\LevelSystem_Dexterity.cs" />
+    <Compile Include="LevelSystem\LevelSystem_Endurance.cs" />
     <Compile Include="LevelSystem\LevelSystem_Intellect.cs" />
     <Compile Include="LevelSystem\LevelSystem_Strength.cs" />
     <Compile Include="Locallization_old.cs" />

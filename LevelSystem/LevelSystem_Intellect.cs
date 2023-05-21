@@ -11,17 +11,10 @@ public partial class LevelSystem
         return parameter * multiplayer;
     }
     
-    public float getAddMagicArmor()
-    {
-        var parameter = getParameter(Parameter.Intellect);
-        var multiplayer = EpicMMOSystem.magicArmor.Value;
-        return parameter * multiplayer;
-    }
-
     public float getEitrRegen()
     {
         var parameter = getParameter(Parameter.Intellect);
-        var multiplayer = EpicMMOSystem.MagicEitrRegen.Value;
+        var multiplayer = EpicMMOSystem.magicEitrRegen.Value;
         return parameter * multiplayer;
     }
 
@@ -62,26 +55,6 @@ public partial class LevelSystem
             __result.m_lightning *= value;
             __result.m_poison *= value;
             __result.m_spirit *= value;
-        }
-    }
-    
-    [HarmonyPatch(typeof(Character), nameof(Character.RPC_Damage))]
-    public static class RPC_Damage
-    {
-        public static void Prefix(Character __instance, HitData hit)
-        {
-            if (!__instance.IsPlayer()) return;
-            if (hit.GetAttacker() == __instance) return;
-
-            float add = Instance.getAddMagicArmor();
-            var value = 1 - add / 100;
-
-            hit.m_damage.m_fire *= value;
-            hit.m_damage.m_frost *= value;
-            hit.m_damage.m_lightning *= value;
-            hit.m_damage.m_poison *= value;
-            hit.m_damage.m_spirit *= value;
-            //hit.m_damage.m_elemntal?
         }
     }
 

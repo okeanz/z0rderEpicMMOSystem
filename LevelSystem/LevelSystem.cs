@@ -9,9 +9,36 @@ using Random = UnityEngine.Random;
 
 namespace EpicMMOSystem;
 
+/*
+ *  Strength:   
+    • Player Phys Dmg%
+    • Flat Carry Weight
+    • Decreased Block Stamina Consumption Rate%
+    • Critical Damage
+Dexterity:
+    • Player Attack/Usage Speed%
+    • Decreased Attack Stamina Consumption Rate%
+    • Decreased Running/Jumping Stamina Consumption Rate%
+Intelligence:
+    • Player Ele Dmg%
+    • Flat Eitr
+    • Eitr Regen Multi%
+Endurance:
+    • Flat Stamina
+    • Stamina Regen Multi% //or// Health Regen Multi%
+    • Phys Dmg Reduction%
+Vigour: 
+    • Flat Health
+    • Health Regen
+    • Ele Dmg Reduction% 
+Specializing
+    • Mining Speed
+    • Construction piece health?
+    • Tree cutting  
+*/
 public enum Parameter
 {
-    Strength = 0, Agility = 1, Intellect = 2, Body = 3
+    Strength = 0, Agility = 1, Intellect = 2, Body = 3, Vigour = 4 , Special = 5 // Strength, Dexterity, Intelligence, Endurance, Vigour, Specializing
 }
 public partial class LevelSystem
 {
@@ -147,7 +174,7 @@ public partial class LevelSystem
         var level = getLevel();
         var total = level * levelPoint + freePoint;
         int usedUp = 0;
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < EpicMMOSystem.numofCats; i++)
         {
             usedUp += getParameter((Parameter)i);
         }
@@ -198,7 +225,7 @@ public partial class LevelSystem
     
     public void ResetAllParameter()
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < EpicMMOSystem.numofCats; i++)
         {
             setParameter((Parameter)i, 0);
         }
@@ -345,7 +372,7 @@ public partial class LevelSystem
     public int getPriceResetPoints()
     {
         var count = 0;
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < EpicMMOSystem.numofCats; i++)
         {
             count += getParameter((Parameter)i);
         }

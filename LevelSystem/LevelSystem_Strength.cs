@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Reflection.Emit;
 using HarmonyLib;
 
 namespace EpicMMOSystem;
@@ -20,12 +22,22 @@ public partial class LevelSystem
         return parameter * multiplayer;
     }
 
-    public float getStaminaRegen()
+    public float getReducedStaminaBlock()
     {
         var parameter = getParameter(Parameter.Strength);
-        var multiplayer = EpicMMOSystem.staminaRegen.Value;
+        var multiplayer = EpicMMOSystem.staminaBlock.Value;
         return parameter * multiplayer;
     }
+
+    public float getAddCriticalDmg()
+    {
+        var parameter = getParameter(Parameter.Strength);
+        var multiplayer = EpicMMOSystem.critDmg.Value;
+        return parameter * multiplayer;
+
+    }
+
+
 
     [HarmonyPatch(typeof(ItemDrop.ItemData), nameof(ItemDrop.ItemData.GetDamage), typeof(int))]
     public class AddDamageStrength_Path
@@ -55,16 +67,32 @@ public partial class LevelSystem
         }
     }
 
-    [HarmonyPatch(typeof(SEMan), nameof(SEMan.ModifyStaminaRegen))]
-    public static class RegenStamina_Patch
+    [HarmonyPatch(typeof(Humanoid), nameof(Humanoid.BlockAttack))]
+    static class Humanoid_BlockAttack_Patch
     {
-        public static void Postfix(SEMan __instance, ref float staminaMultiplier)
+        private static float ReturnMyValue()
         {
-            if (__instance.m_character.IsPlayer())
+            return 1 - Instance.getReducedStaminaBlock() / 100;
+        }
+
+        [HarmonyTranspiler]
+        private static IEnumerable<CodeInstruction> StaminaBlock(IEnumerable<CodeInstruction> code)
+        {
+
+            var method = AccessTools.DeclaredMethod(typeof(Character), nameof(Character.UseStamina));
+            var MyMethod = AccessTools.DeclaredMethod(typeof(Humanoid_BlockAttack_Patch), nameof(ReturnMyValue));
+            foreach (var instruction in code)
             {
-                float add = Instance.getStaminaRegen();
-                staminaMultiplier += add / 100;
+                if (instruction.opcode == OpCodes.Callvirt && instruction.operand == method)
+                {
+                    yield return new CodeInstruction(OpCodes.Call, MyMethod);
+                    yield return new CodeInstruction(OpCodes.Mul);
+                }
+                yield return instruction;
+
             }
         }
     }
+
+
 }

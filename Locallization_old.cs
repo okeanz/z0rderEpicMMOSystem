@@ -215,8 +215,7 @@ public class Localizationold
         _dictionary.Add("$reset_point_text", "Do you really want to drop all the points for {0} {1}?");
         //Parameter
         _dictionary.Add("$physic_damage", "Physical Damage");
-        _dictionary.Add("$add_weight", "Carry weight");
-        _dictionary.Add("$speed_attack", "Attack stamina consumption");
+        _dictionary.Add("$add_weight", "Carry weight");     
         _dictionary.Add("$reduced_stamina", "Stamina consumption (running, jumping)");
         _dictionary.Add("$magic_damage", "Elemental damage");
         _dictionary.Add("$magic_armor", "Elemental reduced");
@@ -228,10 +227,18 @@ public class Localizationold
         _dictionary.Add("$damage", "Damage");
         _dictionary.Add("$armor", "Armor");
         _dictionary.Add("$survival", "Survival");
-
         _dictionary.Add("$regen_eitr", "Eitr regeneration");
         _dictionary.Add("$stamina_reg", "Stamina regeneration");
         _dictionary.Add("$add_eitr", "Eitr Increase");
+        // new Params
+        _dictionary.Add("$specialother", "Special");//header
+        _dictionary.Add("$speed_attack", "Attack speed");
+        _dictionary.Add("$attack_stamina", "Attack stamina consumption");
+        _dictionary.Add("$crtcDmgMulti", "Crit Damage Multiplier");
+        _dictionary.Add("$mining_speed", "Mining Speed increase");
+        _dictionary.Add("$piece_health", "Piece Health increase");
+        _dictionary.Add("$tree_cutting", "Tree Cutting increase");
+
         //Friends list
         _dictionary.Add("$notify", "<color=#00E6FF>Alert</color>");
         _dictionary.Add("$friends_list", "Friends list");
