@@ -128,7 +128,7 @@ public partial class LevelSystem
                     hit.m_damage.m_spirit *= num2;
                     CritDmgVFX vfx = new CritDmgVFX();
                     vfx.CriticalVFX(hit.m_point, hit.GetTotalDamage());
-                    EpicMMOSystem.MLLogger.LogWarning("You got a Critical Hit");
+                    EpicMMOSystem.MLLogger.LogWarning("You got a Critical Hit with damage of " + hit.GetTotalDamage());
                 }
             }
         }

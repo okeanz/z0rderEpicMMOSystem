@@ -69,6 +69,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     internal static ItemDrop Mead3D = null;
 
     internal static int numofCats = 6;
+    internal static GameObject fx_seeker_crit = null;
 
 
     public static Localizationold localizationold;
@@ -569,6 +570,14 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         private static void Postfix()
         {
             NetisActive = true;
+            GameObject[] all = Resources.FindObjectsOfTypeAll<GameObject>();
+            foreach (GameObject val2 in all)
+            {
+                if (val2.name.Contains("fx_seeker_hurt"))
+                {
+                    fx_seeker_crit = val2;
+                }
+            }
         }
     }
 

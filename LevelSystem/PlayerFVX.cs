@@ -1,6 +1,8 @@
 using System;
 using HarmonyLib;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 namespace EpicMMOSystem;
 
@@ -21,20 +23,30 @@ public class CritDmgVFX
 
     public void CriticalVFX(Vector3 position, float damage)
     {
-        /*
-        if (EpicMMOSystem.criticalHitVFX.get_Value())
+        string text = "Crit "+ Math.Round(damage);
+        float random = UnityEngine.Random.Range(1.2f, 1.6f);
+        float random2 = UnityEngine.Random.Range(1.2f, 1.6f);
+
+        DamageText.WorldTextInstance worldTextInstance = new DamageText.WorldTextInstance
         {
-            if (EpicMMOSystem.criticalHitShake.get_Value())
-            {
-                GameCamera.instance.AddShake(Player.m_localPlayer.transform.position, 10f, EpicMMOSystem.criticalHitShakeIntensity.get_Value(), continous: false);
-            }
-            Vector3 normalized = (GameCamera.instance.transform.position - position).normalized;
-            Vector3 position2 = position + Vector3.up * critTextOffsetY + normalized * critTextOffsetTowardsCam;
-            GameObject gameObject = UnityEngine.Object.Instantiate(criticalHitText, position2, Quaternion.identity);
-            gameObject.GetComponent<CritTextAnim>().SetText(damage, 1);
-            GameObject obj = UnityEngine.Object.Instantiate(criticalHitVFX, position, Quaternion.identity);
-            UnityEngine.Object.Destroy(obj, 4f);
-        }
-        */
+            m_worldPos = position,
+            m_gui = UnityEngine.Object.Instantiate(DamageText.instance.m_worldTextBase, DamageText.instance.transform)
+        };
+
+        worldTextInstance.m_gui.GetComponent<RectTransform>().sizeDelta *= 2;
+        worldTextInstance.m_textField = worldTextInstance.m_gui.GetComponent<Text>();
+        DamageText.instance.m_worldTexts.Add(worldTextInstance);
+        worldTextInstance.m_textField.fontSize = 30;
+        Color tempC = Color.cyan;
+        worldTextInstance.m_textField.color = tempC;
+        worldTextInstance.m_textField.text = text;
+        // worldTextInstance.m_textField.font = new Font().
+        worldTextInstance.m_timer = -1f;
+
+        //var hitfx = GameObject.Find("fx_seeker_hurt");
+        var hitfx = EpicMMOSystem.fx_seeker_crit;
+       GameObject obj = UnityEngine.Object.Instantiate(hitfx, position, Quaternion.identity);
+       UnityEngine.Object.Destroy(obj, 5f);
+
     }
 }

@@ -1,4 +1,5 @@
 using EpicMMOSystem.MonoScripts;
+using HarmonyLib;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -273,4 +274,55 @@ public partial class MyUI
         }
     }
     #endregion
+
+
+    [HarmonyPatch(typeof(InventoryGui), nameof(InventoryGui.Awake))]
+    private static class InventoryGui_Awake_Patch
+    {
+        private static void Postfix(InventoryGui __instance)
+        {
+            foreach (UITooltip uiTooltip in levelSystemPanel.GetComponentsInChildren<UITooltip>(true))
+            {
+                uiTooltip.m_tooltipPrefab = __instance.m_playerGrid.m_elementPrefab.GetComponent<UITooltip>()
+                    .m_tooltipPrefab;
+
+                switch (uiTooltip.m_topic)
+                {
+                    case "Strength":
+                        uiTooltip.m_text = "<size=20>Strength will enhance:</size> \n" +
+                            "<color=yellow> Increase Physical Damage </color> \n" +
+                            "<color=blue> Increase Carry Weight </color> \n" +
+                            "<color=green> Decrease Block Stamina Consumption </color> \n" +
+                            "<color=red> Increase Critical Damage when crit hits </color>"; break;
+                    case "Dexterity":
+                        uiTooltip.m_text = "<size=20>Dexterity will enhance:</size> \n" +
+                            "<color=red> Increase Attack Speed (not bows)</color> \n" +
+                            "<color=yellow> Decreased Attack Stamina Consumption </color> \n" +
+                            "<color=green> Decreased Running/Jumping Stamina Consumption</color> ";  break;
+                    case "Intelect":
+                        uiTooltip.m_text = "<size=20>Intelligence will enhance:</size> \n" +
+                            "<color=green> Increase all Elemental Damage </color>\n" +
+                            "<color=red> Increase base Eitr amount (once you have eitr)</color> \n" +
+                            "<color=red> Increase Eitr Regeneration</color> "; break;
+                    case "Endurance":
+                        uiTooltip.m_text = "<size=20>Endurance will enhance:</size> \n" +
+                            "<color=yellow> Increase Stamina amount</color>\n" +
+                            "<color=yellow> Increase Stamina Regeneration </color> \n" +
+                            "<color=green> Reduce Physical Damage Taken</color> "; break;
+                    case "Vigour":
+                        uiTooltip.m_text = "<size=20>Vigour will enhance:</size> \n" +
+                            "<color=red> Increase HP amount</color>\n" +
+                            "<color=yellow> Health Regeneration </color> \n" +
+                            "<color=green> Reduce Elemental Damage Taken</color> "; break;
+                    case "Special":
+                        uiTooltip.m_text = "<size=20>Special will enhance:</size> \n" +
+                            "<color=red> Increase Critical Attack Chance</color> \n" +
+                            "<color=blue> Increase Mining Damage </color> \n" +
+                            "<color=blue> Increase construction piece's health </color> \n" +
+                            "<color=green> Increase Tree Cutting Damage</color>"; break;
+
+                }
+            }
+        }
+    }
 }

@@ -39,8 +39,15 @@ public partial class LevelSystem
             Player localPlayer = Player.m_localPlayer;
             GameObject val = localPlayer.GetCurrentWeapon()?.m_dropPrefab;
             var skilltype = localPlayer.GetCurrentWeapon().m_shared.m_skillType;
-            //if (skilltype == Skills.SkillType.Bows) return; // no bows
+            //EpicMMOSystem.MLLogger.LogWarning(" normal speed " + __instance.m_animator.speed + " for " + skilltype);
+           if (skilltype == Skills.SkillType.Bows) return; // no bows
 
+           if (skilltype == Skills.SkillType.Unarmed)
+            {
+                var speed2 = Instance.getAddAttackSpeed() / 100 + 2; // unarmed special
+                __instance.m_animator.speed = speed2;
+                return;
+            }
             var speed = Instance.getAddAttackSpeed() / 100 + 1;
              __instance.m_animator.speed = speed;
          }

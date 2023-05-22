@@ -234,7 +234,7 @@ public class Localizationold
         _dictionary.Add("$parameter_vigour", "Vigour");
         _dictionary.Add("$parameter_special", "Specializing");
         _dictionary.Add("$specialother", "Special");//divheader
-        _dictionary.Add("$speed_attack", "Attack speed");
+        _dictionary.Add("$attack_speed", "Attack speed");
         _dictionary.Add("$attack_stamina", "Attack stamina consumption");
         _dictionary.Add("$crtcDmgMulti", "Crit Damage Multiplier");
         _dictionary.Add("$mining_speed", "Mining Damage increase");
