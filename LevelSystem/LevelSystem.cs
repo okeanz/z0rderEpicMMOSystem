@@ -153,6 +153,7 @@ public partial class LevelSystem
         int max = EpicMMOSystem.maxValueAttribute.Value;
         int setValue = Mathf.Clamp(value, 0, max);
         Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_{parameter.ToString()}"] = setValue.ToString();
+       // Player.m_localPlayer.m_customData. maybe later
     }
     
     public int getParameter(Parameter parameter)

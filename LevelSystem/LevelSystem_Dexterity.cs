@@ -1,4 +1,5 @@
 using HarmonyLib;
+using System;
 using UnityEngine;
 namespace EpicMMOSystem;
 
@@ -33,23 +34,33 @@ public partial class LevelSystem
          private static void Prefix(CharacterAnimEvent __instance)
          {
              //Bows warning, can be OP easy regardless
-             if (Player.m_localPlayer != __instance.m_character) return;
-             if (!__instance.m_character.InAttack()) return;
+            if (Player.m_localPlayer != __instance.m_character) return;
+            if (!__instance.m_character.InAttack()) return;
+            if (Instance.getParameter(Parameter.Agility) == 0) return; // nothing there don't do
 
             Player localPlayer = Player.m_localPlayer;
             GameObject val = localPlayer.GetCurrentWeapon()?.m_dropPrefab;
             var skilltype = localPlayer.GetCurrentWeapon().m_shared.m_skillType;
-            //EpicMMOSystem.MLLogger.LogWarning(" normal speed " + __instance.m_animator.speed + " for " + skilltype);
+           // EpicMMOSystem.MLLogger.LogWarning(" normal speed " + __instance.m_animator.speed + " for " + skilltype);
            if (skilltype == Skills.SkillType.Bows) return; // no bows
 
-           if (skilltype == Skills.SkillType.Unarmed)
+            float animatorSpeed = __instance.m_animator.speed;
+            string number = __instance.m_animator.speed.ToString();
+            
+            if (number.IndexOf(".") != -1 && number.Length - number.IndexOf(".") > 2)
             {
-                var speed2 = Instance.getAddAttackSpeed() / 100 + 2; // unarmed special
-                __instance.m_animator.speed = speed2;
+                // if has 2 decimal places
+            }else 
+            { 
+                // Every anaimatinon speed is different but none that I saw go past the first decimal so 1.5 or 0.2 is valid, need to increase relative too their speed
+               // EpicMMOSystem.MLLogger.LogWarning(" adjusting speed ");
+
+                var speed3 = 1.0f;
+                speed3 = (Instance.getAddAttackSpeed() * __instance.m_animator.speed )/ 100 + __instance.m_animator.speed + .000001f; // a lets me know that I already modified the number and not go keep grow it. 
+                __instance.m_animator.speed = speed3;
                 return;
+
             }
-            var speed = Instance.getAddAttackSpeed() / 100 + 1;
-             __instance.m_animator.speed = speed;
          }
     }
 

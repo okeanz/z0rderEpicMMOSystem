@@ -35,7 +35,8 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     internal const string ModName = "EpicMMOSystem";
     internal const string ModVersion = "1.7.0";
     internal const string Author = "WackyMole";
-    private const string ModGUID = Author + "." + ModName;
+    internal const string configV = "_1_7";
+    private const string ModGUID = Author + "." + ModName; //+ configV; changes GUID
     private static string ConfigFileName = ModGUID + ".cfg";
     private static string ConfigFileFullPath = Paths.ConfigPath + Path.DirectorySeparatorChar + ConfigFileName;
     public static bool _isServer => SystemInfo.graphicsDeviceType == GraphicsDeviceType.Null;
@@ -411,7 +412,6 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         Chunks.RequiredItems.Add("TrophyNeck", 4);
         Chunks.RequiredItems.Add("TrophyDeer", 4);
         Chunks.RequiredItems.Add("TrophyFrostTroll", 2);
-        Chunks.RequiredItems.Add("TrophyForestTroll", 2);
         Chunks.RequiredItems.Add("TrophyEikthyr", 2);
         Chunks.RequiredItems.Add("TrophyGreydwarfBrute", 2);
         Chunks.RequiredItems.Add("TrophyGreydwarfShaman", 3);
