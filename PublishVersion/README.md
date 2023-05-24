@@ -144,6 +144,7 @@ This mod should assigns levels to all in-game monsters. Every star added adds +1
 </details>
 
 <details><summary>Reset Skill Points</summary>
+</br> </br>
 
 There are configs for setting the Reset currency, default is Coins. You set the ammount per level.
 
@@ -155,7 +156,7 @@ The mod looks for your reset currency first and then ResetTrophies. Only consume
 
 <details><summary>UI</summary>
 
-![https://wackymole.com/hosts/CenterBar.png](https://wackymole.com/hosts/CenterBar.png)
+![https://wackymole.com/hosts/hoverlarge.png](https://wackymole.com/hosts/hoverlarge.png)
 
 Pretty much all of the UI can be scaled, hidden, dragged and remembers their location.
 
@@ -185,7 +186,6 @@ To make UI elements disappear type "none" in the respective elements color setti
 
 	To enable ONLY EXP bar , enable OldXPBar Bar Only and restart - not dragable in this mode, this is being slowly phased out.  No reason to use. 
 
-	![https://wackymole.com/hosts/hoverlarge.png](https://wackymole.com/hosts/hoverlarge.png)
 
 </details> 
 
