@@ -7,7 +7,7 @@ Support me!
 
 <a href="https://www.buymeacoffee.com/WackyMole" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 36px !important;" ></a>   <a href='https://ko-fi.com/H2H6LL5GA' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
-![https://wackymole.com/hosts/mainimage.png](https://wackymole.com/hosts/mainimage.png)
+![https://wackymole.com/hosts/Attributes_basic.png](https://wackymole.com/hosts/Attributes_basic.png)
 
 Features:
  - On screen XP bar
@@ -112,6 +112,8 @@ This mod should assigns levels to all in-game monsters. Every star added adds +1
 
 <details><summary>Potions and Magic Orbs</summary>
 
+![https://wackymole.com/hosts/SEeffectsMMO.png](https://wackymole.com/hosts/SEeffectsMMO.png)
+
 	6 Magic Orb Levels with Various XP given
 
 	They have by default a 1% chance to drop from any mob and 100% to drop 1-4 from Bosses
@@ -143,11 +145,11 @@ This mod should assigns levels to all in-game monsters. Every star added adds +1
 
 <details><summary>Reset Skill Points</summary>
 
-	There are configs for setting the Reset currency, default is Coins. You set the ammount per level.
+There are configs for setting the Reset currency, default is Coins. You set the ammount per level.
 
-	There is also an Item called ResetTrophy that you can spawn or add to the builtin droplist that will allow any level reset with only 1 ResetTrophy.
+There is also an Item called ResetTrophy that you can spawn or add to the builtin droplist that will allow any level reset with only 1 ResetTrophy.
 
-	The mod looks for your reset currency first and then ResetTrophies. Only consumes 1, so make this a very rare item. 
+The mod looks for your reset currency first and then ResetTrophies. Only consumes 1, so make this a very rare item. 
 
 </details>
 
@@ -183,7 +185,7 @@ To make UI elements disappear type "none" in the respective elements color setti
 
 	To enable ONLY EXP bar , enable OldXPBar Bar Only and restart - not dragable in this mode, this is being slowly phased out.  No reason to use. 
 
-	![https://wackymole.com/hosts/Attributes.png](https://wackymole.com/hosts/Attributes.png)
+	![https://wackymole.com/hosts/hoverlarge.png](https://wackymole.com/hosts/hoverlarge.png)
 
 </details> 
 
@@ -203,7 +205,7 @@ Wacky Git https://github.com/Wacky-Mole/WackyEpicMMOSystem
 
 Original git - https://github.com/Single-sh/EpicMMOSystem
 
-For questions or suggestions please join discord channel: [Odin Plus Team](https://discord.gg/odinplus) or my discsord at [Wolf Den](https://discord.gg/yPj7xjs3Xf)
+For questions or suggestions please join discord channel: [Odin Plus Team](https://discord.gg/odinplus) or my discord at [Wolf Den](https://discord.gg/yPj7xjs3Xf)
 
 Support me at https://www.buymeacoffee.com/WackyMole  or https://ko-fi.com/wackymole
 
