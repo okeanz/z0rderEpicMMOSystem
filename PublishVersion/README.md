@@ -3,9 +3,15 @@ This mod adds an RPG-like system of levels and attribute increases: - Wacky Bran
 
 BIG WACKY UPDATE! - You asked for more categories, Wacky adds 2 MORE! You asked for using trophies to generate XP. Wacky added XP Orbs and Magic Potions!
 
-Support me at https://www.buymeacoffee.com/WackyMole https://ko-fi.com/wackymole
+Support me at https://www.buymeacoffee.com/WackyMole 
 
-<img src="https://wackymole.com/hosts/bmc_qr.png" width="100"/> <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support Me on Ko-fi', '#29abe0', 'H2H6LL5GA');kofiwidget2.draw();</script> 
+https://ko-fi.com/wackymole
+
+<img src="https://wackymole.com/hosts/bmc_qr.png" width="100"/>
+
+<a href="https://www.buymeacoffee.com/WackyMole" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
+<a href='https://ko-fi.com/H2H6LL5GA' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 ![https://wackymole.com/hosts/mainimage.png](https://wackymole.com/hosts/mainimage.png)
 
