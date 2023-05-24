@@ -3,13 +3,9 @@ This mod adds an RPG-like system of levels and attribute increases: - Wacky Bran
 
 BIG WACKY UPDATE! - You asked for more categories, Wacky adds 2 MORE! You asked for using trophies to generate XP. Wacky added XP Orbs and Magic Potions!
 
-Support me at https://www.buymeacoffee.com/WackyMole 
+Support me!
 
-https://ko-fi.com/wackymole
-
-<img src="https://wackymole.com/hosts/bmc_qr.png" width="100"/>
-
-<a href="https://www.buymeacoffee.com/WackyMole" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+<a href="https://www.buymeacoffee.com/WackyMole" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 36px !important;" ></a>
 
 <a href='https://ko-fi.com/H2H6LL5GA' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
@@ -156,6 +152,10 @@ Original git - https://github.com/Single-sh/EpicMMOSystem
 For questions or suggestions please join discord channel: [Odin Plus Team](https://discord.gg/odinplus)
 
 Support me at https://www.buymeacoffee.com/WackyMole 
+
+<a href="https://www.buymeacoffee.com/WackyMole" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
+<a href='https://ko-fi.com/H2H6LL5GA' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 <img src="https://wackymole.com/hosts/bmc_qr.png" width="100"/>
 
