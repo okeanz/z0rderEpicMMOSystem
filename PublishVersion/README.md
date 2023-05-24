@@ -75,7 +75,7 @@ This mod should assigns levels to all in-game monsters. Every star added adds +1
 
 	Below is an image of 1.04 +500 and with FirstLevelExperience disabled, so no 500 added. The difference is a lot. Also 1.08 scaling is added just to show how it gets into the millions pretty quickly. 
 
-	![https://wackymole.com/hosts/epicmmolevelcalcs.png](https://wackymole.com/hosts/epicmmolevelcalcs.png)
+![https://wackymole.com/hosts/epicmmolevelcalcs.png](https://wackymole.com/hosts/epicmmolevelcalcs.png)
 
 	With Low_damage_level- Damage dealt to a higher level monster will be reduced by the difference in levels. E.g. (Character level 20/ Monster level 50 = 0.4. Damage dealt will be 0.4% of normal damage) 
 	damageFactor = (float)(playerLevel + LowDamageConfig)/ monsterLevel; You can configure LowDamageConfig to adjust damage scaling up or down. Damage Factor will not go above 1 or below .1f
