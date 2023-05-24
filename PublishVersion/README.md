@@ -10,10 +10,12 @@ Support me!
 ![https://wackymole.com/hosts/mainimage.png](https://wackymole.com/hosts/mainimage.png)
 
 Features:
- - Shared group XP. Outside of groups all XP awards go to the character who struck the last blow.
+ - On screen XP bar
+ - Usage for Mob Trophies with Potions and XP Orbs
+ - Allows admins to adjust player progression
  - Custom mobs can be added for XP gain.
+ - Shared group XP. Outside of groups all XP awards go to the character who struck the last blow. Requires Group Mod
  - MMO-like friends list. -[Groups](https://valheim.thunderstore.io/package/Smoothbrain/Groups/)
- - On screen XP bar.
  - Compatible with [ItemRequiresSkillLevel](https://valheim.thunderstore.io/package/Detalhes/ItemRequiresSkillLevel/) mod. Equipment can be limited by level or attribute.
  - Compatible with [KGMarketplace mod](https://valheim.thunderstore.io/package/KGvalheim/Marketplace_And_Server_NPCs_Revamped/). Experience rewards can be added: (EpicMMO_Exp:250) Quests can be limited by level (EpicMMO_Level: text, 20)
  
@@ -21,21 +23,25 @@ Features:
 
 <details><summary>Attributes</summary>
 
-	Strength: Physical Damage increase, Carry Weight Increase, Stamina Regeneration%
+	Strength: Physical Damage increase, Carry Weight Increase, Decreased Black Stamina Consumption, Critical Damage
 
-	Agility: Attack Stamina Consumption decrease, Stamina increase, Stamina consumption (running, jumping) decreased,
+	Dexterity: Player Attack/Usage Speed%,  Stamina consumption (running, jumping) decreased,
 
-	Intellect: Elemental Damage increase, Elemental Armor increase, Eitr regen increases,  Eitr Increase
+	Intellect: Elemental Damage increase, Eitr Regeneration increases,  Eitr Increase
 
-	Endurance: Physical Armor increase, HP increase, Health Regeneration
+	Endurance: Physical Armor increase, Flat Stamina, Stamina Regeneration
+
+	Vigour: Flat Health Increase, Health Regeneration, Elemental Armor increase, 
+
+	Specializing: Critical Damage Chance, Mining Damage, Construction Piece Health, Tree Cutting Damage
 
 </details> 
 
 <details><summary>Friends list</summary>
 
-MMO-like friends list. -Groups MOD Group to earn XP, download requires Group mod for each client https://valheim.thunderstore.io/package/Smoothbrain/Groups/
+MMO-like friends list. - Groups MOD Group to earn XP, download requires Group mod for each client https://valheim.thunderstore.io/package/Smoothbrain/Groups/
 
-Click the plus button at the bottom of the friends bar. Enter the name of the character you wish to add, starting with a capital letter.
+Click the plus button at the bottom of the friends bar. Enter the name of the character you wish to add, starting with a capital letter. 
    ![https://wackymole.com/hosts/3rd%20image.png](https://wackymole.com/hosts/3rd%20image.png)
 The player will receive a friend request. Once accepted, the character will appear in your friends list. Group invites can be sent from the friends list. 
 
@@ -47,13 +53,18 @@ The player will receive a friend request. Once accepted, the character will appe
 
 <details><summary>Creature level control</summary>
 
-This mod assigns levels to all in-game monsters.
+This mod should assigns levels to all in-game monsters. Every star added adds +1 to the level of the mob.
 
 ![https://wackymole.com/hosts/creaturecontrol.png](https://wackymole.com/hosts/creaturecontrol.png)
 
-Mobs (names, levels, exp) from other mods are included:
 
-Fantasy-Creatures, AirAnimals, Defaults, DoOrDieMonsters, LandAnimals, MonsterlabZ, Outsiders, SeaAnimals, Monstrum (free and paid), Krumpac Mods(free and paid), Teddy Bears, PungusSouls
+</details>
+
+<details><summary>Cyan, White and Red Mobs</summary>
+
+Higher level monsters will have their names appear in red. Monsters within your range will be white. Monsters below your level will be cyan.  By default it is +- 10 of your current level.
+
+If you are significantly higher level than a monster, your XP award will be reduced. Monsters that are significantly lower level than you will have their names appear in cyan.
 
 Monsters that are 1 level higher than the character + MaxLevelRange will curve XP.
 
@@ -68,30 +79,66 @@ Below is an image of 1.04 +500 and with FirstLevelExperience disabled, so no 500
 With Low_damage_level- Damage dealt to a higher level monster will be reduced by the difference in levels. E.g. (Character level 20/ Monster level 50 = 0.4. Damage dealt will be 0.4% of normal damage) 
 damageFactor = (float)(playerLevel + LowDamageConfig)/ monsterLevel; You can configure LowDamageConfig to adjust damage scaling up or down. Damage Factor will not go above 1 or below .1f
 
-Higher level monsters will have their names appear in red. Monsters within your range will be white.
-
-If you are significantly higher level than a monster, your XP award will be reduced. Monsters that are significantly lower level than you will have their names appear in cyan.
-
 All of these formulas functions can be configured in the settings file.
-A file listing all monsters and their levels is located in config/EpicMMOSystem/MonsterDB_"Version".jsons
-
-A file called Version.txt is created in the folder. It contains the mod version that was used to create it. Replace it with "NO" to stop it from overwritting on a future update.
-
-Latest Update for Jsons config is <b> 1.7.0 </b>(Number will be updated when Jsons recieve an update)
 
 Please note:
 When upgrading the mod to a newer version, new fields in the settings file will be created automatically. You will have to manually re-edit these values if you have changed them.
 If you have no custom settings in the configuration file, you should delete the file so that a fresh one can be created by the new version.
 
-Note for other Mods: This mod uses hit.toolTier to pass the Lvl of player
+Note for other Mods: This mod uses hit.toolTier to pass the Lvl of player and Player.m_localPlayer.m_knownTexts to store levels
 
+</details>
+
+<details><summary>Mob Data Included</summary>
+
+Mob's data (names, levels, exp) from other mods are included:
+
+Fantasy-Creatures, AirAnimals, Defaults, DoOrDieMonsters, LandAnimals, MonsterlabZ, Outsiders, SeaAnimals, Monstrum (free and paid), Krumpac Mods(free and paid), Teddy Bears, PungusSouls
+
+A folder listing all monsters and their levels is located in config/EpicMMOSystem/ Default is for vanilla mobs
+
+These jsons will get auto updated everytime the line below Version gets changed.
+
+A file called Version.txt is created in the folder. It contains the mod version that was used to create it. Replace it with "NO" to stop it from overwritting on a future update.
+
+Latest Update for Jsons config is <b> 1.7.0 </b>(Number will be updated when Jsons recieve an update)
+
+</details>
+
+<details><summary>Potions and Magic Orbs</summary>
+
+6 Magic Orb Levels with Various XP given
+
+They have by default a 1% chance to drop from any mob and 100% to drop 1-4 from Bosses
+
+Orb levels depend on biome ( Extra biomes from Marketplace or Expanded world won't drop orbs)
+1 for Meadows
+2 for Blackforest, None
+3 for Swamps and Oceans
+4 for Mountains
+5 for Plains
+6 for Mistlands, Ashlands, Deep North
+
+3 Potions 
+XP Potion Minor: 30% extra XP for 10 min
+XP Potion Medium: 60%
+XP Potion Greator 100% 
+
+1 Magic Fermenator: Gold, FineWood, and Bronze
+It's colorful!
+
+Meads: are made from Mob Chunks
+Mob Chunks can be made from a variety of Trophies from mobs, you can add to the list. 
+Meads also require 1 or 2 Orbs depending on level
+Meads take the standard amount of time to ferment and drop 3 potions each
+Watch for the sky to light up with colors when fermentation is done.
 
 
 </details>
 
 <details><summary>Reset Skill Points</summary>
 
-There are configs for setting the Reset currency, default is coins. You set the ammount per level.
+There are configs for setting the Reset currency, default is Coins. You set the ammount per level.
 
 There is also an Item called ResetTrophy that you can spawn or add to the builtin droplist that will allow any level reset with only 1 ResetTrophy.
 
@@ -103,7 +150,11 @@ The mod looks for your reset currency first and then ResetTrophies. Only consume
 
 ![https://wackymole.com/hosts/CenterBar.png](https://wackymole.com/hosts/CenterBar.png)
 
-	1HudPanelPosition: Main UI Panel Draggable, default color set by HudBackgroundCol, Type "none" to make it disappear
+Pretty much all of the UI can be scaled, hidden, dragged and remembers their location.
+
+To make UI elements disappear type "none" in the respective elements color setting. 
+
+	1HudPanelPosition: Main UI Background Panel Draggable, default color set by HudBackgroundCol, Type "none" to make it disappear
 
 	HudBarScale: Scale this up or down to resize ALL MMO UI elements. - 1.0 Should cover all of your screen horizontally 
 
@@ -115,17 +166,17 @@ The mod looks for your reset currency first and then ResetTrophies. Only consume
 	 
 	 Can all be set to "none" to make individual elements disappear
 
-	2ExpPanelPosition: Dragable EXP BAR	
+	2ExpPanelPosition: ExP Bar, Dragable, Position, Scale and Color, Can be Hidden
 
-	3StaminaPanelPosition: Dragable
+	3StaminaPanelPosition: Dragable, Position, Scale and Color, Can be Hidden
 	
-	4HpPanelPosition: Dragable
+	4HpPanelPosition: Dragable, Position, Scale and Color, Can be Hidden
 
-	5EitrPanelPosition: Dragable, will disappear and reappear when you have Eitr.
+	5EitrPanelPosition: Dragable, Position, Scale and Color, Can be Hidden. Will disappear and reappear when you have Eitr.
 
 	DisabledHealthIcons: This disables the red Health Icon that is normal present under vanilla health bar
 
-	To enable ONLY EXP bar , enable OldXPBar Bar Only and restart - not dragable in this mode, this is being slowly phased out. 
+	To enable ONLY EXP bar , enable OldXPBar Bar Only and restart - not dragable in this mode, this is being slowly phased out.  No reason to use. 
 
 	![https://wackymole.com/hosts/Attributes.png](https://wackymole.com/hosts/Attributes.png)
 
@@ -147,9 +198,9 @@ Wacky Git https://github.com/Wacky-Mole/WackyEpicMMOSystem
 
 Original git - https://github.com/Single-sh/EpicMMOSystem
 
-For questions or suggestions please join discord channel: [Odin Plus Team](https://discord.gg/odinplus)
+For questions or suggestions please join discord channel: [Odin Plus Team](https://discord.gg/odinplus) or my discsord at [Wolf Den](https://discord.gg/yPj7xjs3Xf)
 
-Support me at https://www.buymeacoffee.com/WackyMole 
+Support me at https://www.buymeacoffee.com/WackyMole  or https://ko-fi.com/wackymole
 
 <a href="https://www.buymeacoffee.com/WackyMole" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
 
