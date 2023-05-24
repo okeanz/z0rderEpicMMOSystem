@@ -62,87 +62,88 @@ This mod should assigns levels to all in-game monsters. Every star added adds +1
 
 <details><summary>Cyan, White and Red Mobs</summary>
 
-Higher level monsters will have their names appear in red. Monsters within your range will be white. Monsters below your level will be cyan.  By default it is +- 10 of your current level.
 
-If you are significantly higher level than a monster, your XP award will be reduced. Monsters that are significantly lower level than you will have their names appear in cyan.
+	Higher level monsters will have their names appear in red. Monsters within your range will be white. Monsters below your level will be cyan.  By default it is +- 10 of your current level.
 
-Monsters that are 1 level higher than the character + MaxLevelRange will curve XP.
+	If you are significantly higher level than a monster, your XP award will be reduced. Monsters that are significantly lower level than you will have their names appear in cyan.
 
-With defaults, starting exp req is 500 with a 1.04 multiplayer.  So first 5 levels of experience required will be: level 1 is 500, 2 is 1020, 3 is 1560, 4 is 2122, 5 is 2707
+	Monsters that are 1 level higher than the character + MaxLevelRange will curve XP.
 
-FirstLevelExperience used on each level: disabled means that the levels will not add 500 each time: level 1 is 520, 2 is 541, 3 is 562, 4 is 585, 5 is 608. The jsons will all have to be reworked if this is disabled
+	With defaults, starting exp req is 500 with a 1.04 multiplayer.  So first 5 levels of experience required will be: level 1 is 500, 2 is 1020, 3 is 1560, 4 is 2122, 5 is 2707
 
-Below is an image of 1.04 +500 and with FirstLevelExperience disabled, so no 500 added. The difference is a lot. Also 1.08 scaling is added just to show how it gets into the millions pretty quickly. 
+	FirstLevelExperience used on each level: disabled means that the levels will not add 500 each time: level 1 is 520, 2 is 541, 3 is 562, 4 is 585, 5 is 608. The jsons will all have to be reworked if this is disabled
 
-![https://wackymole.com/hosts/epicmmolevelcalcs.png](https://wackymole.com/hosts/epicmmolevelcalcs.png)
+	Below is an image of 1.04 +500 and with FirstLevelExperience disabled, so no 500 added. The difference is a lot. Also 1.08 scaling is added just to show how it gets into the millions pretty quickly. 
 
-With Low_damage_level- Damage dealt to a higher level monster will be reduced by the difference in levels. E.g. (Character level 20/ Monster level 50 = 0.4. Damage dealt will be 0.4% of normal damage) 
-damageFactor = (float)(playerLevel + LowDamageConfig)/ monsterLevel; You can configure LowDamageConfig to adjust damage scaling up or down. Damage Factor will not go above 1 or below .1f
+	![https://wackymole.com/hosts/epicmmolevelcalcs.png](https://wackymole.com/hosts/epicmmolevelcalcs.png)
 
-All of these formulas functions can be configured in the settings file.
+	With Low_damage_level- Damage dealt to a higher level monster will be reduced by the difference in levels. E.g. (Character level 20/ Monster level 50 = 0.4. Damage dealt will be 0.4% of normal damage) 
+	damageFactor = (float)(playerLevel + LowDamageConfig)/ monsterLevel; You can configure LowDamageConfig to adjust damage scaling up or down. Damage Factor will not go above 1 or below .1f
 
-Please note:
-When upgrading the mod to a newer version, new fields in the settings file will be created automatically. You will have to manually re-edit these values if you have changed them.
-If you have no custom settings in the configuration file, you should delete the file so that a fresh one can be created by the new version.
+	All of these formulas functions can be configured in the settings file.
 
-Note for other Mods: This mod uses hit.toolTier to pass the Lvl of player and Player.m_localPlayer.m_knownTexts to store levels
+	Please note:
+	When upgrading the mod to a newer version, new fields in the settings file will be created automatically. You will have to manually re-edit these values if you have changed them.
+	If you have no custom settings in the configuration file, you should delete the file so that a fresh one can be created by the new version.
+
+	Note for other Mods: This mod uses hit.toolTier to pass the Lvl of player and Player.m_localPlayer.m_knownTexts to store levels
 
 </details>
 
 <details><summary>Mob Data Included</summary>
 
-Mob's data (names, levels, exp) from other mods are included:
+	Mob's data (names, levels, exp) from other mods are included:
 
-Fantasy-Creatures, AirAnimals, Defaults, DoOrDieMonsters, LandAnimals, MonsterlabZ, Outsiders, SeaAnimals, Monstrum (free and paid), Krumpac Mods(free and paid), Teddy Bears, PungusSouls
+	Fantasy-Creatures, AirAnimals, Defaults, DoOrDieMonsters, LandAnimals, MonsterlabZ, Outsiders, SeaAnimals, Monstrum (free and paid), Krumpac Mods(free and paid), Teddy Bears, PungusSouls
 
-A folder listing all monsters and their levels is located in config/EpicMMOSystem/ Default is for vanilla mobs
+	A folder listing all monsters and their levels is located in config/EpicMMOSystem/ Default is for vanilla mobs
 
-These jsons will get auto updated everytime the line below Version gets changed.
+	These jsons will get auto updated everytime the line below Version gets changed.
 
-A file called Version.txt is created in the folder. It contains the mod version that was used to create it. Replace it with "NO" to stop it from overwritting on a future update.
+	A file called Version.txt is created in the folder. It contains the mod version that was used to create it. Replace it with "NO" to stop it from overwritting on a future update.
 
-Latest Update for Jsons config is <b> 1.7.0 </b>(Number will be updated when Jsons recieve an update)
+	Latest Update for Jsons config is <b> 1.7.0 </b>(Number will be updated when Jsons recieve an update)
 
 </details>
 
 <details><summary>Potions and Magic Orbs</summary>
 
-6 Magic Orb Levels with Various XP given
+	6 Magic Orb Levels with Various XP given
 
-They have by default a 1% chance to drop from any mob and 100% to drop 1-4 from Bosses
+	They have by default a 1% chance to drop from any mob and 100% to drop 1-4 from Bosses
 
-Orb levels depend on biome ( Extra biomes from Marketplace or Expanded world won't drop orbs)
-1 for Meadows
-2 for Blackforest, None
-3 for Swamps and Oceans
-4 for Mountains
-5 for Plains
-6 for Mistlands, Ashlands, Deep North
+	Orb levels depend on biome ( Extra biomes from Marketplace or Expanded world won't drop orbs)
+	1 for Meadows
+	2 for Blackforest, None
+	3 for Swamps and Oceans
+	4 for Mountains
+	5 for Plains
+	6 for Mistlands, Ashlands, Deep North
 
-3 Potions 
-XP Potion Minor: 30% extra XP for 10 min
-XP Potion Medium: 60%
-XP Potion Greator 100% 
+	3 Potions 
+	XP Potion Minor: 30% extra XP for 10 min
+	XP Potion Medium: 60%
+	XP Potion Greator 100% 
 
-1 Magic Fermenator: Gold, FineWood, and Bronze
-It's colorful!
+	1 Magic Fermenator: Gold, FineWood, and Bronze
+	It's colorful!
 
-Meads: are made from Mob Chunks
-Mob Chunks can be made from a variety of Trophies from mobs, you can add to the list. 
-Meads also require 1 or 2 Orbs depending on level
-Meads take the standard amount of time to ferment and drop 3 potions each
-Watch for the sky to light up with colors when fermentation is done.
+	Meads: are made from Mob Chunks
+	Mob Chunks can be made from a variety of Trophies from mobs, you can add to the list. 
+	Meads also require 1 or 2 Orbs depending on level
+	Meads take the standard amount of time to ferment and drop 3 potions each
+	Watch for the sky to light up with colors when fermentation is done.
 
 
 </details>
 
 <details><summary>Reset Skill Points</summary>
 
-There are configs for setting the Reset currency, default is Coins. You set the ammount per level.
+	There are configs for setting the Reset currency, default is Coins. You set the ammount per level.
 
-There is also an Item called ResetTrophy that you can spawn or add to the builtin droplist that will allow any level reset with only 1 ResetTrophy.
+	There is also an Item called ResetTrophy that you can spawn or add to the builtin droplist that will allow any level reset with only 1 ResetTrophy.
 
-The mod looks for your reset currency first and then ResetTrophies. Only consumes 1, so make this a very rare item. 
+	The mod looks for your reset currency first and then ResetTrophies. Only consumes 1, so make this a very rare item. 
 
 </details>
 
