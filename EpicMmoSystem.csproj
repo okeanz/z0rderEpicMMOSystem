@@ -396,7 +396,9 @@
     <EmbeddedResource Include="Data\MonsterDB-PungusSouls.json" />
     <None Include="packages.config" />
     <EmbeddedResource Include="translations\Russian.yml" />
-    <EmbeddedResource Include="translations\English.yml" />
+    <EmbeddedResource Include="translations\English.yml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="translations\Spanish.yml" />
     <EmbeddedResource Include="translations\German.yml" />
     <EmbeddedResource Include="translations\Chinese.yml" />

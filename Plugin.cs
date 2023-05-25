@@ -382,16 +382,11 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     {
         Item DrinkMinor = new("mmo_xp", "mmo_xp_drink1", "asset");
         DrinkMinor.ToggleConfigurationVisibility(Configurability.Drop);
-        DrinkMinor.Name.English("XP Potion Minor"); // I have no idea how to get the English.yml to work, it should, it's reading, but just doesn't want to do anything.
-        DrinkMinor.Description.English("While active, this potion grants you 30% increase to the XP gained");
         Item DrinkMed = new("mmo_xp", "mmo_xp_drink2", "asset");
         DrinkMed.ToggleConfigurationVisibility(Configurability.Drop);
-        DrinkMed.Name.English("XP Potion Medium");
-        DrinkMed.Description.English("While active, this potion grants you 60% increase to the XP gained");
         Item DrinkGreater = new("mmo_xp", "mmo_xp_drink3", "asset");
         DrinkGreater.ToggleConfigurationVisibility(Configurability.Drop);
-        DrinkGreater.Name.English("XP Potion Greater");
-        DrinkGreater.Description.English("While active, this potion grants you 100% increase to the XP gained");
+
 
 
         DataMonsters.InitItems(); // call for obs and add configs
@@ -439,7 +434,6 @@ public partial class EpicMMOSystem : BaseUnityPlugin
 
 
         BuildPiece Ferm = new("mmo_xp", "mmo_fermenter", "asset");
-        Ferm.Name.English("Magic Fermenter");
         Ferm.Category.Add(BuildPieceCategory.Crafting);
         Ferm.Crafting.Set(PieceManager.CraftingTable.Forge);
         //Ferm.Snapshot();
@@ -447,18 +441,11 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         Ferm.RequiredItems.Add("Bronze", 5, true);
         Ferm.RequiredItems.Add("Coins",200,true);
         
-
-
         Item ResetTrophy = new("epicmmoitems", "ResetTrophy", "asset");
-        ResetTrophy.Name.English("ResetTrophy");
-        ResetTrophy.Description.English("A Trophy you can use to reset MMO points. Rare");
         ResetTrophy.ToggleConfigurationVisibility(Configurability.Drop);
         ResetTrophy.Snapshot();
 
-        var paul = ItemManager.CraftingTable.Cauldron;
-        //ItemManager.CraftingStationConfig.Equals(Mead3)
-
-        
+        //Localizer.AddText
     }
     
 

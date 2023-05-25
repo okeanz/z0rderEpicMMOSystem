@@ -189,6 +189,14 @@ To make UI elements disappear type "none" in the respective elements color setti
 
 </details> 
 
+<details><summary>Translations</summary>
+
+EpicMMO Uses a built custom Translation Manager and the blaxx Translation Manager for Items
+
+English, Russian, Chinese, Spanish and German are currently implemented. 
+
+</details> 
+
 <details><summary>Console commands</summary>
 
 Admin only commands: - Should work in singleplayer now

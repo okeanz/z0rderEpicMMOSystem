@@ -1,99 +1,32 @@
-$attributes: "Eigenschaften"
-parameter_strength: "Stärke"
-parameter_agility: "Beweglichkeit"
-parameter_intellect: "Intelligenz"
-parameter_body: "Ausdauer"
-free_points: "Verfügbare Punkte"
-level: "Level"
-lvl: "Lvl."
-exp: "Erfahrung"
-cancel: "Zurück"
-apply: "übernehmen"
-reset_parameters: "Punkte zurücksetzen"
-no: "Nein"
-yes: "Ja"
-get_exp: "Erfahrung erhalten"
-reset_point_text: "Möchtest du wirklich alle Punkte Löschen? {0} {1}?"
 
-physic_damage: "Körperlicher Schaden"
-add_weight: "Gewicht tragen"
-speed_attack: "Ausdauerverbrauch angreifen"
-reduced_stamina: "Ausdauerverbrauch (running, jumping)"
-magic_damage: "Elementarschaden"
-magic_armor: " Elementarschaden Rüstung"
-add_hp: "Gesundheitssteigerung"
-add_stamina: "Ausdauer erhöt um"
-physic_armor: "Physische Rüstung"
-reduced_stamina_block: "Ausdauerverbrauch blockieren"
-regen_hp: "Heilung"
-damage: "Schaden"
-armor: "Rüstung"
-survival: "überleben"
-
-notify: "<color=#00E6FF>Alarm"
-friends_list: "Freundesliste"
-send: "Senden"
-invited: "Einladungen"
-friends: "Freunde"
-online: "Online"
-offline: "Offline"
-not_found: "Spieler {0} nicht gefunden."
-send_invite: "Eine Freundschaftsanfrage wurde an den Spieler gesendet {0}."
-get_invite: "erhielt eine Freundschaftsanfrage von {0}."
-accept_invite: "Spieler {0}, hat die Freundschaftsanfrage bestätigt."
-cancel_invite: "Spieler {0}, hat die Freundschaftsanfrage abgelehnt."
-
-terminal_set_level: "Du hast {0} level"
-terminal_reset_points: "Deine Attributspunkte wurden zurückgesetzt"
-//////////////////////////////////////////////////////////////////////////
-
-or (with ö ä ü )
-
-////////////////////////////////////////////////////////////
-$attributes: "Eigenschaften"
-parameter_strength: "Stärke"
-parameter_agility: "Beweglichkeit"
-parameter_intellect: "Intelligenz"
-parameter_body: "Ausdauer"
-free_points: "Verfügbare Punkte"
-level: "Level"
-lvl: "Lvl."
-exp: "Erfahrung"
-cancel: "Zurück"
-apply: "Übernehmen"
-reset_parameters: "Punkte zurücksetzen"
-no: "Nein"
-yes: "Ja"
-get_exp: "Erfahrung erhalten"
-reset_point_text: "Möchtest du wirklich alle Punkte Löschen? {0} {1}?"
-
-physic_damage: "Körperlicher Schaden"
-add_weight: "Gewicht tragen"
-speed_attack: "Ausdauerverbrauch angreifen"
-reduced_stamina: "Ausdauerverbrauch (running, jumping)"
-magic_damage: "Elementarschaden"
-magic_armor: " Elementarschaden Rüstung"
-add_hp: "Gesundheitssteigerung"
-add_stamina: "Ausdauer erhöt um"
-physic_armor: "Physische Rüstung"
-reduced_stamina_block: "Ausdauerverbrauch blockieren"
-regen_hp: "Heilung"
-damage: "Schaden"
-armor: "Rüstung"
-survival: "Überleben"
-
-notify: "<color=#00E6FF>Alarm"
-friends_list: "Freundesliste"
-send: "Senden"
-invited: "Einladungen"
-friends: "Freunde"
-online: "Online"
-offline: "Offline"
-not_found: "Spieler {0} nicht gefunden."
-send_invite: "Eine Freundschaftsanfrage wurde an den Spieler gesendet {0}."
-get_invite: "erhielt eine Freundschaftsanfrage von {0}."
-accept_invite: "Spieler {0}, hat die Freundschaftsanfrage bestätigt."
-cancel_invite: "Spieler {0}, hat die Freundschaftsanfrage abgelehnt."
-
-terminal_set_level: "Du hast {0} level"
-terminal_reset_points: "Deine Attributspunkte wurden zurückgesetzt"
+mmo_xp_orb1: “Magischer Orb Stufe 1” 
+mmo_xp_orb1_description: “Gibt XP!”
+mmo_xp_orb2: “Magischer Orb Stufe 2”
+mmo_xp_orb2_description: “Gibt XP!”
+mmo_xp_orb3: “Magischer Orb Stufe 3” 
+mmo_xp_orb3_description: “Gibt XP!”
+mmo_xp_orb4: “Magischer Orb Stufe 4” 
+mmo_xp_orb4_description: “Gibt XP!”
+mmo_xp_orb5: “Magischer Orb Stufe 5”
+mmo_xp_orb5_description: “Gibt XP!”
+mmo_xp_orb6: “Magischer Orb Stufe 6”
+mmo_xp_orb6_description: “Gibt XP!”
+mmo_mead1: “XP-Met Minor” 
+mmo_mead1_description: “Met für die Herstellung des magischen XP-Minor-Tranks”
+mmo_mead2: “XP-Met Medium” 
+mmo_mead2_description: “Met für die Herstellung des magischen XP-Medium-Tranks”
+mmo_mead3: “XP-Met Greater” 
+mmo_mead3_description: “Met für die Herstellung des magischen XP-Greater-Tranks”
+Mob_Chunks: “Mob-Stücke” 
+Mob_Chunks_description: “Stücke und Teile verschiedener Kreaturen des 9. Reiches. Nicht gerade lecker. Verursacht meist Übelkeit.”
+magicferm: “Magischer Fermenter” 
+magicferm_description: “Der magische Fermenter kann magischen Met verarbeiten”
+mmo_xp_gain: “XP-Gewinn”
+mmo_potion1: “XP-Trank Minor”
+mmoxpdrink1_description: “Während der Wirkungsdauer dieses Tranks erhalten Sie eine Steigerung von 30% des erhaltenen XP”
+mmo_potion2: “XP-Trank Medium” 
+mmoxpdrink2_description: “Während der Wirkungsdauer dieses Tranks erhalten Sie eine Steigerung von 60% des erhaltenen XP”
+mmo_potion3: “XP-Trank Greater”
+mmoxpdrink3_description: “Während der Wirkungsdauer dieses Tranks erhalten Sie eine Steigerung von 100% des erhaltenen XP”
+ResetTrophy: “Reset-Trophäe” 
+ResetTrophy_description: “Eine Trophäe, die Sie verwenden können, um MMO-Punkte zurückzusetzen. Selten”

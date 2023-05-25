@@ -145,9 +145,7 @@ public class Localizationold
     {
         _dictionary.Add("$attributes", "Параметры");
         _dictionary.Add("$parameter_strength", "Сила");
-        _dictionary.Add("$parameter_agility", "Ловкость");
         _dictionary.Add("$parameter_intellect", "Интеллект");
-        _dictionary.Add("$parameter_body", "Телосложение");
         _dictionary.Add("$free_points", "Доступно очков");
         _dictionary.Add("$level", "Уровень");
         _dictionary.Add("$lvl", "Ур.");
@@ -178,6 +176,20 @@ public class Localizationold
         _dictionary.Add("$regen_eitr", "регенерация Eitr");
         _dictionary.Add("$stamina_reg", "Регенерация выносливости"); 
         _dictionary.Add("$add_eitr", "Повышение Eitr");
+
+        // new/changed Params 1.7.0
+        _dictionary.Add("$parameter_agility", "Ловкость");
+        _dictionary.Add("$parameter_body", "Выносливость");
+        _dictionary.Add("$parameter_vigour", "Энергия");
+        _dictionary.Add("$parameter_special", "Специализация");
+        _dictionary.Add("$specialother", "Особенный");//divheader
+        _dictionary.Add("$attack_speed", "Скорость атаки");
+        _dictionary.Add("$attack_stamina", "Расход выносливости атаки");
+        _dictionary.Add("$crtcDmgMulti", "Множитель критического урона");
+        _dictionary.Add("$mining_speed", "Увеличение урона от добычи полезных ископаемых");
+        _dictionary.Add("$piece_health", "Увеличение здоровья куска");
+        _dictionary.Add("$tree_cutting", "Увеличение урона дерева");
+        _dictionary.Add("$crit_chance", "Увеличение шанса критического удара");
         //Friends list
         _dictionary.Add("$notify", "<color=#00E6FF>Оповещение</color>");
         _dictionary.Add("$friends_list", "Список друзей");
@@ -236,7 +248,7 @@ public class Localizationold
         _dictionary.Add("$specialother", "Special");//divheader
         _dictionary.Add("$attack_speed", "Attack speed");
         _dictionary.Add("$attack_stamina", "Attack stamina consumption");
-        _dictionary.Add("$crtcDmgMulti", "Crit Damage Multiplier");
+        _dictionary.Add("$crtcDmgMulti", "Critical Damage Multiplier");
         _dictionary.Add("$mining_speed", "Mining Damage increase");
         _dictionary.Add("$piece_health", "Piece Health increase");
         _dictionary.Add("$tree_cutting", "Tree Damage increase");
@@ -264,9 +276,7 @@ public class Localizationold
     {
         _dictionary.Add("$attributes", "Atributos");
         _dictionary.Add("$parameter_strength", "Fuerza");
-        _dictionary.Add("$parameter_agility", "Agilidad");
         _dictionary.Add("$parameter_intellect", "Intelecto");
-        _dictionary.Add("$parameter_body", "Resistencia");
         _dictionary.Add("$free_points", "Puntos disponibles");
         _dictionary.Add("$level", "Nivel");
         _dictionary.Add("$lvl", "Nivel.");
@@ -294,6 +304,20 @@ public class Localizationold
         _dictionary.Add("$armor", "Armadura");
         _dictionary.Add("$survival", "Surpervivencia");
 
+        // new/changed Params 1.7.0
+        _dictionary.Add("$parameter_agility", "Destreza");
+        _dictionary.Add("$parameter_body", "Resistencia");
+        _dictionary.Add("$parameter_vigour", "Vigor");
+        _dictionary.Add("$parameter_special", "Especialización");
+        _dictionary.Add("$specialother", "Especial");//divheader
+        _dictionary.Add("$attack_speed", "Attack speed");
+        _dictionary.Add("$attack_stamina", "Velocidad de ataque");
+        _dictionary.Add("$crtcDmgMulti", "Multiplicador de Daño Crítico");
+        _dictionary.Add("$mining_speed", "Aumento de daño minero");
+        _dictionary.Add("$piece_health", "Aumento de la salud de la pieza");
+        _dictionary.Add("$tree_cutting", "Aumento del daño del árbol\"");
+        _dictionary.Add("$crit_chance", "Aumento de probabilidad crítica");
+
         _dictionary.Add("$regen_eitr", "regeneración de eitr");
         _dictionary.Add("$stamina_reg", "regeneración de resistencia");
         _dictionary.Add("$add_eitr", "Aumento de EIT");
@@ -320,9 +344,7 @@ public class Localizationold
 
         _dictionary.Add("$attributes", "Eigenschaften");
         _dictionary.Add("$parameter_strength", "Stärke");
-        _dictionary.Add("$parameter_agility", "Beweglichkeit");
         _dictionary.Add("$parameter_intellect", "Intelligenz");
-        _dictionary.Add("$parameter_body", "Ausdauer");
         _dictionary.Add("$free_points", "Verfügbare Punkte");
         _dictionary.Add("$level", "Level");
         _dictionary.Add("$lvl", "Lvl.");
@@ -350,6 +372,20 @@ public class Localizationold
         _dictionary.Add("$armor", "Rüstung");
         _dictionary.Add("$survival", "überleben");
 
+        // new/changed Params 1.7.0
+        _dictionary.Add("$parameter_agility", "Geschicklichkeit");
+        _dictionary.Add("$parameter_body", "Ausdauer");
+        _dictionary.Add("$parameter_vigour", "Kraft");
+        _dictionary.Add("$parameter_special", "Spezialisierung");
+        _dictionary.Add("$specialother", "Speziell");//divheader
+        _dictionary.Add("$attack_speed", "Angriffsgeschwindigkeit");
+        _dictionary.Add("$attack_stamina", "Verbrauch der Angriffsausdauer");
+        _dictionary.Add("$crtcDmgMulti", "Multiplikator für kritischen Schaden");
+        _dictionary.Add("$mining_speed", "Erhöhter Bergbauschaden");
+        _dictionary.Add("$piece_health", "Stückgesundheitserhöhung");
+        _dictionary.Add("$tree_cutting", "Baumschaden erhöht");
+        _dictionary.Add("$crit_chance", "Erhöhung der kritischen Trefferchance");
+
         _dictionary.Add("$regen_eitr", "Eitr-Regeneration");
         _dictionary.Add("$stamina_reg", "Regeneration der Ausdauer");
         _dictionary.Add("$add_eitr", "Eitr erhöhen");
@@ -375,9 +411,7 @@ public class Localizationold
     {
         _dictionary.Add("$attributes", "角色属性");
         _dictionary.Add("$parameter_strength", "力量");
-        _dictionary.Add("$parameter_agility", "敏捷");
         _dictionary.Add("$parameter_intellect", "智力");
-        _dictionary.Add("$parameter_body", "体质");
         _dictionary.Add("$free_points", "可分配的属性点");
         _dictionary.Add("$level", "等级");
         _dictionary.Add("$lvl", "等级：");
@@ -420,6 +454,20 @@ public class Localizationold
         _dictionary.Add("$cancel_invite", "玩家 {0} , 拒绝了好友请求。");
         _dictionary.Add("$terminal_set_level", "您提升到了 {0} 级！");
         _dictionary.Add("$terminal_reset_points", "您的属性已重置！");
+
+        // new/changed Params 1.7.0
+        _dictionary.Add("$parameter_agility", "灵巧");
+        _dictionary.Add("$parameter_body", "耐力");
+        _dictionary.Add("$parameter_vigour", "活力");
+        _dictionary.Add("$parameter_special", "专业化我们的");
+        _dictionary.Add("$specialother", "特别的");//divheader
+        _dictionary.Add("$attack_speed", "攻击速度");
+        _dictionary.Add("$attack_stamina", "攻击体力消耗");
+        _dictionary.Add("$crtcDmgMulti", "暴击伤害倍率");
+        _dictionary.Add("$mining_speed", "采矿伤害增加");
+        _dictionary.Add("$piece_health", "增加生命值");
+        _dictionary.Add("$tree_cutting", "树木伤害增加");
+        _dictionary.Add("$crit_chance", "暴击率增加");
     }
 
     public string this[string key]

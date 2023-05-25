@@ -79,7 +79,7 @@ public static class DataMonsters
             if (crafting || item == null || !item.m_dropPrefab) return;
             if (MagicOrbDictionary.TryGetValue(item.m_dropPrefab, out var expGain))
             {
-                __result = __result + $"Right Mouse Button click to get <color=green>{expGain}</color> EXP";
+                __result = __result + $"Right Mouse Button click to get <color=yellow>{expGain}</color> EXP";
             }
         }
     }
