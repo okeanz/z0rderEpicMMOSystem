@@ -62,7 +62,7 @@ public static class TerminalCommands
                 {
                     if (playerInfo.m_name == clearName)
                     {
-                        return playerInfo.m_characterID.m_userID;
+                        return playerInfo.m_characterID.UserID;
                     }
                 }
                 return null;

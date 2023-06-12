@@ -289,13 +289,13 @@ public partial class MyUI
                 var selfName = Player.m_localPlayer.GetPlayerName();
                 if ((Groups.API.GetLeader()?.name ?? "") == selfName)
                 {
-                    ZRoutedRpc.instance.InvokeRoutedRPC(player.m_characterID.m_userID, "Groups InvitePlayer", selfName);
+                    ZRoutedRpc.instance.InvokeRoutedRPC(player.m_characterID.UserID, "Groups InvitePlayer", selfName);
                 }
             }
             else
             {
                 Groups.API.CreateNewGroup();
-                ZRoutedRpc.instance.InvokeRoutedRPC(player.m_characterID.m_userID, "Groups InvitePlayer", Player.m_localPlayer.GetPlayerName());
+                ZRoutedRpc.instance.InvokeRoutedRPC(player.m_characterID.UserID, "Groups InvitePlayer", Player.m_localPlayer.GetPlayerName());
             }
             
             

@@ -277,15 +277,15 @@ public partial class LevelSystem
        
         float rate = EpicMMOSystem.rateExp.Value;
         var giveExp = exp * (rate + singleRate);
-        if (Player.m_localPlayer.m_seman.GetStatusEffect("Potion_MMO_Greater") != null )
+        if (Player.m_localPlayer.m_seman.HaveStatusEffect("Potion_MMO_Greater") )
         {
             giveExp = EpicMMOSystem.XPforGreaterPotion.Value * giveExp;
         }
-        else if ((Player.m_localPlayer.m_seman.GetStatusEffect("Potion_MMO_Medium") != null))
+        else if (Player.m_localPlayer.m_seman.HaveStatusEffect("Potion_MMO_Medium"))
         {
             giveExp = EpicMMOSystem.XPforMediumPotion.Value * giveExp;
         }
-        else if ((Player.m_localPlayer.m_seman.GetStatusEffect("Potion_MMO_Minor") != null))
+        else if (Player.m_localPlayer.m_seman.HaveStatusEffect("Potion_MMO_Minor"))
         {
             giveExp = EpicMMOSystem.XPforMinorPotion.Value * giveExp;
         }

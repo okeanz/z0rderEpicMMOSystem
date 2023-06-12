@@ -47,7 +47,7 @@ public static class EffectPatches
     {
         public static void Prefix(ItemDrop.ItemData item)
         {
-            if (Player.m_localPlayer.m_seman.GetStatusEffect("MMO_XP") == null)
+            if (Player.m_localPlayer.m_seman.HaveStatusEffect("MMO_XP"))
             {
                 GameObject found = null;
                 foreach (var GameItem in ObjectDB.instance.m_items) // much bad

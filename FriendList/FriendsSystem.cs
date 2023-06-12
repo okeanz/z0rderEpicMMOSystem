@@ -45,7 +45,7 @@ public static class FriendsSystem
             {
                 int level = LevelSystem.Instance.getLevel();
                 ZRoutedRpc.instance.InvokeRoutedRPC(
-                    playerInfo.m_characterID.m_userID, 
+                    playerInfo.m_characterID.UserID, 
                     $"{modName} InviteFriend",
                     level, Player.m_localPlayer.m_nview.GetZDO().GetInt("MagicOverhaulClass", 0)
                 );
@@ -59,7 +59,7 @@ public static class FriendsSystem
     public static void acceptInvite(FriendInfo info, ZNet.PlayerInfo player)
     {
         ZRoutedRpc.instance.InvokeRoutedRPC(
-            player.m_characterID.m_userID,
+            player.m_characterID.UserID,
             $"{modName} AcceptInviteFriend",
             info.level, Player.m_localPlayer.m_nview.GetZDO().GetInt("MagicOverhaulClass", 0) // remove in fut
         );
@@ -68,7 +68,7 @@ public static class FriendsSystem
     public static void rejectInvite(FriendInfo info, ZNet.PlayerInfo player)
     {
         ZRoutedRpc.instance.InvokeRoutedRPC(
-            player.m_characterID.m_userID,
+            player.m_characterID.UserID,
             $"{modName} RejectInviteFriend",
             info.name
         );
@@ -78,7 +78,7 @@ public static class FriendsSystem
     private static void RPC_InviteFriend(long sender, int level, int moClass)
     {
         var players = ZNet.instance.GetPlayerList();
-        var senderInfo = players.Find(f => f.m_characterID.m_userID == sender);
+        var senderInfo = players.Find(f => f.m_characterID.UserID == sender);
         var info = new FriendInfo();
         info.name = senderInfo.m_name;
         info.host = senderInfo.m_host;
@@ -92,7 +92,7 @@ public static class FriendsSystem
     private static void RPC_AcceptFriend(long sender, int level, int moClass)
     {
         var players = ZNet.instance.GetPlayerList();
-        var senderInfo = players.Find(f => f.m_characterID.m_userID == sender);
+        var senderInfo = players.Find(f => f.m_characterID.UserID == sender);
         var info = new FriendInfo();
         info.name = senderInfo.m_name;
         info.host = senderInfo.m_host;

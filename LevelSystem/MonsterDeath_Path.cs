@@ -180,7 +180,7 @@ public static class MonsterDeath_Path
         {
             if (!EpicMMOSystem.enabledLevelControl.Value) return;
             //if (EpicMMOSystem.removeDrop.Value) hit.m_toolTier = LevelSystem.Instance.getLevel(); // using toolTier to pass the Lvl of player
-            hit.m_toolTier = LevelSystem.Instance.getLevel();
+            hit.m_toolTier = (short)LevelSystem.Instance.getLevel();
             if (EpicMMOSystem.lowDamageLevel.Value)
             {
                 if (__instance.IsPlayer()) return;
