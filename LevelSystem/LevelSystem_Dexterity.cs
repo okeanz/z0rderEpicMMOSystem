@@ -28,7 +28,7 @@ public partial class LevelSystem
 
 
 
-     [HarmonyPatch(typeof(CharacterAnimEvent), "FixedUpdate")]
+     [HarmonyPatch(typeof(CharacterAnimEvent), "CustomFixedUpdate")]
      private static class CharacterAnimEvent_Awake_Patch
      {
          private static void Prefix(CharacterAnimEvent __instance)
