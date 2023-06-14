@@ -1,11 +1,11 @@
 # Description:
-This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.7.0
+This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.7.1
 
 BIG WACKY UPDATE! - You asked for more categories, Wacky adds 2 MORE! You asked for using trophies to generate XP. Wacky added XP Orbs and Magic Potions!
 
 Support me!
 
-<a href="https://www.buymeacoffee.com/WackyMole" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 36px !important;" ></a>   <a href='https://ko-fi.com/H2H6LL5GA' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+<a href="https://www.buymeacoffee.com/WackyMole" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 36px;" ></a>   <a href='https://ko-fi.com/H2H6LL5GA' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi3.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 ![https://wackymole.com/hosts/Attributes_basic.png](https://wackymole.com/hosts/Attributes_basic.png)
 
@@ -234,7 +234,8 @@ Original Creator: LambaSun or my [mod branch](https://discord.com/channels/82657
 
 | Version | Changes                                                                                                                                                                                                                                                                                                                                |
 |----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1.7.0  | - BIG WACKY UPDATE! - Delete CONFIGS! <br/> Added Category Vitality and Specializing, while rearranging the categories. <br/>Added hover stats, so you can see what exactly adding points to a category does.  Red being most powerful <br/> Added 6 magic orbs that grant various levels of XP on consumption, they have 1 % chance to drop from all mobs. Guaranteed from Bosses. </br> Added Magic Potions and Magical Fermentor, so you can utilize trophies to make the mead and use the potion to get more XP! 3 Potion levels and various ways to craft mead. <br/> added attackSpeed, MiningDmg, TreeCuttingDmg and Critical attack chance and Critical Damage. 
+|1.7.1   | - Fixed Orb XP spam,
+|1.7.0   | - BIG WACKY UPDATE! - Delete CONFIGS! <br/> Added Category Vitality and Specializing, while rearranging the categories. <br/>Added hover stats, so you can see what exactly adding points to a category does.  Red being most powerful <br/> Added 6 magic orbs that grant various levels of XP on consumption, they have 1 % chance to drop from all mobs. Guaranteed from Bosses. </br> Added Magic Potions and Magical Fermentor, so you can utilize trophies to make the mead and use the potion to get more XP! 3 Potion levels and various ways to craft mead. <br/> added attackSpeed, MiningDmg, TreeCuttingDmg and Critical attack chance and Critical Damage. 
 | 1.6.7  | - Updated KG Marketplace API <br/> Updated DoororDieMob and LandAnimals jsons thanks to DeeJay <br/> Fixed a bug with FloatText XP not being correct
 | 1.6.6  | - More UI adjustments, - Scaling/Position on NavBar and PointHud,
 | 1.6.5  | - TeddyBears json added <br/> removeAllDropsFromNonPlayerKills is true by default (If a Tree kills a mob, you won't get drop) <br /> Added 'U Jerk, NoExpOn Red/Blue' cfg option, for unfun times/admins. 

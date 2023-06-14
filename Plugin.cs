@@ -33,7 +33,7 @@ namespace EpicMMOSystem;
 public partial class EpicMMOSystem : BaseUnityPlugin
 {
     internal const string ModName = "EpicMMOSystem";
-    internal const string ModVersion = "1.7.0";
+    internal const string ModVersion = "1.7.1";
     internal const string Author = "WackyMole";
     internal const string configV = "_1_7";
     private const string ModGUID = Author + "." + ModName; //+ configV; changes GUID
@@ -97,6 +97,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     public static ConfigEntry<bool> tamesGiveXP;
     public static ConfigEntry<bool> leftMessageXP;
     public static ConfigEntry<string> XPstring;
+    public static ConfigEntry<bool> UseCustomXPTable;
 
     #region Parameters
     //LevelSystem arg property <Strength>
@@ -251,6 +252,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         leftMessageXP = config(levelSystem, "Display XP Received on Left", true, "Display XP Amount on Left Message when mob is killed");
         XPColor = config(levelSystem, "XP death Color", "#fff708", "The Color of XP popup market on a mob death");
         XPstring = config(levelSystem, "XP String", "+@ XP", "@ for XP Received, must include '@'");
+        //UseCustomXPTable = config(levelSystem, "Use Custom XP Table", false, "Use the CustomXPTable.yml file for levels instead of maxLevel, levelExp, levelexpforeach and multiNext Level");
 
 
         #region ParameterCofig

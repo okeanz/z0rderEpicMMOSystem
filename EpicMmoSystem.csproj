@@ -320,6 +320,7 @@
     <Compile Include="Data\Monster.cs" />
     <Compile Include="Data\MonsterOld.cs" />
     <Compile Include="Gui\Util.cs" />
+    <Compile Include="Data\customlevel.cs" />
     <Compile Include="LevelSystem\LevelSystem_Specializing.cs" />
     <Compile Include="LevelSystem\LevelSystem_Vigour.cs" />
     <Compile Include="OtherApi\wackydb_api.cs" />
