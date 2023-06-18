@@ -1,5 +1,6 @@
 using HarmonyLib;
 using System;
+using System.Globalization;
 using UnityEngine;
 namespace EpicMMOSystem;
 
@@ -41,11 +42,13 @@ public partial class LevelSystem
             Player localPlayer = Player.m_localPlayer;
             GameObject val = localPlayer.GetCurrentWeapon()?.m_dropPrefab;
             var skilltype = localPlayer.GetCurrentWeapon().m_shared.m_skillType;
-           // EpicMMOSystem.MLLogger.LogWarning(" normal speed " + __instance.m_animator.speed + " for " + skilltype);
+            //EpicMMOSystem.MLLogger.LogWarning(" normal speed " + __instance.m_animator.speed + " for " + skilltype);
            if (skilltype == Skills.SkillType.Bows) return; // no bows
 
             float animatorSpeed = __instance.m_animator.speed;
-            string number = __instance.m_animator.speed.ToString();
+
+            CultureInfo myCIintl = new CultureInfo("en-US", false);
+            string number = __instance.m_animator.speed.ToString(myCIintl);
             
             if (number.IndexOf(".") != -1 && number.Length - number.IndexOf(".") > 2)
             {
