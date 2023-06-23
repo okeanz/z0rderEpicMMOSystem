@@ -264,7 +264,7 @@ public partial class LevelSystem
         singleRate = rate;
     }
 
-    public void AddExp(int exp)
+    public void AddExp(int exp, bool noxpMulti=false)
     {
         if(exp < 1)
         {
@@ -277,6 +277,9 @@ public partial class LevelSystem
        
         float rate = EpicMMOSystem.rateExp.Value;
         var giveExp = exp * (rate + singleRate);
+        if (noxpMulti)
+            giveExp = exp;
+
         if (Player.m_localPlayer.m_seman.HaveStatusEffect("Potion_MMO_Greater") )
         {
             giveExp = EpicMMOSystem.XPforGreaterPotion.Value * giveExp;

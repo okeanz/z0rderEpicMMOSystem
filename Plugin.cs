@@ -402,7 +402,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
 
         Item Chunks = new("mmo_xp", "Mob_chunks", "asset");
 
-        Chunks.Snapshot();
+       // Chunks.Snapshot();
         Chunks.RequireOnlyOneIngredient = true;
         Chunks.Crafting.Add(ItemManager.CraftingTable.Cauldron,1);
         Chunks.RequiredItems.Add("TrophyBoar", 4);
@@ -445,7 +445,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         
         Item ResetTrophy = new("epicmmoitems", "ResetTrophy", "asset");
         ResetTrophy.ToggleConfigurationVisibility(Configurability.Drop);
-        ResetTrophy.Snapshot();
+        //ResetTrophy.Snapshot();
 
         //Localizer.AddText
     }
