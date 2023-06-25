@@ -96,7 +96,7 @@ This mod should assigns levels to all in-game monsters. Every star added adds +1
 
 <details><summary>ItemRequiresSkillLevel Mod</summary>
 
-https://valheim.thunderstore.io/package/Detalhes/ItemRequiresSkillLevel mod.
+[ItemRequiresSkillLevel](https://valheim.thunderstore.io/package/Detalhes/ItemRequiresSkillLevel/)
 
 Strength Agility Intellect Body Vigour  Special 
 
