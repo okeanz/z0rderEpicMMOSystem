@@ -21,7 +21,7 @@ public static class EpicMMOSystem_API
 
     public enum Attribut
     {
-        Strength = 0, Agility = 1, Intellect = 2, Endurance = 3
+        Strength = 0, Agility = 1, Intellect = 2, Body = 3, Vigour = 4, Special = 5
     }
 
     public static int GetLevel()
