@@ -6,6 +6,12 @@
     "level": 7
   },
   {
+    "name": "BossAsmodeus_TW",
+    "minExp": 150,
+    "maxExp": 200,
+    "level": 15
+  },
+  {
     "name": "Razorback_TW",
     "minExp": 100,
     "maxExp": 150,
@@ -24,6 +30,12 @@
     "level": 21
   },
   {
+    "name": "Crawler_TW",
+    "minExp": 100,
+    "maxExp": 150,
+    "level": 30
+  },
+  {
     "name": "GrizzlyBear_TW",
     "minExp": 400,
     "maxExp": 600,
@@ -31,9 +43,15 @@
   },
   {
     "name": "ObsidianGolem_TW",
-    "minExp": 700,
-    "maxExp": 1300,
+    "minExp": 550,
+    "maxExp": 650,
     "level": 45
+  },
+  {
+    "name": "Prowler_TW",
+    "minExp": 600,
+    "maxExp": 700,
+    "level": 54
   },
   {
     "name": "ArcticWolf_TW",
@@ -64,7 +82,7 @@
     "minExp": 1800,
     "maxExp": 2800,
     "level": 70
-  }, 
+  },
   {
     "name": "ArcticFenring_TW",
     "minExp": 2000,

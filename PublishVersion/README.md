@@ -1,5 +1,5 @@
 # Description:
-This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.7.2
+This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.7.3
 
 BIG WACKY UPDATE! - You asked for more categories, Wacky adds 2 MORE! You asked for using trophies to generate XP. Wacky added XP Orbs and Magic Potions!
 
@@ -94,6 +94,31 @@ This mod should assigns levels to all in-game monsters. Every star added adds +1
 
 </details>
 
+<details><summary>ItemRequiresSkillLevel Mod</summary>
+
+	https://valheim.thunderstore.io/package/Detalhes/ItemRequiresSkillLevel/) mod.
+
+Strength Agility Intellect Body Vigour  Special 
+
+You can combine multiple Skills for one Requirement
+
+		- PrefabName: AxeBronze
+		  Requirements:
+		  - Skill: Level
+			Level: 15
+			BlockEquip: true
+			BlockCraft: false
+			EpicMMO: true
+			ExhibitionName: PlayerLevel
+		  - Skill: Strength
+			Level: 7
+			BlockEquip: true
+			BlockCraft: true
+			EpicMMO: true
+			ExhibitionName: Strength
+
+</details>
+
 <details><summary>Mob Data Included</summary>
 
 	Mob's data (names, levels, exp) from other mods are included:
@@ -106,7 +131,7 @@ This mod should assigns levels to all in-game monsters. Every star added adds +1
 
 	A file called Version.txt is created in the folder. It contains the mod version that was used to create it. Replace it with "NO" to stop it from overwritting on a future update.
 
-	Latest Update for Jsons config is <b> 1.7.0 </b>(Number will be updated when Jsons recieve an update)
+	Latest Update for Jsons config is <b> 1.7.3 </b>(Number will be updated when Jsons recieve an update)
 
 </details>
 
@@ -234,6 +259,7 @@ Original Creator: LambaSun or my [mod branch](https://discord.com/channels/82657
 
 | Version | Changes                                                                                                                                                                                                                                                                                                                                |
 |----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.7.3  | - API update, Strength = 0, Agility = 1, Intellect = 2, Body = 3, Vigour = 4, Special = 5 <br/> Spanish Update <br/> Orbs no longer get extra XP multiplier </br> Mob update for Monsterlabz and Monstrum
 | 1.7.2  | - Fixed Attack Speed for language heathens that use "," instead of "." for decimals, Updated GroupAPI
 | 1.7.1  | - Fixed Orb XP spam,
 | 1.7.0  | - BIG WACKY UPDATE! - Delete CONFIGS! <br/> Added Category Vitality and Specializing, while rearranging the categories. <br/>Added hover stats, so you can see what exactly adding points to a category does.  Red being most powerful <br/> Added 6 magic orbs that grant various levels of XP on consumption, they have 1 % chance to drop from all mobs. Guaranteed from Bosses. </br> Added Magic Potions and Magical Fermentor, so you can utilize trophies to make the mead and use the potion to get more XP! 3 Potion levels and various ways to craft mead. <br/> added attackSpeed, MiningDmg, TreeCuttingDmg and Critical attack chance and Critical Damage. 

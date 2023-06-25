@@ -78,6 +78,12 @@
     "level": 40
   },
   {
+    "name": "ML_FrostHatchling",
+    "minExp": 250,
+    "maxExp": 300,
+    "level": 40
+  },
+  {
     "name": "Kraken",
     "minExp": 1380,
     "maxExp": 1620,
