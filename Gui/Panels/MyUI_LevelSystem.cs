@@ -288,39 +288,19 @@ public partial class MyUI
                     .m_tooltipPrefab;
 
                 switch (uiTooltip.m_topic)
-                {
+                { 
                     case "Strength":
-                        uiTooltip.m_text = "<size=20>Strength will enhance:</size> \n" +
-                            "<color=yellow> Increase Physical Damage </color> \n" +
-                            "<color=blue> Increase Carry Weight </color> \n" +
-                            "<color=green> Decrease Block Stamina Consumption </color> \n" +
-                            "<color=red> Increase Critical Damage when crit hits </color>"; break;
+                        uiTooltip.m_text = localization["$strength_tooltip"]; break;
                     case "Dexterity":
-                        uiTooltip.m_text = "<size=20>Dexterity will enhance:</size> \n" +
-                            "<color=red> Increase Attack Speed (not bows)</color> \n" +
-                            "<color=yellow> Decreased Attack Stamina Consumption </color> \n" +
-                            "<color=green> Decreased Running/Jumping Stamina Consumption</color> ";  break;
+                        uiTooltip.m_text = localization["$dexterity_tooltip"];  break;
                     case "Intelect":
-                        uiTooltip.m_text = "<size=20>Intelligence will enhance:</size> \n" +
-                            "<color=green> Increase all Elemental Damage </color>\n" +
-                            "<color=red> Increase base Eitr amount (once you have eitr)</color> \n" +
-                            "<color=red> Increase Eitr Regeneration</color> "; break;
+                        uiTooltip.m_text = localization["$intelect_tooltip"]; break;
                     case "Endurance":
-                        uiTooltip.m_text = "<size=20>Endurance will enhance:</size> \n" +
-                            "<color=yellow> Increase Stamina amount</color>\n" +
-                            "<color=yellow> Increase Stamina Regeneration </color> \n" +
-                            "<color=green> Reduce Physical Damage Taken</color> "; break;
+                        uiTooltip.m_text = localization["$endurance_tooltip"]; break;
                     case "Vigour":
-                        uiTooltip.m_text = "<size=20>Vigour will enhance:</size> \n" +
-                            "<color=red> Increase HP amount</color>\n" +
-                            "<color=yellow> Health Regeneration </color> \n" +
-                            "<color=green> Reduce Elemental Damage Taken</color> "; break;
+                        uiTooltip.m_text = localization["$vigour_tooltip"]; break;
                     case "Special":
-                        uiTooltip.m_text = "<size=20>Special will enhance:</size> \n" +
-                            "<color=red> Increase Critical Attack Chance</color> \n" +
-                            "<color=blue> Increase Mining Damage </color> \n" +
-                            "<color=blue> Increase construction piece's health </color> \n" +
-                            "<color=green> Increase Tree Cutting Damage</color>"; break;
+                        uiTooltip.m_text = localization["$special_tooltip"]; break;
 
                 }
             }
