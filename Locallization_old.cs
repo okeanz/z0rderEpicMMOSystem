@@ -92,7 +92,11 @@ public class Localizationold
     {
         ChineseLocalization();
     }
-    else
+    else if (currentLanguage == "Portuguese")
+    {
+        PortugueseLocalization();
+    }
+        else
     {
         var fileName = $"{EpicMMOSystem.language.Value}_emmosLocalization.txt";
         var basePath = Path.Combine(Paths.PluginPath, EpicMMOSystem.ModName, fileName);
@@ -207,41 +211,37 @@ public class Localizationold
         _dictionary.Add("$terminal_set_level", "Вы получили {0} уровень");
         _dictionary.Add("$terminal_reset_points", "Ваши очки характеристик были сброшены");
 
-        _dictionary.Add("$strength_tooltip", "<size=20>Strength will enhance:</size> \n" +
-                    "<color=yellow> Increase Physical Damage </color> \n" +
-                    "<color=blue> Increase Carry Weight </color> \n" +
-                    "<color=green> Decrease Block Stamina Consumption </color> \n" +
-                    "<color=red> Increase Critical Damage when crit hits </color>");
+        _dictionary.Add("$strength_tooltip", "<size=20>Сила усилит следующие эффекты:</size> \n" +
+        "<color=yellow>Увеличение физического урона</color> \n" +
+        "<color=blue>Увеличение грузоподъемности</color> \n" +
+        "<color=green>Снижение расхода выносливости при блокировании</color> \n" +
+        "<color=red>Увеличение критического урона при критических попаданиях</color>");
 
-        _dictionary.Add("$dexterity_tooltip", "<size=20>Dexterity will enhance:</size> \n" +
-                            "<color=red> Increase Attack Speed (not bows)</color> \n" +
-                            "<color=yellow> Decreased Attack Stamina Consumption </color> \n" +
-                            "<color=green> Decreased Running/Jumping Stamina Consumption</color> ");
+        _dictionary.Add("$dexterity_tooltip", "<size=20>Ловкость усилит следующие эффекты:</size> \n" +
+        "<color=red>Увеличение скорости атаки (кроме луков)</color> \n" +
+        "<color=yellow>Снижение расхода выносливости при атаке</color> \n" +
+        "<color=green>Снижение расхода выносливости при беге/прыжках</color>");
 
+        _dictionary.Add("$intelect_tooltip", "<size=20>Интеллект усилит следующие эффекты:</size> \n" +
+        "<color=green>Увеличение урона от всех элементов</color> \n" +
+        "<color=red>Увеличение базового количества Эйтра (после получения Эйтра)</color> \n" +
+        "<color=red>Увеличение регенерации Эйтра</color>");
 
-        _dictionary.Add("$intelect_tooltip", "<size=20>Intelligence will enhance:</size> \n" +
-                            "<color=green> Increase all Elemental Damage </color>\n" +
-                            "<color=red> Increase base Eitr amount (once you have eitr)</color> \n" +
-                            "<color=red> Increase Eitr Regeneration</color> ");
+        _dictionary.Add("$endurance_tooltip", "<size=20>Стойкость усилит следующие эффекты:</size> \n" +
+        "<color=yellow>Увеличение запаса выносливости</color> \n" +
+        "<color=yellow>Увеличение регенерации выносливости</color> \n" +
+        "<color=green>Снижение получаемого физического урона</color>");
 
+        _dictionary.Add("$vigour_tooltip", "<size=20>Сила жизни усилит следующие эффекты:</size> \n" +
+        "<color=red>Увеличение запаса здоровья</color> \n" +
+        "<color=yellow>Регенерация здоровья</color> \n" +
+        "<color=green>Снижение получаемого элементального урона</color>");
 
-        _dictionary.Add("$endurance_tooltip", "<size=20>Endurance will enhance:</size> \n" +
-                            "<color=yellow> Increase Stamina amount</color>\n" +
-                            "<color=yellow> Increase Stamina Regeneration </color> \n" +
-                            "<color=green> Reduce Physical Damage Taken</color> ");
-
-
-        _dictionary.Add("$vigour_tooltip", "<size=20>Vigour will enhance:</size> \n" +
-                            "<color=red> Increase HP amount</color>\n" +
-                            "<color=yellow> Health Regeneration </color> \n" +
-                            "<color=green> Reduce Elemental Damage Taken</color> ");
-
-
-        _dictionary.Add("$special_tooltip", "<size=20>Special will enhance:</size> \n" +
-                            "<color=red> Increase Critical Attack Chance</color> \n" +
-                            "<color=blue> Increase Mining Damage </color> \n" +
-                            "<color=blue> Increase construction piece's health </color> \n" +
-                            "<color=green> Increase Tree Cutting Damage</color>");
+        _dictionary.Add("$special_tooltip", "<size=20>Специальные навыки усилит следующие эффекты:</size> \n" +
+        "<color=red>Увеличение шанса критической атаки</color> \n" +
+        "<color=blue>Увеличение урона при добыче</color> \n" +
+        "<color=blue>Увеличение прочности конструкций</color> \n" +
+        "<color=green>Увеличение урона при рубке деревьев</color>");
     }
     private void EngLocalization()
     {
@@ -411,41 +411,37 @@ public class Localizationold
         _dictionary.Add("$terminal_set_level", "Eres nivel {0}");
         _dictionary.Add("$terminal_reset_points", "Tus puntos de atributos han sido reiniciados");
 
-        _dictionary.Add("$strength_tooltip", "<size=20>Strength will enhance:</size> \n" +
-                    "<color=yellow> Increase Physical Damage </color> \n" +
-                    "<color=blue> Increase Carry Weight </color> \n" +
-                    "<color=green> Decrease Block Stamina Consumption </color> \n" +
-                    "<color=red> Increase Critical Damage when crit hits </color>");
+        _dictionary.Add("$strength_tooltip", "<size=20>La fuerza mejorará:</size> \n" +
+        "<color=yellow> Aumento del daño físico </color> \n" +
+        "<color=blue> Aumento del peso que puedes llevar </color> \n" +
+        "<color=green> Reducción del consumo de resistencia al bloquear </color> \n" +
+        "<color=red> Aumento del daño crítico al realizar golpes críticos </color>");
 
-        _dictionary.Add("$dexterity_tooltip", "<size=20>Dexterity will enhance:</size> \n" +
-                            "<color=red> Increase Attack Speed (not bows)</color> \n" +
-                            "<color=yellow> Decreased Attack Stamina Consumption </color> \n" +
-                            "<color=green> Decreased Running/Jumping Stamina Consumption</color> ");
+        _dictionary.Add("$dexterity_tooltip", "<size=20>La destreza mejorará:</size> \n" +
+        "<color=red> Aumento de la velocidad de ataque (excepto con arcos)</color> \n" +
+        "<color=yellow> Reducción del consumo de resistencia al atacar </color> \n" +
+        "<color=green> Reducción del consumo de resistencia al correr/saltar </color>");
 
+        _dictionary.Add("$intelect_tooltip", "<size=20>La inteligencia mejorará:</size> \n" +
+        "<color=green> Aumento del daño elemental </color>\n" +
+        "<color=red> Aumento de la cantidad de Eitr base (una vez que tengas Eitr)</color> \n" +
+        "<color=red> Aumento de la regeneración de Eitr</color>");
 
-        _dictionary.Add("$intelect_tooltip", "<size=20>Intelligence will enhance:</size> \n" +
-                            "<color=green> Increase all Elemental Damage </color>\n" +
-                            "<color=red> Increase base Eitr amount (once you have eitr)</color> \n" +
-                            "<color=red> Increase Eitr Regeneration</color> ");
+        _dictionary.Add("$endurance_tooltip", "<size=20>La resistencia mejorará:</size> \n" +
+        "<color=yellow> Aumento de la cantidad de resistencia </color>\n" +
+        "<color=yellow> Aumento de la regeneración de resistencia </color> \n" +
+        "<color=green> Reducción del daño físico recibido </color>");
 
+        _dictionary.Add("$vigour_tooltip", "<size=20>El vigor mejorará:</size> \n" +
+        "<color=red> Aumento de la cantidad de puntos de vida </color>\n" +
+        "<color=yellow> Regeneración de salud </color> \n" +
+        "<color=green> Reducción del daño elemental recibido </color>");
 
-        _dictionary.Add("$endurance_tooltip", "<size=20>Endurance will enhance:</size> \n" +
-                            "<color=yellow> Increase Stamina amount</color>\n" +
-                            "<color=yellow> Increase Stamina Regeneration </color> \n" +
-                            "<color=green> Reduce Physical Damage Taken</color> ");
-
-
-        _dictionary.Add("$vigour_tooltip", "<size=20>Vigour will enhance:</size> \n" +
-                            "<color=red> Increase HP amount</color>\n" +
-                            "<color=yellow> Health Regeneration </color> \n" +
-                            "<color=green> Reduce Elemental Damage Taken</color> ");
-
-
-        _dictionary.Add("$special_tooltip", "<size=20>Special will enhance:</size> \n" +
-                            "<color=red> Increase Critical Attack Chance</color> \n" +
-                            "<color=blue> Increase Mining Damage </color> \n" +
-                            "<color=blue> Increase construction piece's health </color> \n" +
-                            "<color=green> Increase Tree Cutting Damage</color>");
+        _dictionary.Add("$special_tooltip", "<size=20>Lo especial mejorará:</size> \n" +
+        "<color=red> Aumento de la probabilidad de ataque crítico </color> \n" +
+        "<color=blue> Aumento del daño de minería </color> \n" +
+        "<color=blue> Aumento de la resistencia de las piezas de construcción </color> \n" +
+        "<color=green> Aumento del daño al cortar árboles </color>");
     }
 
     private void GermanLocalization()
@@ -514,41 +510,37 @@ public class Localizationold
         _dictionary.Add("$terminal_set_level", "Du hast {0} level");
         _dictionary.Add("$terminal_reset_points", "Deine Attributspunkte wurden zurückgesetzt");
 
-        _dictionary.Add("$strength_tooltip", "<size=20>Strength will enhance:</size> \n" +
-                    "<color=yellow> Increase Physical Damage </color> \n" +
-                    "<color=blue> Increase Carry Weight </color> \n" +
-                    "<color=green> Decrease Block Stamina Consumption </color> \n" +
-                    "<color=red> Increase Critical Damage when crit hits </color>");
+        _dictionary.Add("$strength_tooltip", "<size=20>Stärke wird verbessern:</size> \n" +
+        "<color=yellow> Erhöhten physischen Schaden </color> \n" +
+        "<color=blue> Erhöhte Tragfähigkeit </color> \n" +
+        "<color=green> Verringerten Block-Stamina-Verbrauch </color> \n" +
+        "<color=red> Erhöhten kritischen Schaden bei kritischen Treffern </color>");
 
-        _dictionary.Add("$dexterity_tooltip", "<size=20>Dexterity will enhance:</size> \n" +
-                            "<color=red> Increase Attack Speed (not bows)</color> \n" +
-                            "<color=yellow> Decreased Attack Stamina Consumption </color> \n" +
-                            "<color=green> Decreased Running/Jumping Stamina Consumption</color> ");
+        _dictionary.Add("$dexterity_tooltip", "<size=20>Geschicklichkeit wird verbessern:</size> \n" +
+        "<color=red> Erhöhte Angriffsgeschwindigkeit (außer Bögen)</color> \n" +
+        "<color=yellow> Verringerten Angriffs-Stamina-Verbrauch </color> \n" +
+        "<color=green> Verringerten Lauf-/Sprung-Stamina-Verbrauch </color>");
 
+        _dictionary.Add("$intelect_tooltip", "<size=20>Intelligenz wird verbessern:</size> \n" +
+        "<color=green> Erhöhten Schaden aller Elemente </color>\n" +
+        "<color=red> Erhöhte Grundmenge an Eitr (sobald du Eitr hast)</color> \n" +
+        "<color=red> Erhöhte Eitr-Regeneration</color>");
 
-        _dictionary.Add("$intelect_tooltip", "<size=20>Intelligence will enhance:</size> \n" +
-                            "<color=green> Increase all Elemental Damage </color>\n" +
-                            "<color=red> Increase base Eitr amount (once you have eitr)</color> \n" +
-                            "<color=red> Increase Eitr Regeneration</color> ");
+        _dictionary.Add("$endurance_tooltip", "<size=20>Ausdauer wird verbessern:</size> \n" +
+        "<color=yellow> Erhöhte Ausdauer </color>\n" +
+        "<color=yellow> Erhöhte Ausdauer-Regeneration </color> \n" +
+        "<color=green> Verringerten erlittenen physischen Schaden </color>");
 
+        _dictionary.Add("$vigour_tooltip", "<size=20>Vitalität wird verbessern:</size> \n" +
+        "<color=red> Erhöhte HP-Menge </color>\n" +
+        "<color=yellow> Gesundheitsregeneration </color> \n" +
+        "<color=green> Verringerten erlittenen elementaren Schaden </color>");
 
-        _dictionary.Add("$endurance_tooltip", "<size=20>Endurance will enhance:</size> \n" +
-                            "<color=yellow> Increase Stamina amount</color>\n" +
-                            "<color=yellow> Increase Stamina Regeneration </color> \n" +
-                            "<color=green> Reduce Physical Damage Taken</color> ");
-
-
-        _dictionary.Add("$vigour_tooltip", "<size=20>Vigour will enhance:</size> \n" +
-                            "<color=red> Increase HP amount</color>\n" +
-                            "<color=yellow> Health Regeneration </color> \n" +
-                            "<color=green> Reduce Elemental Damage Taken</color> ");
-
-
-        _dictionary.Add("$special_tooltip", "<size=20>Special will enhance:</size> \n" +
-                            "<color=red> Increase Critical Attack Chance</color> \n" +
-                            "<color=blue> Increase Mining Damage </color> \n" +
-                            "<color=blue> Increase construction piece's health </color> \n" +
-                            "<color=green> Increase Tree Cutting Damage</color>");
+        _dictionary.Add("$special_tooltip", "<size=20>Besonderheit wird verbessern:</size> \n" +
+        "<color=red> Erhöhte Chance für kritische Angriffe </color> \n" +
+        "<color=blue> Erhöhten Bergbau-Schaden </color> \n" +
+        "<color=blue> Erhöhte Lebenspunkte von Konstruktionsstücken </color> \n" +
+        "<color=green> Erhöhten Schaden beim Baumfällen </color>");
 
     }
 
@@ -614,41 +606,135 @@ public class Localizationold
         _dictionary.Add("$tree_cutting", "树木伤害增加");
         _dictionary.Add("$crit_chance", "暴击率增加");
 
-        _dictionary.Add("$strength_tooltip", "<size=20>Strength will enhance:</size> \n" +
-                    "<color=yellow> Increase Physical Damage </color> \n" +
-                    "<color=blue> Increase Carry Weight </color> \n" +
-                    "<color=green> Decrease Block Stamina Consumption </color> \n" +
-                    "<color=red> Increase Critical Damage when crit hits </color>");
+        _dictionary.Add("$strength_tooltip", "<size=20>力量将增强以下效果：</size> \n" +
+        "<color=yellow>增加物理伤害</color> \n" +
+        "<color=blue>增加负重</color> \n" +
+        "<color=green>减少格挡体力消耗</color> \n" +
+        "<color=red>增加爆击伤害</color>");
 
-        _dictionary.Add("$dexterity_tooltip", "<size=20>Dexterity will enhance:</size> \n" +
-                            "<color=red> Increase Attack Speed (not bows)</color> \n" +
-                            "<color=yellow> Decreased Attack Stamina Consumption </color> \n" +
-                            "<color=green> Decreased Running/Jumping Stamina Consumption</color> ");
+        _dictionary.Add("$dexterity_tooltip", "<size=20>灵巧将增强以下效果：</size> \n" +
+        "<color=red>增加攻击速度（非弓箭）</color> \n" +
+        "<color=yellow>减少攻击体力消耗</color> \n" +
+        "<color=green>减少奔跑/跳跃体力消耗</color>");
 
+        _dictionary.Add("$intelect_tooltip", "<size=20>智力将增强以下效果：</size> \n" +
+        "<color=green>增加所有元素伤害</color> \n" +
+        "<color=red>增加基础 Eitr 数量（获得 Eitr 后）</color> \n" +
+        "<color=red>增加 Eitr 再生速度</color>");
 
-        _dictionary.Add("$intelect_tooltip", "<size=20>Intelligence will enhance:</size> \n" +
-                            "<color=green> Increase all Elemental Damage </color>\n" +
-                            "<color=red> Increase base Eitr amount (once you have eitr)</color> \n" +
-                            "<color=red> Increase Eitr Regeneration</color> ");
+        _dictionary.Add("$endurance_tooltip", "<size=20>耐力将增强以下效果：</size> \n" +
+        "<color=yellow>增加体力量</color> \n" +
+        "<color=yellow>增加体力再生速度</color> \n" +
+        "<color=green>减少受到的物理伤害</color>");
 
+        _dictionary.Add("$vigour_tooltip", "<size=20>活力将增强以下效果：</size> \n" +
+        "<color=red>增加生命值量</color> \n" +
+        "<color=yellow>生命值再生</color> \n" +
+        "<color=green>减少受到的元素伤害</color>");
 
-        _dictionary.Add("$endurance_tooltip", "<size=20>Endurance will enhance:</size> \n" +
-                            "<color=yellow> Increase Stamina amount</color>\n" +
-                            "<color=yellow> Increase Stamina Regeneration </color> \n" +
-                            "<color=green> Reduce Physical Damage Taken</color> ");
+        _dictionary.Add("$special_tooltip", "<size=20>特殊将增强以下效果：</size> \n" +
+        "<color=red>增加暴击攻击几率</color> \n" +
+        "<color=blue>增加采矿伤害</color> \n" +
+        "<color=blue>增加建筑物件的耐久度</color> \n" +
+        "<color=green>增加伐木伤害</color>");
+    }
 
+    private void PortugueseLocalization()
+    {
+        _dictionary.Add("$attributes", "Atributos");
+        _dictionary.Add("$parameter_strength", "Força");
+        _dictionary.Add("$parameter_intellect", "Intelecto");
+        _dictionary.Add("$free_points", "Pontos disponíveis");
+        _dictionary.Add("$level", "Nível");
+        _dictionary.Add("$lvl", "Nvl.");
+        _dictionary.Add("$exp", "Experiência");
+        _dictionary.Add("$cancel", "Cancelar");
+        _dictionary.Add("$apply", "Aceitar");
+        _dictionary.Add("$reset_parameters", "Redefinir pontos");
+        _dictionary.Add("$no", "Não");
+        _dictionary.Add("$yes", "Sim");
+        _dictionary.Add("$get_exp", "Experiência recebida");
+        _dictionary.Add("$reset_point_text", "Você realmente deseja remover todos os pontos para {0} {1}?");
+        //Parâmetro
+        _dictionary.Add("$physic_damage", "Dano Físico");
+        _dictionary.Add("$add_weight", "Peso que pode carregar");
+        _dictionary.Add("$reduced_stamina", "Consumo de resistência (correr, pular)");
+        _dictionary.Add("$magic_damage", "Dano Elemental");
+        _dictionary.Add("$magic_armor", "Redução Elemental");
+        _dictionary.Add("$add_hp", "Aumento de Vida");
+        _dictionary.Add("$add_stamina", "Aumento de Resistência");
+        _dictionary.Add("$physic_armor", "Redução Física");
+        _dictionary.Add("$reduced_stamina_block", "Consumo de resistência ao bloquear");
+        _dictionary.Add("$regen_hp", "Regeneração de Vida");
+        _dictionary.Add("$damage", "Dano");
+        _dictionary.Add("$armor", "Armadura");
+        _dictionary.Add("$survival", "Sobrevivência");
+        _dictionary.Add("$regen_eitr", "Regeneração de Eitr");
+        _dictionary.Add("$stamina_reg", "Regeneração de Resistência");
+        _dictionary.Add("$add_eitr", "Aumento de Eitr");
+        //Novos/alterados Parâmetros 1.7.0
+        _dictionary.Add("$parameter_agility", "Destreza");
+        _dictionary.Add("$parameter_body", "Resistência");
+        _dictionary.Add("$parameter_vigour", "Vigor");
+        _dictionary.Add("$parameter_special", "Especialização");
+        _dictionary.Add("$specialother", "Especial");//divheader
+        _dictionary.Add("$attack_speed", "Velocidade de Ataque");
+        _dictionary.Add("$attack_stamina", "Consumo de resistência ao atacar");
+        _dictionary.Add("$crtcDmgMulti", "Multiplicador de Dano Crítico");
+        _dictionary.Add("$mining_speed", "Aumento de Dano na Mineração");
+        _dictionary.Add("$piece_health", "Aumento da Vida das Peças");
+        _dictionary.Add("$tree_cutting", "Aumento do Dano ao Cortar Árvores");
+        _dictionary.Add("$crit_chance", "Aumento da Chance de Ataque Crítico");
 
-        _dictionary.Add("$vigour_tooltip", "<size=20>Vigour will enhance:</size> \n" +
-                            "<color=red> Increase HP amount</color>\n" +
-                            "<color=yellow> Health Regeneration </color> \n" +
-                            "<color=green> Reduce Elemental Damage Taken</color> ");
+        //Lista de amigos
+        _dictionary.Add("$notify", "<color=#00E6FF>Alerta</color>");
+        _dictionary.Add("$friends_list", "Lista de Amigos");
+        _dictionary.Add("$send", "Enviar");
+        _dictionary.Add("$invited", "Convites");
+        _dictionary.Add("$friends", "Amigos");
+        _dictionary.Add("$online", "Online");
+        _dictionary.Add("$offline", "Offline");
+        _dictionary.Add("$not_found", "Jogador {0} não encontrado.");
+        _dictionary.Add("$send_invite", "Um pedido de amizade foi enviado para o jogador {0}.");
+        _dictionary.Add("$get_invite", "Recebeu um pedido de amizade de {0}.");
+        _dictionary.Add("$accept_invite", "O jogador {0} aceitou o pedido de amizade.");
+        _dictionary.Add("$cancel_invite", "O jogador {0} cancelou o pedido de amizade.");
+        //Terminal
+        _dictionary.Add("$terminal_set_level", "Você alcançou o nível {0}.");
+        _dictionary.Add("$terminal_reset_points", "Os pontos dos seus atributos foram redefinidos.");
 
+        _dictionary.Add("$strength_tooltip", "<size=20>A força aumentará:</size> \n" +
+            "<color=yellow> Aumento do Dano Físico </color> \n" +
+            "<color=blue> Aumento do Peso que pode carregar </color> \n" +
+            "<color=green> Redução do Consumo de Resistência ao Bloquear </color> \n" +
+            "<color=red> Aumento do Dano Crítico quando acertar críticos </color>");
 
-        _dictionary.Add("$special_tooltip", "<size=20>Special will enhance:</size> \n" +
-                            "<color=red> Increase Critical Attack Chance</color> \n" +
-                            "<color=blue> Increase Mining Damage </color> \n" +
-                            "<color=blue> Increase construction piece's health </color> \n" +
-                            "<color=green> Increase Tree Cutting Damage</color>");
+        _dictionary.Add("$dexterity_tooltip", "<size=20>A destreza aumentará:</size> \n" +
+            "<color=red> Aumento da Velocidade de Ataque (exceto arcos) </color> \n" +
+            "<color=yellow> Redução do Consumo de Resistência ao Atacar </color> \n" +
+            "<color=green> Redução do Consumo de Resistência ao Correr/Saltar </color>");
+
+        _dictionary.Add("$intelect_tooltip", "<size=20>A inteligência aumentará:</size> \n" +
+            "<color=green> Aumento do Dano de Todos os Elementos </color> \n" +
+            "<color=red> Aumento da Quantidade de Eitr Base (quando tiver Eitr) </color> \n" +
+            "<color=red> Aumento da Regeneração de Eitr </color>");
+
+        _dictionary.Add("$endurance_tooltip", "<size=20>A resistência aumentará:</size> \n" +
+            "<color=yellow> Aumento da Quantidade de Resistência </color> \n" +
+            "<color=yellow> Aumento da Regeneração de Resistência </color> \n" +
+            "<color=green> Redução do Dano Físico Recebido </color>");
+
+        _dictionary.Add("$vigour_tooltip", "<size=20>O vigor aumentará:</size> \n" +
+            "<color=red> Aumento da Quantidade de Pontos de Vida </color> \n" +
+            "<color=yellow> Regeneração de Vida </color> \n" +
+            "<color=green> Redução do Dano Elemental Recebido </color>");
+
+        _dictionary.Add("$special_tooltip", "<size=20>O especializar aumentará:</size> \n" +
+            "<color=red> Aumento da Chance de Ataque Crítico </color> \n" +
+            "<color=blue> Aumento do Dano de Mineração </color> \n" +
+            "<color=blue> Aumento da Vida das Peças de Construção </color> \n" +
+            "<color=green> Aumento do Dano ao Cortar Árvores </color>");
+
     }
 
     public string this[string key]

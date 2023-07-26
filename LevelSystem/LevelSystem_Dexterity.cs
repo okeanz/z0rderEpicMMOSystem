@@ -28,6 +28,7 @@ public partial class LevelSystem
     }
 
 
+    /* replaced by Speed Manager by blaxx
 
      [HarmonyPatch(typeof(CharacterAnimEvent), "CustomFixedUpdate")]
      private static class CharacterAnimEvent_Awake_Patch
@@ -66,6 +67,7 @@ public partial class LevelSystem
             }
          }
     }
+    */
 
 
     [HarmonyPatch(typeof(Attack), nameof(Attack.GetAttackStamina))]

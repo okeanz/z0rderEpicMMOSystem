@@ -36,6 +36,24 @@
     "level": 30
   },
   {
+    "name": "DamnedOne_TW",
+    "minExp": 500,
+    "maxExp": 600,
+    "level": 35
+  },
+  {
+    "name": "HelWraith_TW",
+    "minExp": 400,
+    "maxExp": 550,
+    "level": 31
+  },
+  {
+    "name": "BossVrykolathas_TW",
+    "minExp": 1000,
+    "maxExp": 1200,
+    "level": 35
+  },
+  {
     "name": "GrizzlyBear_TW",
     "minExp": 400,
     "maxExp": 600,

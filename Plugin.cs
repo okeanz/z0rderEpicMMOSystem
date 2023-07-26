@@ -24,6 +24,7 @@ using System.Runtime.Remoting.Messaging;
 using StatusEffectManager;
 using System.Collections;
 
+
 namespace EpicMMOSystem;
 
 [BepInPlugin(ModGUID, ModName, ModVersion)]
@@ -33,7 +34,7 @@ namespace EpicMMOSystem;
 public partial class EpicMMOSystem : BaseUnityPlugin
 {
     internal const string ModName = "EpicMMOSystem";
-    internal const string ModVersion = "1.7.3";
+    internal const string ModVersion = "1.7.4";
     internal const string Author = "WackyMole";
    // internal const string configV = "_1_7";
     private const string ModGUID = Author + "." + ModName; //+ configV; changes GUID
@@ -362,6 +363,19 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         PotionSEtime = config(OrbandPotion, "Potion SE time", 600, "Potion SE timer last for default of 10 minutes");
         OrbDropChance = config(OrbandPotion, "Orb Drop Chance", 1f, "Chance for Magic Orb to drop from a monster - default 1%");
         OrbDropChancefromBoss = config(OrbandPotion, "Ord Drop Boss", 100f, "Drop Chance for Orbs to drop from a boss - default 100%");
+
+        Localizer.AddPlaceholder("mmoxpdrink1_description", "power1", XPforMinorPotion, power1 => ((power1 -1)*100).ToString());
+        Localizer.AddPlaceholder("mmoxpdrink2_description", "power2", XPforMediumPotion, power2 => ((power2 - 1) * 100).ToString());
+        Localizer.AddPlaceholder("mmoxpdrink3_description", "power3", XPforGreaterPotion, power3 => ((power3 - 1) * 100).ToString());
+
+
+        AnimationSpeedManager.Add((character, speed) => { // animation controller because reasons and stuff
+            if (character is not Player player || !player.InAttack() || player.m_currentAttack is null || (LevelSystem.Instance.getParameter(Parameter.Agility) == 0) || player.GetCurrentWeapon().m_shared.m_skillType == Skills.SkillType.Bows)
+            {
+                return speed;
+            }
+            return speed * (1+LevelSystem.Instance.getAddAttackSpeed()/100);
+        });
 
 
 

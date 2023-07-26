@@ -23,10 +23,10 @@ magicferm: “Magischer Fermenter”
 magicferm_description: “Der magische Fermenter kann magischen Met verarbeiten”
 mmo_xp_gain: “XP-Gewinn”
 mmo_potion1: “XP-Trank Minor”
-mmoxpdrink1_description: “Während der Wirkungsdauer dieses Tranks erhalten Sie eine Steigerung von 30% des erhaltenen XP”
+mmoxpdrink1_description: “Während der Wirkungsdauer dieses Tranks erhalten Sie eine Steigerung von {power1}% des erhaltenen XP”
 mmo_potion2: “XP-Trank Medium” 
-mmoxpdrink2_description: “Während der Wirkungsdauer dieses Tranks erhalten Sie eine Steigerung von 60% des erhaltenen XP”
+mmoxpdrink2_description: “Während der Wirkungsdauer dieses Tranks erhalten Sie eine Steigerung von {power2}% des erhaltenen XP”
 mmo_potion3: “XP-Trank Greater”
-mmoxpdrink3_description: “Während der Wirkungsdauer dieses Tranks erhalten Sie eine Steigerung von 100% des erhaltenen XP”
+mmoxpdrink3_description: “Während der Wirkungsdauer dieses Tranks erhalten Sie eine Steigerung von {power3}% des erhaltenen XP”
 ResetTrophy: “Reset-Trophäe” 
 ResetTrophy_description: “Eine Trophäe, die Sie verwenden können, um MMO-Punkte zurückzusetzen. Selten”
