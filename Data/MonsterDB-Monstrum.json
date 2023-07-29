@@ -7,9 +7,9 @@
   },
   {
     "name": "BossAsmodeus_TW",
-    "minExp": 150,
-    "maxExp": 200,
-    "level": 15
+    "minExp": 175,
+    "maxExp": 225,
+    "level": 16
   },
   {
     "name": "Razorback_TW",
@@ -22,6 +22,24 @@
     "minExp": 100,
     "maxExp": 200,
     "level": 18
+  },
+  {
+    "name": "GDAncientShaman_TW",
+    "minExp": 120,
+    "maxExp": 180,
+    "level": 20
+  },
+  {
+    "name": "BurningHunger_TW",
+    "minExp": 100,
+    "maxExp": 150,
+    "level": 25
+  },
+  {
+    "name": "BossSvalt_TW",
+    "minExp": 1000,
+    "maxExp": 1200,
+    "level": 26
   },
   {
     "name": "RottingElk_TW",
@@ -37,8 +55,8 @@
   },
   {
     "name": "DamnedOne_TW",
-    "minExp": 500,
-    "maxExp": 600,
+    "minExp": 100,
+    "maxExp": 200,
     "level": 35
   },
   {
@@ -49,9 +67,9 @@
   },
   {
     "name": "BossVrykolathas_TW",
-    "minExp": 1000,
-    "maxExp": 1200,
-    "level": 35
+    "minExp": 1200,
+    "maxExp": 1400,
+    "level": 36
   },
   {
     "name": "GrizzlyBear_TW",

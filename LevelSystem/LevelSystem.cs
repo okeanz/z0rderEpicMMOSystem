@@ -5,6 +5,7 @@ using BepInEx;
 using EpicMMOSystem.Gui;
 using HarmonyLib;
 using UnityEngine;
+using UnityEngine.Networking;
 using Random = UnityEngine.Random;
 
 namespace EpicMMOSystem;
@@ -150,7 +151,18 @@ public partial class LevelSystem
     private void setParameter(Parameter parameter, int value)
     {
         if (!Player.m_localPlayer) return;
-        int max = EpicMMOSystem.maxValueAttribute.Value;
+       // int max = EpicMMOSystem.maxValueAttribute.Value;
+
+        int max = parameter.ToString() switch
+        {
+            "Strength" => EpicMMOSystem.maxValueStrength.Value,
+            "Agility" => EpicMMOSystem.maxValueDexterity.Value,
+            "Intellect" => EpicMMOSystem.maxValueIntelligence.Value,
+            "Body" => EpicMMOSystem.maxValueEndurance.Value,
+            "Vigour" => EpicMMOSystem.maxValueVigour.Value,
+            "Special" => EpicMMOSystem.maxValueSpecializing.Value,
+            _ => max = 205
+        };
         int setValue = Mathf.Clamp(value, 0, max);
         Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_{parameter.ToString()}"] = setValue.ToString();
        // Player.m_localPlayer.m_customData. maybe later
@@ -164,7 +176,18 @@ public partial class LevelSystem
             return 0;
         }
         int value = int.Parse(Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_{parameter.ToString()}"]);
-        int max = EpicMMOSystem.maxValueAttribute.Value;
+        //int max = EpicMMOSystem.maxValueAttribute.Value;
+
+        int max = parameter.ToString() switch 
+        {
+            "Strength" => EpicMMOSystem.maxValueStrength.Value,
+            "Agility" => EpicMMOSystem.maxValueDexterity.Value,
+            "Intellect" => EpicMMOSystem.maxValueIntelligence.Value,
+            "Body" => EpicMMOSystem.maxValueEndurance.Value,
+             "Vigour" => EpicMMOSystem.maxValueVigour.Value,
+            "Special" => EpicMMOSystem.maxValueSpecializing.Value,
+            _ => max = 205
+        };
         return Mathf.Clamp(value, 0, max);
     }
 

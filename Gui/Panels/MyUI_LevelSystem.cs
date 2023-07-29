@@ -268,7 +268,17 @@ public partial class MyUI
 
         public void UpdateParameters(int freePoints)
         {
-            var max = EpicMMOSystem.maxValueAttribute.Value;
+
+            int max = parameter.ToString() switch
+            {
+                "Strength" => EpicMMOSystem.maxValueStrength.Value,
+                "Agility" => EpicMMOSystem.maxValueDexterity.Value,
+                "Intellect" => EpicMMOSystem.maxValueIntelligence.Value,
+                "Body" => EpicMMOSystem.maxValueEndurance.Value,
+                "Vigour" => EpicMMOSystem.maxValueVigour.Value,
+                "Special" => EpicMMOSystem.maxValueSpecializing.Value,
+                _ => max = 205
+            };
             var current = LevelSystem.Instance.getParameter(parameter);
             text.text = $"{localization[$"$parameter_{parameter.ToString().ToLower()}"]}: {current}";
             buttons.SetActive(freePoints > 0 && current < max);
