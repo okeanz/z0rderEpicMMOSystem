@@ -596,7 +596,7 @@ public class Localizationold
         _dictionary.Add("$parameter_agility", "灵巧");
         _dictionary.Add("$parameter_body", "耐力");
         _dictionary.Add("$parameter_vigour", "活力");
-        _dictionary.Add("$parameter_special", "专业化我们的");
+        _dictionary.Add("$parameter_special", "特殊");
         _dictionary.Add("$specialother", "特别的");//divheader
         _dictionary.Add("$attack_speed", "攻击速度");
         _dictionary.Add("$attack_stamina", "攻击体力消耗");

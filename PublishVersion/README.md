@@ -259,7 +259,7 @@ Original Creator: LambaSun or my [mod branch](https://discord.com/channels/82657
 
 | Version | Changes                                                                                                                                                                                                                                                                                                                                |
 |----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1.7.5  | - Updated Monstrum. </br> Added Max Cap for each Attribute
+| 1.7.5  | - Updated Monstrum. </br> Added Max Cap for each Attribute </br> Update Chinese </br> Disabled normal damage notification for critical attacks, so just critical attack and crit sound remain
 | 1.7.4  | - Updated Monstrum and Monsterlabz, add localization for tooltip, potion and orb power. <br/> Added Speed Manager by Blaxx for compability. <br/> Added Portuguese
 | 1.7.3  | - API update, Strength = 0, Agility = 1, Intellect = 2, Body = 3, Vigour = 4, Special = 5 <br/> Spanish Update <br/> Orbs no longer get extra XP multiplier </br> Mob update for Monsterlabz and Monstrum
 | 1.7.2  | - Fixed Attack Speed for language heathens that use "," instead of "." for decimals, Updated GroupAPI
