@@ -340,6 +340,7 @@ public partial class LevelSystem
                 $"{(EpicMMOSystem.localizationold["$get_exp"])}: {(int)giveExp}"
             );
         }
+        giveExp = (float)Math.Round(giveExp);
         string stringtolvl = EpicMMOSystem.XPstring.Value;
         stringtolvl = stringtolvl.Replace("@", giveExp.ToString());
         //Util.FloatingText($"+{exp} XP");
