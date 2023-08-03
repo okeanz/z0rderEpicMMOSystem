@@ -406,7 +406,7 @@
     <EmbeddedResource Include="Data\MonsterDB_TeddyBears.json" />
     <EmbeddedResource Include="asset\mmo_xp" />
     <EmbeddedResource Include="Data\MonsterDB-PungusSouls.json" />
-    <None Include="Data\MonsterDB_Jewelcrafting.json" />
+    <EmbeddedResource Include="Data\MonsterDB_Jewelcrafting.json" />
     <None Include="packages.config" />
     <EmbeddedResource Include="translations\Russian.yml" />
     <EmbeddedResource Include="translations\English.yml">
