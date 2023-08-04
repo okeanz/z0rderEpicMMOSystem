@@ -350,7 +350,7 @@ public static class DataMonsters
     {
         public static void Postfix(EnemyHud __instance, Character c, Dictionary<Character, EnemyHud.HudData> ___m_huds, bool __state)
         {
-            if (c.IsTamed()) return; // might remove this in future
+            if (c.m_tamed ) return; // might remove this in future
             if (!EpicMMOSystem.enabledLevelControl.Value) return;
             if (!contains(c.gameObject.name)) return;
             Transform go = ___m_huds[c].m_gui.transform.Find("Name/Name(Clone)");
