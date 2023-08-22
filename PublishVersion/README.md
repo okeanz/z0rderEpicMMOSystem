@@ -1,5 +1,5 @@
 # Description:
-This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.7.6
+This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.7.7
 
 BIG WACKY UPDATE! - You asked for more categories, Wacky adds 2 MORE! You asked for using trophies to generate XP. Wacky added XP Orbs and Magic Potions!
 
@@ -123,7 +123,7 @@ You can combine multiple Skills for one Requirement
 
 	Mob's data (names, levels, exp) from other mods are included:
 
-	Fantasy-Creatures, AirAnimals, Defaults, DoOrDieMonsters, LandAnimals, MonsterlabZ, Outsiders, SeaAnimals, Monstrum (free and paid), Krumpac Mods(free and paid), Teddy Bears, PungusSouls, JewelCrafting
+	Fantasy-Creatures, AirAnimals, Defaults, DoOrDieMonsters, LandAnimals, MonsterlabZ, Outsiders, SeaAnimals, Monstrum (free and paid), Krumpac Mods(free and paid), Teddy Bears, PungusSouls, JewelCrafting, RTDMonsters
 
 	A folder listing all monsters and their levels is located in config/EpicMMOSystem/ Default is for vanilla mobs
 
@@ -131,7 +131,7 @@ You can combine multiple Skills for one Requirement
 
 	A file called Version.txt is created in the folder. It contains the mod version that was used to create it. Replace it with "NO" to stop it from overwritting on a future update.
 
-	Latest Update for Jsons config is <b> 1.7.6 </b>(Number will be updated when Jsons recieve an update)
+	Latest Update for Jsons config is <b> 1.7.7 </b>(Number will be updated when Jsons recieve an update)
 
 </details>
 
@@ -259,6 +259,7 @@ Original Creator: LambaSun or my [mod branch](https://discord.com/channels/82657
 
 | Version | Changes                                                                                                                                                                                                                                                                                                                                |
 |----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.7.7  | - Added RtDMonsters </br> Adjusted Orb XP amounts Greatly! </br> Added Orb Boss Max amount for orb chances </br> Bug fix </br> Update for Hildir's Update </br> @margmas helped me fix a IL error, thank you!
 | 1.7.6  | - Added JewelCrafting Bosses. </br> Rounding XP Gained </br> Small bug fix for modded mobs without tamed status
 | 1.7.5  | - Updated Monstrum. </br> Added Max Cap for each Attribute </br> Update Chinese </br> Disabled normal damage notification for critical attacks, so just critical attack and crit sound remain
 | 1.7.4  | - Updated Monstrum and Monsterlabz, add localization for tooltip, potion and orb power. <br/> Added Speed Manager by Blaxx for compability. <br/> Added Portuguese

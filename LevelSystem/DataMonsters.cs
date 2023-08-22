@@ -71,7 +71,7 @@ public static class DataMonsters
     }
 
 
-    [HarmonyPatch(typeof(ItemDrop.ItemData), nameof(ItemDrop.ItemData.GetTooltip), typeof(ItemDrop.ItemData),typeof(int),typeof(bool))]
+    [HarmonyPatch(typeof(ItemDrop.ItemData), nameof(ItemDrop.ItemData.GetTooltip), typeof(ItemDrop.ItemData),typeof(int),typeof(bool), typeof(float) )]
     public class GetTooltipPatch
     {
         public static void Postfix(ItemDrop.ItemData item, bool crafting, ref string __result)
@@ -164,6 +164,7 @@ public static class DataMonsters
         var json11 = "MonsterDB_TeddyBears.json";
         var json12 = "MonsterDB-PungusSouls.json";
         var json13 = "MonsterDB_Jewelcrafting.json";
+        var json14 = "MonsterDB_RtDMonsters.json";
 
         if (!Directory.Exists(folderpath)){
             Directory.CreateDirectory(folderpath);
@@ -202,11 +203,13 @@ public static class DataMonsters
             if (filev == "1.7.4")
                 cleartowrite = true;            
             if (filev == "1.7.5")
+                cleartowrite = true;            
+            if (filev == "1.7.6")
                 cleartowrite = true;
 
 
 
-            if (filev == "1.7.6") // last version to get a DB update
+            if (filev == "1.7.7") // last version to get a DB update
                 cleartowrite = false;
 
             if (filev == "NO" || filev == "no" || filev == "No" || filev == "STOP" || filev == "stop" || filev == "Stop")
@@ -218,7 +221,7 @@ public static class DataMonsters
         if (cleartowrite)
         {
             //list.Clear();
-            File.WriteAllText(versionpath, "1.7.6"); // Write Version file, don't auto update
+            File.WriteAllText(versionpath, "1.7.7"); // Write Version file, don't auto update
 
             File.WriteAllText(warningtext, "Erase numbers in Version.txt and write NO or stop in file. This should stop DB json files from updating on an update");
 
@@ -249,6 +252,8 @@ public static class DataMonsters
             File.WriteAllText(Path.Combine(folderpath, json12), getDefaultJsonMonster(json12));
 
             File.WriteAllText(Path.Combine(folderpath, json13), getDefaultJsonMonster(json13));
+
+            File.WriteAllText(Path.Combine(folderpath, json14), getDefaultJsonMonster(json14));
 
 
             if (EpicMMOSystem.extraDebug.Value)
@@ -528,7 +533,7 @@ public static class DataMonsters
             {
                 if (isBoss)
                 {
-                    for (int i = 0; i < Random.Range(1, 4); i++) // random amount 1-4
+                    for (int i = 0; i < Random.Range(1, EpicMMOSystem.OrdDropMaxAmountFromBoss.Value); i++) // random amount 1-4
                     {
                         DropItem(orb, __instance.transform.position + Vector3.up * 0.75f, 0.5f);
                     }

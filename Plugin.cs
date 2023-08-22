@@ -34,7 +34,7 @@ namespace EpicMMOSystem;
 public partial class EpicMMOSystem : BaseUnityPlugin
 {
     internal const string ModName = "EpicMMOSystem";
-    internal const string ModVersion = "1.7.6";
+    internal const string ModVersion = "1.7.7";
     internal const string Author = "WackyMole";
    // internal const string configV = "_1_7";
     private const string ModGUID = Author + "." + ModName; //+ configV; changes GUID
@@ -220,6 +220,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     public static ConfigEntry<int> PotionSEtime;
     public static ConfigEntry<float> OrbDropChance;
     public static ConfigEntry<float> OrbDropChancefromBoss;
+    public static ConfigEntry<int> OrdDropMaxAmountFromBoss;
 
 
     //internal static Localization english = null!;
@@ -363,12 +364,12 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         addDefaultEitr =config(optionalEffect, "addDefaultEitr", 0f, "Add Eitr by default");
 
         string OrbandPotion = "6.Orbs and Potions-------";
-        XPforOrb1 = config(OrbandPotion, "XP for Orb 1", 100, "Consuming Orb grants how much exp?");
-        XPforOrb2 = config(OrbandPotion, "XP for Orb 2", 200, "Consuming Orb grants how much exp?");
-        XPforOrb3 = config(OrbandPotion, "XP for Orb 3", 400, "Consuming Orb grants how much exp?");
-        XPforOrb4 = config(OrbandPotion, "XP for Orb 4", 800, "Consuming Orb grants how much exp?");
-        XPforOrb5 = config(OrbandPotion, "XP for Orb 5", 1500, "Consuming Orb grants how much exp?");
-        XPforOrb6 = config(OrbandPotion, "XP for Orb 6", 3000, "Consuming Orb grants how much exp?");
+        XPforOrb1 = config(OrbandPotion, "XP for Orb 1", 500, "Consuming Orb grants how much exp?");
+        XPforOrb2 = config(OrbandPotion, "XP for Orb 2", 1000, "Consuming Orb grants how much exp?");
+        XPforOrb3 = config(OrbandPotion, "XP for Orb 3", 2000, "Consuming Orb grants how much exp?");
+        XPforOrb4 = config(OrbandPotion, "XP for Orb 4", 4000, "Consuming Orb grants how much exp?");
+        XPforOrb5 = config(OrbandPotion, "XP for Orb 5", 8000, "Consuming Orb grants how much exp?");
+        XPforOrb6 = config(OrbandPotion, "XP for Orb 6", 16000, "Consuming Orb grants how much exp?");
         XPforMinorPotion = config(OrbandPotion, "Minor Potion", 1.3f, "XP Multiplier for XP Potion Minor");
         XPforMediumPotion = config(OrbandPotion, "Medium Potion", 1.6f, "XP Multiplier for XP Potion Medium");
         XPforGreaterPotion = config(OrbandPotion, "Greater Potion", 2.0f, "XP Multiplier for XP Potion Greater");
@@ -376,6 +377,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         PotionSEtime = config(OrbandPotion, "Potion SE time", 600, "Potion SE timer last for default of 10 minutes");
         OrbDropChance = config(OrbandPotion, "Orb Drop Chance", 1f, "Chance for Magic Orb to drop from a monster - default 1%");
         OrbDropChancefromBoss = config(OrbandPotion, "Ord Drop Boss", 100f, "Drop Chance for Orbs to drop from a boss - default 100%");
+        OrdDropMaxAmountFromBoss = config(OrbandPotion, "Orb Boss Max Amount", 3, "Max Amount of Orbs to drop from Boss if any orbs drop. So there is a chance 1-3 will drop on default");
 
         Localizer.AddPlaceholder("mmoxpdrink1_description", "power1", XPforMinorPotion, power1 => ((power1 -1)*100).ToString());
         Localizer.AddPlaceholder("mmoxpdrink2_description", "power2", XPforMediumPotion, power2 => ((power2 - 1) * 100).ToString());
@@ -463,7 +465,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
 
 
         BuildPiece Ferm = new("mmo_xp", "mmo_fermenter", "asset");
-        Ferm.Category.Add(BuildPieceCategory.Crafting);
+        Ferm.Category.Set(BuildPieceCategory.Crafting);
         Ferm.Crafting.Set(PieceManager.CraftingTable.Forge);
         //Ferm.Snapshot();
         Ferm.RequiredItems.Add("FineWood", 30, true);
@@ -703,13 +705,13 @@ public partial class EpicMMOSystem : BaseUnityPlugin
 
         if (ObjectDB.m_instance != null)
         {
-            var orb = ObjectDB.m_instance.GetStatusEffect("MMO_XP");
+            var orb = ObjectDB.m_instance.GetStatusEffect("MMO_XP".GetStableHashCode());
             orb.m_ttl = OrbSEtime.Value;
-            var xpP1 = ObjectDB.m_instance.GetStatusEffect("Potion_MMO_Greater");
+            var xpP1 = ObjectDB.m_instance.GetStatusEffect("Potion_MMO_Greater".GetStableHashCode());
             xpP1.m_ttl = PotionSEtime.Value;
-            var xpP2 = ObjectDB.m_instance.GetStatusEffect("Potion_MMO_Medium");
+            var xpP2 = ObjectDB.m_instance.GetStatusEffect("Potion_MMO_Medium".GetStableHashCode());
             xpP2.m_ttl = PotionSEtime.Value;
-            var xpP3 = ObjectDB.m_instance.GetStatusEffect("Potion_MMO_Minor");
+            var xpP3 = ObjectDB.m_instance.GetStatusEffect("Potion_MMO_Minor".GetStableHashCode());
             xpP3.m_ttl = PotionSEtime.Value;
         }
 

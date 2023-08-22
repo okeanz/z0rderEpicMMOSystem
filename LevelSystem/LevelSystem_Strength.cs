@@ -47,7 +47,7 @@ public partial class LevelSystem
     }
 
 
-    [HarmonyPatch(typeof(ItemDrop.ItemData), nameof(ItemDrop.ItemData.GetDamage), typeof(int))]
+    [HarmonyPatch(typeof(ItemDrop.ItemData), nameof(ItemDrop.ItemData.GetDamage), new[] { typeof(int), typeof(float) })]
     public class AddDamageStrength_Path
     {
         public static void Postfix(ref ItemDrop.ItemData __instance, ref HitData.DamageTypes __result)
@@ -75,6 +75,7 @@ public partial class LevelSystem
         }
     }
 
+
     [HarmonyPatch(typeof(Humanoid), nameof(Humanoid.BlockAttack))]
     static class Humanoid_BlockAttack_Patch
     {
@@ -86,21 +87,28 @@ public partial class LevelSystem
         [HarmonyTranspiler]
         private static IEnumerable<CodeInstruction> StaminaBlock(IEnumerable<CodeInstruction> code)
         {
-
             var method = AccessTools.DeclaredMethod(typeof(Character), nameof(Character.UseStamina));
             var MyMethod = AccessTools.DeclaredMethod(typeof(Humanoid_BlockAttack_Patch), nameof(ReturnMyValue));
-            foreach (var instruction in code)
-            {
-                if (instruction.opcode == OpCodes.Callvirt && instruction.operand == method)
-                {
-                    yield return new CodeInstruction(OpCodes.Call, MyMethod);
-                    yield return new CodeInstruction(OpCodes.Mul);
-                }
-                yield return instruction;
+            var instructions = new List<CodeInstruction>(code);
 
+            for (int i = 0; i < instructions.Count; i++)
+            {
+                if (i < instructions.Count - 1)
+                {
+                    CodeInstruction nextInstruction = instructions[i + 1];
+
+                    if (nextInstruction.opcode == OpCodes.Callvirt && nextInstruction.operand == method)
+                    {
+                        yield return new CodeInstruction(OpCodes.Call, MyMethod);
+                        yield return new CodeInstruction(OpCodes.Mul);
+                    }
+                }
+                yield return instructions[i];
             }
         }
     }
+
+
 
 
 

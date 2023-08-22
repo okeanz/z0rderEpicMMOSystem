@@ -38,7 +38,7 @@ public partial class LevelSystem
         }
     }
 
-    [HarmonyPatch(typeof(ItemDrop.ItemData), nameof(ItemDrop.ItemData.GetDamage), typeof(int))]
+    [HarmonyPatch(typeof(ItemDrop.ItemData), nameof(ItemDrop.ItemData.GetDamage), new[] { typeof(int), typeof(float) })]
     public class AddDamageIntellect_Path
     {
         public static void Postfix(ref ItemDrop.ItemData __instance, ref HitData.DamageTypes __result)

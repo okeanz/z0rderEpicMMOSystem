@@ -32,7 +32,7 @@ public partial class LevelSystem
 
 
 
-    [HarmonyPatch(typeof(ItemDrop.ItemData), nameof(ItemDrop.ItemData.GetDamage), typeof(int))]
+    [HarmonyPatch(typeof(ItemDrop.ItemData), nameof(ItemDrop.ItemData.GetDamage), new[] { typeof(int), typeof(float) }) ]
     private static class MiningPostfix
     {
         private static void Postfix(ItemDrop.ItemData __instance, ref HitData.DamageTypes __result)
@@ -60,7 +60,7 @@ public partial class LevelSystem
 
 
 
-    [HarmonyPatch(typeof(ItemDrop.ItemData), nameof(ItemDrop.ItemData.GetDamage), typeof(int))]
+    [HarmonyPatch(typeof(ItemDrop.ItemData), nameof(ItemDrop.ItemData.GetDamage), new[] { typeof(int), typeof(float) })]
     private static class TreeCuttingPostfix
     {
         private static void Postfix(ItemDrop.ItemData __instance, ref HitData.DamageTypes __result)
