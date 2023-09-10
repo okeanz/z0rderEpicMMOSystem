@@ -196,38 +196,42 @@ public partial class LevelSystem
         var levelPoint = EpicMMOSystem.freePointForLevel.Value;
         var freePoint = EpicMMOSystem.startFreePoint.Value;
         var level = getLevel();
-        var total = level * levelPoint + freePoint;
+        int addPoints = 0;
+        try
+        {           
+            string str = EpicMMOSystem.levelsForBinusFreePoint.Value;
+            if (str.IsNullOrWhiteSpace()) { }
+            else
+            {
+                var map = str.Split(',');
+                foreach (var value in map)
+                {
+                    var keyValue = value.Split(':');
+                    if (Int32.Parse(keyValue[0]) <= level)
+                    {
+                        addPoints += Int32.Parse(keyValue[1]);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            EpicMMOSystem.print($"Free point, bonus error: {e.Message}");
+        }
+
+
+        var total = level * levelPoint + freePoint + addPoints;
         int usedUp = 0;
         for (int i = 0; i < EpicMMOSystem.numofCats; i++)
         {
             usedUp += getParameter((Parameter)i);
         }
 
-        try
-        {
-            int addPoints = 0;
-            string str = EpicMMOSystem.levelsForBinusFreePoint.Value;
-            if (str.IsNullOrWhiteSpace()) return total - usedUp;
-            var map = str.Split(',');
-            foreach (var value in map)
-            {
-                var keyValue = value.Split(':');
-                if (Int32.Parse(keyValue[0]) <= level)
-                {
-                    addPoints += Int32.Parse(keyValue[1]);
-                }
-                else
-                {
-                    break;
-                }
-            }
 
-            total += addPoints;
-        }
-        catch (Exception e)
-        {
-            EpicMMOSystem.print($"Free point, bonus error: {e.Message}");
-        }
         return total - usedUp;
     }
 

@@ -96,7 +96,11 @@ public class Localizationold
     {
         PortugueseLocalization();
     }
-        else
+    else if (currentLanguage == "Swedish")
+    {
+        SwedishLocalization();
+    }
+    else
     {
         var fileName = $"{EpicMMOSystem.language.Value}_emmosLocalization.txt";
         var basePath = Path.Combine(Paths.PluginPath, EpicMMOSystem.ModName, fileName);
@@ -345,6 +349,103 @@ public class Localizationold
                             "<color=green> Increase Tree Cutting Damage</color>");
     }
 
+    private void SwedishLocalization()
+    {
+        _dictionary.Add("$attributes", "Attribut");
+        _dictionary.Add("$parameter_strength", "Styrka");
+        _dictionary.Add("$parameter_intellect", "Intellekt");
+        _dictionary.Add("$free_points", "Tillgängliga poäng");
+        _dictionary.Add("$level", "Nivå");
+        _dictionary.Add("$lvl", "Nivå.");
+        _dictionary.Add("$exp", "Erfarenhet");
+        _dictionary.Add("$cancel", "Avbryt");
+        _dictionary.Add("$apply", "Godkänn");
+        _dictionary.Add("$reset_parameters", "Återställ poäng");
+        _dictionary.Add("$no", "Nej");
+        _dictionary.Add("$yes", "Ja");
+        _dictionary.Add("$get_exp", "Fått erfarenhet");
+        _dictionary.Add("$reset_point_text", "Vill du verkligen ta bort alla poäng för {0} {1}?");
+        //Parameter
+        _dictionary.Add("$physic_damage", "Fysiskt Skada");
+        _dictionary.Add("$add_weight", "Bärkapacitet");
+        _dictionary.Add("$reduced_stamina", "Stamina-förbrukning (springa, hoppa)");
+        _dictionary.Add("$magic_damage", "Elemental skada");
+        _dictionary.Add("$magic_armor", "Elemental reducerad");
+        _dictionary.Add("$add_hp", "Hälsa ökar");
+        _dictionary.Add("$add_stamina", "Stamina ökar");
+        _dictionary.Add("$physic_armor", "Fysisk reducerad");
+        _dictionary.Add("$reduced_stamina_block", "Blockera stamina-förbrukning");
+        _dictionary.Add("$regen_hp", "Hälsoregeneration");
+        _dictionary.Add("$damage", "Skada");
+        _dictionary.Add("$armor", "Rustning");
+        _dictionary.Add("$survival", "Överlevnad");
+        _dictionary.Add("$regen_eitr", "Eitr-regeneration");
+        _dictionary.Add("$stamina_reg", "Stamina-regeneration");
+        _dictionary.Add("$add_eitr", "Eitr-ökning");
+        //Nya/ändrade parametrar 1.7.0
+        _dictionary.Add("$parameter_agility", "Smidighet");
+        _dictionary.Add("$parameter_body", "Uthållighet");
+        _dictionary.Add("$parameter_vigour", "Kraft");
+        _dictionary.Add("$parameter_special", "Specialisering");
+        _dictionary.Add("$specialother", "Special");//divheader
+        _dictionary.Add("$attack_speed", "Attackhastighet");
+        _dictionary.Add("$attack_stamina", "Stamina-förbrukning vid attack");
+        _dictionary.Add("$crtcDmgMulti", "Kritisk Skademultiplikator");
+        _dictionary.Add("$mining_speed", "Ökad Skada vid Brytning");
+        _dictionary.Add("$piece_health", "Ökad Hållbarhet för Delar");
+        _dictionary.Add("$tree_cutting", "Ökad Skada vid Trädfällning");
+        _dictionary.Add("$crit_chance", "Ökad Chans för Kritiska Träffar");
+
+        //Vänlista
+        _dictionary.Add("$notify", "<color=#00E6FF>Varning</color>");
+        _dictionary.Add("$friends_list", "Vänlista");
+        _dictionary.Add("$send", "Skicka");
+        _dictionary.Add("$invited", "Inbjudningar");
+        _dictionary.Add("$friends", "Vänner");
+        _dictionary.Add("$online", "Online");
+        _dictionary.Add("$offline", "Offline");
+        _dictionary.Add("$not_found", "Spelare {0} hittades inte.");
+        _dictionary.Add("$send_invite", "En vänförfrågan har skickats till spelare {0}.");
+        _dictionary.Add("$get_invite", "Du har fått en vänförfrågan från {0}.");
+        _dictionary.Add("$accept_invite", "Spelare {0} har accepterat vänförfrågan.");
+        _dictionary.Add("$cancel_invite", "Spelare {0} har avbrutit sin vänförfrågan.");
+        //Terminal
+        _dictionary.Add("$terminal_set_level", "Du har nått nivå {0}.");
+        _dictionary.Add("$terminal_reset_points", "Dina attributpoäng har återställts");
+
+        _dictionary.Add("$strength_tooltip", "<size=20>Styrka kommer att förbättra:</size> \n" +
+            "<color=yellow> Öka Fysisk Skada </color> \n" +
+            "<color=blue> Öka Bärkapacitet </color> \n" +
+            "<color=green> Minska Stamina-förbrukning vid blockering </color> \n" +
+            "<color=red> Öka Kritisk Skada vid kritiska träffar </color>");
+
+        _dictionary.Add("$dexterity_tooltip", "<size=20>Smidighet kommer att förbättra:</size> \n" +
+            "<color=red> Öka Attackhastighet (ej bågar) </color> \n" +
+            "<color=yellow> Minska Stamina-förbrukning vid attack </color> \n" +
+            "<color=green> Minska Stamina-förbrukning vid löpning/hopp </color>");
+
+        _dictionary.Add("$intelect_tooltip", "<size=20>Intellekt kommer att förbättra:</size> \n" +
+            "<color=green> Öka all Elementalskada </color> \n" +
+            "<color=red> Öka basmängden Eitr (när du har Eitr) </color> \n" +
+            "<color=red> Öka Eitr-regeneration </color>");
+
+        _dictionary.Add("$endurance_tooltip", "<size=20>Uthållighet kommer att förbättra:</size> \n" +
+            "<color=yellow> Öka Stamina-mängden </color> \n" +
+            "<color=yellow> Öka Stamina-regeneration </color> \n" +
+            "<color=green> Minska Fysisk Skada som tas emot </color>");
+
+        _dictionary.Add("$vigour_tooltip", "<size=20>Kraft kommer att förbättra:</size> \n" +
+            "<color=red> Öka HP-mängden </color> \n" +
+            "<color=yellow> Hälsoregeneration </color> \n" +
+            "<color=green> Minska Elemental Skada som tas emot </color>");
+
+        _dictionary.Add("$special_tooltip", "<size=20>Specialisering kommer att förbättra:</size> \n" +
+            "<color=red> Öka Chansen för Kritiska Attacker </color> \n" +
+            "<color=blue> Öka Skadan vid Brytning </color> \n" +
+            "<color=blue> Öka Hållbarheten hos Byggnadsdelar </color> \n" +
+            "<color=green> Öka Skadan vid Trädfällning </color>");
+
+    }
     private void SpanLocalization()
     {
         _dictionary.Add("$attributes", "Atributos");
