@@ -264,6 +264,54 @@
     "level": 3
   },
   {
+    "name": "Skeleton_Hildir",
+    "minExp": 600,
+    "maxExp": 800,
+    "level": 23
+  },
+  {
+    "name": "Skeleton_Hildir_nochest",
+    "minExp": 600,
+    "maxExp": 800,
+    "level": 23
+  },
+  {
+    "name": "Fenring_Cultist_Hildir",
+    "minExp": 1000,
+    "maxExp": 1200,
+    "level": 43
+  },
+  {
+    "name": "Fenring_Cultist_Hildir_nochest",
+    "minExp": 1000,
+    "maxExp": 1200,
+    "level": 43
+  },
+  {
+    "name": "GoblinBruteBros",
+    "minExp": 2000,
+    "maxExp": 2500,
+    "level": 55
+  },
+  {
+    "name": "GoblinShaman_Hildir",
+    "minExp": 1300,
+    "maxExp": 2000,
+    "level": 53
+  },
+  {
+    "name": "GoblinBruteBros_nochest",
+    "minExp": 2000,
+    "maxExp": 2500,
+    "level": 55
+  },
+  {
+    "name": "GoblinShaman_Hildir_nochest",
+    "minExp": 1300,
+    "maxExp": 2000,
+    "level": 53
+  },
+  {
     "name": "Eikthyr",
     "minExp": 150,
     "maxExp": 200,

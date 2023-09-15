@@ -1,5 +1,5 @@
 # Description:
-This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.7.7
+This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.7.8
 
 BIG WACKY UPDATE! - You asked for more categories, Wacky adds 2 MORE! You asked for using trophies to generate XP. Wacky added XP Orbs and Magic Potions!
 
@@ -131,7 +131,7 @@ You can combine multiple Skills for one Requirement
 
 	A file called Version.txt is created in the folder. It contains the mod version that was used to create it. Replace it with "NO" to stop it from overwritting on a future update.
 
-	Latest Update for Jsons config is <b> 1.7.7 </b>(Number will be updated when Jsons recieve an update)
+	Latest Update for Jsons config is <b> 1.7.8 </b>(Number will be updated when Jsons recieve an update)
 
 </details>
 
@@ -259,6 +259,7 @@ Original Creator: LambaSun or my [mod branch](https://discord.com/channels/82657
 
 | Version | Changes                                                                                                                                                                                                                                                                                                                                |
 |----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.7.8  | - Add Swedish </br> Refined point calc in reset </br> Updated MonsterLaz and Default json for Hildr
 | 1.7.7  | - Added RtDMonsters </br> Adjusted Orb XP amounts Greatly! </br> Added Orb Boss Max amount for orb chances </br> Bug fix </br> Update for Hildir's Update </br> @margmas helped me fix a IL error, thank you!
 | 1.7.6  | - Added JewelCrafting Bosses. </br> Rounding XP Gained </br> Small bug fix for modded mobs without tamed status
 | 1.7.5  | - Updated Monstrum. </br> Added Max Cap for each Attribute </br> Update Chinese </br> Disabled normal damage notification for critical attacks, so just critical attack and crit sound remain
@@ -278,7 +279,8 @@ Original Creator: LambaSun or my [mod branch](https://discord.com/channels/82657
 | 1.5.9  | - Update for 214.2
 | 1.5.8  | - Update for single char word languages - horizonal overflow <br/> MonsterDB update and added mob levels for Monstrum(beta)
 | 1.5.7  | - Fix for stamina consumption for running and jumping. Was increasing instead of decreasing, credits for discovery.  Moissonneur and Kevin
-| 1.5.6  | - Added German Localization <br /> Changed defaults to not take any drops away, no matter the level. - Blax complained enough - <br /> Stamina Regen is a percentage <br /> Added MOB UI string for wacky fun, aka single char word languages <br /> Update ItemManager <br /> Added ability to set "none" on color for all hud elements to make them go away, should live update. Might have relaunch to get them to come back| 1.5.5  | - Update readme to talk about "FirstLevelExperience used on each level" - Added an excel image for XP comparisons between modes - Most people should NOT disable this, makes balancing completely different.
+| 1.5.6  | - Added German Localization <br /> Changed defaults to not take any drops away, no matter the level. - Blax complained enough - <br /> Stamina Regen is a percentage <br /> Added MOB UI string for wacky fun, aka single char word languages <br /> Update ItemManager <br /> Added ability to set "none" on color for all hud elements to make them go away, should live update. Might have relaunch to get them to come back
+| 1.5.5  | - Update readme to talk about "FirstLevelExperience used on each level" - Added an excel image for XP comparisons between modes - Most people should NOT disable this, makes balancing completely different.
 | 1.5.4: | - Updated to allow level and reset commands for Spaced Names. <br/>Updated Jsons, Added extra text file for people who don't read readme or version changes... you know who you are.... <br/> Added abilty for EpicMMO to recalculate maxlvls on serversync updates. I still don't recommend live updating with this mod, but less bugs now. <br/> Serious discussion: It appears if you ever changed expierence values(rateExp,expForLvlMonster, etc) after players started playing, things could get wonky unless you reset them(even after game restarts). I added a TotalExp tracker, but it won't be useful unless you restart all your players back to 0. I have added another command to Terminal recalc, but it will reset players levels to 0 if not a new charc on this update.  <br/> Added MobLevelPosition and BossLevelPosition for server admins to config mob bar placement. </br> Fixed lowDamageExtraConfig, small oversight <br/> Added ResetTrophy item for people to add to droplists <br/> Added EitrIncrease to Intellegence - More OP 
 | 1.5.3: | - Fixed bug in Groups exp sharing. <br/> Added MajesticChickens json
 | 1.5.2: | - Added Colors and Scale to Individual UI elements.<br/> Fixed EpicLoot drop bug, made Nav Panel moveable, Eitr UI adjustments<br/> Low_damage_config for extra configurability on low damage mode

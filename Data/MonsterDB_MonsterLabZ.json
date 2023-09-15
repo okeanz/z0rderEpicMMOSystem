@@ -96,7 +96,13 @@
     "level": 40
   },
   {
-    "name": "Kraken",
+    "name": "ML_FrostHatchling_Spawn",
+    "minExp": 250,
+    "maxExp": 300,
+    "level": 40
+  },
+  {
+    "name": "KrakenLD",
     "minExp": 1380,
     "maxExp": 1620,
     "level": 51
@@ -120,6 +126,12 @@
     "level": 30
   },
   {
+    "name": "ML_Draugr_Spawn",
+    "minExp": 200,
+    "maxExp": 300,
+    "level": 30
+  },
+  {
     "name": "ML_DraugrBomber_Boat",
     "minExp": 600,
     "maxExp": 900,
@@ -133,6 +145,12 @@
   },
   {
     "name": "DwarfGoblin_NoAttack",
+    "minExp": 200,
+    "maxExp": 300,
+    "level": 40
+  },
+  {
+    "name": "DwarfGoblin_Spawn",
     "minExp": 200,
     "maxExp": 300,
     "level": 40
@@ -193,6 +211,12 @@
   },
   {
     "name": "ML_GoblinLox",
+    "minExp": 600,
+    "maxExp": 900,
+    "level": 53
+  },
+  {
+    "name": "GoblinLoxRider",
     "minExp": 600,
     "maxExp": 900,
     "level": 53
@@ -355,6 +379,12 @@
   },
   {
     "name": "Surtr",
+    "minExp": 3600,
+    "maxExp": 4800,
+    "level": 74
+  },
+  {
+    "name": "NightmareDragonEV",
     "minExp": 3600,
     "maxExp": 4800,
     "level": 74
