@@ -100,6 +100,10 @@ public class Localizationold
     {
         SwedishLocalization();
     }
+    else if (currentLanguage == "French")
+    {
+        FrenchLocalization();
+    }
     else
     {
         var fileName = $"{EpicMMOSystem.language.Value}_emmosLocalization.txt";
@@ -347,6 +351,105 @@ public class Localizationold
                             "<color=blue> Increase Mining Damage </color> \n" +
                             "<color=blue> Increase construction piece's health </color> \n" +
                             "<color=green> Increase Tree Cutting Damage</color>");
+    }
+
+    private void FrenchLocalization()
+    {
+        _dictionary.Add("$attributes", "Attributs");
+        _dictionary.Add("$parameter_strength", "Force");
+        _dictionary.Add("$parameter_intellect", "Intellect");
+        _dictionary.Add("$free_points", "Points disponibles");
+        _dictionary.Add("$level", "Niveau");
+        _dictionary.Add("$lvl", "Niv.");
+        _dictionary.Add("$exp", "Expérience");
+        _dictionary.Add("$cancel", "Annuler");
+        _dictionary.Add("$apply", "Accepter");
+        _dictionary.Add("$reset_parameters", "Réinitialiser les points");
+        _dictionary.Add("$no", "Non");
+        _dictionary.Add("$yes", "Oui");
+        _dictionary.Add("$get_exp", "Expérience obtenue");
+        _dictionary.Add("$reset_point_text", "Voulez-vous vraiment supprimer tous les points pour {0} {1} ?");
+        // Paramètre
+        _dictionary.Add("$physic_damage", "Dommages Physiques");
+        _dictionary.Add("$add_weight", "Capacité de Port");
+        _dictionary.Add("$reduced_stamina", "Consommation de Stamina (course, saut)");
+        _dictionary.Add("$magic_damage", "Dommages Élémentaires");
+        _dictionary.Add("$magic_armor", "Réduction des Dommages Élémentaires");
+        _dictionary.Add("$add_hp", "Augmentation des Points de Vie");
+        _dictionary.Add("$add_stamina", "Augmentation de la Stamina");
+        _dictionary.Add("$physic_armor", "Réduction des Dommages Physiques");
+        _dictionary.Add("$reduced_stamina_block", "Consommation de Stamina lors du Blocage");
+        _dictionary.Add("$regen_hp", "Régénération des Points de Vie");
+        _dictionary.Add("$damage", "Dommages");
+        _dictionary.Add("$armor", "Armure");
+        _dictionary.Add("$survival", "Survie");
+        _dictionary.Add("$regen_eitr", "Régénération d'Eitr");
+        _dictionary.Add("$stamina_reg", "Régénération de la Stamina");
+        _dictionary.Add("$add_eitr", "Augmentation d'Eitr");
+        // Nouveaux/Modifiés Paramètres 1.7.0
+        _dictionary.Add("$parameter_agility", "Agilité");
+        _dictionary.Add("$parameter_body", "Endurance");
+        _dictionary.Add("$parameter_vigour", "Vigueur");
+        _dictionary.Add("$parameter_special", "Spécialisation");
+        _dictionary.Add("$specialother", "Spécialisation"); // divheader
+        _dictionary.Add("$attack_speed", "Vitesse d'Attaque");
+        _dictionary.Add("$attack_stamina", "Consommation de Stamina lors de l'Attaque");
+        _dictionary.Add("$crtcDmgMulti", "Multiplicateur de Dommages Critiques");
+        _dictionary.Add("$mining_speed", "Augmentation des Dommages lors de l'Extraction");
+        _dictionary.Add("$piece_health", "Augmentation des Points de Vie des Pièces");
+        _dictionary.Add("$tree_cutting", "Augmentation des Dommages lors de la Coupe d'Arbres");
+        _dictionary.Add("$crit_chance", "Augmentation des Chances de Critique");
+
+        // Liste d'Amis
+        _dictionary.Add("$notify", "<color=#00E6FF>Alerte</color>");
+        _dictionary.Add("$friends_list", "Liste d'Amis");
+        _dictionary.Add("$send", "Envoyer");
+        _dictionary.Add("$invited", "Invitations");
+        _dictionary.Add("$friends", "Amis");
+        _dictionary.Add("$online", "En Ligne");
+        _dictionary.Add("$offline", "Hors Ligne");
+        _dictionary.Add("$not_found", "Le joueur {0} n'est pas trouvé.");
+        _dictionary.Add("$send_invite", "Une demande d'ami a été envoyée au joueur {0}.");
+        _dictionary.Add("$get_invite", "Vous avez reçu une demande d'ami de {0}.");
+        _dictionary.Add("$accept_invite", "Le joueur {0} a accepté la demande d'ami.");
+        _dictionary.Add("$cancel_invite", "Le joueur {0} a annulé sa demande d'ami.");
+        // Terminal
+        _dictionary.Add("$terminal_set_level", "Vous avez atteint le niveau {0}.");
+        _dictionary.Add("$terminal_reset_points", "Vos points d'attributs ont été réinitialisés");
+
+        _dictionary.Add("$strength_tooltip", "<size=20>La Force améliorera :</size> \n" +
+            "<color=yellow> Augmentation des Dommages Physiques </color> \n" +
+            "<color=blue> Augmentation de la Capacité de Port </color> \n" +
+            "<color=green> Réduction de la Consommation de Stamina lors du Blocage </color> \n" +
+            "<color=red> Augmentation des Dommages Critiques en cas de coups critiques </color>");
+
+        _dictionary.Add("$dexterity_tooltip", "<size=20>L'Agilité améliorera :</size> \n" +
+            "<color=red> Augmentation de la Vitesse d'Attaque (hors arcs) </color> \n" +
+            "<color=yellow> Réduction de la Consommation de Stamina lors de l'Attaque </color> \n" +
+            "<color=green> Réduction de la Consommation de Stamina lors de la Course/Saut </color>");
+
+        _dictionary.Add("$intelect_tooltip", "<size=20>L'Intellect améliorera :</size> \n" +
+            "<color=green> Augmentation de tous les Dommages Élémentaires </color> \n" +
+            "<color=red> Augmentation de la Quantité d'Eitr de base (une fois que vous avez de l'Eitr) </color> \n" +
+            "<color=red> Augmentation de la Régénération de l'Eitr </color>");
+
+        _dictionary.Add("$endurance_tooltip", "<size=20>L'Endurance améliorera :</size> \n" +
+            "<color=yellow> Augmentation de la Quantité de Stamina </color> \n" +
+            "<color=yellow> Augmentation de la Régénération de Stamina </color> \n" +
+            "<color=green> Réduction des Dommages Physiques Subis </color>");
+
+        _dictionary.Add("$vigour_tooltip", "<size=20>La Vigueur améliorera :</size> \n" +
+            "<color=red> Augmentation de la Quantité de Points de Vie </color> \n" +
+            "<color=yellow> Régénération des Points de Vie </color> \n" +
+            "<color=green> Réduction des Dommages Élémentaires Subis </color>");
+
+        _dictionary.Add("$special_tooltip", "<size=20>La Spécialisation améliorera :</size> \n" +
+            "<color=red> Augmentation des Chances d'Attaque Critique </color> \n" +
+            "<color=blue> Augmentation des Dommages lors de l'Extraction </color> \n" +
+            "<color=blue> Augmentation de la Durabilité des Pièces de Construction </color> \n" +
+            "<color=green> Augmentation des Dommages lors de la Coupe d'Arbres </color>");
+
+
     }
 
     private void SwedishLocalization()

@@ -44,7 +44,7 @@ public static class MonsterDeath_Path
             monsterLevel = -1 * monsterLevel; // or -monsterLevel
         }
 
-        if (EpicMMOSystem.enabledLevelControl.Value && (EpicMMOSystem.curveExp.Value || MobisBoss && EpicMMOSystem.curveBossExp.Value || EpicMMOSystem.noExpPastLVL.Value))
+        if (EpicMMOSystem.enabledLevelControl.Value && (EpicMMOSystem.curveExp.Value || MobisBoss && EpicMMOSystem.curveBossExp.Value || EpicMMOSystem.noExpPastLVL.Value) && monsterLevel != 0)
         {
             if (EpicMMOSystem.extraDebug.Value)
                 EpicMMOSystem.MLLogger.LogInfo("Checking player lvl for group exp");
@@ -94,8 +94,10 @@ public static class MonsterDeath_Path
             return;
         }
         int monsterLevel = DataMonsters.getLevel(monsterName) + level - 1;
+        if (DataMonsters.getLevel(monsterName) == 0)
+            monsterLevel = 0;
 
-        var MobisBoss = false;
+            var MobisBoss = false;
         if (EpicMMOSystem.curveBossExp.Value) 
         {
             switch (monsterName) // if a boss then check otherwise false
@@ -121,7 +123,7 @@ public static class MonsterDeath_Path
         var playerExp = exp;
 
 
-        if (EpicMMOSystem.enabledLevelControl.Value && (EpicMMOSystem.curveExp.Value || MobisBoss && EpicMMOSystem.curveBossExp.Value || EpicMMOSystem.noExpPastLVL.Value))
+        if (EpicMMOSystem.enabledLevelControl.Value && (EpicMMOSystem.curveExp.Value || MobisBoss && EpicMMOSystem.curveBossExp.Value || EpicMMOSystem.noExpPastLVL.Value) && monsterLevel != 0)
         {
             if (EpicMMOSystem.extraDebug.Value) 
                 EpicMMOSystem.MLLogger.LogInfo("Checking player lvl");
@@ -155,7 +157,7 @@ public static class MonsterDeath_Path
             EpicMMOSystem.MLLogger.LogInfo("Player in Group");
 
         //Convert Monsterlvl to negative if boss because max send amount is 3 para
-        if (MobisBoss)
+        if (MobisBoss && monsterLevel != 0)
             monsterLevel = -1 * monsterLevel;
 
         var groupFactor = EpicMMOSystem.groupExp.Value;
@@ -190,6 +192,8 @@ public static class MonsterDeath_Path
                 int playerLevel = LevelSystem.Instance.getLevel();
                 int maxLevelExp = playerLevel + EpicMMOSystem.maxLevelExp.Value +EpicMMOSystem.lowDamageExtraConfig.Value;
                 int monsterLevel = DataMonsters.getLevel(__instance.gameObject.name) + __instance.m_level - 1;
+                if (DataMonsters.getLevel(__instance.gameObject.name) == 0)
+                    return;
                 if (monsterLevel > maxLevelExp)
                 {
                     int i = Mathf.Clamp(4, 1, 3);

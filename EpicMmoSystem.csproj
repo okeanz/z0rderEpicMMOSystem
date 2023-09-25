@@ -417,6 +417,7 @@
     <EmbeddedResource Include="translations\German.yml" />
     <EmbeddedResource Include="translations\Chinese.yml" />
     <EmbeddedResource Include="translations\Portuguese.yml" />
+    <None Include="translations\French.yml" />
     <None Include="translations\Swedish.yml" />
   </ItemGroup>
   <ItemGroup>

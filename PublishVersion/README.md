@@ -1,5 +1,5 @@
 # Description:
-This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.7.8
+This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.7.9
 
 BIG WACKY UPDATE! - You asked for more categories, Wacky adds 2 MORE! You asked for using trophies to generate XP. Wacky added XP Orbs and Magic Potions!
 
@@ -60,7 +60,7 @@ This mod should assigns levels to all in-game monsters. Every star added adds +1
 
 </details>
 
-<details><summary>Cyan, White and Red Mobs</summary>
+<details><summary>Cyan, White, Red, and Yellow Mobs</summary>
 
 
 
@@ -88,6 +88,8 @@ This mod should assigns levels to all in-game monsters. Every star added adds +1
 	If you have no custom settings in the configuration file, you should delete the file so that a fresh one can be created by the new version.
 
 	Note for other Mods: This mod uses hit.toolTier to pass the Lvl of player and Player.m_localPlayer.m_knownTexts to store levels
+
+	Yellow mobs are those that have a level 0 set in the Json. They are not restricted by level and will always drop their loot/give full exp and players can always do full damage. They show up as "???" yellow tags. 
 
 ![https://wackymole.com/hosts/epicmmolevelcalcs.png](https://wackymole.com/hosts/epicmmolevelcalcs.png)
 
@@ -164,6 +166,8 @@ You can combine multiple Skills for one Requirement
 	Meads also require 1 or 2 Orbs depending on level
 	Meads take the standard amount of time to ferment and drop 3 potions each
 	Watch for the sky to light up with colors when fermentation is done.
+
+	Orbs always have a chance to drop. 
 
 
 </details>
@@ -259,6 +263,7 @@ Original Creator: LambaSun or my [mod branch](https://discord.com/channels/82657
 
 | Version | Changes                                                                                                                                                                                                                                                                                                                                |
 |----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.7.9  | - Add French </br> Updated Piecemanager </br> Added ??? level to mobs for mobs that should not be limited or known by their level. No level penalties will be applied. Use level 0 in json - kind a like a blacklist. </br> Orbs will always have a chance to drop no matter the level.
 | 1.7.8  | - Add Swedish </br> Refined point calc in reset </br> Updated MonsterLaz and Default json for Hildr
 | 1.7.7  | - Added RtDMonsters </br> Adjusted Orb XP amounts Greatly! </br> Added Orb Boss Max amount for orb chances </br> Bug fix </br> Update for Hildir's Update </br> @margmas helped me fix a IL error, thank you!
 | 1.7.6  | - Added JewelCrafting Bosses. </br> Rounding XP Gained </br> Small bug fix for modded mobs without tamed status

@@ -376,13 +376,18 @@ public static class DataMonsters
             }
             string stringtolvl = EpicMMOSystem.MobLVLChars.Value;
             string moblvlstring = monsterLevel.ToString();
+            Color color = monsterLevel > maxLevelExp ? Color.red : Color.white;
+            if (monsterLevel < minLevelExp) color = Color.cyan;
+            if (getLevel(c.gameObject.name) == 0)
+            {
+                moblvlstring = "???";
+                color = Color.yellow;
+            }
             stringtolvl = stringtolvl.Replace("@", moblvlstring); // not sure how fast this is
-                                                                  // levelName.GetComponent<TextMeshProUGUI>().horizontalOverflow = UnityEngine.HorizontalWrapMode.Overflow; 
+                                                                 // levelName.GetComponent<TextMeshProUGUI>().horizontalOverflow = UnityEngine.HorizontalWrapMode.Overflow; 
             levelName.GetComponent<TextMeshProUGUI>().overflowMode = TextOverflowModes.Overflow;
             levelName.AddComponent<ContentSizeFitter>().SetLayoutHorizontal();
             levelName.GetComponent<TextMeshProUGUI>().text = stringtolvl;
-            Color color = monsterLevel > maxLevelExp ? Color.red : Color.white;
-            if (monsterLevel < minLevelExp) color = Color.cyan;
             component.GetComponent<TextMeshProUGUI>().color = color;
             levelName.GetComponent<TextMeshProUGUI>().color = color;
             if (___m_huds[c].m_gui.transform.Find("extraeffecttext"))
@@ -414,6 +419,14 @@ public static class DataMonsters
                         int maxLevelExp = LevelSystem.Instance.getLevel() + EpicMMOSystem.maxLevelExp.Value;
                         int minLevelExp = LevelSystem.Instance.getLevel() - EpicMMOSystem.minLevelExp.Value;
                         int monsterLevel = getLevel(key.gameObject.name) + key.m_level - 1;
+                        string mobLevelString = monsterLevel.ToString();
+                        Color color = monsterLevel > maxLevelExp ? Color.red : Color.white;
+                        if (monsterLevel < minLevelExp) color = Color.cyan;
+                        if (getLevel(key.gameObject.name) == 0)
+                        {
+                            mobLevelString = "???";
+                            color = Color.yellow;
+                        }
                         Transform transform = keyValuePair.Value.m_gui.transform.Find("Name/Name(Clone)");
                         if (transform != null)
                         {
@@ -425,10 +438,8 @@ public static class DataMonsters
                             transform = Object.Instantiate(component, component.transform).transform;
                             transform.GetComponent<RectTransform>().anchoredPosition = new Vector2(37, -30);
                             transform.GetComponent<TextMeshProUGUI>().fontSize = 13;
-                            transform.GetComponent<TextMeshProUGUI>().text = $"[{monsterLevel}]";
+                            transform.GetComponent<TextMeshProUGUI>().text = $"[{mobLevelString}]";
                         }
-                        Color color = monsterLevel > maxLevelExp ? Color.red : Color.white;
-                        if (monsterLevel < minLevelExp) color = Color.cyan;
                         transform.GetComponent<TextMeshProUGUI>().color = color;
                         keyValuePair.Value.m_gui.transform.Find("Name").GetComponent<TextMeshProUGUI>().color = color;
                        if (keyValuePair.Value.m_gui.transform.Find("extraeffecttext")) // for cllc extra components
@@ -480,6 +491,21 @@ public static class DataMonsters
             var isBoss = __instance.m_character.IsBoss(); // could remove extra code
 
 
+            // clear to add Magic orbs now // always orb chance
+            if (OrbsByBiomes.TryGetValue(biome, out var orb) && rand <= dropChance / 100f)
+            {
+                if (isBoss)
+                {
+                    for (int i = 0; i < Random.Range(1, EpicMMOSystem.OrdDropMaxAmountFromBoss.Value); i++) // random amount 1-4
+                    {
+                        DropItem(orb, __instance.transform.position + Vector3.up * 0.75f, 0.5f);
+                    }
+                }
+                else
+                {
+                    DropItem(orb, __instance.transform.position + Vector3.up * 0.75f, 0.5f);
+                }
+            }
 
             if (EpicMMOSystem.enabledLevelControl.Value && (EpicMMOSystem.removeDropMax.Value || EpicMMOSystem.removeDropMin.Value || EpicMMOSystem.removeBossDropMax.Value || EpicMMOSystem.removeBossDropMin.Value || EpicMMOSystem.removeAllDropsFromNonPlayerKills.Value))
             {
@@ -517,6 +543,9 @@ public static class DataMonsters
                     int maxLevelExp = playerLevel + EpicMMOSystem.maxLevelExp.Value;
                     int minLevelExp = playerLevel - EpicMMOSystem.minLevelExp.Value;
                     int monsterLevel = getLevel(__instance.m_character.gameObject.name) + __instance.m_character.m_level - 1; // interesting that it's using m_char as well
+                    if (getLevel(__instance.m_character.gameObject.name) == 0)
+                        return;
+
                     if ((monsterLevel > maxLevelExp) && (EpicMMOSystem.removeBossDropMax.Value && !Regmob || EpicMMOSystem.removeDropMax.Value && Regmob))
                     {
                         __result = new();
@@ -527,22 +556,6 @@ public static class DataMonsters
                         __result = new();
                         return;
                     }
-                }
-            }
-           // EpicMMOSystem.MLLogger.LogInfo("Hello GenList 4");
-            // clear to add Magic orbs now
-            if (OrbsByBiomes.TryGetValue(biome, out var orb) && rand <= dropChance / 100f)
-            {
-                if (isBoss)
-                {
-                    for (int i = 0; i < Random.Range(1, EpicMMOSystem.OrdDropMaxAmountFromBoss.Value); i++) // random amount 1-4
-                    {
-                        DropItem(orb, __instance.transform.position + Vector3.up * 0.75f, 0.5f);
-                    }
-                }
-                else
-                {
-                    DropItem(orb, __instance.transform.position + Vector3.up * 0.75f, 0.5f);
                 }
             }
 
