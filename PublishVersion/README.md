@@ -25,7 +25,7 @@ Features:
 
 	Strength: Physical Damage increase, Carry Weight Increase, Decreased Black Stamina Consumption, Critical Damage
 
-	Dexterity: Player Attack/Usage Speed%,  Stamina consumption (running, jumping) decreased,
+	Dexterity: Player Attack/Usage Speed**%,**  Stamina consumption (running, jumping) decreased,
 
 	Intellect: Elemental Damage increase, Eitr Regeneration increases,  Eitr Increase
 
@@ -41,7 +41,7 @@ Features:
 
 MMO-like friends list. - Groups MOD Group to earn XP, download requires Group mod for each client https://valheim.thunderstore.io/package/Smoothbrain/Groups/
 
-Click the plus button at the bottom of the friends bar. Enter the name of the character you wish to add, starting with a capital letter. 
+Click the plus button at the bottom of the friends bar. Enter the name of the character you wish to add, starting with a capital letter. ****
    ![https://wackymole.com/hosts/3rd%20image.png](https://wackymole.com/hosts/3rd%20image.png)
 The player will receive a friend request. Once accepted, the character will appear in your friends list. Group invites can be sent from the friends list. 
 
@@ -133,7 +133,7 @@ You can combine multiple Skills for one Requirement
 
 	A file called Version.txt is created in the folder. It contains the mod version that was used to create it. Replace it with "NO" to stop it from overwritting on a future update.
 
-	Latest Update for Jsons config is <b> 1.7.8 </b>(Number will be updated when Jsons recieve an update)
+	Latest Update for Jsons config is <b> 1.7.9 </b>(Number will be updated when Jsons recieve an update)
 
 </details>
 
@@ -263,7 +263,7 @@ Original Creator: LambaSun or my [mod branch](https://discord.com/channels/82657
 
 | Version | Changes                                                                                                                                                                                                                                                                                                                                |
 |----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1.7.9  | - Add French </br> Updated Piecemanager </br> Added ??? level to mobs for mobs that should not be limited or known by their level. No level penalties will be applied. Use level 0 in json - kind a like a blacklist. </br> Orbs will always have a chance to drop no matter the level.
+| 1.7.9  | - Add French </br> Updated Piecemanager </br> Added ??? level to mobs for mobs that should not be limited or known by their level. No level penalties will be applied. Use level 0 in json - kind a like a blacklist. </br> Orbs will always have a chance to drop no matter the level. </br> Updated JewelCrafting Worldbosses to be ??? - They are still very hard though </br> Updated Outsiders json
 | 1.7.8  | - Add Swedish </br> Refined point calc in reset </br> Updated MonsterLaz and Default json for Hildr
 | 1.7.7  | - Added RtDMonsters </br> Adjusted Orb XP amounts Greatly! </br> Added Orb Boss Max amount for orb chances </br> Bug fix </br> Update for Hildir's Update </br> @margmas helped me fix a IL error, thank you!
 | 1.7.6  | - Added JewelCrafting Bosses. </br> Rounding XP Gained </br> Small bug fix for modded mobs without tamed status
