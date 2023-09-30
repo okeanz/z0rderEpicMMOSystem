@@ -1,7 +1,6 @@
 # Description:
-This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.7.9
+This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.8.0
 
-BIG WACKY UPDATE! - You asked for more categories, Wacky adds 2 MORE! You asked for using trophies to generate XP. Wacky added XP Orbs and Magic Potions!
 
 Support me!
 
@@ -263,6 +262,7 @@ Original Creator: LambaSun or my [mod branch](https://discord.com/channels/82657
 
 | Version | Changes                                                                                                                                                                                                                                                                                                                                |
 |----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.8.0  | - Rebalanced Specializing a little bit. </br>
 | 1.7.9  | - Add French </br> Updated Piecemanager </br> Added ??? level to mobs for mobs that should not be limited or known by their level. No level penalties will be applied. Use level 0 in json - kind a like a blacklist. </br> Orbs will always have a chance to drop no matter the level. </br> Updated JewelCrafting Worldbosses to be ??? - They are still very hard though </br> Updated Outsiders json
 | 1.7.8  | - Add Swedish </br> Refined point calc in reset </br> Updated MonsterLaz and Default json for Hildr
 | 1.7.7  | - Added RtDMonsters </br> Adjusted Orb XP amounts Greatly! </br> Added Orb Boss Max amount for orb chances </br> Bug fix </br> Update for Hildir's Update </br> @margmas helped me fix a IL error, thank you!
