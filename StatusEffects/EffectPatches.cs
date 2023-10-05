@@ -45,9 +45,9 @@ public static class EffectPatches
     [HarmonyPatch(typeof(Player), "ConsumeItem")]
     public static class ConsumeMMOXP
     {
-        public static void Prefix(ItemDrop.ItemData item)
+        public static void Postfix(ItemDrop.ItemData item, ref bool __result)
         {
-            if (!Player.m_localPlayer.m_seman.HaveStatusEffect("MMO_XP"))
+            if (!Player.m_localPlayer.m_seman.HaveStatusEffect("MMO_XP") && __result)
             {
                 GameObject found = null;
                 foreach (var GameItem in ObjectDB.instance.m_items) // much bad
