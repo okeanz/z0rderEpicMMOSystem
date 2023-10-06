@@ -1,5 +1,6 @@
 using System;
 using HarmonyLib;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -34,7 +35,7 @@ public class CritDmgVFX
         };
 
         worldTextInstance.m_gui.GetComponent<RectTransform>().sizeDelta *= 2;
-        worldTextInstance.m_textField = worldTextInstance.m_gui.GetComponent<Text>();
+        worldTextInstance.m_textField = worldTextInstance.m_gui.GetComponent<TMP_Text>();
         DamageText.instance.m_worldTexts.Add(worldTextInstance);
         worldTextInstance.m_textField.fontSize = 30;
         Color tempC = Color.cyan;

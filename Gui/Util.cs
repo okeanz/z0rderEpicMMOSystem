@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -32,7 +33,7 @@ namespace EpicMMOSystem.Gui
                 m_gui = UnityEngine.Object.Instantiate(DamageText.instance.m_worldTextBase, DamageText.instance.transform)
             };
             worldTextInstance.m_gui.GetComponent<RectTransform>().sizeDelta *= 2;
-            worldTextInstance.m_textField = worldTextInstance.m_gui.GetComponent<Text>();
+            worldTextInstance.m_textField = worldTextInstance.m_gui.GetComponent<TMP_Text>();
             DamageText.instance.m_worldTexts.Add(worldTextInstance);
             worldTextInstance.m_textField.fontSize = 30;
             Color tempC = Color.yellow;
@@ -45,7 +46,7 @@ namespace EpicMMOSystem.Gui
             if (text2 != null)
             {
                 worldTextInstance2.m_gui.GetComponent<RectTransform>().sizeDelta *= 2;
-                worldTextInstance2.m_textField = worldTextInstance2.m_gui.GetComponent<Text>();
+                worldTextInstance2.m_textField = worldTextInstance2.m_gui.GetComponent<TMP_Text>();
                 worldTextInstance2.m_worldPos += new Vector3(0,5,0);
                 DamageText.instance.m_worldTexts.Add(worldTextInstance2);
                 worldTextInstance2.m_textField.fontSize = 20;

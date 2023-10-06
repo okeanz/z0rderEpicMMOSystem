@@ -357,7 +357,6 @@
     <Compile Include="Scripts\DragControl.cs" />
     <Compile Include="StatusEffects\EffectPatches.cs" />
     <Compile Include="TerminalCommands.cs" />
-    <Compile Include="VersionHandshake.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
