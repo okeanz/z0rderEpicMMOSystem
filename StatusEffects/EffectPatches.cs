@@ -45,10 +45,12 @@ public static class EffectPatches
     [HarmonyPatch(typeof(Player), "ConsumeItem")]
     public static class ConsumeMMOXP
     {
-        public static void Postfix(ItemDrop.ItemData item, ref bool __result)
+        public static void Prefix(ItemDrop.ItemData item)
         {
-            if (!Player.m_localPlayer.m_seman.HaveStatusEffect("MMO_XP") && __result)
+            //EpicMMOSystem.MLLogger.LogInfo("Player Consume "  );
+            if (!Player.m_localPlayer.m_seman.HaveStatusEffect("MMO_XP"))
             {
+
                 GameObject found = null;
                 foreach (var GameItem in ObjectDB.instance.m_items) // much bad
                 {

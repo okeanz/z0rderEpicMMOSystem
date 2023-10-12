@@ -1,5 +1,5 @@
 # Description:
-This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.8.0
+This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.8.1
 
 
 Support me!
@@ -262,6 +262,7 @@ Original Creator: LambaSun or my [mod branch](https://discord.com/channels/82657
 
 | Version | Changes                                                                                                                                                                                                                                                                                                                                |
 |----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.8.1  | - Fix bug for orb XP
 | 1.8.0  | - Rebalanced Specializing a little bit. </br> Update for 217.24
 | 1.7.9  | - Add French </br> Updated Piecemanager </br> Added ??? level to mobs for mobs that should not be limited or known by their level. No level penalties will be applied. Use level 0 in json - kind a like a blacklist. </br> Orbs will always have a chance to drop no matter the level. </br> Updated JewelCrafting Worldbosses to be ??? - They are still very hard though </br> Updated Outsiders json
 | 1.7.8  | - Add Swedish </br> Refined point calc in reset </br> Updated MonsterLaz and Default json for Hildr
