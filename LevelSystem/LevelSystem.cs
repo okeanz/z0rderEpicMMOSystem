@@ -113,7 +113,28 @@ public partial class LevelSystem
         {
             return 0;
         }
-        return int.Parse(Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_CurrentExp"]);
+        int hold = 0;
+        try
+        {
+             hold = int.Parse(Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_CurrentExp"]);
+        }
+        catch { Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_CurrentExp"] = "1";
+            hold = 1;
+            EpicMMOSystem.MLLogger.LogWarning($"Error in getting current exp, setting exp to 1");
+        }
+        if (hold == 1) // try to restore
+        {
+            try
+            {
+                var total = getTotalExp();
+                hold = (int)total; // try
+                Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_CurrentExp"] = hold.ToString();
+            }
+            catch
+            { }
+        }
+
+        return hold;
     }
     
     private void setCurrentExp(long value)

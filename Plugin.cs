@@ -34,7 +34,7 @@ namespace EpicMMOSystem;
 public partial class EpicMMOSystem : BaseUnityPlugin
 {
     internal const string ModName = "EpicMMOSystem";
-    internal const string ModVersion = "1.8.2";
+    internal const string ModVersion = "1.8.3";
     internal const string Author = "WackyMole";
    // internal const string configV = "_1_7";
     private const string ModGUID = Author + "." + ModName; //+ configV; changes GUID
@@ -244,9 +244,9 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         priceResetPoints = config(levelSystem, "PriceResetPoints", 3, "Reset price per point. Цена сброса за один поинт");
         freePointForLevel = config(levelSystem, "FreePointForLevel", 5, "Free points per level. Свободных поинтов за один уровень");
         startFreePoint = config(levelSystem, "StartFreePoint", 5, "Additional free points start. Дополнительных свободных поинтов");
-        levelExp = config(levelSystem, "FirstLevelExperience", 500, "Amount of experience needed per level. Количество опыта необходимого на 1 уровень");
-        levelexpforeachlevel = config(levelSystem, "FirstLevelExperience used on each level", true, "By default the calculations per level are (previous_amount * 1.04 + 500) disabled it will be (previous_amount * 1.04) per level ");
-        multiNextLevel = config(levelSystem, "MultiplyNextLevelExperience", 1.04f, "Experience multiplier for the next level - Should never go below 1.00. Умножитель опыта для следующего уровня");
+        levelExp = config(levelSystem, "LevelExperience", 300, "Amount of experience needed per level. Количество опыта необходимого на 1 уровень");
+        levelexpforeachlevel = config(levelSystem, "Add LevelExperience on each level", true, "By default the calculations per level are (previous_amount * 1.05 + 300) disabled it will be (previous_amount * 1.05) per level ");
+        multiNextLevel = config(levelSystem, "MultiplyNextLevelExperience", 1.05f, "Experience multiplier for the next level - Should never go below 1.00. Умножитель опыта для следующего уровня");
         expForLvlMonster = config(levelSystem, "ExpForLvlMonster", 0.25f, "Extra experience (from the sum of the basic experience) for the level of the monster. Доп опыт (из суммы основного опыта) за уровень монстра");
         rateExp = config(levelSystem, "RateExp", 1f, "Experience multiplier. Множитель опыта");
         groupExp = config(levelSystem, "GroupExp", 0.70f, "Experience multiplier that the other players in the group get. Множитель опыта который получают остальные игроки в группе");
@@ -364,12 +364,12 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         addDefaultEitr =config(optionalEffect, "addDefaultEitr", 0f, "Add Eitr by default");
 
         string OrbandPotion = "6.Orbs and Potions-------";
-        XPforOrb1 = config(OrbandPotion, "XP for Orb 1", 500, "Consuming Orb grants how much exp?");
-        XPforOrb2 = config(OrbandPotion, "XP for Orb 2", 1000, "Consuming Orb grants how much exp?");
-        XPforOrb3 = config(OrbandPotion, "XP for Orb 3", 2000, "Consuming Orb grants how much exp?");
-        XPforOrb4 = config(OrbandPotion, "XP for Orb 4", 4000, "Consuming Orb grants how much exp?");
-        XPforOrb5 = config(OrbandPotion, "XP for Orb 5", 8000, "Consuming Orb grants how much exp?");
-        XPforOrb6 = config(OrbandPotion, "XP for Orb 6", 16000, "Consuming Orb grants how much exp?");
+        XPforOrb1 = config(OrbandPotion, "XP for Orb 1", 300, "Consuming Orb grants how much exp?");
+        XPforOrb2 = config(OrbandPotion, "XP for Orb 2", 600, "Consuming Orb grants how much exp?");
+        XPforOrb3 = config(OrbandPotion, "XP for Orb 3", 1000, "Consuming Orb grants how much exp?");
+        XPforOrb4 = config(OrbandPotion, "XP for Orb 4", 2000, "Consuming Orb grants how much exp?");
+        XPforOrb5 = config(OrbandPotion, "XP for Orb 5", 4000, "Consuming Orb grants how much exp?");
+        XPforOrb6 = config(OrbandPotion, "XP for Orb 6", 8000, "Consuming Orb grants how much exp?");
         XPforMinorPotion = config(OrbandPotion, "Minor Potion", 1.3f, "XP Multiplier for XP Potion Minor");
         XPforMediumPotion = config(OrbandPotion, "Medium Potion", 1.6f, "XP Multiplier for XP Potion Medium");
         XPforGreaterPotion = config(OrbandPotion, "Greater Potion", 2.0f, "XP Multiplier for XP Potion Greater");

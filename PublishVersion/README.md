@@ -1,5 +1,5 @@
 # Description:
-This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.8.2
+This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.8.5
 
 
 Support me!
@@ -70,11 +70,11 @@ This mod should assigns levels to all in-game monsters. Every star added adds +1
 
 	Monsters that are 1 level higher than the character + MaxLevelRange will curve XP.
 
-	With defaults, starting exp req is 500 with a 1.04 multiplayer.  So first 5 levels of experience required will be: level 1 is 500, 2 is 1020, 3 is 1560, 4 is 2122, 5 is 2707
+	With defaults, starting exp req is 300 with a 1.05 multiplayer.  So first 5 levels of experience required will be: level 1 is 300, 2 is 615, 3 is 946, 4 is 1293, 5 is 1658
 
-	FirstLevelExperience used on each level: disabled means that the levels will not add 500 each time: level 1 is 520, 2 is 541, 3 is 562, 4 is 585, 5 is 608. The jsons will all have to be reworked if this is disabled
+	Add LevelExperience on each level: disabled means that the levels will not add 300 each time: level 1 is 315, 2 is 330, 3 is 347, 4 is 365, 5 is 383. The jsons will all have to be reworked if this is disabled
 
-	Below is an image of 1.04 +500 and with FirstLevelExperience disabled, so no 500 added. The difference is a lot. Also 1.08 scaling is added just to show how it gets into the millions pretty quickly. 
+	Below is an image of 1.04 +500 and with LevelExperience disabled, so no 300 added. The difference is a lot. Also 1.08 scaling is added just to show how it gets into the millions pretty quickly. 
 
 
 	With Low_damage_level- Damage dealt to a higher level monster will be reduced by the difference in levels. E.g. (Character level 20/ Monster level 50 = 0.4. Damage dealt will be 0.4% of normal damage) 
@@ -90,7 +90,7 @@ This mod should assigns levels to all in-game monsters. Every star added adds +1
 
 	Yellow mobs are those that have a level 0 set in the Json. They are not restricted by level and will always drop their loot/give full exp and players can always do full damage. They show up as "???" yellow tags. 
 
-![https://wackymole.com/hosts/epicmmolevelcalcs.png](https://wackymole.com/hosts/epicmmolevelcalcs.png)
+![https://wackymole.com/hosts/epicmmolevelcalcs2.png](https://wackymole.com/hosts/epicmmolevelcalcs2.png)
 
 
 </details>
@@ -262,6 +262,7 @@ Original Creator: LambaSun or my [mod branch](https://discord.com/channels/82657
 
 | Version | Changes                                                                                                                                                                                                                                                                                                                                |
 |----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.8.5  | - Fix for rare error resetting points. </br> Adjusting value default starting xp requirements and orbs to make leveling earlier a lot easier. </br> Changed config names, FirstLevelExperience -> LevelExperience, "FirstLevelExperience used on each level" -> "Add LevelExperience on each level", Sorry.
 | 1.8.2  | - Wacky learned Vulkan
 | 1.8.1  | - Fix bug for orb XP
 | 1.8.0  | - Rebalanced Specializing a little bit. </br> Update for 217.24
