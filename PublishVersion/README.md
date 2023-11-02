@@ -262,7 +262,7 @@ Original Creator: LambaSun or my [mod branch](https://discord.com/channels/82657
 
 | Version | Changes                                                                                                                                                                                                                                                                                                                                |
 |----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1.8.5  | - Fix for rare error resetting points. </br> Adjusting value default starting xp requirements and orbs to make leveling earlier a lot smoother. </br> Changed config names, FirstLevelExperience -> LevelExperience, "FirstLevelExperience used on each level" -> "Add LevelExperience on each level", Sorry. </br> ServerSync and Itemmanger update
+| 1.8.5  | - Fix for rare error resetting points. </br> Adjusting value default starting xp requirements and orbs to make leveling earlier a lot smoother. </br> Changed config names, FirstLevelExperience -> LevelExperience, "FirstLevelExperience used on each level" -> "Add LevelExperience on each level", Sorry. </br> ServerSync and Itemmanger update </br> Updated Excel sheet
 | 1.8.2  | - Wacky learned Vulkan
 | 1.8.1  | - Fix bug for orb XP
 | 1.8.0  | - Rebalanced Specializing a little bit. </br> Update for 217.24
