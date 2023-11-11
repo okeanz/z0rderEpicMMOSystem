@@ -106,7 +106,7 @@ public class Localizationold
     }
     else
     {
-        var fileName = $"{EpicMMOSystem.language.Value}_emmosLocalization.txt";
+        var fileName = $"Custom_EpicMMOSystem_Localization.txt";
         var basePath = Path.Combine(Paths.PluginPath, EpicMMOSystem.ModName, fileName);
         if (File.Exists(basePath))
         {

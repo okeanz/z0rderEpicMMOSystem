@@ -4,6 +4,6 @@
     <ProjectView>ShowAllFiles</ProjectView>
   </PropertyGroup>
   <PropertyGroup>
-    <ReferencePath>C:\Program Files (x86)\Steam\steamapps\common\Valheim\valheim_Data\Managed\publicized_assemblies\;C:\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\core\;C:\Program Files (x86)\Steam\steamapps\common\Valheim\unstripped_corlib\</ReferencePath>
+    <ReferencePath>C:\Program Files (x86)\Steam\steamapps\common\Valheim\valheim_Data\Managed\publicized_assemblies\;C:\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\core\</ReferencePath>
   </PropertyGroup>
 </Project>

@@ -34,7 +34,7 @@ namespace EpicMMOSystem;
 public partial class EpicMMOSystem : BaseUnityPlugin
 {
     internal const string ModName = "EpicMMOSystem";
-    internal const string ModVersion = "1.8.5";
+    internal const string ModVersion = "1.8.6";
     internal const string Author = "WackyMole";
    // internal const string configV = "_1_7";
     private const string ModGUID = Author + "." + ModName; //+ configV; changes GUID
@@ -75,7 +75,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
 
 
     public static Localizationold localizationold;
-    public static ConfigEntry<string> language;
+    //public static ConfigEntry<string> language;
     public static ConfigEntry<bool> extraDebug;
     //LevelSystem
     public static ConfigEntry<int> maxLevel;
@@ -237,7 +237,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
 
         string general = "0.General---------------";
         _serverConfigLocked = config(general, "Force Server Config", true, "Force Server Config");
-        language = config(general, "Language", "eng", "Language prefix", false);
+       // language = config(general, "Language", "eng", "Language prefix", false);
         extraDebug = config(general, "EnableExtraDebug", false, "Enable Extra Debug mode for Debugging", false);
         string levelSystem = "1.LevelSystem-----------";
         maxLevel = config(levelSystem, "MaxLevel", 100, "Maximum level. Максимальный уровень");

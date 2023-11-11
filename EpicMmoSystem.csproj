@@ -94,10 +94,8 @@
     <Reference Include="fastJSON, Version=2.4.0.0, Culture=neutral, PublicKeyToken=6b75a806b86095cd">
       <HintPath>Libs\fastJSON.dll</HintPath>
     </Reference>
-    <Reference Include="Groups, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>Libs\Groups.dll</HintPath>
-    </Reference>
-    <Reference Include="GroupsAPI, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <Reference Include="GroupsAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\GroupsAPI.dll</HintPath>
     </Reference>
     <Reference Include="ItemManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
