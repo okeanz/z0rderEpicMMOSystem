@@ -148,9 +148,14 @@ public class Localizationold
         {
             list.Add($"{pair.Key} = {pair.Value}");
         }
-        DirectoryInfo dir = new DirectoryInfo(Paths.PluginPath);
-        dir.CreateSubdirectory(Path.Combine(Paths.PluginPath, EpicMMOSystem.ModName));
-        File.WriteAllLines(Path.Combine(Paths.PluginPath, EpicMMOSystem.ModName, defaultFileName), list);
+        
+        var mmofolder = Path.Combine(Paths.ConfigPath, EpicMMOSystem.ModName);
+        if (!Directory.Exists(mmofolder))
+        {
+            Directory.CreateDirectory(mmofolder);
+        }
+
+        File.WriteAllLines(Path.Combine(Paths.ConfigPath, EpicMMOSystem.ModName, defaultFileName), list);
     }
 
     private void RusLocalization()
