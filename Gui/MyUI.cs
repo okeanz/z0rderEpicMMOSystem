@@ -1,5 +1,6 @@
 using EpicMMOSystem.OtherApi;
 using HarmonyLib;
+using LocalizationManager;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,6 +24,7 @@ public static partial class MyUI
         InitNavigationPanel();
         InitLevelSystem();
         InitFriendsList();
+        //Localizer.Load();
     }
 
     public static void Hide()

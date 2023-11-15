@@ -476,7 +476,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         ResetTrophy.ToggleConfigurationVisibility(Configurability.Drop);
         //ResetTrophy.Snapshot();
 
-        //Localizer.AddText
+        
     }
     
 
