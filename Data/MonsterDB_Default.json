@@ -54,6 +54,12 @@
     "level": 20
   },
   {
+    "name": "TentaRoot",
+    "minExp": 5,
+    "maxExp": 5,
+    "level": 15
+  },
+  {
     "name": "Skeleton_NoArcher",
     "minExp": 60,
     "maxExp": 80,
@@ -144,7 +150,7 @@
     "level": 43
   },
   {
-    "name": "Cultist",
+    "name": "Fenring_Cultist",
     "minExp": 300,
     "maxExp": 400,
     "level": 44
@@ -250,6 +256,18 @@
     "minExp": 10,
     "maxExp": 20,
     "level": 6
+  },
+  {
+    "name": "Dverger",
+    "minExp": 700,
+    "maxExp": 900,
+    "level": 61
+  },
+  {
+    "name": "DvergerMage",
+    "minExp": 700,
+    "maxExp": 900,
+    "level": 61
   },
   {
     "name": "Hen",

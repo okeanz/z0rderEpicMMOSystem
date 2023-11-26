@@ -1,5 +1,5 @@
 # Description:
-This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.8.6
+This mod adds an RPG-like system of levels and attribute increases: - Wacky Branch 1.8.7
 
 
 Support me!
@@ -132,7 +132,7 @@ You can combine multiple Skills for one Requirement
 
 	A file called Version.txt is created in the folder. It contains the mod version that was used to create it. Replace it with "NO" to stop it from overwritting on a future update.
 
-	Latest Update for Jsons config is <b> 1.7.9 </b>(Number will be updated when Jsons recieve an update)
+	Latest Update for Jsons config is <b> 1.8.7 </b>(Number will be updated when Jsons recieve an update)
 
 </details>
 
@@ -262,6 +262,7 @@ Original Creator: LambaSun or my [mod branch](https://discord.com/channels/82657
 
 | Version | Changes                                                                                                                                                                                                                                                                                                                                |
 |----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1.8.7  | - Fix for header. </br> Updated Mobs, Default.json
 | 1.8.6  | - Maybe fix for very rare directory error.
 | 1.8.5  | - Fix for rare error resetting points. </br> Adjusting value default starting xp requirements and orbs to make leveling earlier a lot smoother. </br> Changed config names, FirstLevelExperience -> LevelExperience, "FirstLevelExperience used on each level" -> "Add LevelExperience on each level", Sorry. </br> ServerSync and Itemmanger update </br> Updated Excel sheet
 | 1.8.2  | - Wacky learned Vulkan

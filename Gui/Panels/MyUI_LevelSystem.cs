@@ -68,7 +68,7 @@ public partial class MyUI
 
         //levelSystemPanel.transform.Find("Background").gameObject.AddComponent<DragMenu>().menu = levelSystemPanel.transform;
         //levelSystemPanel.transform.Find("Header").gameObject.AddComponent<DragMenu>().menu = levelSystemPanel.transform;
-        //levelSystemPanel.transform.Find("Header/Text").GetComponent<Text>().text =localization["$attributes"];
+        levelSystemPanel.transform.Find("Header/Text").GetComponent<Text>().text =localization["$attributes"];
         DragWindowCntrl.ApplyDragWindowCntrl(levelSystemPanel);
 
         //alertReset
