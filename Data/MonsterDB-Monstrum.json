@@ -6,6 +6,12 @@
     "level": 7
   },
   {
+    "name": "FoxCub_TW",
+    "minExp": 10,
+    "maxExp": 20,
+    "level": 5
+  },
+  {
     "name": "BossAsmodeus_TW",
     "minExp": 175,
     "maxExp": 225,
@@ -18,13 +24,31 @@
     "level": 13
   },
   {
+    "name": "RazorbackPiggy_TW",
+    "minExp": 20,
+    "maxExp": 30,
+    "level": 10
+  },
+  {
     "name": "BlackBear_TW",
     "minExp": 100,
     "maxExp": 200,
     "level": 18
   },
   {
+    "name": "BlackBearCub_TW",
+    "minExp": 30,
+    "maxExp": 50,
+    "level": 15
+  },
+  {
     "name": "GDAncientShaman_TW",
+    "minExp": 120,
+    "maxExp": 180,
+    "level": 20
+  },
+  {
+    "name": "GDAncientShaman_rootspawn_TW",
     "minExp": 120,
     "maxExp": 180,
     "level": 20
@@ -78,6 +102,12 @@
     "level": 42
   },
   {
+    "name": "GrizzlyBearCub_TW",
+    "minExp": 40,
+    "maxExp": 50,
+    "level": 40
+  },
+  {
     "name": "ObsidianGolem_TW",
     "minExp": 550,
     "maxExp": 650,
@@ -90,16 +120,34 @@
     "level": 54
   },
   {
+    "name": "ProwlerCub_TW",
+    "minExp": 100,
+    "maxExp": 110,
+    "level": 51
+  },
+  {
     "name": "ArcticWolf_TW",
     "minExp": 1500,
     "maxExp": 2300,
     "level": 71
   },
   {
+    "name": "ArcticWolfCub_TW",
+    "minExp": 100,
+    "maxExp": 100,
+    "level": 71
+  },
+  {
     "name": "ArcticBear_TW",
     "minExp": 1800,
     "maxExp": 2500,
-    "level": 73
+    "level": 72
+  },
+  {
+    "name": "ArcticBearCub_TW",
+    "minExp": 100,
+    "maxExp": 100,
+    "level": 72
   },
   {
     "name": "ArcticSerpent_TW",
@@ -111,7 +159,7 @@
     "name": "ArcticMammoth_TW",
     "minExp": 2500,
     "maxExp": 3500,
-    "level": 74
+    "level": 73
   },
   {
     "name": "ArcticDrake_TW",
@@ -123,7 +171,7 @@
     "name": "ArcticFenring_TW",
     "minExp": 2000,
     "maxExp": 3000,
-    "level": 71
+    "level": 72
   },
   {
     "name": "ArcticCultist_TW",
@@ -141,66 +189,90 @@
     "name": "JotunnBrute_TW",
     "minExp": 8000,
     "maxExp": 10000,
+    "level": 73
+  },
+  {
+    "name": "StormWolf_TW",
+    "minExp": 4000,
+    "maxExp": 4500,
+    "level": 74
+  },
+  {
+    "name": "BossStormHerald_TW",
+    "minExp": 9000,
+    "maxExp": 12000,
     "level": 76
   },
   {
     "name": "AshenWarg_TW",
     "minExp": 3000,
     "maxExp": 3600,
-    "level": 81
+    "level": 70
+  },
+  {
+    "name": "AshenWargCub_TW",
+    "minExp": 100,
+    "maxExp": 100,
+    "level": 70
   },
   {
     "name": "AshenCrab_TW",
     "minExp": 2800,
     "maxExp": 3400,
-    "level": 79
+    "level": 72
   },
   {
     "name": "AshenScorpid_TW",
     "minExp": 3100,
     "maxExp": 3700,
-    "level": 80
+    "level": 72
   },
   {
     "name": "AshenDimetrodon_TW",
     "minExp": 4000,
     "maxExp": 4800,
-    "level": 86
+    "level": 73
   },
   {
     "name": "AshenDrake_TW",
     "minExp": 3500,
     "maxExp": 4300,
-    "level": 83
+    "level": 70
   },
   {
     "name": "AshenImp_TW",
     "minExp": 2500,
     "maxExp": 3500,
-    "level": 78
+    "level": 69
   },
   {
     "name": "AshenDemon_TW",
     "minExp": 3800,
     "maxExp": 4500,
-    "level": 86
+    "level": 71
   },
   {
     "name": "AshenGolem_TW",
     "minExp": 4500,
     "maxExp": 5500,
-    "level": 87
+    "level": 73
   },
   {
     "name": "AshenMinotaur_TW",
     "minExp": 4000,
     "maxExp": 5000,
-    "level": 87
+    "level": 73
+  },
+  {
+    "name": "AshenShark_TW",
+    "minExp": 3800,
+    "maxExp": 4500,
+    "level": 71
   },
   {
     "name": "BossSythrak_TW",
     "minExp": 9000,
     "maxExp": 12000,
-    "level": 85
+    "level": 76
   }
 ]
