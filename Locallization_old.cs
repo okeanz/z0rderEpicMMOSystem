@@ -49,6 +49,10 @@ public class Localizationold
     else if (currentLanguage == "French")
     {
         FrenchLocalization();
+    }    
+    else if (currentLanguage == "Korean")
+    {
+         KoreanLocalization();
     }
     else
     {
@@ -303,7 +307,106 @@ public class Localizationold
                             "<color=blue> Increase construction piece's health </color> \n" +
                             "<color=green> Increase Tree Cutting Damage</color>");
     }
+    private void KoreanLocalization()
+    {
+        _dictionary.Add("$attributes", "속성");
+        _dictionary.Add("$parameter_strength", "힘");
+        _dictionary.Add("$parameter_intellect", "지능");
+        _dictionary.Add("$free_points", "사용 가능한 포인트");
+        _dictionary.Add("$level", "레벨");
+        _dictionary.Add("$lvl", "레벨");
+        _dictionary.Add("$exp", "경험치");
+        _dictionary.Add("$cancel", "취소");
+        _dictionary.Add("$apply", "적용");
+        _dictionary.Add("$reset_parameters", "포인트 초기화");
+        _dictionary.Add("$no", "아니요");
+        _dictionary.Add("$yes", "예");
+        _dictionary.Add("$get_exp", "받은 경험치");
+        _dictionary.Add("$reset_point_text", "모든 포인트를 {0} {1}로 되돌리시겠습니까?");
+        // Parameter
+        _dictionary.Add("$physic_damage", "물리 대미지");
+        _dictionary.Add("$add_weight", "운반 무게");
+        _dictionary.Add("$reduced_stamina", "스태미너 소모 (달리기, 점프)");
+        _dictionary.Add("$magic_damage", "원소 대미지");
+        _dictionary.Add("$magic_armor", "원소 저항");
+        _dictionary.Add("$add_hp", "체력 증가");
+        _dictionary.Add("$add_stamina", "스태미너 증가");
+        _dictionary.Add("$physic_armor", "물리 저항");
+        _dictionary.Add("$reduced_stamina_block", "방어 스태미너 소모 감소");
+        _dictionary.Add("$regen_hp", "체력 재생");
+        _dictionary.Add("$damage", "대미지");
+        _dictionary.Add("$armor", "방어력");
+        _dictionary.Add("$survival", "생존");
+        _dictionary.Add("$regen_eitr", "아이트르 재생");
+        _dictionary.Add("$stamina_reg", "스태미너 재생");
+        _dictionary.Add("$add_eitr", "아이트르 증가");
+        // New/Changed Params 1.7.0
+        _dictionary.Add("$parameter_agility", "민첩성");
+        _dictionary.Add("$parameter_body", "지구력");
+        _dictionary.Add("$parameter_vigour", "활력");
+        _dictionary.Add("$parameter_special", "특수화");
+        _dictionary.Add("$specialother", "특수");// divheader
+        _dictionary.Add("$attack_speed", "공격 속도");
+        _dictionary.Add("$attack_stamina", "공격 스태미너 소모");
+        _dictionary.Add("$crtcDmgMulti", "치명타 대미지 배율");
+        _dictionary.Add("$mining_speed", "채광 대미지 증가");
+        _dictionary.Add("$piece_health", "건물 체력 증가");
+        _dictionary.Add("$tree_cutting", "나무 베기 대미지 증가");
+        _dictionary.Add("$crit_chance", "치명타 확률 증가");
 
+        // Friends list
+        _dictionary.Add("$notify", "<color=#00E6FF>알림</color>");
+        _dictionary.Add("$friends_list", "친구 목록");
+        _dictionary.Add("$send", "보내기");
+        _dictionary.Add("$invited", "초대");
+        _dictionary.Add("$friends", "친구");
+        _dictionary.Add("$online", "온라인");
+        _dictionary.Add("$offline", "오프라인");
+        _dictionary.Add("$not_found", "'플레이어 {0}'을(를) 찾을 수 없습니다.");
+        _dictionary.Add("$send_invite", "'플레이어 {0}'에게 친구 요청이 전송되었습니다.");
+        _dictionary.Add("$get_invite", "'{0}'님으로부터 친구 요청을 받았습니다.");
+        _dictionary.Add("$accept_invite", "'{0}'님이 친구 요청을 수락했습니다.");
+        _dictionary.Add("$cancel_invite", "'{0}'님이 친구 요청을 취소했습니다.");
+        // Terminal
+        _dictionary.Add("$terminal_set_level", "'{0}' 레벨을 획득했습니다.");
+        _dictionary.Add("$terminal_reset_points", "속성 포인트가 초기화되었습니다.");
+
+        _dictionary.Add("$strength_tooltip", "<size=20>힘은 다음을 향상시킵니다:</size> \n" +
+                            "<color=yellow>물리 대미지 증가</color> \n" +
+                            "<color=blue>운반 무게 증가</color> \n" +
+                            "<color=green>방어 스태미너 소모 감소</color> \n" +
+                            "<color=red>치명타 공격 시 치명타 대미지 증가</color>");
+
+        _dictionary.Add("$dexterity_tooltip", "<size=20>민첩성은 다음을 향상시킵니다:</size> \n" +
+                                    "<color=red>공격 속도 증가 (활 제외)</color> \n" +
+                                    "<color=yellow>공격 스태미너 소모 감소</color> \n" +
+                                    "<color=green>달리기/점프 스태미너 소모 감소</color>");
+
+        _dictionary.Add("$intelect_tooltip", "<size=20>지능은 다음을 향상시킵니다:</size> \n" +
+                                    "<color=green>모든 원소 대미지 증가</color>\n" +
+                                    "<color=red>기본 아이트르 양 증가 (아이트르 보유 시)</color> \n" +
+                                    "<color=red>아이트르 재생 증가</color> ");
+
+        _dictionary.Add("$endurance_tooltip", "<size=20>지구력은 다음을 향상시킵니다:</size> \n" +
+                                    "<color=yellow>스태미너 양 증가</color>\n" +
+                                    "<color=yellow>스태미너 재생 증가</color> \n" +
+                                    "<color=green>받는 물리 대미지 감소</color>");
+
+        _dictionary.Add("$vigour_tooltip", "<size=20>활력은 다음을 향상시킵니다:</size> \n" +
+                                    "<color=red>체력 양 증가</color>\n" +
+                                    "<color=yellow>체력 재생</color> \n" +
+                                    "<color=green>원소 대미지 감소</color>");
+
+
+        _dictionary.Add("$special_tooltip", "<size=20>특수화는 다음을 향상시킵니다:</size> \n" +
+                                "<color=red>치명타 공격 확률 증가</color>\n" +
+                                "<color=blue>채광 대미지 증가</color> \n" +
+                                "<color=blue>건물 체력 증가</color> \n" +
+                                "<color=green>나무 베기 대미지 증가</color>");
+
+        // Add other translations if needed.
+
+    }
     private void FrenchLocalization()
     {
         _dictionary.Add("$attributes", "Attributs");

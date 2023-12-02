@@ -414,6 +414,9 @@
     <EmbeddedResource Include="translations\German.yml" />
     <EmbeddedResource Include="translations\Chinese.yml" />
     <EmbeddedResource Include="translations\Portuguese.yml" />
+    <EmbeddedResource Include="translations\Korean.yml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="translations\French.yml" />
     <None Include="translations\Swedish.yml" />
   </ItemGroup>
