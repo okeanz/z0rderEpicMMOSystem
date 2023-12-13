@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using BepInEx;
 using EpicMMOSystem.Gui;
@@ -12,39 +13,47 @@ namespace EpicMMOSystem;
 
 /*
  *  Strength:   
-    • Player Phys Dmg%
-    • Flat Carry Weight
-    • Decreased Block Stamina Consumption Rate%
-    • Critical Damage
+    ï¿½ Player Phys Dmg%
+    ï¿½ Flat Carry Weight
+    ï¿½ Decreased Block Stamina Consumption Rate%
+    ï¿½ Critical Damage
 Dexterity:
-    • Player Attack/Usage Speed%
-    • Decreased Attack Stamina Consumption Rate%
-    • Decreased Running/Jumping Stamina Consumption Rate%
+    ï¿½ Player Attack/Usage Speed%
+    ï¿½ Decreased Attack Stamina Consumption Rate%
+    ï¿½ Decreased Running/Jumping Stamina Consumption Rate%
 Intelligence:
-    • Player Ele Dmg%
-    • Flat Eitr
-    • Eitr Regen Multi%
+    ï¿½ Player Ele Dmg%
+    ï¿½ Flat Eitr
+    ï¿½ Eitr Regen Multi%
 Endurance:
-    • Flat Stamina
-    • Stamina Regen Multi% //or// Health Regen Multi%
-    • Phys Dmg Reduction%
+    ï¿½ Flat Stamina
+    ï¿½ Stamina Regen Multi% //or// Health Regen Multi%
+    ï¿½ Phys Dmg Reduction%
 Vigour: 
-    • Flat Health
-    • Health Regen
-    • Ele Dmg Reduction% 
+    ï¿½ Flat Health
+    ï¿½ Health Regen
+    ï¿½ Ele Dmg Reduction% 
 Specializing
-    • Mining Speed
-    • Construction piece health?
-    • Tree cutting  
+    ï¿½ Mining Speed
+    ï¿½ Construction piece health?
+    ï¿½ Tree cutting  
 */
 public enum Parameter
 {
-    Strength = 0, Agility = 1, Intellect = 2, Body = 3, Vigour = 4 , Special = 5 // Strength, Dexterity, Intelligence, Endurance, Vigour, Specializing
+    Strength = 0,
+    Agility = 1,
+    Intellect = 2,
+    Body = 3,
+    Vigour = 4,
+    Special = 5 // Strength, Dexterity, Intelligence, Endurance, Vigour, Specializing
 }
+
 public partial class LevelSystem
 {
     #region Singlton
+
     private static LevelSystem instance;
+
     public static LevelSystem Instance
     {
         get
@@ -54,22 +63,24 @@ public partial class LevelSystem
                 instance = new LevelSystem();
                 return instance;
             }
+
             return instance;
         }
     }
+
     #endregion
 
     private Dictionary<int, long> levelsExp;
     private string pluginKey = EpicMMOSystem.ModName;
     private const string midleKey = "LevelSystem";
-    private int[] depositPoint = { 0, 0, 0, 0 ,0 , 0}; //6
+    private int[] depositPoint = {0, 0, 0, 0, 0, 0}; //6
     private float singleRate = 0;
 
     public LevelSystem()
     {
         FillLevelsExp();
     }
-    
+
     public int getLevel()
     {
         if (!Player.m_localPlayer) return 1;
@@ -77,13 +88,14 @@ public partial class LevelSystem
         {
             return 1;
         }
+
         return int.Parse(Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_Level"]);
     }
-    
+
     private void setLevel(int value)
     {
         if (!Player.m_localPlayer) return;
-        Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_Level"]= value.ToString();
+        Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_Level"] = value.ToString();
     }
 
     public void recalcLevel()
@@ -100,12 +112,12 @@ public partial class LevelSystem
             addLvl++;
             need = getNeedExp(addLvl);
         }
-        setCurrentExp(currentexp);
-        setLevel(addLvl+1);
-        MyUI.updateExpBar();
 
+        setCurrentExp(currentexp);
+        setLevel(addLvl + 1);
+        MyUI.updateExpBar();
     }
-    
+
     public long getCurrentExp()
     {
         if (!Player.m_localPlayer) return 0;
@@ -113,34 +125,39 @@ public partial class LevelSystem
         {
             return 0;
         }
+
         int hold = 0;
         try
         {
-             hold = int.Parse(Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_CurrentExp"]);
+            hold = int.Parse(Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_CurrentExp"]);
         }
-        catch { Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_CurrentExp"] = "1";
+        catch
+        {
+            Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_CurrentExp"] = "1";
             hold = 1;
             EpicMMOSystem.MLLogger.LogWarning($"Error in getting current exp, setting exp to 1");
         }
+
         if (hold == 1) // try to restore
         {
             try
             {
                 var total = getTotalExp();
-                hold = (int)total; // try
+                hold = (int) total; // try
                 Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_CurrentExp"] = hold.ToString();
             }
             catch
-            { }
+            {
+            }
         }
 
         return hold;
     }
-    
+
     private void setCurrentExp(long value)
     {
         if (!Player.m_localPlayer) return;
-        Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_CurrentExp"]= value.ToString();
+        Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_CurrentExp"] = value.ToString();
     }
 
     public long getTotalExp()
@@ -150,6 +167,7 @@ public partial class LevelSystem
         {
             return 0;
         }
+
         return int.Parse(Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_TotalExp"]);
     }
 
@@ -158,6 +176,7 @@ public partial class LevelSystem
         if (!Player.m_localPlayer) return;
         Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_TotalExp"] = value.ToString();
     }
+
     public void addTotalExp(long value)
     {
         if (!Player.m_localPlayer) return;
@@ -165,6 +184,7 @@ public partial class LevelSystem
         {
             Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_TotalExp"] = "1";
         }
+
         long total = int.Parse(Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_TotalExp"]) + value;
         Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_TotalExp"] = total.ToString();
     }
@@ -172,7 +192,7 @@ public partial class LevelSystem
     private void setParameter(Parameter parameter, int value)
     {
         if (!Player.m_localPlayer) return;
-       // int max = EpicMMOSystem.maxValueAttribute.Value;
+        // int max = EpicMMOSystem.maxValueAttribute.Value;
 
         int max = parameter.ToString() switch
         {
@@ -186,9 +206,9 @@ public partial class LevelSystem
         };
         int setValue = Mathf.Clamp(value, 0, max);
         Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_{parameter.ToString()}"] = setValue.ToString();
-       // Player.m_localPlayer.m_customData. maybe later
+        // Player.m_localPlayer.m_customData. maybe later
     }
-    
+
     public int getParameter(Parameter parameter)
     {
         if (!Player.m_localPlayer) return 0;
@@ -196,16 +216,17 @@ public partial class LevelSystem
         {
             return 0;
         }
+
         int value = int.Parse(Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_{parameter.ToString()}"]);
         //int max = EpicMMOSystem.maxValueAttribute.Value;
 
-        int max = parameter.ToString() switch 
+        int max = parameter.ToString() switch
         {
             "Strength" => EpicMMOSystem.maxValueStrength.Value,
             "Agility" => EpicMMOSystem.maxValueDexterity.Value,
             "Intellect" => EpicMMOSystem.maxValueIntelligence.Value,
             "Body" => EpicMMOSystem.maxValueEndurance.Value,
-             "Vigour" => EpicMMOSystem.maxValueVigour.Value,
+            "Vigour" => EpicMMOSystem.maxValueVigour.Value,
             "Special" => EpicMMOSystem.maxValueSpecializing.Value,
             _ => max = 205
         };
@@ -219,9 +240,11 @@ public partial class LevelSystem
         var level = getLevel();
         int addPoints = 0;
         try
-        {           
+        {
             string str = EpicMMOSystem.levelsForBinusFreePoint.Value;
-            if (str.IsNullOrWhiteSpace()) { }
+            if (str.IsNullOrWhiteSpace())
+            {
+            }
             else
             {
                 var map = str.Split(',');
@@ -249,7 +272,7 @@ public partial class LevelSystem
         int usedUp = 0;
         for (int i = 0; i < EpicMMOSystem.numofCats; i++)
         {
-            usedUp += getParameter((Parameter)i);
+            usedUp += getParameter((Parameter) i);
         }
 
 
@@ -261,29 +284,29 @@ public partial class LevelSystem
         var freePoint = getFreePoints();
         if (!(freePoint > 0)) return;
         var applyPoint = Mathf.Clamp(addPoint, 1, freePoint);
-        depositPoint[(int)parameter] += applyPoint;
+        depositPoint[(int) parameter] += applyPoint;
         var currentPoint = getParameter(parameter);
         setParameter(parameter, currentPoint + applyPoint);
     }
-    
+
     public long getNeedExp(int addLvl = 0)
     {
         var lvl = Mathf.Clamp(getLevel() + 1 + addLvl, 1, EpicMMOSystem.maxLevel.Value);
         return levelsExp[lvl];
     }
-    
+
     public void ResetAllParameter()
     {
         for (int i = 0; i < EpicMMOSystem.numofCats; i++)
         {
-            setParameter((Parameter)i, 0);
+            setParameter((Parameter) i, 0);
         }
+
         MyUI.UpdateParameterPanel();
     }
 
     public void ResetAllParameterPayment()
     {
-
         var text = EpicMMOSystem.prefabNameCoins.Value;
         var pref = ZNetScene.instance.GetPrefab(text);
         var name = pref.GetComponent<ItemDrop>().m_itemData.m_shared.m_name;
@@ -301,8 +324,10 @@ public partial class LevelSystem
                 ResetAllParameter();
                 return;
             }
-            return;// return if no coins and no ResetTrophy
+
+            return; // return if no coins and no ResetTrophy
         }
+
         Player.m_localPlayer.m_inventory.RemoveItem(name, price);
         ResetAllParameter();
     }
@@ -312,23 +337,24 @@ public partial class LevelSystem
         singleRate = rate;
     }
 
-    public void AddExp(int exp, bool noxpMulti=false)
+    public void AddExp(int exp, bool noxpMulti = false)
     {
-        if(exp < 1)
+        if (exp < 1)
         {
             if (exp == -2)
             {
                 Util.FloatingText($"No XP for red/blue creatures :( ");
             }
+
             return;
         }
-       
+
         float rate = EpicMMOSystem.rateExp.Value;
         var giveExp = exp * (rate + singleRate);
         if (noxpMulti)
             giveExp = exp;
 
-        if (Player.m_localPlayer.m_seman.HaveStatusEffect("Potion_MMO_Greater") )
+        if (Player.m_localPlayer.m_seman.HaveStatusEffect("Potion_MMO_Greater"))
         {
             giveExp = EpicMMOSystem.XPforGreaterPotion.Value * giveExp;
         }
@@ -340,9 +366,10 @@ public partial class LevelSystem
         {
             giveExp = EpicMMOSystem.XPforMinorPotion.Value * giveExp;
         }
+
         var current = getCurrentExp();
         var need = getNeedExp();
-        current += (int)giveExp;
+        current += (int) giveExp;
         int addLvl = 0;
         var currentcopy = current;
         while (current > need)
@@ -351,21 +378,25 @@ public partial class LevelSystem
             addLvl++;
             need = getNeedExp(addLvl);
         }
+
         if (addLvl > 0)
         {
-            AddLevel(addLvl); 
+            AddLevel(addLvl);
         }
-        addTotalExp((int)giveExp);// add to total the exp used to go up levels, this will take a while for people to see benefit as before exp was lost and no way to recalc levels. 
+
+        addTotalExp(
+            (int) giveExp); // add to total the exp used to go up levels, this will take a while for people to see benefit as before exp was lost and no way to recalc levels. 
         setCurrentExp(current);
         MyUI.updateExpBar();
         if (EpicMMOSystem.leftMessageXP.Value)
         {
             Player.m_localPlayer.Message(
                 MessageHud.MessageType.TopLeft,
-                $"{(EpicMMOSystem.localizationold["$get_exp"])}: {(int)giveExp}"
+                $"{(EpicMMOSystem.localizationold["$get_exp"])}: {(int) giveExp}"
             );
         }
-        giveExp = (float)Math.Round(giveExp);
+
+        giveExp = (float) Math.Round(giveExp);
         string stringtolvl = EpicMMOSystem.XPstring.Value;
         stringtolvl = stringtolvl.Replace("@", giveExp.ToString());
         //Util.FloatingText($"+{exp} XP");
@@ -377,7 +408,7 @@ public partial class LevelSystem
         if (count <= 0) return;
         var current = getLevel();
         current += count;
-        setLevel(Mathf.Clamp(current,1, EpicMMOSystem.maxLevel.Value));
+        setLevel(Mathf.Clamp(current, 1, EpicMMOSystem.maxLevel.Value));
         PlayerFVX.levelUp();
         var zdo = Player.m_localPlayer.m_nview.GetZDO();
         zdo.Set($"{pluginKey}_level", current);
@@ -395,6 +426,7 @@ public partial class LevelSystem
                 break;
             }
         }
+
         return result;
     }
 
@@ -404,21 +436,23 @@ public partial class LevelSystem
         {
             depositPoint[i] = 0;
         }
+
         MyUI.UpdateParameterPanel();
     }
-    
+
     public void cancelDepositPoints()
     {
         if (!Player.m_localPlayer) return;
         for (int i = 0; i < depositPoint.Length; i++)
         {
             if (depositPoint[i] == 0) continue;
-            var parameter = (Parameter)i;
+            var parameter = (Parameter) i;
             var deposit = depositPoint[i];
             var point = getParameter(parameter);
             setParameter(parameter, point - deposit);
             depositPoint[i] = 0;
         }
+
         MyUI.UpdateParameterPanel();
     }
 
@@ -427,8 +461,9 @@ public partial class LevelSystem
         var count = 0;
         for (int i = 0; i < EpicMMOSystem.numofCats; i++)
         {
-            count += getParameter((Parameter)i);
+            count += getParameter((Parameter) i);
         }
+
         count *= EpicMMOSystem.priceResetPoints.Value;
         return count;
     }
@@ -437,48 +472,93 @@ public partial class LevelSystem
     {
         if (!EpicMMOSystem.lossExp.Value) return;
         if (!Player.m_localPlayer.HardDeath()) return;
-        var minExp = EpicMMOSystem.minLossExp.Value;
-        var maxExp = EpicMMOSystem.maxLossExp.Value;
-        var lossExp = 1f - Random.Range(minExp, maxExp);
-        var TotalExp = getTotalExp();
-        
-        var currentExp = getCurrentExp();
-        long newExp = (long)(currentExp * lossExp);
-        setCurrentExp(newExp);
-        setTotalExp(TotalExp - (long)(currentExp * lossExp));// remove some totalexp as well
-        MyUI.updateExpBar();
-        
+
+        if (EpicMMOSystem.hardcoreDeath.Value)
+        {
+            EpicMMOSystem.MLLogger.LogInfo($"Player {Player.m_localPlayer.GetPlayerName()} is hardcored!");
+            terminalSetLevel(1);
+        }
+        else
+        {
+            var minExp = EpicMMOSystem.minLossExp.Value;
+            var maxExp = EpicMMOSystem.maxLossExp.Value;
+            var lossExp = 1f - Random.Range(minExp, maxExp);
+            var TotalExp = getTotalExp();
+
+            var currentExp = getCurrentExp();
+            long newExp = (long) (currentExp * lossExp);
+            setCurrentExp(newExp);
+            setTotalExp(TotalExp - (long) (currentExp * lossExp)); // remove some totalexp as well
+            MyUI.updateExpBar();
+        }
     }
-    
+
+    public void CheckAbuse()
+    {
+        if (!EpicMMOSystem.hardcoreAbusePunishment.Value) return;
+        if (Player.m_localPlayer.m_knownTexts.ContainsKey($"{EpicMMOSystem.hardcoreAbusePunishmentKey.Value}_Existing"))
+            return;
+
+        try
+        {
+            EpicMMOSystem.MLLogger.LogError(
+                fastJSON.JSON.ToNiceJSON(Player.m_localPlayer?.m_skills?.m_skillData?.Values.ToArray()));
+            EpicMMOSystem.MLLogger.LogError(
+                fastJSON.JSON.ToNiceJSON(Player.m_localPlayer?.m_inventory?.GetAllItems().Count));
+
+            var haveSomeSkills =
+                Player.m_localPlayer?.m_skills?.m_skillData?.Any(skillPair => skillPair.Value.m_level != 0f) ?? false;
+            var haveSomeItems = Player.m_localPlayer?.m_inventory?.GetAllItems().Count > 0;
+
+            if (getTotalExp() == 0 && (haveSomeItems || haveSomeSkills))
+            {
+                EpicMMOSystem.MLLogger.LogError($"Abuser {Player.m_localPlayer.GetPlayerName()} detected!");
+
+                if (haveSomeSkills)
+                    EpicMMOSystem.MLLogger.LogError(
+                        fastJSON.JSON.ToNiceJSON(Player.m_localPlayer.m_skills.m_skillData.Values.ToArray()));
+
+                if (haveSomeItems)
+                    EpicMMOSystem.MLLogger.LogError(
+                        fastJSON.JSON.ToNiceJSON(Player.m_localPlayer.m_inventory.m_inventory.ToArray()));
+
+                EpicMMOSystem.MLLogger.LogError($"Reset {Player.m_localPlayer.GetPlayerName()}");
+            }
+        }
+        catch (Exception e)
+        {
+            EpicMMOSystem.MLLogger.LogError($"CheckAbuse {Player.m_localPlayer?.GetPlayerName()} failed!");
+            EpicMMOSystem.MLLogger.LogError(e);
+        }
+    }
+
     //FillLevelExp
     public void FillLevelsExp()
     {
-
-
         var levelExp = EpicMMOSystem.levelExp.Value;
         var multiply = EpicMMOSystem.multiNextLevel.Value;
         var maxLevel = EpicMMOSystem.maxLevel.Value;
-        levelsExp = new ();
+        levelsExp = new();
         if (EpicMMOSystem.levelexpforeachlevel.Value)
         {
             long current = 0;
             for (int i = 1; i <= maxLevel; i++)
             {
-                current = (long)Math.Round(current * multiply + levelExp);
+                current = (long) Math.Round(current * multiply + levelExp);
                 levelsExp[i + 1] = current;
             }
-        }else
+        }
+        else
         {
             long current = levelExp;
             for (int i = 1; i <= maxLevel; i++)
             {
-                current = (long)Math.Round(current * multiply);
+                current = (long) Math.Round(current * multiply);
                 levelsExp[i + 1] = current;
             }
-
         }
     }
-    
+
     //Terminal
     public void terminalSetLevel(int value)
     {
@@ -522,6 +602,16 @@ public static class Death
 {
     public static void Prefix()
     {
-        LevelSystem.Instance.DeathPlayer();
+        if (Player.m_localPlayer && Player.m_localPlayer.m_nview && Player.m_localPlayer.m_nview.IsOwner())
+            LevelSystem.Instance.DeathPlayer();
+    }
+}
+
+[HarmonyPatch(typeof(Player), nameof(Player.OnSpawned))]
+public static class PlayerSpawned
+{
+    public static void Postfix()
+    {
+        // LevelSystem.Instance.CheckAbuse();
     }
 }

@@ -34,8 +34,8 @@ namespace EpicMMOSystem;
 public partial class EpicMMOSystem : BaseUnityPlugin
 {
     internal const string ModName = "EpicMMOSystem";
-    internal const string ModVersion = "1.8.9";
-    internal const string Author = "WackyMole";
+    internal const string ModVersion = "1.0.2";
+    internal const string Author = "z0rder";
    // internal const string configV = "_1_7";
     private const string ModGUID = Author + "." + ModName; //+ configV; changes GUID
     private static string ConfigFileName = ModGUID + ".cfg";
@@ -90,6 +90,9 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     public static ConfigEntry<float> groupExp;
     public static ConfigEntry<float> groupRange;
     public static ConfigEntry<float> playerRange;
+    public static ConfigEntry<bool> hardcoreDeath;
+    public static ConfigEntry<bool> hardcoreAbusePunishment;
+    public static ConfigEntry<string> hardcoreAbusePunishmentKey;
     public static ConfigEntry<bool> lossExp;
     public static ConfigEntry<float> minLossExp;
     public static ConfigEntry<float> maxLossExp;
@@ -221,6 +224,9 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     public static ConfigEntry<float> OrbDropChance;
     public static ConfigEntry<float> OrbDropChancefromBoss;
     public static ConfigEntry<int> OrdDropMaxAmountFromBoss;
+    
+    // Compatibility
+    public static ConfigEntry<float> DualWieldModifier;
 
 
     //internal static Localization english = null!;
@@ -248,11 +254,14 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         levelexpforeachlevel = config(levelSystem, "Add LevelExperience on each level", true, "By default the calculations per level are (previous_amount * 1.05 + 300) disabled it will be (previous_amount * 1.05) per level ");
         multiNextLevel = config(levelSystem, "MultiplyNextLevelExperience", 1.05f, "Experience multiplier for the next level - Should never go below 1.00. Умножитель опыта для следующего уровня");
         expForLvlMonster = config(levelSystem, "ExpForLvlMonster", 0.25f, "Extra experience (from the sum of the basic experience) for the level of the monster. Доп опыт (из суммы основного опыта) за уровень монстра");
-        rateExp = config(levelSystem, "RateExp", 1f, "Experience multiplier. Множитель опыта");
+        rateExp = config(levelSystem, "RateExp", 2f, "Experience multiplier. Множитель опыта");
         groupExp = config(levelSystem, "GroupExp", 0.70f, "Experience multiplier that the other players in the group get. Множитель опыта который получают остальные игроки в группе");
         minLossExp = config(levelSystem, "MinLossExp", 0.05f, "Minimum Loss Exp if player death, default 5% loss");
         maxLossExp = config(levelSystem, "MaxLossExp", 0.25f, "Maximum Loss Exp if player death, default 25% loss");
         lossExp = config(levelSystem, "LossExp", true, "Enabled exp loss");
+        hardcoreDeath = config(levelSystem, "HardcoreDeath", false, "Reset level to 1 and point to 0 on death");
+        hardcoreAbusePunishment = config(levelSystem, "HardcoreAbusePunishment", false, "Resets character if he enters on server with some skills or items and zero exp");
+        hardcoreAbusePunishmentKey = config(levelSystem, "HardcoreAbusePunishmentKey", "LootGoblinsInc", "Key prefix to check if player is already have been on server");
         //maxValueAttribute = config(levelSystem, "MaxValueAttribute", 200, "Maximum number of points you can put into one attribute");
         levelsForBinusFreePoint = config(levelSystem, "BonusLevelPoints", "5:5,10:5", "Added bonus point for level. Example(level:points): 5:10,15:20 add all 30 points ");
         groupRange = config(levelSystem, "Group EXP Range", 70f, "The range at which people in a group (Group MOD ONLY) get XP, relative to player who killed mob - only works if the killer gets xp. - Default 70f, a large number like 999999999999f, will probably cover map");
@@ -260,7 +269,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         tamesGiveXP = config(levelSystem, "Tames give XP on Mob kill", true, "Your tames give players in range XP");
         leftMessageXP = config(levelSystem, "Display XP Received on Left", true, "Display XP Amount on Left Message when mob is killed");
         XPColor = config(levelSystem, "XP death Color", "#fff708", "The Color of XP popup market on a mob death");
-        XPstring = config(levelSystem, "XP String", "+@ XP", "@ for XP Received, must include '@'");
+        XPstring = config(levelSystem, "XP String", "+@ опыта", "@ for XP Received, must include '@'");
         //UseCustomXPTable = config(levelSystem, "Use Custom XP Table", false, "Use the CustomXPTable.yml file for levels instead of maxLevel, levelExp, levelexpforeach and multiNext Level");
         maxValueStrength = config(levelSystem, "maxValueStrength", 200, "Maximum number of points you can put into Strength");
         maxValueDexterity = config(levelSystem, "maxValueDexterity", 200, "Maximum number of points you can put into Dexterity");
@@ -378,6 +387,9 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         OrbDropChance = config(OrbandPotion, "Orb Drop Chance", 1f, "Chance for Magic Orb to drop from a monster - default 1%");
         OrbDropChancefromBoss = config(OrbandPotion, "Ord Drop Boss", 100f, "Drop Chance for Orbs to drop from a boss - default 100%");
         OrdDropMaxAmountFromBoss = config(OrbandPotion, "Orb Boss Max Amount", 3, "Max Amount of Orbs to drop from Boss if any orbs drop. So there is a chance 1-3 will drop on default");
+        
+        var compatibility = "7.Compatibility options-------";
+        DualWieldModifier = config(compatibility, "Dual Wield Modifier", 0.6f, "Dual wield attack speed modifier");
 
         Localizer.AddPlaceholder("mmoxpdrink1_description", "power1", XPforMinorPotion, power1 => ((power1 -1)*100).ToString());
         Localizer.AddPlaceholder("mmoxpdrink2_description", "power2", XPforMediumPotion, power2 => ((power2 - 1) * 100).ToString());
@@ -389,7 +401,11 @@ public partial class EpicMMOSystem : BaseUnityPlugin
             {
                 return speed;
             }
-            return speed * (1+LevelSystem.Instance.getAddAttackSpeed()/100);
+
+            var isDualWield = player.m_leftItem?.m_shared?.m_itemType == ItemDrop.ItemData.ItemType.OneHandedWeapon &&
+                              player.m_rightItem?.m_shared?.m_itemType == ItemDrop.ItemData.ItemType.OneHandedWeapon;
+            
+            return speed * (1+LevelSystem.Instance.getAddAttackSpeed()/100) * (isDualWield ? DualWieldModifier.Value : 1f);
         });
 
 

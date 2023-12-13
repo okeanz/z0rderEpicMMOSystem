@@ -82,6 +82,7 @@
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=A_003A_005CSteamLibrary_005Csteamapps_005Ccommon_005CValheim_005Cvalheim_005FData_005CManaged_005Cpublicized_005Fassemblies_005Cassembly_005Futils_005Fpublicized_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=A_003A_005CSteamLibrary_005Csteamapps_005Ccommon_005CValheim_005Cvalheim_005FData_005CManaged_005Cpublicized_005Fassemblies_005Cassembly_005Fvalheim_005Fpublicized_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=A_003A_005CSteamLibrary_005Csteamapps_005Ccommon_005CValheim_005Cvalheim_005FData_005CManaged_005CUnityEngine_002EInputLegacyModule_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=C_003A_005CProgram_0020Files_0020_0028x86_0029_005CSteam_005Csteamapps_005Ccommon_005CValheim_005CBepInEx_005Ccore_005CBepInEx_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
   &lt;Assembly Path="A:\SteamLibrary\steamapps\common\Valheim\valheim_Data\Managed\publicized_assemblies\assembly_valheim_publicized.dll" /&gt;&#xD;
   &lt;Assembly Path="A:\SteamLibrary\steamapps\common\Valheim\valheim_Data\Managed\publicized_assemblies\assembly_guiutils_publicized.dll" /&gt;&#xD;

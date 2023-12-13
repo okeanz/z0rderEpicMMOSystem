@@ -1,8 +1,8 @@
 {
-    "name": "WackyEpicMMOSystem",
-    "version_number": "1.8.9",
-    "website_url": "https://github.com/Wacky-Mole/WackyEpicMMOSystem",
-    "description": "Adds to your Valheim world a system of levels and distribution of characteristics",
+    "name": "z0rderEpicMMOSystem",
+    "version_number": "1.0.2",
+    "website_url": "",
+    "description": "Private server EpicMMO system fork",
     "dependencies": [
 	"denikson-BepInExPack_Valheim-5.4.2202"
     ]
