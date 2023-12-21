@@ -58,7 +58,7 @@ public static class EffectPatches
                         found = GameItem;
                 }
 
-                switch (found.name)
+                switch (found?.name)
                 {
                     case "mmo_orb1":
                         LevelSystem.Instance.AddExp(EpicMMOSystem.XPforOrb1.Value, true);  break;

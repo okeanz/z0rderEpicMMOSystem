@@ -71,10 +71,13 @@ public partial class LevelSystem
     #endregion
 
     private Dictionary<int, long> levelsExp;
-    private string pluginKey = EpicMMOSystem.ModName;
+    private const string pluginKey = EpicMMOSystem.ModName;
     private const string midleKey = "LevelSystem";
     private int[] depositPoint = {0, 0, 0, 0, 0, 0}; //6
-    private float singleRate = 0;
+    private float singleRate = 1f;
+
+    private const string CurrentExpKey = $"{pluginKey}_{midleKey}_CurrentExp";
+    private const string CurrentLevelKey = $"{pluginKey}_{midleKey}_Level";
 
     public LevelSystem()
     {
@@ -84,111 +87,57 @@ public partial class LevelSystem
     public int getLevel()
     {
         if (!Player.m_localPlayer) return 1;
-        if (!Player.m_localPlayer.m_knownTexts.ContainsKey($"{pluginKey}_{midleKey}_Level"))
+        if (!Player.m_localPlayer.m_knownTexts.ContainsKey(CurrentLevelKey))
         {
             return 1;
         }
 
-        return int.Parse(Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_Level"]);
+        return int.Parse(Player.m_localPlayer.m_knownTexts[CurrentLevelKey]);
     }
 
     private void setLevel(int value)
     {
         if (!Player.m_localPlayer) return;
-        Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_Level"] = value.ToString();
+        Player.m_localPlayer.m_knownTexts[CurrentLevelKey] = value.ToString();
     }
 
-    public void recalcLevel()
-    {
-        var currentexp = getTotalExp();
-        setLevel(1);
-        FillLevelsExp();
 
-        var need = getNeedExp();
-        int addLvl = 0;
-        while (currentexp > need)
+    private long CurrentExpFallback()
+    {
+        if (!Player.m_localPlayer) return 1;
+        try
         {
-            currentexp -= need;
-            addLvl++;
-            need = getNeedExp(addLvl);
+            Player.m_localPlayer.m_knownTexts[CurrentExpKey] = "1";
+            return 1;
+        }
+        catch (Exception e)
+        {
+            EpicMMOSystem.MLLogger.LogError("Cannot write currentExp");
         }
 
-        setCurrentExp(currentexp);
-        setLevel(addLvl + 1);
-        MyUI.updateExpBar();
+        return 1;
     }
 
     public long getCurrentExp()
     {
         if (!Player.m_localPlayer) return 0;
-        if (!Player.m_localPlayer.m_knownTexts.ContainsKey($"{pluginKey}_{midleKey}_CurrentExp"))
+        if (
+            !Player.m_localPlayer.m_knownTexts.ContainsKey(CurrentExpKey) ||
+            !int.TryParse(Player.m_localPlayer.m_knownTexts[CurrentExpKey], out var currentExp)
+        )
         {
-            return 0;
+            return CurrentExpFallback();
         }
 
-        int hold = 0;
-        try
-        {
-            hold = int.Parse(Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_CurrentExp"]);
-        }
-        catch
-        {
-            Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_CurrentExp"] = "1";
-            hold = 1;
-            EpicMMOSystem.MLLogger.LogWarning($"Error in getting current exp, setting exp to 1");
-        }
-
-        if (hold == 1) // try to restore
-        {
-            try
-            {
-                var total = getTotalExp();
-                hold = (int) total; // try
-                Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_CurrentExp"] = hold.ToString();
-            }
-            catch
-            {
-            }
-        }
-
-        return hold;
+        return currentExp;
     }
 
     private void setCurrentExp(long value)
     {
         if (!Player.m_localPlayer) return;
-        Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_CurrentExp"] = value.ToString();
+        Player.m_localPlayer.m_knownTexts[CurrentExpKey] = value.ToString();
     }
-
-    public long getTotalExp()
-    {
-        if (!Player.m_localPlayer) return 0;
-        if (!Player.m_localPlayer.m_knownTexts.ContainsKey($"{pluginKey}_{midleKey}_TotalExp"))
-        {
-            return 0;
-        }
-
-        return int.Parse(Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_TotalExp"]);
-    }
-
-    private void setTotalExp(long value)
-    {
-        if (!Player.m_localPlayer) return;
-        Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_TotalExp"] = value.ToString();
-    }
-
-    public void addTotalExp(long value)
-    {
-        if (!Player.m_localPlayer) return;
-        if (!Player.m_localPlayer.m_knownTexts.ContainsKey($"{pluginKey}_{midleKey}_TotalExp"))
-        {
-            Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_TotalExp"] = "1";
-        }
-
-        long total = int.Parse(Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_TotalExp"]) + value;
-        Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_TotalExp"] = total.ToString();
-    }
-
+    
     private void setParameter(Parameter parameter, int value, Player target = null)
     {
         var player = target == null ? Player.m_localPlayer : target;
@@ -338,11 +287,11 @@ public partial class LevelSystem
         singleRate = rate;
     }
 
-    public void AddExp(int exp, bool noxpMulti = false)
+    public void AddExp(int addAmount, bool noxpMulti = false)
     {
-        if (exp < 1)
+        if (addAmount < 1)
         {
-            if (exp == -2)
+            if (addAmount == -2)
             {
                 Util.FloatingText($"No XP for red/blue creatures :( ");
             }
@@ -350,69 +299,64 @@ public partial class LevelSystem
             return;
         }
 
-        float rate = EpicMMOSystem.rateExp.Value;
-        var giveExp = exp * (rate + singleRate);
-        if (noxpMulti)
-            giveExp = exp;
+        var rate = EpicMMOSystem.rateExp.Value;
+        var giveExp = noxpMulti ? addAmount : addAmount * (rate + singleRate);
 
-        if (Player.m_localPlayer.m_seman.HaveStatusEffect("Potion_MMO_Greater"))
+        if (!noxpMulti)
         {
-            giveExp = EpicMMOSystem.XPforGreaterPotion.Value * giveExp;
+            if (Player.m_localPlayer.m_seman.HaveStatusEffect("Potion_MMO_Greater"))
+            {
+                giveExp *= EpicMMOSystem.XPforGreaterPotion.Value;
+            }
+            else if (Player.m_localPlayer.m_seman.HaveStatusEffect("Potion_MMO_Medium"))
+            {
+                giveExp *= EpicMMOSystem.XPforMediumPotion.Value;
+            }
+            else if (Player.m_localPlayer.m_seman.HaveStatusEffect("Potion_MMO_Minor"))
+            {
+                giveExp *= EpicMMOSystem.XPforMinorPotion.Value;
+            }
         }
-        else if (Player.m_localPlayer.m_seman.HaveStatusEffect("Potion_MMO_Medium"))
-        {
-            giveExp = EpicMMOSystem.XPforMediumPotion.Value * giveExp;
-        }
-        else if (Player.m_localPlayer.m_seman.HaveStatusEffect("Potion_MMO_Minor"))
-        {
-            giveExp = EpicMMOSystem.XPforMinorPotion.Value * giveExp;
-        }
+        
 
         var current = getCurrentExp();
         var need = getNeedExp();
-        current += (int) giveExp;
-        int addLvl = 0;
-        var currentcopy = current;
-        while (current > need)
+
+        if (current + giveExp > need)
         {
-            current -= need;
-            addLvl++;
-            need = getNeedExp(addLvl);
+            AddLevel(1);
+            setCurrentExp(0);
+        }
+        else
+        {
+            setCurrentExp(current + (long)giveExp);
         }
 
-        if (addLvl > 0)
-        {
-            AddLevel(addLvl);
-        }
-
-        addTotalExp(
-            (int) giveExp); // add to total the exp used to go up levels, this will take a while for people to see benefit as before exp was lost and no way to recalc levels. 
-        setCurrentExp(current);
+        
         MyUI.updateExpBar();
+        
         if (EpicMMOSystem.leftMessageXP.Value)
         {
             Player.m_localPlayer.Message(
                 MessageHud.MessageType.TopLeft,
-                $"{(EpicMMOSystem.localizationold["$get_exp"])}: {(int) giveExp}"
+                $"{(EpicMMOSystem.localizationold["$get_exp"])}: {(long) giveExp}"
             );
         }
 
-        giveExp = (float) Math.Round(giveExp);
-        string stringtolvl = EpicMMOSystem.XPstring.Value;
-        stringtolvl = stringtolvl.Replace("@", giveExp.ToString());
-        //Util.FloatingText($"+{exp} XP");
-        Util.FloatingText($"{stringtolvl}");
+        var xpStringTemplate = EpicMMOSystem.XPstring.Value;
+        var xpString = xpStringTemplate.Replace("@", $"{(long)giveExp}");
+        Util.FloatingText($"{xpString}");
     }
 
-    public void AddLevel(int count)
+    public void AddLevel(int toAdd)
     {
-        if (count <= 0) return;
+        if (toAdd <= 0) return;
         var current = getLevel();
-        current += count;
-        setLevel(Mathf.Clamp(current, 1, EpicMMOSystem.maxLevel.Value));
+        var target = current + toAdd;
+        setLevel(Mathf.Clamp(target, 1, EpicMMOSystem.maxLevel.Value));
         PlayerFVX.levelUp();
         var zdo = Player.m_localPlayer.m_nview.GetZDO();
-        zdo.Set($"{pluginKey}_level", current);
+        zdo.Set($"{pluginKey}_level", target);
         ZDOMan.instance.ForceSendZDO(zdo.m_uid);
     }
 
@@ -475,21 +419,24 @@ public partial class LevelSystem
         {
             EpicMMOSystem.MLLogger.LogInfo($"Player {player.GetPlayerName()} is hardcored!");
             SetLevelTargetPlayer(player, 1);
+            player.DropPlayerKeys();
+            player.m_knownTexts.Clear();
+            player.m_knownStations.Clear();
+            player.m_inventory.RemoveAll();
+            player.m_skills.Clear();
             return;
         }
-        
+
         if (!EpicMMOSystem.lossExp.Value) return;
         if (!Player.m_localPlayer.HardDeath()) return;
 
         var minExp = EpicMMOSystem.minLossExp.Value;
         var maxExp = EpicMMOSystem.maxLossExp.Value;
         var lossExp = 1f - Random.Range(minExp, maxExp);
-        var TotalExp = getTotalExp();
 
         var currentExp = getCurrentExp();
         long newExp = (long) (currentExp * lossExp);
-        setCurrentExp(newExp);
-        setTotalExp(TotalExp - (long) (currentExp * lossExp)); // remove some totalexp as well
+        setCurrentExp(newExp);// remove some totalexp as well
         MyUI.updateExpBar();
     }
 
@@ -510,7 +457,7 @@ public partial class LevelSystem
                 Player.m_localPlayer?.m_skills?.m_skillData?.Any(skillPair => skillPair.Value.m_level != 0f) ?? false;
             var haveSomeItems = Player.m_localPlayer?.m_inventory?.GetAllItems().Count > 0;
 
-            if (getTotalExp() == 0 && (haveSomeItems || haveSomeSkills))
+            if (getCurrentExp() == 0 && (haveSomeItems || haveSomeSkills))
             {
                 EpicMMOSystem.MLLogger.LogError($"Abuser {Player.m_localPlayer.GetPlayerName()} detected!");
 
@@ -572,16 +519,16 @@ public partial class LevelSystem
         zdo.Set($"{pluginKey}_level", level);
         ZDOMan.instance.ForceSendZDO(zdo.m_uid);
     }
-    
+
     public void SetLevelTargetPlayer(Player player, int value)
     {
         var level = Mathf.Clamp(value, 1, EpicMMOSystem.maxLevel.Value);
-        player.m_knownTexts[$"{pluginKey}_{midleKey}_Level"] = $"{level}";
+        player.m_knownTexts[CurrentLevelKey] = $"{level}";
         player.m_knownTexts[$"{pluginKey}_{midleKey}_CurrentExp"] = "0";
         ResetAllParameter(player);
         PlayerFVX.levelUp();
         MyUI.updateExpBar();
-        
+
         var zdo = player.m_nview.GetZDO();
         zdo.Set($"{pluginKey}_level", level);
         ZDOMan.instance.ForceSendZDO(zdo.m_uid);
@@ -614,6 +561,7 @@ public static class SetZDOLevel
 [HarmonyPatch(typeof(Player), nameof(Player.OnDeath))]
 public static class Death
 {
+    [HarmonyPriority(Priority.First)]
     public static void Prefix(Player __instance)
     {
         LevelSystem.Instance.DeathPlayer(__instance);

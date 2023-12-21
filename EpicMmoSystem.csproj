@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EpicMMOSystem</RootNamespace>
     <AssemblyName>EpicMMOSystem</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <LangVersion>10</LangVersion>
     <Nullable>enable</Nullable>
@@ -87,6 +87,9 @@
     </Reference>
     <Reference Include="BepInEx, Version=5.4.22.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\core\BepInEx.dll</HintPath>
+    </Reference>
+    <Reference Include="CreatureLevelControl">
+      <HintPath>Libs\CreatureLevelControl.dll</HintPath>
     </Reference>
     <Reference Include="fastJSON, Version=2.4.0.0, Culture=neutral, PublicKeyToken=6b75a806b86095cd">
       <HintPath>Libs\fastJSON.dll</HintPath>
@@ -320,8 +323,12 @@
     <Compile Include="Data\MonsterOld.cs" />
     <Compile Include="Gui\Util.cs" />
     <Compile Include="Data\customlevel.cs" />
+    <Compile Include="LevelSystem\BossOvehaul.cs" />
     <Compile Include="LevelSystem\LevelSystem_Specializing.cs" />
     <Compile Include="LevelSystem\LevelSystem_Vigour.cs" />
+    <Compile Include="LevelSystem\PlayerExtensions.cs" />
+    <Compile Include="LevelSystem\PlayerUtils.cs" />
+    <Compile Include="LevelSystem\ZDOUtils.cs" />
     <Compile Include="OtherApi\wackydb_api.cs" />
     <Compile Include="Scripts\Drag.cs" />
     <Compile Include="EpicMMOSystem_API.cs" />
@@ -363,6 +370,9 @@
     </Content>
     <Content Include="Libs\fastJSON.dll" />
     <Content Include="Libs\GroupsAPI.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Libs\CreatureLevelControl.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Libs\ItemManager.dll">

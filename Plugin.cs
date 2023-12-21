@@ -34,7 +34,7 @@ namespace EpicMMOSystem;
 public partial class EpicMMOSystem : BaseUnityPlugin
 {
     internal const string ModName = "EpicMMOSystem";
-    internal const string ModVersion = "1.0.4";
+    internal const string ModVersion = "1.1.0";
     internal const string Author = "z0rder";
    // internal const string configV = "_1_7";
     private const string ModGUID = Author + "." + ModName; //+ configV; changes GUID
@@ -90,9 +90,6 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     public static ConfigEntry<float> groupExp;
     public static ConfigEntry<float> groupRange;
     public static ConfigEntry<float> playerRange;
-    public static ConfigEntry<bool> hardcoreDeath;
-    public static ConfigEntry<bool> hardcoreAbusePunishment;
-    public static ConfigEntry<string> hardcoreAbusePunishmentKey;
     public static ConfigEntry<bool> lossExp;
     public static ConfigEntry<float> minLossExp;
     public static ConfigEntry<float> maxLossExp;
@@ -142,7 +139,14 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     public static ConfigEntry<float> miningSpeed;
     public static ConfigEntry<float> constructionPieceHealth;
     public static ConfigEntry<float> treeCuttingSpeed;
-
+    
+    //LevelSystem arg property <Hardcore>
+    public static ConfigEntry<float> counterCheckDistance;
+    public static ConfigEntry<int> bossLevelCounterMultiplier;
+    public static ConfigEntry<bool> hardcoreDeath;
+    public static ConfigEntry<bool> hardcoreAbusePunishment;
+    public static ConfigEntry<string> hardcoreAbusePunishmentKey;
+    
     #endregion
 
 
@@ -259,9 +263,6 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         minLossExp = config(levelSystem, "MinLossExp", 0.05f, "Minimum Loss Exp if player death, default 5% loss");
         maxLossExp = config(levelSystem, "MaxLossExp", 0.25f, "Maximum Loss Exp if player death, default 25% loss");
         lossExp = config(levelSystem, "LossExp", true, "Enabled exp loss");
-        hardcoreDeath = config(levelSystem, "HardcoreDeath", false, "Reset level to 1 and point to 0 on death");
-        hardcoreAbusePunishment = config(levelSystem, "HardcoreAbusePunishment", false, "Resets character if he enters on server with some skills or items and zero exp");
-        hardcoreAbusePunishmentKey = config(levelSystem, "HardcoreAbusePunishmentKey", "LootGoblinsInc", "Key prefix to check if player is already have been on server");
         //maxValueAttribute = config(levelSystem, "MaxValueAttribute", 200, "Maximum number of points you can put into one attribute");
         levelsForBinusFreePoint = config(levelSystem, "BonusLevelPoints", "5:5,10:5", "Added bonus point for level. Example(level:points): 5:10,15:20 add all 30 points ");
         groupRange = config(levelSystem, "Group EXP Range", 70f, "The range at which people in a group (Group MOD ONLY) get XP, relative to player who killed mob - only works if the killer gets xp. - Default 70f, a large number like 999999999999f, will probably cover map");
@@ -312,6 +313,13 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         miningSpeed = config(levelSystemSpecializing, "MiningSpeed", 0.4f, "Mining Dmg Multiplier per point"); //check
         constructionPieceHealth = config(levelSystemSpecializing, "PieceHealth", 2f, "Increase max health of new pieces built per point"); // check
         treeCuttingSpeed = config(levelSystemSpecializing, "TreeCuttingSpeed", 0.4f, "Increase tree cutting speed per point.");
+
+        string levelSystemHardcore = "1.LevelSystem Hardcore-----------";
+        counterCheckDistance = config(levelSystemHardcore, "counterCheckDistance", 50f, "Радиус поиска людей со счетчиками убийств босса");
+        bossLevelCounterMultiplier = config(levelSystemHardcore, "bossLevelCounterMultiplier", 3, "Увеличение уровня босса за каждое убийство");
+        hardcoreDeath = config(levelSystemHardcore, "hardcoreDeath", false, "Reset level to 1 and point to 0 on death");
+        hardcoreAbusePunishment = config(levelSystemHardcore, "HardcoreAbusePunishment", false, "Resets character if he enters on server with some skills or items and zero exp");
+        hardcoreAbusePunishmentKey = config(levelSystemHardcore, "HardcoreAbusePunishmentKey", "LootGoblinsInc", "Key prefix to check if player is already have been on server");
 
         #endregion
 

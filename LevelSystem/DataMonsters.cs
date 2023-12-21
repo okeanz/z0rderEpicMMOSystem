@@ -366,11 +366,12 @@ public static class DataMonsters
             try { if (c.m_tamed) return; } catch { } // might remove this in future so tames can give xp ect
             if (!EpicMMOSystem.enabledLevelControl.Value) return;
             if (!contains(c.gameObject.name)) return;
-            Transform go = ___m_huds[c].m_gui.transform.Find("Name/Name(Clone)");
-            if (go) return;
+            if (___m_huds[c].m_gui.transform.Find("Name/Name(Clone)")) return;
+            
             int maxLevelExp = LevelSystem.Instance.getLevel() + EpicMMOSystem.maxLevelExp.Value;
             int minLevelExp = LevelSystem.Instance.getLevel() - EpicMMOSystem.minLevelExp.Value;
-            int monsterLevel = getLevel(c.gameObject.name) + c.m_level - 1;
+
+            var monsterLevel = c.GetMMOLevel();
             GameObject component = ___m_huds[c].m_gui.transform.Find("Name").gameObject;
             //var textspace = component.GetComponent<Text>().text;
             //component.GetComponent<Text>().text = " "+ textspace + " "; // add some spacing for single letter names
@@ -384,7 +385,7 @@ public static class DataMonsters
             string moblvlstring = monsterLevel.ToString();
             Color color = monsterLevel > maxLevelExp ? Color.red : Color.white;
             if (monsterLevel < minLevelExp) color = Color.cyan;
-            if (getLevel(c.gameObject.name) == 0)
+            if (monsterLevel == 0)
             {
                 moblvlstring = "???";
                 color = Color.yellow;
@@ -417,40 +418,43 @@ public static class DataMonsters
                 if (!EpicMMOSystem.enabledLevelControl.Value) return;
                 foreach (KeyValuePair<Character, EnemyHud.HudData> keyValuePair in ___m_huds)
                 {
-                    Character key = keyValuePair.Key;
-                    if (key.IsTamed()) return;
-                    if (key != null && keyValuePair.Value.m_gui)
+                    var character = keyValuePair.Key;
+                    var hudData = keyValuePair.Value;
+                    
+                    if (character.IsTamed()) return;
+                    if (character != null && hudData.m_gui)
                     {
-                        if (!contains(key.gameObject.name)) return;
+                        if (!contains(character.gameObject.name)) return;
                         int maxLevelExp = LevelSystem.Instance.getLevel() + EpicMMOSystem.maxLevelExp.Value;
                         int minLevelExp = LevelSystem.Instance.getLevel() - EpicMMOSystem.minLevelExp.Value;
-                        int monsterLevel = getLevel(key.gameObject.name) + key.m_level - 1;
+                        
+                        int monsterLevel = character.GetMMOLevel() + character.m_level - 1;
                         string mobLevelString = monsterLevel.ToString();
                         Color color = monsterLevel > maxLevelExp ? Color.red : Color.white;
                         if (monsterLevel < minLevelExp) color = Color.cyan;
-                        if (getLevel(key.gameObject.name) == 0)
+                        if (character.GetMMOLevel() == 0)
                         {
                             mobLevelString = "???";
                             color = Color.yellow;
                         }
-                        Transform transform = keyValuePair.Value.m_gui.transform.Find("Name/Name(Clone)");
+                        Transform transform = hudData.m_gui.transform.Find("Name/Name(Clone)");
                         if (transform != null)
                         {
                             transform.gameObject.SetActive(true);
                         }
                         else
                         {
-                            GameObject component = keyValuePair.Value.m_gui.transform.Find("Name").gameObject;
+                            GameObject component = hudData.m_gui.transform.Find("Name").gameObject;
                             transform = Object.Instantiate(component, component.transform).transform;
                             transform.GetComponent<RectTransform>().anchoredPosition = new Vector2(37, -30);
                             transform.GetComponent<TextMeshProUGUI>().fontSize = 13;
                             transform.GetComponent<TextMeshProUGUI>().text = $"[{mobLevelString}]";
                         }
                         transform.GetComponent<TextMeshProUGUI>().color = color;
-                        keyValuePair.Value.m_gui.transform.Find("Name").GetComponent<TextMeshProUGUI>().color = color;
-                       if (keyValuePair.Value.m_gui.transform.Find("extraeffecttext")) // for cllc extra components
+                        hudData.m_gui.transform.Find("Name").GetComponent<TextMeshProUGUI>().color = color;
+                       if (hudData.m_gui.transform.Find("extraeffecttext")) // for cllc extra components
                         {
-                            keyValuePair.Value.m_gui.transform.Find("extraeffecttext").TryGetComponent<TextMeshProUGUI>(out var hi);
+                            hudData.m_gui.transform.Find("extraeffecttext").TryGetComponent<TextMeshProUGUI>(out var hi);
                             if (hi != null) // null check if not set
                             {
                                 hi.color = color;
@@ -548,8 +552,8 @@ public static class DataMonsters
 
                     int maxLevelExp = playerLevel + EpicMMOSystem.maxLevelExp.Value;
                     int minLevelExp = playerLevel - EpicMMOSystem.minLevelExp.Value;
-                    int monsterLevel = getLevel(__instance.m_character.gameObject.name) + __instance.m_character.m_level - 1; // interesting that it's using m_char as well
-                    if (getLevel(__instance.m_character.gameObject.name) == 0)
+                    int monsterLevel = __instance.m_character.GetMMOLevel() + __instance.m_character.m_level - 1; // interesting that it's using m_char as well
+                    if (__instance.m_character.GetMMOLevel() == 0)
                         return;
 
                     if ((monsterLevel > maxLevelExp) && (EpicMMOSystem.removeBossDropMax.Value && !Regmob || EpicMMOSystem.removeDropMax.Value && Regmob))
