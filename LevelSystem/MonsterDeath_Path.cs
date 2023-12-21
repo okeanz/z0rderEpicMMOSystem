@@ -213,11 +213,7 @@ public static class MonsterDeath_Path
         static void Prefix(Character __instance, long sender, HitData hit)
         {
             if (__instance.GetHealth() <= 0) return;
-            var BossDropFlag = false;
-            if (__instance.GetFaction() == Character.Faction.Boss )
-            {
-                BossDropFlag = true; 
-            }
+            bool BossDropFlag = __instance.GetFaction() == Character.Faction.Boss;
             var attacker = hit.GetAttacker();
             //attacker. faction check Guilds API
             if (attacker)
@@ -259,7 +255,7 @@ public static class MonsterDeath_Path
                         if (EpicMMOSystem.enabledLevelControl.Value && (EpicMMOSystem.removeBossDropMax.Value || EpicMMOSystem.removeBossDropMin.Value || EpicMMOSystem.removeDropMax.Value || EpicMMOSystem.removeDropMin.Value || EpicMMOSystem.removeAllDropsFromNonPlayerKills.Value))
                         { 
                             //if (EpicMMOSystem.extraDebug.Value) 
-                               // EpicMMOSystem.MLLogger.LogInfo("Player Hit");
+                            // EpicMMOSystem.MLLogger.LogInfo("Player Hit");
 
                             __instance.m_nview.GetZDO().Set("epic playerLevel", 1000512);// only for removeAllDropsFromNonPlayerKills
                         }

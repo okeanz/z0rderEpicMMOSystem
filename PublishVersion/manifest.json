@@ -1,6 +1,6 @@
 {
     "name": "z0rderEpicMMOSystem",
-    "version_number": "1.0.2",
+    "version_number": "1.0.4",
     "website_url": "",
     "description": "Private server EpicMMO system fork",
     "dependencies": [

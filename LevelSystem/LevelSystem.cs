@@ -189,9 +189,10 @@ public partial class LevelSystem
         Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_TotalExp"] = total.ToString();
     }
 
-    private void setParameter(Parameter parameter, int value)
+    private void setParameter(Parameter parameter, int value, Player target = null)
     {
-        if (!Player.m_localPlayer) return;
+        var player = target == null ? Player.m_localPlayer : target;
+        if (!player) return;
         // int max = EpicMMOSystem.maxValueAttribute.Value;
 
         int max = parameter.ToString() switch
@@ -204,8 +205,8 @@ public partial class LevelSystem
             "Special" => EpicMMOSystem.maxValueSpecializing.Value,
             _ => max = 205
         };
-        int setValue = Mathf.Clamp(value, 0, max);
-        Player.m_localPlayer.m_knownTexts[$"{pluginKey}_{midleKey}_{parameter.ToString()}"] = setValue.ToString();
+        var setValue = Mathf.Clamp(value, 0, max);
+        player.m_knownTexts[$"{pluginKey}_{midleKey}_{parameter.ToString()}"] = setValue.ToString();
         // Player.m_localPlayer.m_customData. maybe later
     }
 
@@ -295,11 +296,11 @@ public partial class LevelSystem
         return levelsExp[lvl];
     }
 
-    public void ResetAllParameter()
+    public void ResetAllParameter(Player player = null)
     {
         for (int i = 0; i < EpicMMOSystem.numofCats; i++)
         {
-            setParameter((Parameter) i, 0);
+            setParameter((Parameter) i, 0, player);
         }
 
         MyUI.UpdateParameterPanel();
@@ -468,29 +469,28 @@ public partial class LevelSystem
         return count;
     }
 
-    public void DeathPlayer()
+    public void DeathPlayer(Player player)
     {
+        if (EpicMMOSystem.hardcoreDeath.Value)
+        {
+            EpicMMOSystem.MLLogger.LogInfo($"Player {player.GetPlayerName()} is hardcored!");
+            SetLevelTargetPlayer(player, 1);
+            return;
+        }
+        
         if (!EpicMMOSystem.lossExp.Value) return;
         if (!Player.m_localPlayer.HardDeath()) return;
 
-        if (EpicMMOSystem.hardcoreDeath.Value)
-        {
-            EpicMMOSystem.MLLogger.LogInfo($"Player {Player.m_localPlayer.GetPlayerName()} is hardcored!");
-            terminalSetLevel(1);
-        }
-        else
-        {
-            var minExp = EpicMMOSystem.minLossExp.Value;
-            var maxExp = EpicMMOSystem.maxLossExp.Value;
-            var lossExp = 1f - Random.Range(minExp, maxExp);
-            var TotalExp = getTotalExp();
+        var minExp = EpicMMOSystem.minLossExp.Value;
+        var maxExp = EpicMMOSystem.maxLossExp.Value;
+        var lossExp = 1f - Random.Range(minExp, maxExp);
+        var TotalExp = getTotalExp();
 
-            var currentExp = getCurrentExp();
-            long newExp = (long) (currentExp * lossExp);
-            setCurrentExp(newExp);
-            setTotalExp(TotalExp - (long) (currentExp * lossExp)); // remove some totalexp as well
-            MyUI.updateExpBar();
-        }
+        var currentExp = getCurrentExp();
+        long newExp = (long) (currentExp * lossExp);
+        setCurrentExp(newExp);
+        setTotalExp(TotalExp - (long) (currentExp * lossExp)); // remove some totalexp as well
+        MyUI.updateExpBar();
     }
 
     public void CheckAbuse()
@@ -572,6 +572,20 @@ public partial class LevelSystem
         zdo.Set($"{pluginKey}_level", level);
         ZDOMan.instance.ForceSendZDO(zdo.m_uid);
     }
+    
+    public void SetLevelTargetPlayer(Player player, int value)
+    {
+        var level = Mathf.Clamp(value, 1, EpicMMOSystem.maxLevel.Value);
+        player.m_knownTexts[$"{pluginKey}_{midleKey}_Level"] = $"{level}";
+        player.m_knownTexts[$"{pluginKey}_{midleKey}_CurrentExp"] = "0";
+        ResetAllParameter(player);
+        PlayerFVX.levelUp();
+        MyUI.updateExpBar();
+        
+        var zdo = player.m_nview.GetZDO();
+        zdo.Set($"{pluginKey}_level", level);
+        ZDOMan.instance.ForceSendZDO(zdo.m_uid);
+    }
 }
 
 [HarmonyPatch(typeof(Game), nameof(Game.SpawnPlayer))]
@@ -600,10 +614,9 @@ public static class SetZDOLevel
 [HarmonyPatch(typeof(Player), nameof(Player.OnDeath))]
 public static class Death
 {
-    public static void Prefix()
+    public static void Prefix(Player __instance)
     {
-        if (Player.m_localPlayer && Player.m_localPlayer.m_nview && Player.m_localPlayer.m_nview.IsOwner())
-            LevelSystem.Instance.DeathPlayer();
+        LevelSystem.Instance.DeathPlayer(__instance);
     }
 }
 
