@@ -323,12 +323,13 @@
     <Compile Include="Data\MonsterOld.cs" />
     <Compile Include="Gui\Util.cs" />
     <Compile Include="Data\customlevel.cs" />
-    <Compile Include="LevelSystem\BossOvehaul.cs" />
     <Compile Include="LevelSystem\LevelSystem_Specializing.cs" />
     <Compile Include="LevelSystem\LevelSystem_Vigour.cs" />
-    <Compile Include="LevelSystem\PlayerExtensions.cs" />
-    <Compile Include="LevelSystem\PlayerUtils.cs" />
     <Compile Include="LevelSystem\ZDOUtils.cs" />
+    <Compile Include="OdinWrath\BossCounterApi.cs" />
+    <Compile Include="OdinWrath\BossOvehaul.cs" />
+    <Compile Include="OdinWrath\PlayerExtensions.cs" />
+    <Compile Include="OdinWrath\PlayerUtils.cs" />
     <Compile Include="OtherApi\wackydb_api.cs" />
     <Compile Include="Scripts\Drag.cs" />
     <Compile Include="EpicMMOSystem_API.cs" />
@@ -437,6 +438,9 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them. For more information, see http://go.microsoft.com/fwlink/?LinkID=322105.The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\ILRepack.Lib.MSBuild.Task.2.0.18.2\build\ILRepack.Lib.MSBuild.Task.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\ILRepack.Lib.MSBuild.Task.2.0.18.2\build\ILRepack.Lib.MSBuild.Task.targets'))" />
+  </Target>
+  <Target Name="AfterBuild">
+    <Copy SourceFiles="$(OutputPath)EpicMMOSystem.dll" DestinationFolder="C:\GitHub\LootGoblinsHeim\package" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
          Other similar extension points exist, see Microsoft.Common.targets.

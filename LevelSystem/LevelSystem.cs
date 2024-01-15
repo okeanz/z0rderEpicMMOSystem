@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using BepInEx;
 using EpicMMOSystem.Gui;
+using EpicMMOSystem.OdinWrath;
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -440,45 +441,6 @@ public partial class LevelSystem
         MyUI.updateExpBar();
     }
 
-    public void CheckAbuse()
-    {
-        if (!EpicMMOSystem.hardcoreAbusePunishment.Value) return;
-        if (Player.m_localPlayer.m_knownTexts.ContainsKey($"{EpicMMOSystem.hardcoreAbusePunishmentKey.Value}_Existing"))
-            return;
-
-        try
-        {
-            EpicMMOSystem.MLLogger.LogError(
-                fastJSON.JSON.ToNiceJSON(Player.m_localPlayer?.m_skills?.m_skillData?.Values.ToArray()));
-            EpicMMOSystem.MLLogger.LogError(
-                fastJSON.JSON.ToNiceJSON(Player.m_localPlayer?.m_inventory?.GetAllItems().Count));
-
-            var haveSomeSkills =
-                Player.m_localPlayer?.m_skills?.m_skillData?.Any(skillPair => skillPair.Value.m_level != 0f) ?? false;
-            var haveSomeItems = Player.m_localPlayer?.m_inventory?.GetAllItems().Count > 0;
-
-            if (getCurrentExp() == 0 && (haveSomeItems || haveSomeSkills))
-            {
-                EpicMMOSystem.MLLogger.LogError($"Abuser {Player.m_localPlayer.GetPlayerName()} detected!");
-
-                if (haveSomeSkills)
-                    EpicMMOSystem.MLLogger.LogError(
-                        fastJSON.JSON.ToNiceJSON(Player.m_localPlayer.m_skills.m_skillData.Values.ToArray()));
-
-                if (haveSomeItems)
-                    EpicMMOSystem.MLLogger.LogError(
-                        fastJSON.JSON.ToNiceJSON(Player.m_localPlayer.m_inventory.m_inventory.ToArray()));
-
-                EpicMMOSystem.MLLogger.LogError($"Reset {Player.m_localPlayer.GetPlayerName()}");
-            }
-        }
-        catch (Exception e)
-        {
-            EpicMMOSystem.MLLogger.LogError($"CheckAbuse {Player.m_localPlayer?.GetPlayerName()} failed!");
-            EpicMMOSystem.MLLogger.LogError(e);
-        }
-    }
-
     //FillLevelExp
     public void FillLevelsExp()
     {
@@ -565,14 +527,5 @@ public static class Death
     public static void Prefix(Player __instance)
     {
         LevelSystem.Instance.DeathPlayer(__instance);
-    }
-}
-
-[HarmonyPatch(typeof(Player), nameof(Player.OnSpawned))]
-public static class PlayerSpawned
-{
-    public static void Postfix()
-    {
-        // LevelSystem.Instance.CheckAbuse();
     }
 }

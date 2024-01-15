@@ -23,6 +23,7 @@ using PieceManager;
 using System.Runtime.Remoting.Messaging;
 using StatusEffectManager;
 using System.Collections;
+using EpicMMOSystem.OdinWrath;
 
 
 namespace EpicMMOSystem;
@@ -34,7 +35,7 @@ namespace EpicMMOSystem;
 public partial class EpicMMOSystem : BaseUnityPlugin
 {
     internal const string ModName = "EpicMMOSystem";
-    internal const string ModVersion = "1.1.0";
+    internal const string ModVersion = "1.1.2";
     internal const string Author = "z0rder";
    // internal const string configV = "_1_7";
     private const string ModGUID = Author + "." + ModName; //+ configV; changes GUID
@@ -597,7 +598,6 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         DataMonsters.Init();
         FriendsSystem.Init();
         SetupWatcher();
-        
     }
 
     private void OnDestroy()
