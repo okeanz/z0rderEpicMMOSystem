@@ -73,9 +73,6 @@
     <Reference Include="assembly_simplemeshcombine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>$(GamePath)\valheim_Data\Managed\publicized_assemblies\assembly_simplemeshcombine_publicized.dll</HintPath>
     </Reference>
-    <Reference Include="assembly_steamworks, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>$(GamePath)\valheim_Data\Managed\publicized_assemblies\assembly_steamworks_publicized.dll</HintPath>
-    </Reference>
     <Reference Include="assembly_sunshafts, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>$(GamePath)\valheim_Data\Managed\publicized_assemblies\assembly_sunshafts_publicized.dll</HintPath>
     </Reference>
@@ -87,6 +84,9 @@
     </Reference>
     <Reference Include="BepInEx, Version=5.4.22.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\Program Files (x86)\Steam\steamapps\common\Valheim\BepInEx\core\BepInEx.dll</HintPath>
+    </Reference>
+    <Reference Include="com.rlabrecque.steamworks.net, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\Program Files (x86)\Steam\steamapps\common\Valheim\valheim_Data\Managed\publicized_assemblies\com.rlabrecque.steamworks.net_publicized.dll</HintPath>
     </Reference>
     <Reference Include="CreatureLevelControl">
       <HintPath>Libs\CreatureLevelControl.dll</HintPath>
@@ -320,9 +320,7 @@
   <ItemGroup>
     <Compile Include="color.cs" />
     <Compile Include="Data\Monster.cs" />
-    <Compile Include="Data\MonsterOld.cs" />
     <Compile Include="Gui\Util.cs" />
-    <Compile Include="Data\customlevel.cs" />
     <Compile Include="LevelSystem\LevelSystem_Specializing.cs" />
     <Compile Include="LevelSystem\LevelSystem_Vigour.cs" />
     <Compile Include="LevelSystem\ZDOUtils.cs" />
@@ -440,7 +438,7 @@
     <Error Condition="!Exists('packages\ILRepack.Lib.MSBuild.Task.2.0.18.2\build\ILRepack.Lib.MSBuild.Task.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\ILRepack.Lib.MSBuild.Task.2.0.18.2\build\ILRepack.Lib.MSBuild.Task.targets'))" />
   </Target>
   <Target Name="AfterBuild">
-    <Copy SourceFiles="$(OutputPath)EpicMMOSystem.dll" DestinationFolder="C:\GitHub\LootGoblinsHeim\package" />
+    <Copy SourceFiles="$(OutputPath)EpicMMOSystem.dll" DestinationFolder="C:\GitHub\z0rderEpicMMOSystem\PublishVersion" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
          Other similar extension points exist, see Microsoft.Common.targets.

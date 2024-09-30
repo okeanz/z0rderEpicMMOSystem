@@ -253,19 +253,28 @@ public static class MonsterDeath_Path
             if (__instance.IsTamed()) return;
             if (__instance.GetHealth() <= 0f && CharacterLastDamageList.ContainsKey(__instance))
             {
-                
+                var isBoss = __instance.IsBoss();
+                var monsterName = __instance.gameObject.name;
                 
                 
                 var pkg = new ZPackage();
-                pkg.Write(__instance.gameObject.name);
+                pkg.Write(monsterName);
                 pkg.Write(__instance.GetLevel());
                 pkg.Write(__instance.transform.position);
-                pkg.Write(__instance.IsBoss());
+                pkg.Write(isBoss);
                 pkg.Write(__instance.GetMMOLevel());
                 
                 long attacker = CharacterLastDamageList[__instance];
                 
                 ZRoutedRpc.instance.InvokeRoutedRPC(attacker, $"{EpicMMOSystem.ModName} DeadMonsters", new object[] { pkg });
+                
+                EpicMMOSystem.MLLogger.LogInfo($"[ApplyDamage] isBoss = {isBoss}, name = {monsterName}");
+        
+                if (isBoss)
+                {
+                    Player.m_localPlayer.IncrementBossCounterKey(monsterName);
+                }
+                
                 CharacterLastDamageList.Remove(__instance);
             }
         }
@@ -279,15 +288,26 @@ public static class MonsterDeath_Path
             if (__instance.IsTamed()) return;
             if (__instance.GetHealth() <= 0f && CharacterLastDamageList.ContainsKey(__instance))
             {
+                var isBoss = __instance.IsBoss();
+                var monsterName = __instance.gameObject.name;
+                
                 var pkg = new ZPackage();
-                pkg.Write(__instance.gameObject.name);
+                pkg.Write(monsterName);
                 pkg.Write(__instance.GetLevel());
                 pkg.Write(__instance.transform.position);
-                pkg.Write(__instance.IsBoss());
+                pkg.Write(isBoss);
                 pkg.Write(__instance.GetMMOLevel());
                 
                 long attacker = CharacterLastDamageList[__instance];
                 ZRoutedRpc.instance.InvokeRoutedRPC(attacker, $"{EpicMMOSystem.ModName} DeadMonsters", new object[] { pkg });
+                
+                EpicMMOSystem.MLLogger.LogInfo($"[ApplyDamage] isBoss = {isBoss}, name = {monsterName}");
+        
+                if (isBoss)
+                {
+                    Player.m_localPlayer.IncrementBossCounterKey(monsterName);
+                }
+                
                 CharacterLastDamageList.Remove(__instance);
             }
         }

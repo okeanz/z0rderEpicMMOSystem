@@ -12,6 +12,6 @@ public static class ZDOUtils
     public static int GetMMOLevel(this Character? character)
     {
         if (character == null) return 1;
-        return character.GetComponent<ZNetView>().GetZDO().GetInt(LevelKey);
+        return character.GetComponent<ZNetView>()?.GetZDO()?.GetInt(LevelKey) ?? 1;
     }
 }

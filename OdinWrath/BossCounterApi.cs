@@ -36,10 +36,10 @@ public static class BossCounterApi
     public static string? GetBossCounterKey(this Player player, string bossName)
     {
         var keys = player.GetUniqueKeys();
-        EpicMMOSystem.MLLogger.LogWarning($"[GetBossCounterKey] Unique keys: {JSON.ToNiceJSON(keys)}");
+        EpicMMOSystem.MLLogger.LogWarning($"[GetBossCounterKey] bossName:{bossName} Unique keys: {JSON.ToNiceJSON(keys)}");
         if (keys.Count == 0) return null;
         var key = keys.FirstOrDefault(key => key.Contains(bossName) && key.Contains(UniqueKey));
-        EpicMMOSystem.MLLogger.LogWarning($"[GetBossCounterKey] key: {JSON.ToNiceJSON(keys)}");
+        EpicMMOSystem.MLLogger.LogWarning($"[GetBossCounterKey] bossName:{bossName} key: {JSON.ToNiceJSON(keys)}");
         return key;
     }
 

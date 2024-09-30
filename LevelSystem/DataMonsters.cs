@@ -106,22 +106,6 @@ public static class DataMonsters
         return dictionary[name].level;
     }
 
-    private static void createNewDataMonsters(string json) // multiplayer sync
-    {
-        /*
-        dictionary.Clear();
-        var monsters = fastJSON.JSON.ToObject<Monster[]>(json);
-
-        foreach (var monster in monsters)
-        {
-            if (EpicMMOSystem.extraDebug.Value) 
-                EpicMMOSystem.MLLogger.LogInfo($"{monster.name}(Clone)");
-
-            dictionary.Add($"{monster.name}(Clone)", monster);
-        }
-        */ // No need already loaded from list json
-    }
-
     private static void createNewDataMonsters(List<string> json)
     {
         dictionary.Clear();
@@ -384,6 +368,7 @@ public static class DataMonsters
             string stringtolvl = EpicMMOSystem.MobLVLChars.Value;
             string moblvlstring = monsterLevel.ToString();
             Color color = monsterLevel > maxLevelExp ? Color.red : Color.white;
+            
             if (monsterLevel < minLevelExp) color = Color.cyan;
             if (monsterLevel == 0)
             {
@@ -428,7 +413,7 @@ public static class DataMonsters
                         int maxLevelExp = LevelSystem.Instance.getLevel() + EpicMMOSystem.maxLevelExp.Value;
                         int minLevelExp = LevelSystem.Instance.getLevel() - EpicMMOSystem.minLevelExp.Value;
                         
-                        int monsterLevel = character.GetMMOLevel() + character.m_level - 1;
+                        int monsterLevel = character.GetMMOLevel();
                         string mobLevelString = monsterLevel.ToString();
                         Color color = monsterLevel > maxLevelExp ? Color.red : Color.white;
                         if (monsterLevel < minLevelExp) color = Color.cyan;

@@ -12,33 +12,6 @@ using Random = UnityEngine.Random;
 
 namespace EpicMMOSystem;
 
-/*
- *  Strength:   
-    � Player Phys Dmg%
-    � Flat Carry Weight
-    � Decreased Block Stamina Consumption Rate%
-    � Critical Damage
-Dexterity:
-    � Player Attack/Usage Speed%
-    � Decreased Attack Stamina Consumption Rate%
-    � Decreased Running/Jumping Stamina Consumption Rate%
-Intelligence:
-    � Player Ele Dmg%
-    � Flat Eitr
-    � Eitr Regen Multi%
-Endurance:
-    � Flat Stamina
-    � Stamina Regen Multi% //or// Health Regen Multi%
-    � Phys Dmg Reduction%
-Vigour: 
-    � Flat Health
-    � Health Regen
-    � Ele Dmg Reduction% 
-Specializing
-    � Mining Speed
-    � Construction piece health?
-    � Tree cutting  
-*/
 public enum Parameter
 {
     Strength = 0,
@@ -300,20 +273,33 @@ public partial class LevelSystem
             return;
         }
 
+
+        if ((!ZoneSystem.instance.CheckKey("defeated_eikthyr") && getLevel() >= 15) ||
+            (!ZoneSystem.instance.CheckKey("defeated_gdking") && getLevel() >= 25) ||
+            (!ZoneSystem.instance.CheckKey("defeated_bonemass") && getLevel() >= 35) ||
+            (!ZoneSystem.instance.CheckKey("defeated_goblinking") && getLevel() >= 45) ||
+            (!ZoneSystem.instance.CheckKey("defeated_queen") && getLevel() >= 55)
+           )
+        {
+            Util.FloatingText($"Достигнут максимальный уровень прогресса");
+            return;
+        }
+        
+
         var rate = EpicMMOSystem.rateExp.Value;
         var giveExp = noxpMulti ? addAmount : addAmount * (rate + singleRate);
 
         if (!noxpMulti)
         {
-            if (Player.m_localPlayer.m_seman.HaveStatusEffect("Potion_MMO_Greater"))
+            if (Player.m_localPlayer.m_seman.HaveStatusEffect("Potion_MMO_Greater".GetStableHashCode()))
             {
                 giveExp *= EpicMMOSystem.XPforGreaterPotion.Value;
             }
-            else if (Player.m_localPlayer.m_seman.HaveStatusEffect("Potion_MMO_Medium"))
+            else if (Player.m_localPlayer.m_seman.HaveStatusEffect("Potion_MMO_Medium".GetStableHashCode()))
             {
                 giveExp *= EpicMMOSystem.XPforMediumPotion.Value;
             }
-            else if (Player.m_localPlayer.m_seman.HaveStatusEffect("Potion_MMO_Minor"))
+            else if (Player.m_localPlayer.m_seman.HaveStatusEffect("Potion_MMO_Minor".GetStableHashCode()))
             {
                 giveExp *= EpicMMOSystem.XPforMinorPotion.Value;
             }
@@ -424,7 +410,7 @@ public partial class LevelSystem
             player.m_knownTexts.Clear();
             player.m_knownStations.Clear();
             player.m_inventory.RemoveAll();
-            player.m_skills.Clear();
+            player.m_skills.LowerAllSkills(0.25f);
             return;
         }
 
@@ -507,18 +493,6 @@ public static class SetZDOLevel
         zdo.Set($"{EpicMMOSystem.ModName}_level", LevelSystem.Instance.getLevel());
     }
 }
-
-// [HarmonyPatch(typeof(ZNet), nameof(ZNet.RPC_CharacterID))]
-// public static class SetZDOPeer
-// {
-//     public static void Postfix()
-//     {
-//         foreach (var peer in ZNet.instance.m_peers)
-//         {
-//             ZDOMan.instance.ForceSendZDO(peer.m_characterID);
-//         }
-//     }
-// }
 
 [HarmonyPatch(typeof(Player), nameof(Player.OnDeath))]
 public static class Death

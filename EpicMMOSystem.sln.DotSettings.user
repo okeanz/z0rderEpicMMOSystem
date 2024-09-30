@@ -84,6 +84,7 @@
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=A_003A_005CSteamLibrary_005Csteamapps_005Ccommon_005CValheim_005Cvalheim_005FData_005CManaged_005CUnityEngine_002EInputLegacyModule_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=C_003A_005CGitHub_005Cz0rderEpicMMOSystem_005CLibs_005CCreatureLevelControl_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=C_003A_005CProgram_0020Files_0020_0028x86_0029_005CSteam_005Csteamapps_005Ccommon_005CValheim_005CBepInEx_005Ccore_005CBepInEx_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=C_003A_005CProgram_0020Files_0020_0028x86_0029_005CSteam_005Csteamapps_005Ccommon_005CValheim_005Cvalheim_005FData_005CManaged_005Cpublicized_005Fassemblies_005Ccom_002Erlabrecque_002Esteamworks_002Enet_005Fpublicized_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=C_003A_005CUsers_005CUser_005CAppData_005CRoaming_005Cr2modmanPlus_002Dlocal_005CValheim_005Cprofiles_005Cdev_005CBepInEx_005Cplugins_005CSmoothbrain_002DCreatureLevelAndLootControl_005CCreatureLevelControl_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
   &lt;Assembly Path="A:\SteamLibrary\steamapps\common\Valheim\valheim_Data\Managed\publicized_assemblies\assembly_valheim_publicized.dll" /&gt;&#xD;

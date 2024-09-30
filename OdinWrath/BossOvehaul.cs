@@ -14,6 +14,8 @@ public static class BossStart
         var monsterName = dbMonsterName.Replace("(Clone)", "");
         var character = __instance.m_character;
         if (!character) return;
+        
+        if(!EventExists(monsterName)) return;
 
         var isBoss = character.IsBoss();
 
@@ -22,23 +24,32 @@ public static class BossStart
                 EpicMMOSystem.counterCheckDistance.Value, monsterName)
             : 0;
 
-        var targetLevel = DataMonsters.contains(dbMonsterName) ? DataMonsters.getLevel(dbMonsterName) : 0;
-        if (character.GetMMOLevel() <= 1)
-        {
-            if (isBoss && maxCounter != 0)
-            {
-                var baseLevel = targetLevel;
-                targetLevel += maxCounter * EpicMMOSystem.bossLevelCounterMultiplier.Value;
-                var mmoLevelRatio = targetLevel / baseLevel;
-                character.SetLevel(character.GetLevel() + maxCounter * 3);
-                character.SetMaxHealth(character.GetMaxHealth() * mmoLevelRatio);
-            }
+        var players = isBoss
+            ? Player.GetPlayersInRangeXZ(__instance.transform.position, EpicMMOSystem.counterCheckDistance.Value) : 0;
 
+        var targetLevel = DataMonsters.contains(dbMonsterName) ? DataMonsters.getLevel(dbMonsterName) : 0;
+        
+        
+        if (isBoss && maxCounter != 0)
+        {
+            var baseLevel = targetLevel;
+            targetLevel += maxCounter * EpicMMOSystem.bossLevelCounterMultiplier.Value;
+            var mmoLevelRatio = targetLevel / baseLevel;
+            character.SetLevel(character.GetLevel() + maxCounter * 3 * players);
+            character.SetMaxHealth(character.GetMaxHealth() * mmoLevelRatio * (1 + 0.2f * players));
             character.SetMMOLevel(targetLevel);
         }
+        
 
         if (maxCounter > 1 && isBoss)
             CallOdinsWrath(monsterName, character.transform.position, maxCounter, targetLevel);
+    }
+
+    private static bool EventExists(string monsterName)
+    {
+        var events = RandEventSystem.instance.m_events
+            .Where(ev => ev.m_name.Contains("OW_") && ev.m_name.ToLower().Contains(monsterName.ToLower())).ToArray();
+        return events.Length != 0;
     }
 
     private static void CallOdinsWrath(string monsterName, Vector3 position, int counter, int mmoLevel)
@@ -62,24 +73,28 @@ public static class BossStart
             {
                 var insideUnitCircle = Random.insideUnitCircle;
                 var spawnPoint =
-                    position + new Vector3(insideUnitCircle.x, 0.0f, insideUnitCircle.y) * spawner.m_spawnDistance;
+                    position + new Vector3(insideUnitCircle.x, 0.0f, insideUnitCircle.y);
                 EpicMMOSystem.MLLogger.LogWarning($"spawning, ${spawner.m_name}; point: {spawnPoint}");
                 var gameObject = Object.Instantiate(spawner.m_prefab, spawnPoint + Vector3.up * spawner.m_groundOffset,
                     Quaternion.identity);
                 var ai = gameObject.GetComponent<BaseAI>();
                 ai.SetHuntPlayer(true);
+                
 
                 var character = gameObject.GetComponent<Character>();
                 character.m_faction = Character.Faction.Boss;
+                
                 var baseLevel = character.GetMMOLevel();
                 var mmoLevelRatio = mmoLevel / baseLevel;
                 character.SetMMOLevel(mmoLevel - 5);
                 character.SetLevel(Random.Range(spawner.m_minLevel, spawner.m_maxLevel) + counter * 2);
                 character.SetMaxHealth(character.GetMaxHealth() * mmoLevelRatio);
+                
                 var characterDrop = gameObject.GetComponent<CharacterDrop>();
                 if (characterDrop != null)
                 {
                     characterDrop.m_drops.Clear();
+                    characterDrop.m_dropsEnabled = false;
                 }
 
 

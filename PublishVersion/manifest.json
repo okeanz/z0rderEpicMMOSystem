@@ -1,7 +1,7 @@
 {
     "name": "z0rderEpicMMOSystem",
-    "version_number": "1.1.1",
-    "website_url": "",
+    "version_number": "1.1.2",
+    "website_url": "https://github.com/okeanz/z0rderEpicMMOSystem",
     "description": "Private server EpicMMO system fork",
     "dependencies": [
 	"denikson-BepInExPack_Valheim-5.4.2202"
