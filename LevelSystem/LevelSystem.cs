@@ -1,16 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
 using BepInEx;
 using EpicMMOSystem.Gui;
 using EpicMMOSystem.OdinWrath;
 using HarmonyLib;
 using UnityEngine;
-using UnityEngine.Networking;
 using Random = UnityEngine.Random;
 
-namespace EpicMMOSystem;
+namespace EpicMMOSystem.LevelSystem;
 
 public enum Parameter
 {
@@ -277,8 +274,9 @@ public partial class LevelSystem
         if ((!ZoneSystem.instance.CheckKey("defeated_eikthyr") && getLevel() >= 15) ||
             (!ZoneSystem.instance.CheckKey("defeated_gdking") && getLevel() >= 25) ||
             (!ZoneSystem.instance.CheckKey("defeated_bonemass") && getLevel() >= 35) ||
-            (!ZoneSystem.instance.CheckKey("defeated_goblinking") && getLevel() >= 45) ||
-            (!ZoneSystem.instance.CheckKey("defeated_queen") && getLevel() >= 55)
+            (!ZoneSystem.instance.CheckKey("defeated_dragon") && getLevel() >= 45) ||
+            (!ZoneSystem.instance.CheckKey("defeated_goblinking") && getLevel() >= 55)||
+            (!ZoneSystem.instance.CheckKey("defeated_queen") && getLevel() >= 65)
            )
         {
             Util.FloatingText($"Достигнут максимальный уровень прогресса");

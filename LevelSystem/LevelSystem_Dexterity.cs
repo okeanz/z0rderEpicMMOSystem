@@ -1,8 +1,6 @@
 using HarmonyLib;
-using System;
-using System.Globalization;
-using UnityEngine;
-namespace EpicMMOSystem;
+
+namespace EpicMMOSystem.LevelSystem;
 
 public partial class LevelSystem
 {

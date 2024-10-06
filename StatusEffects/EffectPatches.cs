@@ -61,17 +61,17 @@ public static class EffectPatches
                 switch (found?.name)
                 {
                     case "mmo_orb1":
-                        LevelSystem.Instance.AddExp(EpicMMOSystem.XPforOrb1.Value, true);  break;
+                        LevelSystem.LevelSystem.Instance.AddExp(EpicMMOSystem.XPforOrb1.Value, true);  break;
                     case "mmo_orb2":
-                        LevelSystem.Instance.AddExp(EpicMMOSystem.XPforOrb2.Value, true);  break;
+                        LevelSystem.LevelSystem.Instance.AddExp(EpicMMOSystem.XPforOrb2.Value, true);  break;
                     case "mmo_orb3":
-                        LevelSystem.Instance.AddExp(EpicMMOSystem.XPforOrb3.Value, true);  break;
+                        LevelSystem.LevelSystem.Instance.AddExp(EpicMMOSystem.XPforOrb3.Value, true);  break;
                     case "mmo_orb4":
-                        LevelSystem.Instance.AddExp(EpicMMOSystem.XPforOrb4.Value, true);  break;
+                        LevelSystem.LevelSystem.Instance.AddExp(EpicMMOSystem.XPforOrb4.Value, true);  break;
                     case "mmo_orb5":
-                        LevelSystem.Instance.AddExp(EpicMMOSystem.XPforOrb5.Value, true);  break;
+                        LevelSystem.LevelSystem.Instance.AddExp(EpicMMOSystem.XPforOrb5.Value, true);  break;
                     case "mmo_orb6":
-                        LevelSystem.Instance.AddExp(EpicMMOSystem.XPforOrb6.Value, true);  break;
+                        LevelSystem.LevelSystem.Instance.AddExp(EpicMMOSystem.XPforOrb6.Value, true);  break;
 
                     default: break;
                 }

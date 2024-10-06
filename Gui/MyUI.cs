@@ -38,7 +38,7 @@ public static partial class MyUI
         alertResetPointPanel.SetActive(false);
         addFriendAlert.SetActive(false);
         UI.SetActive(false);
-        LevelSystem.Instance.cancelDepositPoints();
+        LevelSystem.LevelSystem.Instance.cancelDepositPoints();
         DonatShop_API.HidePanel();
     }
 

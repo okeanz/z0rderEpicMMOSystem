@@ -321,8 +321,11 @@
     <Compile Include="color.cs" />
     <Compile Include="Data\Monster.cs" />
     <Compile Include="Gui\Util.cs" />
+    <Compile Include="LevelSystem\Monster\DataMonsters.cs" />
+    <Compile Include="LevelSystem\Monster\DataMonsters.MonsterDropGenerate.cs" />
     <Compile Include="LevelSystem\LevelSystem_Specializing.cs" />
     <Compile Include="LevelSystem\LevelSystem_Vigour.cs" />
+    <Compile Include="LevelSystem\Monster\ShowHud.cs" />
     <Compile Include="LevelSystem\ZDOUtils.cs" />
     <Compile Include="OdinWrath\BossCounterApi.cs" />
     <Compile Include="OdinWrath\BossOvehaul.cs" />
@@ -340,7 +343,6 @@
     <Compile Include="Gui\Panels\MyUI_NavigationPanel.cs" />
     <Compile Include="Gui\Unity\DragMenu.cs" />
     <Compile Include="ItemControl.cs" />
-    <Compile Include="LevelSystem\DataMonsters.cs" />
     <Compile Include="LevelSystem\MonsterDeath_Path.cs" />
     <Compile Include="LevelSystem\PlayerFVX.cs" />
     <Compile Include="LevelSystem\LevelSystem.cs" />

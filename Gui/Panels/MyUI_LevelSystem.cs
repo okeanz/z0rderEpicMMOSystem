@@ -4,6 +4,7 @@ using LocalizationManager;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using EpicMMOSystem.LevelSystem;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -149,20 +150,20 @@ public partial class MyUI
 
     private static void ClickCancel()
     {
-        LevelSystem.Instance.cancelDepositPoints();
+        LevelSystem.LevelSystem.Instance.cancelDepositPoints();
         levelSystemPanel.SetActive(false);
     }
     
     private static void ClickApply()
     {
-        LevelSystem.Instance.applyDepositPoints();
+        LevelSystem.LevelSystem.Instance.applyDepositPoints();
         levelSystemPanel.SetActive(false);
     }
 
     private static void ResetParameters()
     {
         var textCoin = EpicMMOSystem.viewTextCoins.Value;
-        var price = LevelSystem.Instance.getPriceResetPoints();
+        var price = LevelSystem.LevelSystem.Instance.getPriceResetPoints();
         var text = localization["$reset_point_text"];
         alertResetPointText.text = String.Format(text, price, textCoin);
         levelSystemPanel.GetComponent<CanvasGroup>().interactable = false;
@@ -172,7 +173,7 @@ public partial class MyUI
     private static void ResetYes()
     {
         ResetNo();
-        LevelSystem.Instance.ResetAllParameterPayment();
+        LevelSystem.LevelSystem.Instance.ResetAllParameterPayment();
     }
     
     private static void ResetNo()
@@ -183,16 +184,16 @@ public partial class MyUI
 
     public static void UpdateParameterPanel()
     {
-        var points = LevelSystem.Instance.getFreePoints();
-        var hasDeposit = LevelSystem.Instance.hasDepositPoints();
+        var points = LevelSystem.LevelSystem.Instance.getFreePoints();
+        var hasDeposit = LevelSystem.LevelSystem.Instance.hasDepositPoints();
         parameterButtons.ForEach(p => p.UpdateParameters(points));
 
         freePointsPanel.SetActive(points > 0 || hasDeposit);
         freePointsText.text = $"{localization["$free_points"]}: {points}";
         
-        currentLevelText.text = $"{localization["$level"]}: {LevelSystem.Instance.getLevel()}";
-        var currentExp = LevelSystem.Instance.getCurrentExp();
-        var needExp = LevelSystem.Instance.getNeedExp();
+        currentLevelText.text = $"{localization["$level"]}: {LevelSystem.LevelSystem.Instance.getLevel()}";
+        var currentExp = LevelSystem.LevelSystem.Instance.getCurrentExp();
+        var needExp = LevelSystem.LevelSystem.Instance.getNeedExp();
         var locText = localization["$exp"];
         expText.text = $"{locText}: {currentExp} / {needExp}";
 
@@ -201,37 +202,37 @@ public partial class MyUI
 
 
         //Description strength
-        physicDamageText.text = $"{localization["$physic_damage"]}: +{LevelSystem.Instance.getAddPhysicDamage()}%";
-        addWeightText.text = $"{localization["$add_weight"]}: +{LevelSystem.Instance.getAddWeight()}";
-        reducedStaminaBlockText.text = $"{localization["$reduced_stamina_block"]}: -{LevelSystem.Instance.getReducedStaminaBlock()}%";
-        criticalDmgMultText.text = $"{localization["$crtcDmgMulti"]}: +{LevelSystem.Instance.getAddCriticalDmg()}%"; // new
+        physicDamageText.text = $"{localization["$physic_damage"]}: +{LevelSystem.LevelSystem.Instance.getAddPhysicDamage()}%";
+        addWeightText.text = $"{localization["$add_weight"]}: +{LevelSystem.LevelSystem.Instance.getAddWeight()}";
+        reducedStaminaBlockText.text = $"{localization["$reduced_stamina_block"]}: -{LevelSystem.LevelSystem.Instance.getReducedStaminaBlock()}%";
+        criticalDmgMultText.text = $"{localization["$crtcDmgMulti"]}: +{LevelSystem.LevelSystem.Instance.getAddCriticalDmg()}%"; // new
 
         //Description Dexterity
-        attackSpeedMultiText.text = $"{localization["$attack_speed"]}: +{LevelSystem.Instance.getAddAttackSpeed()}%"; // new
-        attackStamina.text = $"{localization["$attack_stamina"]}: -{LevelSystem.Instance.getAttackStamina()}%"; // rename
-        reducedStaminaText.text = $"{localization["$reduced_stamina"]}: -{LevelSystem.Instance.getStaminaReduction()}%";
+        attackSpeedMultiText.text = $"{localization["$attack_speed"]}: +{LevelSystem.LevelSystem.Instance.getAddAttackSpeed()}%"; // new
+        attackStamina.text = $"{localization["$attack_stamina"]}: -{LevelSystem.LevelSystem.Instance.getAttackStamina()}%"; // rename
+        reducedStaminaText.text = $"{localization["$reduced_stamina"]}: -{LevelSystem.LevelSystem.Instance.getStaminaReduction()}%";
 
 
         //Description intellect
-        magicDamageText.text = $"{localization["$magic_damage"]}: +{LevelSystem.Instance.getAddMagicDamage()}%";    
-        eitrIncreaseText.text = $"{localization["$add_eitr"]}: +{LevelSystem.Instance.getAddEitr()}";
-        magicEitrRegText.text = $"{localization["$regen_eitr"]}: +{LevelSystem.Instance.getEitrRegen()}%";
+        magicDamageText.text = $"{localization["$magic_damage"]}: +{LevelSystem.LevelSystem.Instance.getAddMagicDamage()}%";    
+        eitrIncreaseText.text = $"{localization["$add_eitr"]}: +{LevelSystem.LevelSystem.Instance.getAddEitr()}";
+        magicEitrRegText.text = $"{localization["$regen_eitr"]}: +{LevelSystem.LevelSystem.Instance.getEitrRegen()}%";
 
         //Description Endurance
-        physicArmorText.text = $"{localization["$physic_armor"]}: +{LevelSystem.Instance.getAddPhysicArmor()}%";    
-        staminaRegen.text = $"{localization["$stamina_reg"]}: +{LevelSystem.Instance.getStaminaRegen()}%";
-        addStaminaText.text = $"{localization["$add_stamina"]}: +{LevelSystem.Instance.getAddStamina()}";
+        physicArmorText.text = $"{localization["$physic_armor"]}: +{LevelSystem.LevelSystem.Instance.getAddPhysicArmor()}%";    
+        staminaRegen.text = $"{localization["$stamina_reg"]}: +{LevelSystem.LevelSystem.Instance.getStaminaRegen()}%";
+        addStaminaText.text = $"{localization["$add_stamina"]}: +{LevelSystem.LevelSystem.Instance.getAddStamina()}";
 
         //Description Vigour
-        addHpText.text = $"{localization["$add_hp"]}: +{LevelSystem.Instance.getAddHp()}";
-        regenHpText.text = $"{localization["$regen_hp"]}: +{LevelSystem.Instance.getAddRegenHp()}%";
-        magicArmorText.text = $"{localization["$magic_armor"]}: +{LevelSystem.Instance.getAddMagicArmor()}%";
+        addHpText.text = $"{localization["$add_hp"]}: +{LevelSystem.LevelSystem.Instance.getAddHp()}";
+        regenHpText.text = $"{localization["$regen_hp"]}: +{LevelSystem.LevelSystem.Instance.getAddRegenHp()}%";
+        magicArmorText.text = $"{localization["$magic_armor"]}: +{LevelSystem.LevelSystem.Instance.getAddMagicArmor()}%";
 
         //Description Specializing
-        criticalChanceText.text = $"{localization["$crit_chance"]}: +{LevelSystem.Instance.getAddCriticalChance()}%"; // new
-        miningSpeedText.text = $"{localization["$mining_speed"]}: +{LevelSystem.Instance.getaddMiningDmg()}%"; // new
-        addpieceHealthText.text = $"{localization["$piece_health"]}: +{LevelSystem.Instance.getAddPieceHealth()}"; // new
-        treeCuttingSpeedText.text = $"{localization["$tree_cutting"]}: +{LevelSystem.Instance.getAddTreeCuttingDmg()}%"; //new
+        criticalChanceText.text = $"{localization["$crit_chance"]}: +{LevelSystem.LevelSystem.Instance.getAddCriticalChance()}%"; // new
+        miningSpeedText.text = $"{localization["$mining_speed"]}: +{LevelSystem.LevelSystem.Instance.getaddMiningDmg()}%"; // new
+        addpieceHealthText.text = $"{localization["$piece_health"]}: +{LevelSystem.LevelSystem.Instance.getAddPieceHealth()}"; // new
+        treeCuttingSpeedText.text = $"{localization["$tree_cutting"]}: +{LevelSystem.LevelSystem.Instance.getAddTreeCuttingDmg()}%"; //new
 
         #endregion
     }
@@ -257,12 +258,12 @@ public partial class MyUI
 
         private void ClickButton1()
         {
-            LevelSystem.Instance.addPointsParametr(parameter, 1);
+            LevelSystem.LevelSystem.Instance.addPointsParametr(parameter, 1);
             UpdateParameterPanel();
         }
         private void ClickButton5()
         {
-            LevelSystem.Instance.addPointsParametr(parameter, 5);
+            LevelSystem.LevelSystem.Instance.addPointsParametr(parameter, 5);
             UpdateParameterPanel();
         }
 
@@ -279,7 +280,7 @@ public partial class MyUI
                 "Special" => EpicMMOSystem.maxValueSpecializing.Value,
                 _ => max = 205
             };
-            var current = LevelSystem.Instance.getParameter(parameter);
+            var current = LevelSystem.LevelSystem.Instance.getParameter(parameter);
             text.text = $"{localization[$"$parameter_{parameter.ToString().ToLower()}"]}: {current}";
             buttons.SetActive(freePoints > 0 && current < max);
         }

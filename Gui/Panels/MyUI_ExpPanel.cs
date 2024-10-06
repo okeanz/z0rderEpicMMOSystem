@@ -60,9 +60,9 @@ public partial class MyUI
 
         }
 
-        var level = LevelSystem.Instance.getLevel();
-        var exp = LevelSystem.Instance.getCurrentExp();
-        var need = LevelSystem.Instance.getNeedExp();
+        var level = LevelSystem.LevelSystem.Instance.getLevel();
+        var exp = LevelSystem.LevelSystem.Instance.getCurrentExp();
+        var need = LevelSystem.LevelSystem.Instance.getNeedExp();
         if (DisableExpBar && !EpicMMOSystem.oldExpBar.Value)
             return;
 

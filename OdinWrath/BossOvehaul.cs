@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using EpicMMOSystem.LevelSystem;
+using EpicMMOSystem.LevelSystem.Monster;
 using fastJSON;
 using HarmonyLib;
 using UnityEngine;
@@ -15,7 +17,13 @@ public static class BossStart
         var character = __instance.m_character;
         if (!character) return;
         
-        if(!EventExists(monsterName)) return;
+        var targetLevel = DataMonsters.contains(dbMonsterName) ? DataMonsters.getLevel(dbMonsterName) : 0;
+        
+        if(!EventExists(monsterName))
+        { 
+            character.SetMMOLevel(targetLevel);
+            return;
+        }
 
         var isBoss = character.IsBoss();
 
@@ -26,8 +34,6 @@ public static class BossStart
 
         var players = isBoss
             ? Player.GetPlayersInRangeXZ(__instance.transform.position, EpicMMOSystem.counterCheckDistance.Value) : 0;
-
-        var targetLevel = DataMonsters.contains(dbMonsterName) ? DataMonsters.getLevel(dbMonsterName) : 0;
         
         
         if (isBoss && maxCounter != 0)
@@ -35,7 +41,7 @@ public static class BossStart
             var baseLevel = targetLevel;
             targetLevel += maxCounter * EpicMMOSystem.bossLevelCounterMultiplier.Value;
             var mmoLevelRatio = targetLevel / baseLevel;
-            character.SetLevel(character.GetLevel() + maxCounter * 3 * players);
+            character.SetLevel(character.GetLevel() + maxCounter * players);
             character.SetMaxHealth(character.GetMaxHealth() * mmoLevelRatio * (1 + 0.2f * players));
             character.SetMMOLevel(targetLevel);
         }

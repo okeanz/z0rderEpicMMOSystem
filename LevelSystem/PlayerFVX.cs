@@ -1,11 +1,8 @@
 using System;
-using HarmonyLib;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
-namespace EpicMMOSystem;
+namespace EpicMMOSystem.LevelSystem;
 
 public static class PlayerFVX
 {

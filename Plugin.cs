@@ -23,6 +23,8 @@ using PieceManager;
 using System.Runtime.Remoting.Messaging;
 using StatusEffectManager;
 using System.Collections;
+using EpicMMOSystem.LevelSystem;
+using EpicMMOSystem.LevelSystem.Monster;
 using EpicMMOSystem.OdinWrath;
 
 
@@ -34,7 +36,7 @@ namespace EpicMMOSystem;
 public partial class EpicMMOSystem : BaseUnityPlugin
 {
     internal const string ModName = "EpicMMOSystem";
-    internal const string ModVersion = "1.1.3";
+    internal const string ModVersion = "1.1.4";
 
     internal const string Author = "z0rder";
 
@@ -473,7 +475,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
         {
             // animation controller because reasons and stuff
             if (character is not Player player || !player.InAttack() || player.m_currentAttack is null ||
-                (LevelSystem.Instance.getParameter(Parameter.Agility) == 0) ||
+                (LevelSystem.LevelSystem.Instance.getParameter(Parameter.Agility) == 0) ||
                 player.GetCurrentWeapon().m_shared.m_skillType == Skills.SkillType.Bows)
             {
                 return speed;
@@ -482,7 +484,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
             var isDualWield = player.m_leftItem?.m_shared?.m_itemType == ItemDrop.ItemData.ItemType.OneHandedWeapon &&
                               player.m_rightItem?.m_shared?.m_itemType == ItemDrop.ItemData.ItemType.OneHandedWeapon;
 
-            return speed * (1 + LevelSystem.Instance.getAddAttackSpeed() / 100) *
+            return speed * (1 + LevelSystem.LevelSystem.Instance.getAddAttackSpeed() / 100) *
                    (isDualWield ? DualWieldModifier.Value : 1f);
         });
 
@@ -749,7 +751,7 @@ public partial class EpicMMOSystem : BaseUnityPlugin
     {
         if (!File.Exists(ConfigFileFullPath)) return;
 
-        var updatelvl = LevelSystem.Instance;
+        var updatelvl = LevelSystem.LevelSystem.Instance;
         updatelvl.FillLevelsExp(); // updates when people change levelExp,multiNextLeve, maxlevel
 
         Color tempC;

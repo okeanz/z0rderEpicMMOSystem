@@ -30,7 +30,7 @@ public static class TerminalCommands
     //Установка уровня
     private static void RPC_SetLevel(long sender, int level)
     {
-        LevelSystem.Instance.terminalSetLevel(level);
+        LevelSystem.LevelSystem.Instance.terminalSetLevel(level);
         Chat.instance.RPC_ChatMessage(200, Vector3.zero, 0, UserInfo.GetLocalUser(),
             String.Format(local["$terminal_set_level"], level), PrivilegeManager.GetNetworkUserId());
     }
@@ -38,7 +38,7 @@ public static class TerminalCommands
     //Сброс поинтов
     private static void RPC_ResetPoints(long sender)
     {
-        LevelSystem.Instance.ResetAllParameter();
+        LevelSystem.LevelSystem.Instance.ResetAllParameter();
         Chat.instance.RPC_ChatMessage(200, Vector3.zero, 0, UserInfo.GetLocalUser(), local["$terminal_reset_points"],
             PrivilegeManager.GetNetworkUserId());
     }

@@ -76,7 +76,7 @@ public partial class MyUI
 
     private static void ShowNavigationPanel()
     {
-        var point = LevelSystem.Instance.getFreePoints();
+        var point = LevelSystem.LevelSystem.Instance.getFreePoints();
         buttonLevelSystem.GetChild(0).gameObject.SetActive(point > 0);
         buttonFriendsList.GetChild(0).gameObject.SetActive(hasInvite());
     }

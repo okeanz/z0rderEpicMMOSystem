@@ -43,7 +43,7 @@ public static class FriendsSystem
         {
             if (playerInfo.m_name == name)
             {
-                int level = LevelSystem.Instance.getLevel();
+                int level = LevelSystem.LevelSystem.Instance.getLevel();
                 ZRoutedRpc.instance.InvokeRoutedRPC(
                     playerInfo.m_characterID.UserID, 
                     $"{modName} InviteFriend",

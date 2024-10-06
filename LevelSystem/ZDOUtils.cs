@@ -1,4 +1,4 @@
-﻿namespace EpicMMOSystem;
+﻿namespace EpicMMOSystem.LevelSystem;
 
 public static class ZDOUtils
 {
